@@ -1,6 +1,6 @@
 # Registro de decisiones
 
-Fecha: 2026-10-06. Ninguna propuesta técnica constituye autorización de implementación.
+Fecha: 2026-10-06. El usuario aprobó el plan completo y autorizó implementación el 2026-10-06.
 
 ## Indicaciones confirmadas por el usuario y su fuente
 
@@ -13,7 +13,7 @@ Fecha: 2026-10-06. Ninguna propuesta técnica constituye autorización de implem
 | D-005 | Español, cero emojis y tres rangos responsivos exactos | Reglas del prompt; móviles <768, tablet 768–1279 y escritorio ≥1280; objetivos interactivos ≥44 × 44 px. Fuente inglesa original preservada como entrada del usuario. |
 | D-006 | Gestionar Git y sincronizar hitos al remoto indicado | Mandato de `prompt.txt`; conservar historial y evitar push forzado; sincronización documental no implica publicación web. |
 
-## Propuestas pendientes de revisión
+## Propuestas aprobadas el 2026-10-06
 
 | ID | Propuesta | Motivo / impacto |
 |---|---|---|
@@ -32,4 +32,12 @@ Fecha: 2026-10-06. Ninguna propuesta técnica constituye autorización de implem
 - Contraste de arquetipos: conservar valores fuente y mostrar fallos; ajustes accesibles requieren decisión visible.
 - Compatibilidad de exportaciones Tailwind y variantes de presets: no asumir versiones universales ni seleccionar alternativas simultáneamente.
 
-Estas verificaciones no impiden entregar la documentación. El bloqueo de código vigente es la autorización del usuario.
+Estas verificaciones no impiden entregar la documentación. La autorización general ya está registrada. Las sustituciones tipográficas fuera del plan siguen requiriendo revisión específica.
+
+## D-014 — Sustitución tipográfica autorizada
+
+2026-10-06: el usuario autorizó sustituir Neue Montreal por General Sans en A20. Fuente de auditoría: https://pangrampangram.com/products/neue-montreal y https://www.fontshare.com/licenses/itf-ffl. El catálogo y los tokens reflejarán General Sans, sin atribuirle el nombre de la fuente anterior.
+
+## D-015 — Inventario comprobado
+
+215 opciones únicas de las categorías y arquetipos indicados en el prompt; siete fases y alias independientes. Se incluyen las decisiones de integridad y guardrails como opciones, sin añadir frameworks ajenos a la fuente.

@@ -2,7 +2,7 @@
 
 Especificación: [spec.md](spec.md). Plan: [plan.md](plan.md). Fecha: 2026-10-06.
 
-Estado: propuestas para revisión. Implementación autorizada: **NO**. Todas las casillas de implementación permanecen pendientes. Solo se han creado documentos. «RF-01» abrevia `RF-001-01`; las dependencias mantienen el identificador completo de tarea.
+Estado: aprobado por el usuario el 2026-10-06. Implementación autorizada: **SÍ**. Las casillas se completarán únicamente con evidencia de verificación. «RF-01» abrevia `RF-001-01`; las dependencias mantienen el identificador completo de tarea.
 
 ## Puerta de revisión
 
@@ -10,37 +10,37 @@ Antes de T-001-01: registrar autorización explícita y alcance en `docs/PROJECT
 
 ## Base técnica y dominio
 
-- [ ] T-001-01 — Configurar la base React, TypeScript estricto y Vite.
+- [x] T-001-01 — Configurar la base React, TypeScript estricto y Vite.
   - RF: RF-25, RF-26.
   - Dependencias: autorización explícita; ninguna tarea previa.
   - Archivos previstos: `package.json`, `package-lock.json`, `index.html`, `tsconfig.json`, `vite.config.ts`, `src/main.tsx`, `src/app/App.tsx`.
   - Finaliza cuando: instalación autorizada y reproducible; una pantalla mínima en español compila a `dist/` sin backend.
-- [ ] T-001-02 — Definir modelos y validadores de frontera.
+- [x] T-001-02 — Definir modelos y validadores de frontera.
   - RF: RF-03, RF-10, RF-18, RF-23.
   - Dependencias: T-001-01.
   - Archivos previstos: `src/domain/models.ts`, `src/domain/validation.ts`, `tests/unit/validation.test.ts`.
   - Finaliza cuando: datos válidos se aceptan; límites, IDs desconocidos, versiones inesperadas y rutas inseguras se rechazan conservando entrada corregible.
-- [ ] T-001-03 — Auditar y construir el registro de tecnologías.
+- [x] T-001-03 — Auditar y construir el registro de tecnologías.
   - RF: RF-01, RF-02, RF-05.
   - Dependencias: T-001-02.
   - Archivos previstos: `src/catalog/technologies.ts`, `tests/unit/catalog.test.ts`, `docs/DECISIONS.md`.
   - Finaliza cuando: siete fases cubiertas, todas las entradas del prompt presentes y ≥201 IDs distintos; alias no inflan el conteo. Cualquier ampliación ajena a la fuente requiere revisión antes de cerrarla.
-- [ ] T-001-04 — Implementar compatibilidades y diagnósticos.
+- [x] T-001-04 — Implementar compatibilidades y diagnósticos.
   - RF: RF-03, RF-07, RF-22.
   - Dependencias: T-001-03.
   - Archivos previstos: `src/domain/compatibility.ts`, `tests/unit/compatibility.test.ts`.
   - Finaliza cuando: CLI excluye CSS web; runtimes y frameworks incompatibles muestran causas; opciones inactivas no se exportan; no hay cambios silenciosos.
-- [ ] T-001-05 — Definir los ocho conjuntos predefinidos.
+- [x] T-001-05 — Definir los ocho conjuntos predefinidos.
   - RF: RF-04.
   - Dependencias: T-001-04.
   - Archivos previstos: `src/catalog/presets.ts`, `tests/unit/presets.test.ts`.
   - Finaliza cuando: los ocho coinciden con la especificación; variantes Godot/Bevy, Chi/Gin y SQLite/PostgreSQL exigen elección; aplicación atómica preserva narrativa y límites.
-- [ ] T-001-06 — Implementar madurez con seis pilares.
+- [x] T-001-06 — Implementar madurez con seis pilares.
   - RF: RF-13.
   - Dependencias: T-001-04.
   - Archivos previstos: `src/domain/maturity.ts`, `tests/unit/maturity.test.ts`.
   - Finaliza cuando: fórmula documentada, «No aplica» justificado y almacenamiento en memoria cuentan; pendientes y contradicciones no; puntuación tiene explicación.
-- [ ] T-001-07 — Separar estado de edición, interfaz y documentos.
+- [x] T-001-07 — Separar estado de edición, interfaz y documentos.
   - RF: RF-07, RF-20, RF-25.
   - Dependencias: T-001-02, T-001-04.
   - Archivos previstos: `src/store/editorStore.ts`, `src/store/documentStore.ts`, `src/store/uiStore.ts`.
@@ -48,17 +48,17 @@ Antes de T-001-01: registrar autorización explícita y alcance en `docs/PROJECT
 
 ## Motor determinista y generación
 
-- [ ] T-001-08 — Construir normalización y coincidencia aproximada.
+- [x] T-001-08 — Construir normalización y coincidencia aproximada.
   - RF: RF-05, RF-06, RF-07.
   - Dependencias: T-001-03.
   - Archivos previstos: `src/engine/tokenizer.ts`, `src/engine/matcher.ts`, `tests/unit/matcher.test.ts`.
   - Finaliza cuando: «pyton» y «tailwnd» funcionan; acentos y mayúsculas son equivalentes; negaciones y empates no producen selecciones falsas.
-- [ ] T-001-09 — Definir sugerencias de alcance y pilares ausentes.
+- [x] T-001-09 — Definir sugerencias de alcance y pilares ausentes.
   - RF: RF-08, RF-13.
   - Dependencias: T-001-04, T-001-08.
   - Archivos previstos: `src/engine/scopeRules.ts`, `tests/unit/scopeRules.test.ts`.
   - Finaliza cuando: reservas sin persistencia genera explicación y opciones compatibles; aceptación cambia el campo correspondiente; descarte no inventa reglas de negocio.
-- [ ] T-001-10 — Elaborar plantillas de especificación y ficha de proyecto.
+- [x] T-001-10 — Elaborar plantillas de especificación y ficha de proyecto.
   - RF: RF-10, RF-21.
   - Dependencias: T-001-02, T-001-04.
   - Archivos previstos: `src/engine/templates/spec.ts`, `src/engine/templates/project.ts`, `tests/fixtures/`.
@@ -222,7 +222,7 @@ Las expresiones T-001-20…32 en dependencias incluyen todos los IDs del interva
 
 ## Autorización de implementación
 
-Pendiente. Registrar fecha, mensaje y tareas aprobadas únicamente cuando el usuario lo autorice. No se ha aprobado ninguna elección propuesta por el mero hecho de documentarla.
+Autorización explícita recibida el 2026-10-06: especificación, arquitectura y T-001-01…39 aprobadas sin objeciones. Se ejecutan por dependencias y se verifican por bloques.
 
 ## Registro de ejecución
 
@@ -233,3 +233,7 @@ Pendiente. Registrar fecha, mensaje y tareas aprobadas únicamente cuando el usu
 ## Punto de reanudación
 
 Última acción: documentación entregada para revisión. Siguiente paso: recibir revisión y autorización explícita antes de ejecutar T-001-01 u otra tarea de implementación. Las cifras de rendimiento, accesibilidad y build están pendientes de medición. La aceptación visual del usuario permanece pendiente.
+
+2026-10-06 · T-001-01…03: npm run build (salida 0), npm run test (3 pruebas, salida 0), npm run typecheck (salida 0). Catálogo: 215 IDs únicos; alias separados.
+
+2026-10-06 · T-001-04…10: compatibilidades, ocho conjuntos, madurez, estado aislado y reglas de intención verificados con 9 pruebas unitarias y TypeScript sin errores. Plantillas iniciales inspeccionadas; integración determinista se verifica en T-001-14.
