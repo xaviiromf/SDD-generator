@@ -1,3 +1,4 @@
+import { useTranslation } from '../../i18n/useTranslation';
 import { useState, useRef } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Copy, Download, Terminal, Palette, X } from 'lucide-react';
@@ -9,7 +10,7 @@ import { copyText } from '../../services/clipboard';
 import { packageKit, saveDownload } from '../../services/zipExport';
 import { exportTokens, type TokenFormat } from '../../services/tokenExport';
 import { setupCommands } from '../../services/setupCommands';
-export function ExportBar() {
+export function ExportBar() { const { t } = useTranslation();
     const compilation = useDocumentStore(s => s.compilation);
     const pending = useDocumentStore(s => s.pending);
     const config = useEditorStore(s => s.config);
@@ -40,12 +41,12 @@ export function ExportBar() {
     finally {
         setBusy(false);
     } }
-    return <div className="export-bar"><div className="export-main"><button className="primary" disabled={blocked} onClick={() => void download()}><Download size={16}/>{busy ? 'Preparando archivo…' : 'Descargar Kit SDD (.zip)'}</button><button disabled={blocked} onClick={() => void copy(compilation!.documents.find(d => d.id === 'orchestrator')!.content)}><Copy size={16}/>Copiar Prompt Maestro</button></div><div className="export-secondary"><button disabled={blocked} onClick={() => void copy((compilation!.documents.find(d => d.id === active) ?? compilation!.documents.find(d => d.id === 'spec'))!.content)}><Copy size={14}/>Copiar documento</button><button disabled={blocked} onClick={() => { try {
+    return <div className="export-bar"><div className="export-main"><button className="primary" disabled={blocked} onClick={() => void download()}><Download size={16}/>{busy ? t('Preparando archivo…') : t('Descargar Kit SDD (.zip)')}</button><button disabled={blocked} onClick={() => void copy(compilation!.documents.find(d => d.id === 'orchestrator')!.content)}><Copy size={16}/>{t("Copiar Prompt Maestro")}</button></div><div className="export-secondary"><button disabled={blocked} onClick={() => void copy((compilation!.documents.find(d => d.id === active) ?? compilation!.documents.find(d => d.id === 'spec'))!.content)}><Copy size={14}/>{t("Copiar documento")}</button><button disabled={blocked} onClick={() => { try {
         openManual(setupCommands(config));
     }
     catch (e) {
         notify(e instanceof Error ? e.message : 'No se pudo preparar el comando.');
-    } }}><Terminal size={14}/>Comando de Setup Rápido</button></div><details><summary><Palette size={14}/> Exportar Design Tokens</summary><label className="field"><span>Formato y perfil del destino</span><select aria-label="Formato de tokens" value={format} onChange={e => setFormat(e.target.value as TokenFormat)}><option value="css">CSS / Tailwind 4</option><option value="json">JSON</option>{config.selections.styling?.includes('tailwind') && <option value="tailwind">Configuración Tailwind 3 (perfil explícito)</option>}</select></label><button disabled={blocked || !a} onClick={() => { if (!a)
-        return; const result = exportTokens(a, format); void saveDownload(new Blob([result.content], { type: 'text/plain;charset=utf-8' }), result.filename).then(() => notify('Tokens descargados.')); }}>Descargar tokens</button>{!a && <p>Selecciona un arquetipo visual para exportar tokens.</p>}</details><Dialog.Root open={!!manual} onOpenChange={open => { if (!open)
-        setManual(''); }}><Dialog.Portal><Dialog.Overlay className="overlay"/><Dialog.Content className="dialog" onCloseAutoFocus={event => { event.preventDefault(); invoker.current?.focus(); }}><Dialog.Title>Texto para copiar</Dialog.Title><Dialog.Description>Selecciona el contenido y cópialo. Los comandos se muestran; no se ejecutan.</Dialog.Description><textarea aria-label="Contenido para copiar" className="copy-area" value={manual} readOnly onFocus={e => e.target.select()}/><button onClick={() => void copy(manual)}>Copiar contenido</button><Dialog.Close className="close-icon" aria-label="Cerrar"><X size={18}/></Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root></div>;
+    } }}><Terminal size={14}/>{t("Comando de Setup Rápido")}</button></div><details><summary><Palette size={14}/>  {t("Exportar Design Tokens")}</summary><label className="field"><span>{t("Formato y perfil del destino")}</span><select aria-label={t("Formato de tokens")} value={format} onChange={e => setFormat(e.target.value as TokenFormat)}><option value="css">CSS / Tailwind 4</option><option value="json">JSON</option>{config.selections.styling?.includes('tailwind') && <option value="tailwind">{t("Configuración Tailwind 3 (perfil explícito)")}</option>}</select></label><button disabled={blocked || !a} onClick={() => { if (!a)
+        return; const result = exportTokens(a, format, config.sddLanguage); void saveDownload(new Blob([result.content], { type: 'text/plain;charset=utf-8' }), result.filename).then(() => notify('Tokens descargados.')); }}>{t("Descargar tokens")}</button>{!a && <p>{t("Selecciona un arquetipo visual para exportar tokens.")}</p>}</details><Dialog.Root open={!!manual} onOpenChange={open => { if (!open)
+        setManual(''); }}><Dialog.Portal><Dialog.Overlay className="overlay"/><Dialog.Content className="dialog" onCloseAutoFocus={event => { event.preventDefault(); invoker.current?.focus(); }}><Dialog.Title>{t("Texto para copiar")}</Dialog.Title><Dialog.Description>{t("Selecciona el contenido y cópialo. Los comandos se muestran; no se ejecutan.")}</Dialog.Description><textarea lang={config.sddLanguage ?? 'es'} aria-label={t("Contenido para copiar")} className="copy-area" value={manual} readOnly onFocus={e => e.target.select()}/><button onClick={() => void copy(manual)}>{t("Copiar contenido")}</button><Dialog.Close className="close-icon" aria-label={t("Cerrar")}><X size={18}/></Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root></div>;
 }

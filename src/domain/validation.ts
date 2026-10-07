@@ -1,3 +1,4 @@
+import { isLocale } from '../i18n/translate';
 import { fields, singleFields, type Configuration, type Diagnostic, type Field } from './models';
 import { createKitManifest, validSlug } from '../engine/kitManifest';
 import { technologyById } from '../catalog/technologies';
@@ -14,6 +15,8 @@ export function validateText(text: string): Diagnostic[] {
 }
 export function validateConfiguration(c: Configuration, knownIds?: ReadonlySet<string>): Diagnostic[] {
     const result = validateText([c.name, c.idea, c.positive, c.negative].join('\n'));
+    if (c.sddLanguage !== undefined && !isLocale(c.sddLanguage))
+        result.push({ message: 'Idioma del SDD no válido.', blocking: true });
     if (c.version !== 1 || !Number.isSafeInteger(c.revision) || c.revision < 0)
         result.push({ message: 'Versión o revisión de borrador no válida.', blocking: true });
     if (!c.name.trim() || c.name.length > 80)
@@ -37,7 +40,7 @@ export function isConfiguration(value: unknown): value is Configuration {
     if (!value || typeof value !== 'object')
         return false;
     const c = value as Record<string, unknown>;
-    return c.version === 1 && typeof c.revision === 'number' && ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') && !!c.selections && typeof c.selections === 'object' && !Array.isArray(c.selections) && Object.values(c.selections).every(ids => Array.isArray(ids) && ids.every(id => typeof id === 'string')) && !!c.origins && typeof c.origins === 'object' && !Array.isArray(c.origins) && Object.keys(c.origins).every(key=>fields.includes(key as Field)) && Object.values(c.origins).every(origin => ['manual', 'preset', 'inference'].includes(String(origin)));
+    return (c.sddLanguage === undefined || isLocale(c.sddLanguage)) && c.version === 1 && typeof c.revision === 'number' && ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') && !!c.selections && typeof c.selections === 'object' && !Array.isArray(c.selections) && Object.values(c.selections).every(ids => Array.isArray(ids) && ids.every(id => typeof id === 'string')) && !!c.origins && typeof c.origins === 'object' && !Array.isArray(c.origins) && Object.keys(c.origins).every(key=>fields.includes(key as Field)) && Object.values(c.origins).every(origin => ['manual', 'preset', 'inference'].includes(String(origin)));
 }
 export function safeDocumentPath(path: string, slug = 'mi-proyecto'): boolean { return validSlug(slug) && createKitManifest({ slug }).some(d => d.path === path); }
 export function escapeMarkdown(text: string): string { return text.replace(/[<>]/g, char => char === '<' ? '&lt;' : '&gt;'); }

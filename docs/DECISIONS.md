@@ -69,3 +69,9 @@ El usuario solicita planificar todos los archivos restantes del kit, mantener la
 ## D-021 — Ejecución de 002 y exclusión del repositorio
 
 El usuario autoriza ejecutar el plan completo y exige ignorar toda su carpeta documental. El contrato vigente pasa a 34 documentos, manteniendo la pila y los límites del estudio. Manifiesto, contexto y perfiles de destino gobiernan generación, navegación y ZIP; decisiones/evidencia del objetivo empiezan pendientes. La carpeta local se retira del índice y se ignora; su presencia en ee2470b precede a esta instrucción y no se elimina mediante una reescritura no autorizada. Los resultados técnicos generales constan en el estado público; documentación detallada de 002 permanece local.
+
+## D-022 — Idiomas independientes autorizados
+
+El usuario solicita dos interruptores en el header: idioma del SDD y de la UI, cada uno español/inglés. Esta instrucción sustituye el idioma único de D-005 y RF-001-21 para el producto y el contenido generado. Confirmó conservar literalmente sus textos; no se agregan traductores externos, APIs ni dependencias.
+
+La UI persiste su preferencia en una clave separada; Configuration añade sddLanguage opcional con migración de borradores previos a es. Cambiar UI no incrementa revisión ni recompila. El renderer traduce exclusivamente fragmentos literales de las plantillas y metadatos controlados; las interpolaciones del usuario permanecen intactas. Las políticas de idioma de constitution/AGENTS/prompts y la decisión de integridad siguen el idioma del kit, aunque la UI sea distinta. Los 34 nombres y rutas del marco no se renombran. Los tokens JSON usan metadatos españoles o ingleses según el kit; variables CSS e identificadores técnicos permanecen estables.

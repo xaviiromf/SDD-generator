@@ -1398,7 +1398,7 @@ export const technologies: Technology[] = [
     },
     {
         "id": "spanish",
-        "label": "Documentación en español",
+        "label": "Idioma del SDD",
         "field": "integrity",
         "phase": 6,
         "aliases": []

@@ -200,3 +200,7 @@ Solicitud explícita del usuario el 2026-10-06: hacer localizable Django e incor
 Aceptación: las opciones aparecen en sus fases correspondientes al seleccionar Django con Python y una arquitectura de servidor; drf-spectacular y Simple JWT requieren REST Framework. Cambiar el framework o la API preserva selecciones manuales y muestra incompatibilidades que bloquean exportación. El kit declara las selecciones y propone estructura Django.
 
 Contrato vigente tras autorización de 002: el kit completo conserva nombres y carpetas del marco; validación y registros comienzan no ejecutados. El plan detallado de 002 se conserva solo localmente, fuera del repositorio remoto por instrucción del usuario.
+
+## Ampliación 003 — Idiomas independientes
+
+RF-003-01…05 en [003-idiomas/spec.md](003-idiomas/spec.md) sustituyen las restricciones de idioma único en RF-001-08,09,10,21 y sus criterios: UI y kit admiten español/inglés de forma independiente, con español por defecto. Nombres de productos, rutas y sintaxis conservan su forma técnica; los textos del usuario se preservan por decisión explícita. Cero emojis, las 34 responsabilidades y la pila local determinista permanecen vigentes.

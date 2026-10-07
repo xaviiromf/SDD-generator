@@ -1,3 +1,4 @@
+import type { Locale } from '../i18n/translate';
 import type { KitDocument } from '../engine/kitManifest';
 export const fields = ['platform', 'architecture', 'language', 'runtime', 'frontend', 'backend', 'api', 'addons', 'state', 'primitives', 'highlight', 'packaging', 'content', 'storage', 'protocol', 'styling', 'archetype', 'auth', 'security', 'integrity', 'tooling', 'testing', 'lint', 'deploy'] as const;
 export type Field = typeof fields[number];
@@ -6,6 +7,7 @@ export type Selection = Partial<Record<Field, string[]>>;
 export interface Configuration {
     version: 1;
     revision: number;
+    sddLanguage?: Locale;
     name: string;
     slug: string;
     idea: string;
@@ -48,6 +50,7 @@ export interface GeneratedDocument extends KitDocument {
     revision: number;
 }
 export interface Compilation {
+    sddLanguage?: Locale;
     revision: number;
     slug: string;
     documents: GeneratedDocument[];
@@ -63,5 +66,5 @@ export interface Compilation {
     };
     targetTree: string[];
 }
-export function emptyConfiguration(): Configuration { return { version: 1, revision: 0, name: 'Mi proyecto', slug: 'mi-proyecto', idea: '', positive: '', negative: '', selections: {}, origins: {} }; }
+export function emptyConfiguration(): Configuration { return { version: 1, revision: 0, sddLanguage: 'es', name: 'Mi proyecto', slug: 'mi-proyecto', idea: '', positive: '', negative: '', selections: {}, origins: {} }; }
 export const singleFields = new Set<Field>(['platform', 'architecture', 'runtime', 'frontend', 'styling', 'archetype', 'auth']);

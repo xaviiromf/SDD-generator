@@ -1,6 +1,6 @@
 # SDD-Studio
 
-Una idea. Un plan claro. Genera kits de desarrollo guiado por especificaciones en español, mediante reglas locales y sin consumir tokens de API de IA.
+Una idea. Un plan claro. Genera kits de desarrollo guiado por especificaciones en español o inglés, mediante reglas locales y sin consumir tokens de API de IA.
 
 Aplicación estática construida con React 19, TypeScript estricto, Vite, Zustand y Tailwind CSS. Compila documentos en un Web Worker y exporta ZIP en memoria. La interfaz usa exclusivamente iconos de lucide-react.
 
@@ -32,6 +32,12 @@ npm run preview
 El kit contiene los 30 archivos de SDD-AI-FULLSTACK y cuatro documentos activos en `specs/001-<identificador>/`: spec, plan, tasks y validation. Conserva los seis archivos raíz, diez documentos de gobernanza, nueve archivos de prompts y el índice con cuatro plantillas reutilizables. El registro de validación empieza «No ejecutado»; no incluye resultados del generador.
 
 Usa el árbol anidado o «Documento del kit» para consultar cualquiera de los 34 archivos, incluido el manual TXT. Los accesos rápidos conservan spec, plan, tasks, constitution, PROJECT y el orquestador. Cambiar el identificador actualiza la carpeta activa y sus referencias sin cambiar el documento seleccionado. El ZIP coincide con el visor; las rutas de código del plan siguen siendo propuestas.
+
+### Idiomas independientes
+
+El encabezado incluye dos interruptores ES/EN: «Idioma de la UI» controla toda la interfaz y «Idioma del SDD» controla el contenido de los 34 documentos, el prompt maestro, la copia, el ZIP, los comentarios de preparación y los metadatos de tokens. Las cuatro combinaciones son válidas. Ambas preferencias se guardan localmente; los borradores antiguos empiezan en español.
+
+Cambiar la UI conserva el kit; cambiar el SDD conserva decisiones, datos y documento seleccionado. El idioma de la página y el del visor se declaran por separado para tecnologías de asistencia. Tus textos de nombre, idea y alcance se conservan literalmente, según la decisión confirmada; redacta esos campos en el idioma que quieras. Las rutas del marco, los comandos, los identificadores RF/T y los nombres de productos no cambian. No se llama a servicios de traducción.
 
 ### Atajos y búsqueda
 

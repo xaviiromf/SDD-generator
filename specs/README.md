@@ -2,6 +2,7 @@
 
 | ID | Alcance | Documentos | Estado | Código autorizado |
 |---|---|---|---|---|
+| 003 | Idiomas independientes UI / SDD | [spec](003-idiomas/spec.md), [plan](003-idiomas/plan.md), [tasks](003-idiomas/tasks.md), [validation](003-idiomas/validation.md) | Implementación y verificación técnica terminadas | Sí |
 | 002 | Kit completo y adaptable | Documentación local excluida del repositorio por instrucción del usuario | Implementación y verificación técnica terminadas; evidencia local | Sí |
 | 001 | SDD-Studio completo | [spec.md](spec.md), [plan.md](plan.md), [tasks.md](tasks.md) | Implementación funcional; auditoría manual pendiente | Sí |
 

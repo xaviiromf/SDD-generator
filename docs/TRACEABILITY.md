@@ -1,6 +1,6 @@
 # Trazabilidad prevista
 
-Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 28 pruebas unitarias y 40 recorridos de navegador pasan; véase [validation.md](../specs/validation.md). Auditoría con lector real pendiente.
+Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 35 pruebas unitarias y 50 recorridos de navegador pasan; véase [validation.md](../specs/validation.md). Auditoría con lector real pendiente.
 
 «RF-01» abrevia `RF-001-01`; «T01» abrevia `T-001-01`. Los criterios CA se definen en [spec.md](../specs/spec.md).
 
@@ -26,7 +26,7 @@ Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 28 pruebas un
 | RF-18 | T02, T31, T33, T34 | draftStorage | Cuota, corrupción, restauración; CA-08/10. |
 | RF-19 | T16, T32, T34 | fonts, service-worker | Recarga y exportación sin red; CA-08. |
 | RF-20 | T07, T18, T19, T35 | StudioLayout, PanelNavigation | Límites 767/768/1279/1280; CA-09. |
-| RF-21 | T10, T13, T18, T25, T33, T37, T38 | UI, templates, README | Español y ausencia de emojis; CA-05/10/15. |
+| RF-21 | T10, T13, T18, T25, T33, T37, T38 | UI, templates, README | Idioma de UI/kit según RF-003; ausencia de emojis; CA-05/10/15. |
 | RF-22 | T04, T13, T30, T33 | constitution, orchestrator | Guardrails por destino; CA-10. |
 | RF-23 | T02, T14, T23, T25, T28, T30, T31, T33, T38 | validation y servicios | XSS, traversal, secretos sintéticos; CA-10. |
 | RF-24 | T17…22, T24, T26, T27, T35 | Primitivas, árbol y estilos | Teclado, foco, AA, zoom; CA-09. |
@@ -55,3 +55,15 @@ Implementación autorizada; evidencias detalladas locales excluidas de Git. Inve
 | RF-002-08 | T-002-02,11…13 | Borradores previos, prioridades y transición | Verificado automáticamente; límites manuales pendientes |
 
 La ampliación pasa pruebas de manifiesto, referencias, perfiles, ocho conjuntos, ZIP, seguridad y revisión en tests/unit/kit.test.ts; navegación completa, TXT, ZIP, borrador anterior y actualización offline en tests/e2e/kit.spec.ts. Evidencia detallada de 002 se conserva solo localmente por mandato del usuario; no se atribuye aceptación ni lectura asistida real.
+
+## Ampliación 003 — Idiomas independientes
+
+| Requisito | Tareas | Implementación | Evidencia |
+|---|---|---|---|
+| RF-003-01 | T-003-02,04 | i18n, componentes UI, App, búsqueda | Mensajes, fases, catálogo, diálogos, errores y lang; languages.spec.ts |
+| RF-003-02 | T-003-03,04 | Templates, kitContext, targetProfile, tokens | 34 contenidos bilingües, ocho conjuntos, Django, ZIP y copia; languages.test.ts/languages.spec.ts |
+| RF-003-03 | T-003-01,04 | uiStore, editorStore, Configuration | Cuatro combinaciones, revisión independiente, recarga y offline |
+| RF-003-04 | T-003-03,04 | Renderer literal/template y metadatos | Textos incluso coincidentes con traducciones preservados; rutas y referencias iguales |
+| RF-003-05 | T-003-01,02,04 | Validación, restauración, LanguageToggles y CSS | Borradores antiguos, idioma inválido, teclado, almacenamiento restringido y ancho 320 px |
+
+Resultados reales de la ampliación en specs/003-idiomas/validation.md. No se atribuye revisión con lector de pantalla real.

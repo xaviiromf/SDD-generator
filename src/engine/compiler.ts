@@ -16,5 +16,5 @@ export function compile(c: Configuration): Compilation {
         diagnostics.push({ message: 'El kit supera 1 MiB. Acota el alcance antes de exportar.', blocking: true });
     if (brokenReferences(documents).length)
         diagnostics.push({ message: 'Hay referencias internas fuera del kit. Revisa los enlaces del texto introducido.', blocking: true });
-    return { revision: c.revision, slug: ctx.config.slug, documents, diagnostics, suggestions: scopeSuggestions(c), inferences: inferTechnologies(c.idea), maturity: calculateMaturity(c), targetTree: ctx.profile.paths };
+    return { sddLanguage: c.sddLanguage ?? 'es', revision: c.revision, slug: ctx.config.slug, documents, diagnostics, suggestions: scopeSuggestions(c), inferences: inferTechnologies(c.idea), maturity: calculateMaturity(c), targetTree: ctx.profile.paths };
 }

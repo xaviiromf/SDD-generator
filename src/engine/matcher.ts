@@ -1,7 +1,8 @@
+import { literal } from '../i18n/translate';
 import { technologies } from '../catalog/technologies';
 import { distance, normalize, tokenize } from './tokenizer';
 import type { Inference, Technology } from '../domain/models';
-const searchable = technologies.map(entry => ({ entry, terms: [entry.id, normalize(entry.label), ...entry.aliases.map(normalize)] }));
+const searchable = technologies.map(entry => ({ entry, terms: [entry.id, normalize(entry.label), normalize(literal(entry.label, 'en')), ...entry.aliases.map(normalize)] }));
 export function searchTechnologies(query: string): Technology[] {
     const term = normalize(query.trim());
     if (!term)
@@ -18,7 +19,7 @@ export function inferTechnologies(text: string): Inference[] {
         if (word.length < 3 || word.length > 64)
             continue;
         const context = words.slice(Math.max(0, index - 3), index);
-        if (context.some(t => ['sin', 'no', 'evitar', 'excluir', 'excepto'].includes(t)))
+        if (context.some(t => ['sin', 'no', 'evitar', 'excluir', 'excepto', 'without', 'avoid', 'exclude', 'except', 'not'].includes(t)))
             continue;
         if (seenWords.has(word))
             continue;
@@ -34,7 +35,7 @@ export function inferTechnologies(text: string): Inference[] {
         seen.add(entry.id);
         result.push({ id: entry.id, field: entry.field, explanation: `Se detectó ${entry.label} en la idea.` });
     }
-    if (/\bsin backend\b/.test(normalize(text)))
+    if (/\b(?:sin|without|no) backend\b/.test(normalize(text)))
         result.push({ id: 'client', field: 'architecture', explanation: 'Se solicitó funcionamiento sin backend.' });
     return result.sort((a, b) => (a.field === 'language' ? -1 : 0) - (b.field === 'language' ? -1 : 0));
 }

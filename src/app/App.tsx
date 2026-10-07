@@ -7,6 +7,8 @@ import { readDraft, saveDraft, draftKey } from '../services/draftStorage';
 import { registerOffline } from '../services/offlineRegistration';
 import { StatusMessage } from '../components/feedback/StatusMessage';
 export function App() {
+    const locale = useUIStore(s => s.locale);
+    useEffect(() => { document.documentElement.lang = locale; document.querySelector('meta[name=description]')?.setAttribute('content', locale === 'en' ? 'Generate project specifications in English or Spanish, offline and without AI tokens.' : 'Genera especificaciones en español o inglés, sin conexión y sin tokens de IA.'); document.title = locale === 'en' ? 'SDD-Studio — One idea. A clear plan.' : 'SDD-Studio — Una idea. Un plan claro.'; }, [locale]);
     const restart = useUIStore(s => s.restart);
     useEffect(() => { const draft = readDraft(); if (draft.config)
         useEditorStore.getState().restore(draft.config); useUIStore.setState({ notice: draft.message }); let timer: ReturnType<typeof setTimeout>; const unsubscribe = useEditorStore.subscribe((s, p) => { if (s.config === p.config)

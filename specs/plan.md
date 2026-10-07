@@ -279,3 +279,7 @@ La aprobación debe identificar el alcance o tareas autorizadas y resolver o ace
 ## Ampliación Django autorizada — RF-30
 
 Añadir campos api y addons al contrato versionado compatible con borradores previos (campos opcionales). El catálogo declara requisitos entre opciones; compatibilidad comprueba presencia y elegibilidad de prerrequisitos. TechnologyField observa backend/api para actualizar los complementos; el configurador explica los filtros. La paleta calcula el inventario dinámicamente. El árbol del destino propone manage.py, configuración, aplicación y rutas de API según selección. No se añaden dependencias al runtime del estudio. Validación: regresión unitaria de filtros/prerrequisitos y kit, recorrido en Chromium/Firefox, lint, TypeScript y build.
+
+## Integración 003 — Idiomas
+
+Catálogos en src/i18n/, useTranslation para UI y renderer literal/template para documentos. Locale UI en uiStore; sddLanguage en editorStore/Configuration con revisión y persistencia del borrador. Contexto y templates reciben idioma explícito; servicios de exportación mantienen coherencia. El visor declara su lang independientemente de document.documentElement.lang. Diseño y verificación en specs/003-idiomas/plan.md.

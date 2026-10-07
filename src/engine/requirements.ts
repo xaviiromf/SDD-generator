@@ -1,3 +1,4 @@
+import { literal } from '../i18n/translate';
 import type { Configuration } from '../domain/models';
 import { escapeMarkdown } from '../domain/validation';
 export const requirementId = (number: number) => `RF-001-${String(number).padStart(2, '0')}`;
@@ -6,10 +7,10 @@ export function scopeRequirements(c: Configuration) {
 }
 export function requirements(c: Configuration) {
     return [
-        { id: requirementId(1), text: 'Resolver el propósito descrito dentro del alcance declarado.' },
-        { id: requirementId(2), text: 'Validar entradas y mostrar errores recuperables sin pérdida de datos.' },
-        { id: requirementId(3), text: 'Respetar persistencia, seguridad y plataforma seleccionadas.' },
-        { id: requirementId(4), text: 'Mantener accesibilidad y adaptación cuando corresponda al destino.' },
+        { id: requirementId(1), text: literal('Resolver el propósito descrito dentro del alcance declarado.', c.sddLanguage) },
+        { id: requirementId(2), text: literal('Validar entradas y mostrar errores recuperables sin pérdida de datos.', c.sddLanguage) },
+        { id: requirementId(3), text: literal('Respetar persistencia, seguridad y plataforma seleccionadas.', c.sddLanguage) },
+        { id: requirementId(4), text: literal('Mantener accesibilidad y adaptación cuando corresponda al destino.', c.sddLanguage) },
         ...scopeRequirements(c)
     ];
 }

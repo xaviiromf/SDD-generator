@@ -1,10 +1,11 @@
+import { useTranslation } from '../../i18n/useTranslation';
 import { useMemo, useRef, useState, useEffect } from 'react';
 import { Folder, FileText, ChevronRight, ChevronDown } from 'lucide-react';
 import { useUIStore } from '../../store/uiStore';
 import { useDocumentStore } from '../../store/documentStore';
 import { kitTree, type KitNode } from '../../engine/kitTree';
 interface Row { node: KitNode; level: number; parent?: string; position: number; size: number; }
-export function FileTree() {
+export function FileTree() { const { t } = useTranslation();
     const documents = useDocumentStore(s => s.compilation?.documents);
     const active = useUIStore(s => s.activeDocument);
     const roots = useMemo(() => kitTree(documents ?? []), [documents]);
@@ -19,7 +20,7 @@ export function FileTree() {
     const move = (key?: string) => { if (key) { setFocus(key); refs.current.get(key)?.focus(); } };
     const toggle = (key: string) => setExpanded(previous => previous.includes(key) ? previous.filter(v => v !== key) : [...previous, key]);
     const focusedKey = rows.some(r => r.node.key === focus) ? focus : rows[0]?.node.key;
-    return <details className="file-tree"><summary><Folder size={14}/> Estructura del kit <small>{documents?.length ?? 0} archivos</small></summary><div role="tree" aria-label="Archivos del kit" className="kit-tree">{rows.map((row, i) => {
+    return <details className="file-tree"><summary><Folder size={14}/>  {t("Estructura del kit")} <small>{documents?.length ?? 0}  {t("archivos")}</small></summary><div role="tree" aria-label={t("Archivos del kit")} className="kit-tree">{rows.map((row, i) => {
         const { node } = row;
         const folder = !node.document;
         return <button key={node.key} ref={el => { if (el) refs.current.set(node.key, el); else refs.current.delete(node.key); }} role="treeitem" aria-label={node.key} aria-level={row.level} aria-posinset={row.position} aria-setsize={row.size} tabIndex={focusedKey === node.key ? 0 : -1} aria-selected={folder ? undefined : active === node.document?.id} aria-expanded={folder ? expanded.includes(node.key) : undefined} style={{ paddingLeft: 12 + (row.level - 1) * 16 }} onFocus={() => setFocus(node.key)} onKeyDown={event => {

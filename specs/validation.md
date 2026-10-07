@@ -87,3 +87,9 @@ Implementación 002 autorizada posteriormente. Salida vigente: 34 documentos por
 Mediciones actuales p95: entrada 1,5 ms, kit 45,6 ms (30 revisiones), conjuntos 10,7 ms, ZIP 10,4 ms (30 muestras tras preparación). Ninguna tarea larga registrada en el escenario. Caso sintético máximo actualizado: 1.047.200 bytes, empaquetado/descompresión comprobados. Auditoría de texto: 101 archivos propios/entrada sin emojis. Capturas de escritorio/móvil actualizadas e inspeccionadas.
 
 La evidencia detallada de 002 se conserva localmente fuera del seguimiento Git por instrucción explícita del usuario. La carpeta previamente subida se retira del árbol remoto actual; el historial anterior no se reescribe. Los pendientes manuales originales y la aceptación/publicación continúan separados de estos resultados técnicos.
+
+## Hito actual — idiomas independientes
+
+Implementación 003 solicitada por el usuario, con confirmación de preservar sus textos. UI y kit admiten ES/EN de forma independiente; el catálogo, mensajes, plantillas de los 34 documentos y políticas del destino siguen su selección correspondiente. Visor, copia, ZIP, comentarios de preparación y metadatos de tokens coherentes; rutas e identificadores preservados.
+
+Lint, TypeScript, build y 35 unitarias pasan. Suite completa Chromium/Firefox: 50 pruebas pasan y dos mediciones omitidas, salida 0. Referencia p95: ingreso 1,3 ms; generación española 39 ms, inglesa 54,7 ms; conjuntos 10,9 ms; ZIP 9,5 ms. Ninguna tarea larga en la referencia española. Matriz de cuatro combinaciones, recarga/offline, datos de usuario, teclado y ancho 320 px comprobados. Evidencia detallada en [003-idiomas/validation.md](003-idiomas/validation.md). Los pendientes manuales, aceptación y publicación siguen separados.
