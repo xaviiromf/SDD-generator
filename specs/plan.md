@@ -280,3 +280,7 @@ Durante VALIDATE, crear `specs/validation.md` con comandos, códigos de salida y
 En DOCUMENT: `specs/spec.md`, `specs/plan.md`, `specs/tasks.md`, `specs/README.md`, `docs/PROJECT.md`, `docs/PROJECT_STATUS.md`, `docs/DECISIONS.md` y `docs/TRACEABILITY.md`. En implementación: README y guía de comandos; en validación: evidencia real.
 
 La aprobación debe identificar el alcance o tareas autorizadas y resolver o aceptar las propuestas de selección técnica, estética y límites. La existencia del plan no autoriza código, instalaciones ni despliegue. La sincronización documental en Git está solicitada por `prompt.txt`; publicar una web requiere autorización distinta.
+
+## Ampliación Django autorizada — RF-30
+
+Añadir campos api y addons al contrato versionado compatible con borradores previos (campos opcionales). El catálogo declara requisitos entre opciones; compatibilidad comprueba presencia y elegibilidad de prerrequisitos. TechnologyField observa backend/api para actualizar los complementos; el configurador explica los filtros. La paleta calcula el inventario dinámicamente. El árbol del destino propone manage.py, configuración, aplicación y rutas de API según selección. No se añaden dependencias al runtime del estudio. Validación: regresión unitaria de filtros/prerrequisitos y kit, recorrido en Chromium/Firefox, lint, TypeScript y build.

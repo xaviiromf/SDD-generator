@@ -1896,9 +1896,21 @@ export const technologies: Technology[] = [
         "field": "content",
         "phase": 4,
         "aliases": []
-    }
+    },
+    {"id": "django-templates", "label": "Plantillas Django", "field": "frontend", "phase": 3, "aliases": ["django templates", "dtl"], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "django-rest-framework", "label": "Django REST Framework (DRF)", "field": "api", "phase": 4, "aliases": ["drf", "djangorestframework"], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "django-ninja", "label": "Django Ninja", "field": "api", "phase": 4, "aliases": ["django ninja"], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "django-channels", "label": "Django Channels — WebSockets", "field": "addons", "phase": 4, "aliases": ["channels"], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "django-celery", "label": "Celery para Django — tareas en segundo plano", "field": "addons", "phase": 4, "aliases": ["celery"], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "django-filter", "label": "django-filter — filtrado de consultas", "field": "addons", "phase": 4, "aliases": [], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "drf-spectacular", "label": "drf-spectacular — OpenAPI para DRF", "field": "addons", "phase": 4, "aliases": [], "languages": ["python"], "requires": {"backend": ["django"], "api": ["django-rest-framework"]}},
+    {"id": "django-cors-headers", "label": "django-cors-headers — CORS", "field": "security", "phase": 6, "aliases": [], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "django-allauth", "label": "django-allauth — cuentas y acceso social", "field": "auth", "phase": 6, "aliases": ["allauth"], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "django-simplejwt", "label": "Simple JWT para DRF", "field": "auth", "phase": 6, "aliases": ["simplejwt"], "languages": ["python"], "requires": {"backend": ["django"], "api": ["django-rest-framework"]}},
+    {"id": "django-orm", "label": "Django ORM — modelos y migraciones", "field": "storage", "phase": 4, "aliases": [], "languages": ["python"], "requires": {"backend": ["django"]}},
+    {"id": "pytest-django", "label": "pytest-django", "field": "testing", "phase": 7, "aliases": [], "languages": ["python"], "requires": {"backend": ["django"]}}
 ];
 export const technologyById = new Map(technologies.map(entry => [entry.id, entry]));
 export const knownIds = new Set(technologyById.keys());
-export const fieldLabels: Record<Field, string> = { state: 'Estado reactivo', primitives: 'Primitivas accesibles', highlight: 'Resaltado', packaging: 'Empaquetado local', content: 'Contenido', platform: 'Plataforma', architecture: 'Arquitectura', language: 'Lenguajes', runtime: 'Ejecución', frontend: 'Interfaz y frameworks', backend: 'Backend y herramientas', storage: 'Persistencia', protocol: 'Comunicación', styling: 'Estilo', archetype: 'Arquetipo visual', auth: 'Identidad', security: 'Protecciones', integrity: 'Integridad', tooling: 'Herramientas de construcción', testing: 'Pruebas', lint: 'Análisis y formato', deploy: 'Distribución' };
+export const fieldLabels: Record<Field, string> = { api: 'APIs de Django', addons: 'Complementos de Django', state: 'Estado reactivo', primitives: 'Primitivas accesibles', highlight: 'Resaltado', packaging: 'Empaquetado local', content: 'Contenido', platform: 'Plataforma', architecture: 'Arquitectura', language: 'Lenguajes', runtime: 'Ejecución', frontend: 'Interfaz y frameworks', backend: 'Frameworks de servidor y herramientas', storage: 'Persistencia', protocol: 'Comunicación', styling: 'Estilo', archetype: 'Arquetipo visual', auth: 'Identidad', security: 'Protecciones', integrity: 'Integridad', tooling: 'Herramientas de construcción', testing: 'Pruebas', lint: 'Análisis y formato', deploy: 'Distribución' };
 export const phaseLabels = ['Plataforma y entorno', 'Arquitectura y topología', 'Lenguajes y frameworks', 'Persistencia y comunicación', 'Estética y tokens', 'Seguridad y constitución', 'Flujo y distribución'];

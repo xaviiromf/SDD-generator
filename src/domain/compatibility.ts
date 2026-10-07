@@ -5,6 +5,9 @@ export const visualPlatforms = [...webPlatforms, 'desktop', 'linux', 'windows', 
 export function styleApplies(c: Configuration): boolean { const platform = c.selections.platform?.[0]; return !platform || visualPlatforms.includes(platform); }
 export function optionCompatible(entry: Technology, c: Configuration): boolean {
     const platform = c.selections.platform?.[0];
+    if (entry.requires && !Object.entries(entry.requires).every(([field, ids]) =>
+        ids.some(id => c.selections[field as Field]?.includes(id) && optionCompatible(technologyById.get(id)!, c))))
+        return false;
     if (['styling', 'archetype', 'primitives', 'highlight'].includes(entry.field) && !styleApplies(c))
         return entry.id === 'not-applicable';
     if (entry.platforms && platform && !entry.platforms.includes(platform))
@@ -30,7 +33,7 @@ export function compatibilityDiagnostics(c: Configuration): Diagnostic[] {
             if (!entry || entry.field !== field)
                 result.push({ field: field as Field, message: 'La opción no pertenece al campo seleccionado.', blocking: true });
             else if (!optionCompatible(entry, c))
-                result.push({ field: entry.field, message: `${entry.label} no es compatible con las decisiones actuales. Revisa el campo seleccionado.`, blocking: true });
+                result.push({ field: entry.field, message: `${entry.label} no es compatible con las decisiones actuales.${entry.requires ? ' Requiere: ' + Object.values(entry.requires).map(ids => ids.map(id => technologyById.get(id)?.label ?? id).join(' o ')).join('; ') + '.' : ''} Revisa el campo seleccionado.`, blocking: true });
         }
     const storage = c.selections.storage ?? [];
     if (storage.includes('memory') && storage.length > 1)

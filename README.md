@@ -33,9 +33,15 @@ El kit contiene `specs/spec.md`, `specs/plan.md`, `specs/tasks.md`, `constitutio
 
 ### Atajos y búsqueda
 
-Cmd + K en macOS o Ctrl + K abre la paleta de 225 opciones y ocho conjuntos. Busca un producto, un arquetipo o una arquitectura; las erratas «pyton» y «tailwnd» se reconocen. Usa flechas y Enter para elegir; Escape cierra y devuelve el foco.
+Cmd + K en macOS o Ctrl + K abre la paleta de 237 opciones y ocho conjuntos. Busca un producto, un arquetipo o una arquitectura; las erratas «pyton» y «tailwnd» se reconocen. Usa flechas y Enter para elegir; Escape cierra y devuelve el foco.
 
 En Configuración, Cmd/Ctrl + 1…7 abre una fase cuando no estás escribiendo en un campo. Algunos navegadores reservan esas combinaciones: usa los encabezados visibles como alternativa. Acordeones, pestañas, árbol, diálogos y acciones permiten teclado.
+
+### Django y sus complementos
+
+En Arquitectura elige Monolito o Cliente y API desacoplados; en Lenguajes y frameworks elige Python y Django en Frameworks de servidor y herramientas. Puedes seleccionar Plantillas Django para páginas renderizadas en el servidor. En Persistencia y comunicación aparecen Django REST Framework, Django Ninja y los complementos de filtrado, OpenAPI, WebSockets y tareas en segundo plano; Django ORM puede combinarse con la base de datos elegida. En Seguridad están django-allauth, Simple JWT y CORS; en Flujo y distribución, pytest-django.
+
+Las opciones dependientes se muestran al seleccionar su framework. drf-spectacular y Simple JWT requieren DRF; si retiras un requisito, se conserva tu selección y la exportación se bloquea hasta corregirla. La búsqueda también permite localizar Django aunque un filtro lo oculte y señala cualquier incompatibilidad resultante.
 
 ### Redacta un alcance que pueda verificarse
 

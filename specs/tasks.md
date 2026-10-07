@@ -229,10 +229,21 @@ Autorización explícita recibida el 2026-10-06: especificación, arquitectura y
 | Fecha | Actividad | Resultado |
 |---|---|---|
 | 2026-10-06 | Lectura de prompt y marco; redacción de especificación, plan, tareas y documentos de soporte | DOCUMENT; sin código, instalaciones ni pruebas de aplicación. |
-| 2026-10-06 | Implementación autorizada, verificaciones por bloques, auditoría de licencias y sincronización | 36 tareas completadas; T-001-35,38,39 abiertas por revisión de accesibilidad manual pendiente. Evidencia en validation.md. |
+| 2026-10-06 | Implementación autorizada, verificaciones por bloques, auditoría de licencias y sincronización | 36 tareas originales completadas; T-001-35,38,39 abiertas por revisión de accesibilidad manual pendiente. Evidencia en validation.md. |
 
 ## Punto de reanudación
 
-Implementación funcional terminada; 36 de 39 tareas completadas con evidencia. T-001-35 tiene auditoría automática pasada y revisión con lector real pendiente. T-001-38 y T-001-39 tienen comandos y sincronización ejecutados, pero quedan abiertos por esa dependencia formal. No se presenta la aceptación del usuario como realizada.
+Implementación funcional terminada; 40 de 43 tareas completadas con evidencia. T-001-35 tiene auditoría automática pasada y revisión con lector real pendiente. T-001-38 y T-001-39 tienen comandos y sincronización ejecutados, pero quedan abiertos por esa dependencia formal. No se presenta la aceptación del usuario como realizada.
 
-Evidencia: [validation.md](validation.md). Último bloque: 19 pruebas unitarias, 32 pruebas de navegador (2 mediciones omitidas en Firefox), lint, TypeScript y build con salida 0. Rendimiento: entrada p95 1,8 ms; generación p95 46,9 ms; conjuntos p95 13,7 ms; ZIP p95 4,2 ms. Siguiente paso: auditoría con lector de pantalla real y cierre formal posterior.
+Evidencia: [validation.md](validation.md). Último bloque: 22 pruebas unitarias, 34 pruebas de navegador (2 mediciones omitidas en Firefox), lint, TypeScript y build con salida 0. Rendimiento: entrada p95 1,6 ms; generación p95 42,9 ms; conjuntos p95 10,3 ms; ZIP p95 3,2 ms. Siguiente paso: auditoría con lector de pantalla real y cierre formal posterior.
+
+## Ampliación autorizada — RF-30
+
+- [x] T-001-40 — Incorporar catálogo Django por función y requisitos. Dependencia: T-001-37. Verificación: IDs únicos, clasificación, enlaces oficiales y compilación TypeScript.
+- [x] T-001-41 — Aplicar requisitos entre selecciones y generar estructura Django. Dependencia: T-001-40. Verificación: complementos sin Django/DRF bloqueados; cambios preservan decisiones; kit coherente.
+- [x] T-001-42 — Actualizar filtros reactivos, explicación y conteo de búsqueda. Dependencia: T-001-41. Verificación: recorrido visible Python → Django → API → complementos.
+- [x] T-001-43 — Verificar ampliación y sincronizar documentación/remoto. Dependencia: T-001-42. Verificación: pruebas unitarias/navegador, lint, TypeScript, build, evidencia y push normal.
+
+La ampliación no cierra los pendientes originales T-001-35,38,39.
+
+Verificación de la ampliación: lint, TypeScript, 22 pruebas unitarias, build y 34 pruebas de navegador con salida 0. Dos mediciones omitidas en Firefox; sync por push normal.

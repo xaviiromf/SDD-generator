@@ -5,13 +5,13 @@
 | Producto | SDD-Studio. |
 | Fase autorizada | IMPLEMENTACIÓN; autorización explícita del usuario el 2026-10-06. |
 | Implementación autorizada | Sí: especificación, arquitectura y T-001-01…39 aprobadas sin objeciones. |
-| Trabajo completado | Implementación funcional; 36 de 39 tareas verificadas y completadas. T-001-35,38,39 permanecen abiertas por la auditoría con lector de pantalla real. |
+| Trabajo completado | Implementación funcional; 40 de 43 tareas (36 originales y cuatro de la ampliación Django) verificadas y completadas. T-001-35,38,39 permanecen abiertas por la auditoría con lector de pantalla real. |
 | Documentos activos | [spec.md](../specs/spec.md), [plan.md](../specs/plan.md), [tasks.md](../specs/tasks.md), [validation.md](../specs/validation.md). |
 | Código existente | SPA React/TypeScript: configurador, inferencia local, trabajador, 21 arquetipos, seis documentos, exportación y caché offline. |
-| Catálogo y fuentes | 225 opciones únicas, ocho conjuntos, 30 familias OFL locales; sustituciones autorizadas registradas en [DECISIONS.md](DECISIONS.md). |
+| Catálogo y fuentes | 237 opciones únicas, ocho conjuntos, 30 familias OFL locales; sustituciones autorizadas registradas en [DECISIONS.md](DECISIONS.md). |
 | Archivos preservados | `prompt.txt` sin modificaciones; marco externo utilizado solo por lectura. |
-| Verificación técnica | Lint, TypeScript, build y 19 pruebas unitarias pasan. Chromium/Firefox: 32 pruebas pasan y 2 mediciones se omiten en Firefox. |
-| Rendimiento de referencia | Entrada p95 1,8 ms; disponibilidad documental p95 46,9 ms; conjuntos p95 13,7 ms; ZIP p95 4,2 ms. Entorno y límites en validation.md. |
+| Verificación técnica | Lint, TypeScript, build y 22 pruebas unitarias pasan. Chromium/Firefox: 34 pruebas pasan y 2 mediciones se omiten en Firefox. |
+| Rendimiento de referencia | Entrada p95 1,6 ms; disponibilidad documental p95 42,9 ms; conjuntos p95 10,3 ms; ZIP p95 3,2 ms. Entorno y límites en validation.md. |
 | Accesibilidad | Contraste, teclado, foco, semántica y reflujo equivalente comprobados automáticamente. Lector de pantalla y ampliación real del navegador pendientes. |
 | Navegadores | Chromium y Firefox verificados. WebKit no inicia por dependencias ausentes del sistema; no se modificaron paquetes externos al proyecto. |
 | Git | Rama `main`, remoto `https://github.com/xaviiromf/SDD-generator`. Hito funcional sincronizado mediante push normal; SHA consultable con `git rev-parse HEAD` y `git rev-parse origin/main`. |
@@ -27,3 +27,5 @@ También autorizó concretar Zen Kaku Gothic New, las seis sustituciones OFL y l
 ## Reanudación
 
 La aplicación puede probarse con `npm ci`, `npm run build` y `npm run preview`. Base predeterminada: `/SDD-generator/`. La verificación técnica y la sincronización de T-001-38/39 están realizadas; su cierre formal depende de T-001-35. Ninguna comprobación automática se presenta como lectura asistida real ni como aceptación del usuario.
+
+Ampliación RF-30 solicitada y autorizada el 2026-10-06: Django localizable, APIs y complementos clasificados, dependencias verificadas y estructura del destino actualizada. T-001-40…43 verificadas; pendientes originales preservados.

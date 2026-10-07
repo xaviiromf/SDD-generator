@@ -1,4 +1,4 @@
-export const fields = ['platform', 'architecture', 'language', 'runtime', 'frontend', 'backend', 'state', 'primitives', 'highlight', 'packaging', 'content', 'storage', 'protocol', 'styling', 'archetype', 'auth', 'security', 'integrity', 'tooling', 'testing', 'lint', 'deploy'] as const;
+export const fields = ['platform', 'architecture', 'language', 'runtime', 'frontend', 'backend', 'api', 'addons', 'state', 'primitives', 'highlight', 'packaging', 'content', 'storage', 'protocol', 'styling', 'archetype', 'auth', 'security', 'integrity', 'tooling', 'testing', 'lint', 'deploy'] as const;
 export type Field = typeof fields[number];
 export type Origin = 'manual' | 'preset' | 'inference';
 export type Selection = Partial<Record<Field, string[]>>;
@@ -21,6 +21,7 @@ export interface Technology {
     aliases: string[];
     languages?: string[];
     platforms?: string[];
+    requires?: Selection;
 }
 export interface Diagnostic {
     message: string;

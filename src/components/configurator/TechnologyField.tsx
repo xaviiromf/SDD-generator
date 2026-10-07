@@ -6,8 +6,8 @@ import { singleFields, type Field } from '../../domain/models';
 export function TechnologyField({ field }: {
     field: Field;
 }) {
-    const data = useEditorStore(useShallow(s => ({ selected: s.config.selections[field], platform: s.config.selections.platform, language: s.config.selections.language, architecture: s.config.selections.architecture, select: s.select })));
-    const config = { ...useEditorStore.getState().config, selections: { platform: data.platform, language: data.language, architecture: data.architecture } };
+    const data = useEditorStore(useShallow(s => ({ selected: s.config.selections[field], platform: s.config.selections.platform, language: s.config.selections.language, architecture: s.config.selections.architecture, backend: s.config.selections.backend, api: s.config.selections.api, select: s.select })));
+    const config = { ...useEditorStore.getState().config, selections: { platform: data.platform, language: data.language, architecture: data.architecture, backend: data.backend, api: data.api } };
     const entries = technologies.filter(e => e.field === field && (optionCompatible(e, config) || data.selected?.includes(e.id)));
     if (!entries.length)
         return null;

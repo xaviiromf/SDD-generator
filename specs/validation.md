@@ -14,20 +14,20 @@ Los resultados describen este equipo y estos escenarios. No certifican una tasa 
 |---|---|---|
 | `npm run lint` | Sin errores en código y configuración propios; excluye artefactos de build. | 0 |
 | `npm run typecheck` | TypeScript estricto sin errores. | 0 |
-| `npm run test` | 19 pruebas en 7 archivos; contratos, catálogo, arquitectura, intención, compilación, trabajador, servicios y rendimiento. | 0 |
+| `npm run test` | 22 pruebas en 8 archivos; contratos, catálogo, arquitectura, intención, compilación, trabajador, servicios y rendimiento. | 0 |
 | `npm run build` | Recursos estáticos en `dist/`; trabajador independiente, exportación diferida y `sw.js`. | 0 |
-| `npm run test:e2e` | 32 pruebas pasan; 2 mediciones de rendimiento omitidas en Firefox por usar Chromium como referencia. | 0 |
+| `npm run test:e2e` | 34 pruebas pasan; 2 mediciones de rendimiento omitidas en Firefox por usar Chromium como referencia. | 0 |
 | `npm run test:e2e -- --project=chromium -g 'presupuestos'` | Refinamiento posterior del escenario: 230 eventos y 30 actualizaciones documentales; pasa. | 0 |
 | `npx vite build --base / --outDir dist-root` | Build alternativo en raíz; servido en puerto 4174, recargado sin red, sin errores de página. | 0 |
-| Auditoría local de texto | Cero emojis en 85 archivos propios/entrada fuente; se excluyen binarios, dependencias y avisos legales originales. | 0 |
+| Auditoría local de texto | Cero emojis en 86 archivos propios/entrada fuente; se excluyen binarios, dependencias y avisos legales originales. | 0 |
 | Auditoría de recursos tipográficos | 60 referencias locales de fuente, ninguna ausente; 30 familias OFL cargadas sin red en ambos navegadores. | 0 |
 | Inicio de WebKit descargado | No puede iniciarse: faltan libicu74 y libflite1 en este sistema. | 1 |
 
-El escenario ampliado de generación usa el mismo código de aplicación que la última suite completa. Aumenta la medición de disponibilidad documental a 30 muestras; no modifica la aplicación.
+La suite completa se repitió tras incorporar RF-30. Incluye 230 eventos y 30 muestras de disponibilidad documental; los valores de rendimiento de este informe corresponden a esa pasada. La comprobación alternativa en raíz y las capturas visuales corresponden al hito previo; la ampliación no cambia rutas de alojamiento.
 
 ## Cobertura funcional comprobada
 
-- Catálogo: 225 IDs únicos, siete fases, ocho conjuntos y 21 arquetipos; alias independientes. El inventario incorpora las herramientas de estado, primitivas, resaltado y empaquetado mencionadas en el prompt.
+- Catálogo: 237 IDs únicos, siete fases, ocho conjuntos y 21 arquetipos; alias independientes. El inventario incorpora las herramientas de estado, primitivas, resaltado y empaquetado mencionadas en el prompt.
 - Compatibilidad: CLI excluye opciones visuales activas; frameworks se filtran por lenguaje/plataforma; conflictos y campos incorrectos bloquean exportación. El borrador visual se conserva para volver a web.
 - Intención: erratas, acentos, coincidencia determinista y negación. Selecciones manuales prevalecen; un conjunto conserva el arquetipo y su procedencia manual.
 - Kit: seis rutas exactas, revisión coherente, salida determinista y española. Cada línea de alcance explícito produce un RF adicional y una tarea asociada; el grafo es acíclico. No se inventan contratos específicos de negocio.
@@ -45,11 +45,11 @@ Referencia: Chromium de producción, portátil indicado, sin grabación de traza
 
 | Métrica | Muestras / tamaño | Resultado | Presupuesto |
 |---|---|---|---|
-| Trabajo síncrono de entrada p95 | 230 eventos; idea próxima a 20.000 caracteres | 1,8 ms | <16 ms |
-| Disponibilidad documental p95 | 30 revisiones tras edición | 46,9 ms | ≤150 ms |
+| Trabajo síncrono de entrada p95 | 230 eventos; idea próxima a 20.000 caracteres | 1,6 ms | <16 ms |
+| Disponibilidad documental p95 | 30 revisiones tras edición | 42,9 ms | ≤150 ms |
 | Tareas largas en hilo principal | Escenario de edición y generación | Ninguna >50 ms registrada | Ninguna atribuible a compilación |
-| Aplicación de conjunto p95 | 30 cambios, alternando SPA y CLI | 13,7 ms | <16 ms |
-| Empaquetado ZIP p95 | 30 kits de referencia, tras carga inicial del módulo | 4,2 ms | <100 ms |
+| Aplicación de conjunto p95 | 30 cambios, alternando SPA y CLI | 10,3 ms | <16 ms |
+| Empaquetado ZIP p95 | 30 kits de referencia, tras carga inicial del módulo | 3,2 ms | <100 ms |
 | Caso ZIP de aproximadamente 1 MiB | 1.048.200 bytes de texto sintético | Empaquetado y descompresión verificados en prueba unitaria | Sin aplicar el presupuesto del kit de referencia |
 
 La optimización final separa la invalidación del panel documental del evento del editor y evita recalcular el fondo del estudio al cerrar la confirmación de un conjunto. El resaltado usa una gramática Markdown mínima y memoizada.
@@ -73,3 +73,9 @@ Se inspeccionaron visualmente las capturas de escritorio y móvil: retícula té
 La autorización está registrada en `docs/PROJECT_STATUS.md`. Las sustituciones OFL y la limpieza del primer commit de implementación fueron aprobadas explícitamente por el usuario y documentadas en D-017. El commit corregido `42ccfe4` conserva como padre `e438cac`, manteniendo la documentación previa. Los hitos posteriores se sincronizan mediante push normal; no contienen fuentes ITF ni secretos.
 
 El SHA final es consultable con `git log -1` y `git rev-parse origin/main`. La igualdad de HEAD y origin/main se comprueba al terminar. Este documento no atribuye aceptación al usuario ni convierte pendientes en resultados positivos.
+
+## Regresión Django — RF-30
+
+Se verificaron filtros por lenguaje y arquitectura, aparición de APIs/complementos al seleccionar Django, DRF como requisito de Simple JWT y drf-spectacular, conservación de conflictos y bloqueo de exportación. El kit declara las opciones y propone manage.py, configuración, modelos, migraciones, plantillas, API DRF/Ninja y Channels/Celery según selección. Borradores previos siguen válidos sin los nuevos campos opcionales.
+
+`npm run lint`, `npm run typecheck`, `npm run test`, `npm run build` y `npm run test:e2e` terminan con salida 0. El primer recorrido nuevo falló por buscar el nombre del acordeón sin su prefijo numérico; se corrigió el localizador y la suite completa posterior pasó (34 pruebas, dos omitidas). No se cambió el comportamiento del producto para acomodar esa prueba. Fuentes oficiales del inventario: D-019 en docs/DECISIONS.md.

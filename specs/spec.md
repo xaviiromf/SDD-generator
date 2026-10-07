@@ -192,3 +192,9 @@ Aspectos que requieren comprobarse antes de cerrar sus tareas: inventario ≥201
 2026-10-06: primera documentación de alcance completo a partir de `prompt.txt`. Revisión y autorización pendientes. No se ha escrito código de aplicación ni instalado dependencias.
 
 2026-10-06: aprobación formal sin objeciones y autorización de Fase 2. Sustituciones tipográficas posteriores aprobadas en D-014, D-016 y D-017. La aceptación final del producto sigue pendiente.
+
+## RF-30 — Ecosistema Django (ampliación autorizada)
+
+Solicitud explícita del usuario el 2026-10-06: hacer localizable Django e incorporar opciones de API y complementos según su función. Django permanece como framework de servidor Python; se explican los filtros por lenguaje y arquitectura. API: Django REST Framework y Django Ninja. Complementos: Channels, Celery, django-filter, drf-spectacular y django-cors-headers. Identidad: django-allauth y Simple JWT. Persistencia: Django ORM; presentación: plantillas Django; pruebas: pytest-django. Son opciones del proyecto objetivo, sin instalar Django ni servicios en el estudio.
+
+Aceptación: las opciones aparecen en sus fases correspondientes al seleccionar Django con Python y una arquitectura de servidor; drf-spectacular y Simple JWT requieren REST Framework. Cambiar el framework o la API preserva selecciones manuales y muestra incompatibilidades que bloquean exportación. El kit declara las selecciones y propone estructura Django.
