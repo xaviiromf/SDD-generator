@@ -1,7 +1,7 @@
 import { it, expect } from 'vitest';
 import JSZip from 'jszip';
 import { compile } from '../../src/engine/compiler';
-import { emptyConfiguration, documentPaths } from '../../src/domain/models';
+import { emptyConfiguration } from '../../src/domain/models';
 import { packageKit } from '../../src/services/zipExport';
 import { exportTokens } from '../../src/services/tokenExport';
 import { archetypes } from '../../src/catalog/archetypes';
@@ -11,9 +11,9 @@ it('empaqueta rutas y contenido de la misma revisión y rechaza traversal', asyn
     const documents = compile(emptyConfiguration()).documents;
     const bytes = await packageKit(documents);
     const zip = await JSZip.loadAsync(bytes);
-    for (const path of documentPaths)
+    for (const {path} of documents)
         expect(await zip.file(path)!.async('string')).toBe(documents.find(d => d.path === path)!.content);
-    await expect(packageKit([...documents, { ...documents[0], path: '../secreto' as typeof documentPaths[number] }])).rejects.toThrow('no válidos');
+    await expect(packageKit([...documents, { ...documents[0], path: '../secreto' }])).rejects.toThrow('no válidos');
     await expect(packageKit(documents.map((d, i) => i ? d : { ...d, revision: 99 }))).rejects.toThrow();
 });
 it('exporta valores exactos y prepara órdenes con identificadores seguros', () => {

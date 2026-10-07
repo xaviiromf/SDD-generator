@@ -247,3 +247,7 @@ Evidencia: [validation.md](validation.md). Último bloque: 22 pruebas unitarias,
 La ampliación no cierra los pendientes originales T-001-35,38,39.
 
 Verificación de la ampliación: lint, TypeScript, 22 pruebas unitarias, build y 34 pruebas de navegador con salida 0. Dos mediciones omitidas en Firefox; sync por push normal.
+
+## Contrato sustituido por ampliación 002
+
+Las comprobaciones de seis documentos en T-001-14/24/27 corresponden al hito inicial. La ampliación autorizada reemplaza esa salida por 34 documentos y navegación por manifiesto. Sus tareas y evidencia se conservan solo localmente en la carpeta excluida de Git por el usuario. Los pendientes T-001-35,38,39 mantienen su condición original; no se confunde la verificación automática ampliada con lectura asistida real.

@@ -1,3 +1,4 @@
+import type { KitDocument } from '../engine/kitManifest';
 export const fields = ['platform', 'architecture', 'language', 'runtime', 'frontend', 'backend', 'api', 'addons', 'state', 'primitives', 'highlight', 'packaging', 'content', 'storage', 'protocol', 'styling', 'archetype', 'auth', 'security', 'integrity', 'tooling', 'testing', 'lint', 'deploy'] as const;
 export type Field = typeof fields[number];
 export type Origin = 'manual' | 'preset' | 'inference';
@@ -38,15 +39,17 @@ export interface Inference {
     field: Field;
     explanation: string;
 }
-export const documentPaths = ['specs/spec.md', 'specs/plan.md', 'specs/tasks.md', 'constitution.md', 'docs/PROJECT.md', 'prompts/00-orchestrator.md'] as const;
-export type DocumentPath = typeof documentPaths[number];
-export interface GeneratedDocument {
+export type DocumentPath = string;
+export interface GeneratedDocument extends KitDocument {
+    id: string;
+    format: 'MD' | 'TXT';
     path: DocumentPath;
     content: string;
     revision: number;
 }
 export interface Compilation {
     revision: number;
+    slug: string;
     documents: GeneratedDocument[];
     diagnostics: Diagnostic[];
     suggestions: Suggestion[];

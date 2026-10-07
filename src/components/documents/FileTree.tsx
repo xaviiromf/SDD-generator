@@ -1,20 +1,35 @@
-import { useState } from 'react';
+import { useMemo, useRef, useState, useEffect } from 'react';
 import { Folder, FileText, ChevronRight, ChevronDown } from 'lucide-react';
-import { documentPaths } from '../../domain/models';
 import { useUIStore } from '../../store/uiStore';
-const groups = [{ name: 'specs', indices: [0, 1, 2] }, { name: 'constitution.md', indices: [3] }, { name: 'docs', indices: [4] }, { name: 'prompts', indices: [5] }];
+import { useDocumentStore } from '../../store/documentStore';
+import { kitTree, type KitNode } from '../../engine/kitTree';
+interface Row { node: KitNode; level: number; parent?: string; position: number; size: number; }
 export function FileTree() {
-    const [expanded, setExpanded] = useState<string[]>(['specs']);
-    const [focus, setFocus] = useState(0);
+    const documents = useDocumentStore(s => s.compilation?.documents);
     const active = useUIStore(s => s.activeDocument);
-    const rows = groups.flatMap(g => g.name.endsWith('.md') ? [{ label: g.name, folder: false, index: g.indices[0] }] : [{ label: g.name, folder: true, index: -1 }, ...(expanded.includes(g.name) ? g.indices.map(index => ({ label: documentPaths[index].split('/')[1], folder: false, index })) : [])]);
-    return <details className="file-tree"><summary><Folder size={14}/> Estructura del kit <small>6 archivos</small></summary><div role="tree" aria-label="Archivos del kit" onKeyDown={event => { if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
-        event.preventDefault();
-        const next = event.key === 'Home' ? 0 : event.key === 'End' ? rows.length - 1 : Math.max(0, Math.min(rows.length - 1, focus + (event.key === 'ArrowDown' ? 1 : -1)));
-        setFocus(next);
-        (event.currentTarget.children[next] as HTMLElement)?.focus();
-    } }}>{rows.map((row, i) => <button key={row.label} role="treeitem" tabIndex={focus === i ? 0 : -1} aria-selected={!row.folder && active === row.index} aria-expanded={row.folder ? expanded.includes(row.label) : undefined} aria-level={row.folder || row.label === 'constitution.md' ? 1 : 2} onFocus={() => setFocus(i)} onKeyDown={e => { if (row.folder && ['ArrowRight', 'ArrowLeft'].includes(e.key)) {
-        e.preventDefault();
-        setExpanded(e.key === 'ArrowRight' ? [...new Set([...expanded, row.label])] : expanded.filter(v => v !== row.label));
-    } }} onClick={() => row.folder ? setExpanded(expanded.includes(row.label) ? expanded.filter(v => v !== row.label) : [...expanded, row.label]) : useUIStore.setState({ activeDocument: row.index })}>{row.folder ? (expanded.includes(row.label) ? <ChevronDown size={14}/> : <ChevronRight size={14}/>) : <FileText size={14}/>}<span>{row.label}</span></button>)}</div></details>;
+    const roots = useMemo(() => kitTree(documents ?? []), [documents]);
+    const [expanded, setExpanded] = useState<string[]>(['specs']);
+    const [focus, setFocus] = useState('README.md');
+    const refs = useRef(new Map<string, HTMLButtonElement>());
+    const path = documents?.find(d => d.id === active)?.path;
+    useEffect(() => { if (path) { const parts = path.split('/').slice(0, -1); const parents = parts.map((_, i) => parts.slice(0, i + 1).join('/')); setExpanded(previous => [...new Set([...previous, ...parents])]); } }, [path]);
+    const rows: Row[] = [];
+    const flatten = (nodes: KitNode[], level: number, parent?: string) => nodes.forEach((node, i) => { rows.push({ node, level, parent, position: i + 1, size: nodes.length }); if (expanded.includes(node.key)) flatten(node.children, level + 1, node.key); });
+    flatten(roots, 1);
+    const move = (key?: string) => { if (key) { setFocus(key); refs.current.get(key)?.focus(); } };
+    const toggle = (key: string) => setExpanded(previous => previous.includes(key) ? previous.filter(v => v !== key) : [...previous, key]);
+    const focusedKey = rows.some(r => r.node.key === focus) ? focus : rows[0]?.node.key;
+    return <details className="file-tree"><summary><Folder size={14}/> Estructura del kit <small>{documents?.length ?? 0} archivos</small></summary><div role="tree" aria-label="Archivos del kit" className="kit-tree">{rows.map((row, i) => {
+        const { node } = row;
+        const folder = !node.document;
+        return <button key={node.key} ref={el => { if (el) refs.current.set(node.key, el); else refs.current.delete(node.key); }} role="treeitem" aria-label={node.key} aria-level={row.level} aria-posinset={row.position} aria-setsize={row.size} tabIndex={focusedKey === node.key ? 0 : -1} aria-selected={folder ? undefined : active === node.document?.id} aria-expanded={folder ? expanded.includes(node.key) : undefined} style={{ paddingLeft: 12 + (row.level - 1) * 16 }} onFocus={() => setFocus(node.key)} onKeyDown={event => {
+            if (['ArrowDown', 'ArrowUp', 'Home', 'End', 'ArrowRight', 'ArrowLeft'].includes(event.key)) event.preventDefault();
+            if (event.key === 'ArrowDown') move(rows[Math.min(i + 1, rows.length - 1)]?.node.key);
+            if (event.key === 'ArrowUp') move(rows[Math.max(i - 1, 0)]?.node.key);
+            if (event.key === 'Home') move(rows[0]?.node.key);
+            if (event.key === 'End') move(rows.at(-1)?.node.key);
+            if (event.key === 'ArrowRight' && folder) { if (!expanded.includes(node.key)) toggle(node.key); else move(node.children[0]?.key); }
+            if (event.key === 'ArrowLeft') { if (folder && expanded.includes(node.key)) toggle(node.key); else move(row.parent); }
+        }} onClick={() => folder ? toggle(node.key) : useUIStore.setState({ activeDocument: node.document!.id })}>{folder ? expanded.includes(node.key) ? <ChevronDown size={14}/> : <ChevronRight size={14}/> : <FileText size={14}/>}<span>{node.name}</span></button>;
+    })}</div></details>;
 }

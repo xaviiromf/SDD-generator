@@ -44,7 +44,7 @@ describe('Ecosistema Django', () => {
         expect(result.diagnostics).toEqual([]);
         expect(result.targetTree).toEqual(expect.arrayContaining(['manage.py', 'config/settings.py', 'apps/core/serializers.py', 'apps/core/consumers.py', 'config/celery.py', 'templates/']));
         expect(result.targetTree).not.toContain('src/main.py');
-        const plan = result.documents.find(d => d.path === 'specs/plan.md')!.content;
+        const plan = result.documents.find(d => d.id === 'plan')!.content;
         expect(plan).toContain('Django REST Framework');
         expect(plan).toContain('pytest-django');
         c.selections.api = ['django-ninja'];

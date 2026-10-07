@@ -30,7 +30,7 @@ export function ExportBar() {
     } }
     async function download() { if (blocked || !compilation)
         return; setBusy(true); try {
-        const bytes = await packageKit(compilation.documents);
+        const bytes = await packageKit(compilation.documents, { slug: compilation.slug });
         await saveDownload(new Blob([new Uint8Array(bytes)], { type: 'application/zip' }), `${config.slug}-sdd.zip`);
         notify('Kit SDD descargado. Revisa sus decisiones antes de implementar.');
     }
@@ -40,7 +40,7 @@ export function ExportBar() {
     finally {
         setBusy(false);
     } }
-    return <div className="export-bar"><div className="export-main"><button className="primary" disabled={blocked} onClick={() => void download()}><Download size={16}/>{busy ? 'Preparando archivo…' : 'Descargar Kit SDD (.zip)'}</button><button disabled={blocked} onClick={() => void copy(compilation!.documents[5].content)}><Copy size={16}/>Copiar Prompt Maestro</button></div><div className="export-secondary"><button disabled={blocked} onClick={() => void copy(compilation!.documents[active].content)}><Copy size={14}/>Copiar documento</button><button disabled={blocked} onClick={() => { try {
+    return <div className="export-bar"><div className="export-main"><button className="primary" disabled={blocked} onClick={() => void download()}><Download size={16}/>{busy ? 'Preparando archivo…' : 'Descargar Kit SDD (.zip)'}</button><button disabled={blocked} onClick={() => void copy(compilation!.documents.find(d => d.id === 'orchestrator')!.content)}><Copy size={16}/>Copiar Prompt Maestro</button></div><div className="export-secondary"><button disabled={blocked} onClick={() => void copy((compilation!.documents.find(d => d.id === active) ?? compilation!.documents.find(d => d.id === 'spec'))!.content)}><Copy size={14}/>Copiar documento</button><button disabled={blocked} onClick={() => { try {
         openManual(setupCommands(config));
     }
     catch (e) {

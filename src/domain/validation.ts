@@ -1,4 +1,5 @@
-import { fields, documentPaths, singleFields, type Configuration, type Diagnostic, type Field } from './models';
+import { fields, singleFields, type Configuration, type Diagnostic, type Field } from './models';
+import { createKitManifest, validSlug } from '../engine/kitManifest';
 import { technologyById } from '../catalog/technologies';
 // Propiedades pictográficas y modificadores; el patrón no contiene símbolos prohibidos.
 export const emojiPattern = /[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u20E3]/u;
@@ -38,5 +39,5 @@ export function isConfiguration(value: unknown): value is Configuration {
     const c = value as Record<string, unknown>;
     return c.version === 1 && typeof c.revision === 'number' && ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') && !!c.selections && typeof c.selections === 'object' && !Array.isArray(c.selections) && Object.values(c.selections).every(ids => Array.isArray(ids) && ids.every(id => typeof id === 'string')) && !!c.origins && typeof c.origins === 'object' && !Array.isArray(c.origins) && Object.keys(c.origins).every(key=>fields.includes(key as Field)) && Object.values(c.origins).every(origin => ['manual', 'preset', 'inference'].includes(String(origin)));
 }
-export function safeDocumentPath(path: string): boolean { return (documentPaths as readonly string[]).includes(path); }
+export function safeDocumentPath(path: string, slug = 'mi-proyecto'): boolean { return validSlug(slug) && createKitManifest({ slug }).some(d => d.path === path); }
 export function escapeMarkdown(text: string): string { return text.replace(/[<>]/g, char => char === '<' ? '&lt;' : '&gt;'); }

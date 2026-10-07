@@ -14,7 +14,7 @@ describe('Contratos y catálogo', () => {
         expect(validateConfiguration({ ...c, slug: '../otro', idea: 'a'.repeat(20001), selections: { platform: ['desconocido'] } }, knownIds)).toHaveLength(3);
     });
     it('protege rutas, emojis y secretos sintéticos', () => {
-        expect(safeDocumentPath('specs/spec.md')).toBe(true);
+        expect(safeDocumentPath('specs/001-mi-proyecto/spec.md')).toBe(true);
         expect(safeDocumentPath('../spec.md')).toBe(false);
         expect(validateText(String.fromCodePoint(0x1f600))).toHaveLength(1);
         expect(validateText('token=' + 'a'.repeat(25))).toHaveLength(1);

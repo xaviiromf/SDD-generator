@@ -86,7 +86,7 @@ SDD-generator/
     engine/compiler.ts
     engine/targetTree.ts
     engine/taskGraph.ts
-    engine/templates/                   seis plantillas documentales españolas
+    engine/templates/                   plantillas documentales españolas por responsabilidad
     workers/generator.worker.ts
     workers/generatorClient.ts
     services/draftStorage.ts
@@ -139,7 +139,7 @@ Estado transitorio de foco, búsqueda, acordeones y pestañas se mantiene local 
 
 1. Una acción valida un cambio y actualiza propiedades atómicas del editor; incrementa la revisión solo si cambia el contenido semántico.
 2. El coordinador agrupa cambios con cadencia objetivo de 16 ms y envía la instantánea serializable al trabajador. Nunca serializa ni compila dentro del manejador de teclado.
-3. El trabajador normaliza texto, detecta señales, evalúa compatibilidad, propone inferencias y genera los seis documentos. Todas las funciones de dominio reciben entradas explícitas y no dependen de red, reloj o DOM.
+3. El trabajador normaliza texto, detecta señales, evalúa compatibilidad, propone inferencias y genera los 34 documentos. Todas las funciones de dominio reciben entradas explícitas y no dependen de red, reloj o DOM.
 4. La respuesta incluye revisión, inferencias, sugerencias, diagnósticos, madurez, documentos y árboles. El cliente descarta respuestas antiguas. Mantiene una sola petición pendiente reemplazable para evitar una cola ilimitada de compilaciones.
 5. Inferencias inequívocas se aplican en una sola transacción únicamente a campos sin decisión manual; una comparación de cambios y huella semántica evita bucles de inferencia/compilación.
 6. Se publica una revisión coherente en `documentStore`. Exportación y copia se habilitan solo cuando coincide con el editor y no existen diagnósticos bloqueantes.
@@ -166,18 +166,13 @@ No hay llamadas a backend, endpoints API, autenticación de aplicación, migraci
 - Madurez: seis pilares con peso igual; calcular `redondeo(100 × pilares resueltos / 6)`. Estilo «No aplica» para CLI y almacenamiento «En memoria» son elecciones válidas; pruebas o seguridad sin definir siguen incompletas.
 - La consola, el README y el kit no usarán emojis. Entradas con emojis o secretos aparentes se marcan antes de guardar o exportar, conservando únicamente la edición transitoria para corrección.
 
-### Kit exportado y contenido mínimo
+### Kit exportado vigente
 
-| Ruta | Contenido obligatorio |
-|---|---|
-| `specs/spec.md` | Problema, usuarios, historias, alcance positivo/negativo, RF, datos, criterios y decisiones pendientes. |
-| `specs/plan.md` | Árbol del proyecto objetivo, módulos/componentes, contratos, compatibilidades, tokens y estrategia de pruebas. |
-| `specs/tasks.md` | Tareas `[T1]`, `[T2]`…, RF relacionados, dependencias sin ciclos, archivos previstos y verificación. |
-| `constitution.md` | Reglas de español, ausencia de emojis, arquitectura, validación, secretos, integridad, alcance y simulación cuando aplique. |
-| `docs/PROJECT.md` | Identidad, pila seleccionada, versiones declaradas, propósito y limitaciones. |
-| `prompts/00-orchestrator.md` | Lectura del kit, DOCUMENT, parada y solicitud de revisión, implementación solo autorizada y validación con evidencia. |
+La ampliación 002 autorizada sustituye el contrato inicial de seis documentos: manifiesto de 30 archivos base del marco más cuatro de la especificación activa en `specs/001-<slug>/`. Documentos por identidad y formato MD/TXT; contexto único, requisitos/tareas numerados y perfiles de destino compartidos.
 
-El árbol del ZIP contiene estos documentos y no promete código objetivo inexistente. Las rutas de implementación propuestas se muestran dentro del plan del kit. La exportación directa de tokens puede añadir su archivo elegido al paquete cuando el usuario lo indique; no cambia los seis mínimos. El orquestador exportado es autónomo y no depende de la ruta absoluta del marco en esta máquina.
+Se conservan seis archivos raíz, diez docs, nueve prompts, índice specs y cuatro plantillas. La especificación activa añade spec/plan/tasks/validation. Los registros empiezan pendientes y no contienen evidencia del generador. `kitManifest.ts` gobierna rutas, árbol, visor, copia y ZIP. La generación completa ocurre en el trabajador con revisión atómica. Solo se resalta el documento visible.
+
+El código del destino permanece propuesto dentro del plan, no dentro del ZIP. La exportación de tokens es independiente. El kit es autónomo, sin depender de la ruta del marco en esta máquina. El plan detallado 002 es local y está excluido de Git conforme a la instrucción del usuario.
 
 ## 5. Diseño y catálogo exacto de arquetipos
 
@@ -245,7 +240,7 @@ Estas verificaciones **no se han ejecutado**; no existe todavía la aplicación.
 |---|---|
 | Dominio | Compatibilidades; conteo ≥201 sin alias; cobertura de siete fases, ocho presets y 21 arquetipos; madurez aplicable; contratos/límites. |
 | Intención | «pyton», «tailwnd», negación, ambigüedad, decisiones manuales, eliminación de una señal y prioridades. |
-| Generación | Determinismo con igual entrada; documentos españoles; pendientes explícitos; tareas acíclicas; cambios de árbol por destino; seis revisiones iguales. |
+| Generación | Determinismo con igual entrada; documentos españoles; pendientes explícitos; tareas acíclicas; cambios de árbol por destino; 34 documentos de una misma revisión. |
 | Seguridad y persistencia | HTML inerte, enlaces peligrosos, traversal, emojis, secreto sintético, quota, borrador corrupto y versión desconocida. |
 | Trabajador | Respuestas fuera de orden, coalescencia, reinicio y fallo sin perder edición ni permitir exportación obsoleta. |
 | ZIP/tokens | Descomprimir archivo; comparar rutas y contenido con revisión visible; formatos compatibles y valores exactos. |

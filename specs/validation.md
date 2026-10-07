@@ -8,7 +8,7 @@ Linux x86_64; Intel Core i5-1235U; Node 26.5.0; npm 11.17.0. Navegadores Playwri
 
 Los resultados describen este equipo y estos escenarios. No certifican una tasa constante de 60 FPS en cualquier dispositivo. La emulación de anchura no sustituye pruebas en un teléfono físico. No se ejecutó un lector de pantalla real.
 
-## Comandos y resultados reales
+## Comandos y resultados del hito previo 001/Django
 
 | Comando / comprobación | Resultado | Código de salida |
 |---|---|---|
@@ -30,7 +30,7 @@ La suite completa se repitió tras incorporar RF-30. Incluye 230 eventos y 30 mu
 - Catálogo: 237 IDs únicos, siete fases, ocho conjuntos y 21 arquetipos; alias independientes. El inventario incorpora las herramientas de estado, primitivas, resaltado y empaquetado mencionadas en el prompt.
 - Compatibilidad: CLI excluye opciones visuales activas; frameworks se filtran por lenguaje/plataforma; conflictos y campos incorrectos bloquean exportación. El borrador visual se conserva para volver a web.
 - Intención: erratas, acentos, coincidencia determinista y negación. Selecciones manuales prevalecen; un conjunto conserva el arquetipo y su procedencia manual.
-- Kit: seis rutas exactas, revisión coherente, salida determinista y española. Cada línea de alcance explícito produce un RF adicional y una tarea asociada; el grafo es acíclico. No se inventan contratos específicos de negocio.
+- Kit del hito previo: seis rutas exactas, revisión coherente, salida determinista y española. Cada línea de alcance explícito produce un RF adicional y una tarea asociada; el grafo es acíclico. No se inventan contratos específicos de negocio.
 - Trabajador: coalescencia, descarte de revisiones antiguas, inicialización fallida y reintento sin perder la idea. La actualización de la vista previa se agenda fuera del manejador de edición.
 - Exportación: ZIP descomprimido y contrastado con documentos; rutas y revisiones inválidas rechazadas. Tokens conservan valores y perfil de versión; comandos validan el identificador y solo se muestran.
 - Persistencia: recuperación válida, corrupción, versión desconocida, cuota y secretos sintéticos. Borrado propio confirmado; portapapeles denegado ofrece copia manual.
@@ -79,3 +79,11 @@ El SHA final es consultable con `git log -1` y `git rev-parse origin/main`. La i
 Se verificaron filtros por lenguaje y arquitectura, aparición de APIs/complementos al seleccionar Django, DRF como requisito de Simple JWT y drf-spectacular, conservación de conflictos y bloqueo de exportación. El kit declara las opciones y propone manage.py, configuración, modelos, migraciones, plantillas, API DRF/Ninja y Channels/Celery según selección. Borradores previos siguen válidos sin los nuevos campos opcionales.
 
 `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build` y `npm run test:e2e` terminan con salida 0. El primer recorrido nuevo falló por buscar el nombre del acordeón sin su prefijo numérico; se corrigió el localizador y la suite completa posterior pasó (34 pruebas, dos omitidas). No se cambió el comportamiento del producto para acomodar esa prueba. Fuentes oficiales del inventario: D-019 en docs/DECISIONS.md.
+
+## Hito actual — kit completo
+
+Implementación 002 autorizada posteriormente. Salida vigente: 34 documentos por manifiesto, especificación activa numerada y todos los archivos del marco. Lint, TypeScript/build y 28 pruebas unitarias en nueve archivos pasan. Suite completa Chromium/Firefox: 40 pruebas pasan y dos mediciones omitidas, salida 0. Verificados TXT, navegación/ZIP de los 34 documentos, cambios de slug, perfiles híbridos, borrador anterior y actualización desde service worker previo sin recargar edición; exportación offline. Build alternativo raíz también comprobado en Chromium sin red.
+
+Mediciones actuales p95: entrada 1,5 ms, kit 45,6 ms (30 revisiones), conjuntos 10,7 ms, ZIP 10,4 ms (30 muestras tras preparación). Ninguna tarea larga registrada en el escenario. Caso sintético máximo actualizado: 1.047.200 bytes, empaquetado/descompresión comprobados. Auditoría de texto: 101 archivos propios/entrada sin emojis. Capturas de escritorio/móvil actualizadas e inspeccionadas.
+
+La evidencia detallada de 002 se conserva localmente fuera del seguimiento Git por instrucción explícita del usuario. La carpeta previamente subida se retira del árbol remoto actual; el historial anterior no se reescribe. Los pendientes manuales originales y la aceptación/publicación continúan separados de estos resultados técnicos.

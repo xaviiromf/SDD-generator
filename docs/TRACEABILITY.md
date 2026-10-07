@@ -1,6 +1,6 @@
 # Trazabilidad prevista
 
-Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 22 pruebas unitarias y 34 recorridos de navegador pasan; véase [validation.md](../specs/validation.md). Auditoría con lector real pendiente.
+Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 28 pruebas unitarias y 40 recorridos de navegador pasan; véase [validation.md](../specs/validation.md). Auditoría con lector real pendiente.
 
 «RF-01» abrevia `RF-001-01`; «T01» abrevia `T-001-01`. Los criterios CA se definen en [spec.md](../specs/spec.md).
 
@@ -39,17 +39,19 @@ Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 22 pruebas un
 
 Las rutas abreviadas corresponden a `src/components/`, `src/domain/`, `src/catalog/`, `src/services/` y `src/engine/`; todas existen. Las pruebas se encuentran en `tests/unit/` y `tests/e2e/`. RF-24 está verificado automáticamente, con lector real pendiente en T-001-35. RF-29 tiene sincronización ejecutada y cierre formal pendiente por dependencia T-001-38. Los demás resultados y sus límites se enlazan en validation.md; no equivalen a aceptación del usuario.
 
-## Ampliación 002 — trazabilidad propuesta
+## Ampliación 002 — trazabilidad técnica
 
-Estado DOCUMENT; ninguna implementación o prueba de esta ampliación ejecutada. Inventario y responsabilidades por archivo: [plan](../specs/002-kit-completo/plan.md).
+Implementación autorizada; evidencias detalladas locales excluidas de Git. Inventario y responsabilidades por archivo: plan local excluido de Git.
 
 | Requisito | Tareas propuestas | Verificación prevista | Estado |
 |---|---|---|---|
-| RF-002-01 | T-002-01,05…10,13,14 | 30 rutas base más cuatro activas, ZIP descomprimido y estructura | Propuesto |
-| RF-002-02 | T-002-02,04…09,13 | Cambios de configuración, determinismo y revisión común | Propuesto |
-| RF-002-03 | T-002-02,04…08,13 | Estados honestos, decisiones por origen, guías y registros | Propuesto |
-| RF-002-04 | T-002-01,03,04,06…09,13 | Numeración, IDs, referencias y grafo | Propuesto |
-| RF-002-05 | T-002-03…08,13 | Matriz de destinos; Django y complementos | Propuesto |
-| RF-002-06 | T-002-10,11,13 | Árbol, visor, copia, teclado y foco | Propuesto |
-| RF-002-07 | T-002-01,09,10,12,13 | Rutas, límites, ZIP, trabajador y offline | Propuesto |
-| RF-002-08 | T-002-02,11…13 | Borradores previos, prioridades y transición | Propuesto |
+| RF-002-01 | T-002-01,05…10,13,14 | 30 rutas base más cuatro activas, ZIP descomprimido y estructura | Verificado automáticamente; límites manuales pendientes |
+| RF-002-02 | T-002-02,04…09,13 | Cambios de configuración, determinismo y revisión común | Verificado automáticamente; límites manuales pendientes |
+| RF-002-03 | T-002-02,04…08,13 | Estados honestos, decisiones por origen, guías y registros | Verificado automáticamente; límites manuales pendientes |
+| RF-002-04 | T-002-01,03,04,06…09,13 | Numeración, IDs, referencias y grafo | Verificado automáticamente; límites manuales pendientes |
+| RF-002-05 | T-002-03…08,13 | Matriz de destinos; Django y complementos | Verificado automáticamente; límites manuales pendientes |
+| RF-002-06 | T-002-10,11,13 | Árbol, visor, copia, teclado y foco | Verificado automáticamente; límites manuales pendientes |
+| RF-002-07 | T-002-01,09,10,12,13 | Rutas, límites, ZIP, trabajador y offline | Verificado automáticamente; límites manuales pendientes |
+| RF-002-08 | T-002-02,11…13 | Borradores previos, prioridades y transición | Verificado automáticamente; límites manuales pendientes |
+
+La ampliación pasa pruebas de manifiesto, referencias, perfiles, ocho conjuntos, ZIP, seguridad y revisión en tests/unit/kit.test.ts; navegación completa, TXT, ZIP, borrador anterior y actualización offline en tests/e2e/kit.spec.ts. Evidencia detallada de 002 se conserva solo localmente por mandato del usuario; no se atribuye aceptación ni lectura asistida real.

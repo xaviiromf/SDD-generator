@@ -10,3 +10,6 @@ playwright-report/
 
 dist-root/
 prompt.txt
+
+# Plan y evidencia locales de la ampliación 002
+/specs/002-kit-completo/

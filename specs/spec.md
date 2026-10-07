@@ -27,7 +27,7 @@ Historias:
 
 ## 3. Alcance y exclusiones
 
-Incluye las siete fases completas del configurador, catálogo de al menos 201 entradas seleccionables distintas, ocho conjuntos predefinidos, 21 arquetipos visuales, detección local de intención, sugerencias de alcance, medidor de madurez, generación de seis documentos, árbol del kit, copia, ZIP, exportación de tokens, comandos de preparación, persistencia del borrador y documentación en español.
+Incluye las siete fases completas del configurador, catálogo de al menos 201 entradas seleccionables distintas, ocho conjuntos predefinidos, 21 arquetipos visuales, detección local de intención, sugerencias de alcance, medidor de madurez, generación del kit completo de 34 documentos, árbol del kit, copia, ZIP, exportación de tokens, comandos de preparación, persistencia del borrador y documentación en español.
 
 La aplicación es una SPA estática. Los servidores, bases de datos, plataformas móviles y herramientas de sistemas que aparecen en el catálogo son **objetivos de los proyectos descritos por el usuario**: no se instalan ni ejecutan dentro de SDD-Studio.
 
@@ -68,12 +68,12 @@ Se prohíben plantillas genéricas, degradados violetas usados por defecto, enca
 | RF-001-07 | Aplicar automáticamente coincidencias inequívocas compatibles solo a campos sin decisión manual; mostrar sugerencias ante ambigüedad. Negaciones como «sin Firebase» no activan Firebase. Una selección manual prevalece sobre la inferencia. |
 | RF-001-08 | Mostrar sugerencias de alcance explicadas en español, como reservas sin persistencia; aceptar una opción actualiza configuración y kit. Descartar una sugerencia no inventa una decisión. |
 | RF-001-09 | Ofrecer los 21 arquetipos exactos del plan, con nombre visible en español, fuentes, muestras, paleta, botón, textura y evaluación real de contraste AA/AAA. |
-| RF-001-10 | Generar conjuntamente `specs/spec.md`, `specs/plan.md`, `specs/tasks.md`, `constitution.md`, `docs/PROJECT.md` y `prompts/00-orchestrator.md`, íntegramente en español y con decisiones y límites coherentes. |
+| RF-001-10 | Generar los 30 archivos base del marco más spec, plan, tasks y validation en `specs/001-<slug>/`: 34 documentos en español, con decisiones, rutas y revisión coherentes. Este contrato sustituye la salida inicial de seis archivos tras autorización explícita de la ampliación 002. |
 | RF-001-11 | Mostrar documentos mediante pestañas, resaltado y copia individual; el contenido pegado por el usuario nunca se interpreta como HTML ejecutable. |
 | RF-001-12 | Mantener un árbol accesible de los archivos del kit que coincida exactamente con sus rutas exportadas. Mostrar por separado el árbol propuesto del proyecto objetivo dentro de `plan.md`. |
 | RF-001-13 | Calcular madurez de 0–100 % con seis pilares: plataforma, pila tecnológica, almacenamiento, estilo, seguridad y pruebas. «No aplica» justificado cuenta como decisión; contradicciones no cuentan como completas. El porcentaje no certifica viabilidad ni seguridad. |
 | RF-001-14 | «Copiar Prompt Maestro» copia el orquestador de la última revisión; ofrece confirmación accesible y selección manual cuando falla el portapapeles. |
-| RF-001-15 | «Descargar Kit SDD (.zip)» produce íntegramente en memoria un ZIP con las seis rutas obligatorias, carpetas correctas y contenido de una misma revisión; informa el progreso y los errores sin perder entradas. |
+| RF-001-15 | «Descargar Kit SDD (.zip)» produce íntegramente en memoria un ZIP con las 34 rutas del manifiesto completo, carpetas correctas y contenido de una misma revisión; informa el progreso y los errores sin perder entradas. |
 | RF-001-16 | «Exportar Design Tokens» permite descargar `tokens.css`, `tokens.json` o `tailwind.config.ts` cuando corresponda al destino. No ofrece una configuración Tailwind incompatible con su versión. |
 | RF-001-17 | «Comando de Setup Rápido» muestra instrucciones del destino seleccionado, copiables y sin ejecución. Identificadores válidos y escapado seguro evitan interpolar texto libre en órdenes de shell. |
 | RF-001-18 | Guardar idea y configuración en memoria y, cuando sea posible, en localStorage versionado. Restaurar un borrador válido; explicar restricciones, corrupción o cuota agotada y continuar en memoria. Permitir borrar únicamente el borrador propio previa confirmación. |
@@ -127,7 +127,7 @@ No hay endpoints HTTP ni contratos de servidor en SDD-Studio. La autoridad de co
 | Entrada de catálogo | ID estable, etiqueta española, producto técnico, categoría, alias, condiciones de compatibilidad e incompatibilidad. |
 | Inferencia | Regla, rango del texto, candidato, fuerza determinista, explicación y estado aceptado/descartado. No se presenta la fuerza como probabilidad de IA. |
 | Arquetipo | ID, nombre español, categoría, seis colores, acentos secundarios si existen, dos fuentes, radio, sombra y textura. |
-| Documento | Ruta relativa permitida, contenido Markdown español, revisión, diagnósticos y decisiones pendientes. Los seis documentos comparten revisión. |
+| Documento | Ruta relativa permitida, contenido Markdown/TXT español, revisión, diagnósticos y decisiones pendientes. Los 34 documentos comparten revisión. |
 | Tarea generada | Identificador secuencial `[T1]`, referencias RF, dependencias, archivos previstos y condición verificable. Dependencias sin ciclos. |
 | Borrador | Clave exclusiva de SDD-Studio, versión, fecha local, configuración e idea; no incluye credenciales ni caché de otros sitios. |
 
@@ -169,7 +169,7 @@ Los requisitos de rendimiento del prompt son metas exigibles y deben medirse; no
 | CA-10 · RF-21/22/23 | Introducir HTML malicioso, rutas externas, emojis o secreto de muestra | HTML inerte; rutas rechazadas; aviso y bloqueo de exportación/persistencia hasta corrección; reglas españolas y sin emojis. |
 | CA-11 · RF-25 | Escribir 200 eventos en una idea de 20.000 caracteres con catálogo completo | Trabajo síncrono de entrada p95 <16 ms; ninguna tarea larga >50 ms atribuible a compilación; comparación mediante trazas. |
 | CA-12 · RF-25 | Cambiar un conjunto 30 veces y dejar de escribir | Actualización visual de controles p95 <16 ms; kit coherente disponible como objetivo p95 ≤150 ms desde la última edición; se mide aparte de la entrada. |
-| CA-13 · RF-15/25 | Exportar 30 kits de referencia de seis documentos y ≤250 KiB | Empaquetado en memoria p95 <100 ms con JSZip, excluyendo diálogo/guardado del sistema; documentar también caso de 1 MiB sin atribuirle ese presupuesto. |
+| CA-13 · RF-15/25 | Exportar 30 kits de referencia de 34 documentos y ≤250 KiB | Empaquetado en memoria p95 <100 ms con JSZip, excluyendo diálogo/guardado del sistema; documentar también caso de 1 MiB sin atribuirle ese presupuesto. |
 | CA-14 · RF-26 | Ejecutar análisis, pruebas y `npm run build`; servir `dist/` en subruta | Build estático, sin backend, trabajador/caché/rutas de recursos operativos en GitHub Pages. |
 | CA-15 · RF-27/29 | Revisar guía e historial del hito | README contiene ambos apartados exigidos; commit y sincronización registrados con evidencia real. |
 
@@ -198,3 +198,5 @@ Aspectos que requieren comprobarse antes de cerrar sus tareas: inventario ≥201
 Solicitud explícita del usuario el 2026-10-06: hacer localizable Django e incorporar opciones de API y complementos según su función. Django permanece como framework de servidor Python; se explican los filtros por lenguaje y arquitectura. API: Django REST Framework y Django Ninja. Complementos: Channels, Celery, django-filter, drf-spectacular y django-cors-headers. Identidad: django-allauth y Simple JWT. Persistencia: Django ORM; presentación: plantillas Django; pruebas: pytest-django. Son opciones del proyecto objetivo, sin instalar Django ni servicios en el estudio.
 
 Aceptación: las opciones aparecen en sus fases correspondientes al seleccionar Django con Python y una arquitectura de servidor; drf-spectacular y Simple JWT requieren REST Framework. Cambiar el framework o la API preserva selecciones manuales y muestra incompatibilidades que bloquean exportación. El kit declara las selecciones y propone estructura Django.
+
+Contrato vigente tras autorización de 002: el kit completo conserva nombres y carpetas del marco; validación y registros comienzan no ejecutados. El plan detallado de 002 se conserva solo localmente, fuera del repositorio remoto por instrucción del usuario.

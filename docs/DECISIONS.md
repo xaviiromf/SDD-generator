@@ -65,3 +65,7 @@ Fuentes oficiales consultadas: [DRF](https://www.django-rest-framework.org/), [D
 ## D-020 — Propuesta de estructura completa, pendiente de revisión
 
 El usuario solicita planificar todos los archivos restantes del kit, mantener la estructura del marco y adaptar contenido al SDD configurado. Autoriza documentación y exige esperar instrucciones después de entregarla. Propuesta detallada en specs/002-kit-completo: 30 archivos base más cuatro activos (34), carpeta 001-<slug>, manifiesto único, contexto común, arquitectura/tareas compartidas y validation inicial no ejecutado. Se preservan la pila, configuración, restricciones y pendientes de 001. El cambio de contrato de seis archivos se aplicará solo después de aprobación e implementación autorizada.
+
+## D-021 — Ejecución de 002 y exclusión del repositorio
+
+El usuario autoriza ejecutar el plan completo y exige ignorar toda su carpeta documental. El contrato vigente pasa a 34 documentos, manteniendo la pila y los límites del estudio. Manifiesto, contexto y perfiles de destino gobiernan generación, navegación y ZIP; decisiones/evidencia del objetivo empiezan pendientes. La carpeta local se retira del índice y se ignora; su presencia en ee2470b precede a esta instrucción y no se elimina mediante una reescritura no autorizada. Los resultados técnicos generales constan en el estado público; documentación detallada de 002 permanece local.

@@ -6,9 +6,9 @@ interface InterfaceState {
     palette: boolean;
     requestedPreset: string;
     restart: number;
-    activeDocument: number;
+    activeDocument: string;
     dismissed: string[];
     notice: string;
     setPanel: (panel: Panel) => void;
 }
-export const useUIStore = create<InterfaceState>(set => ({ panel: 'config', phase: '1', palette: false, requestedPreset: '', restart: 0, activeDocument: 0, dismissed: [], notice: '', setPanel: panel => set({ panel }) }));
+export const useUIStore = create<InterfaceState>(set => ({ panel: 'config', phase: '1', palette: false, requestedPreset: '', restart: 0, activeDocument: 'spec', dismissed: [], notice: '', setPanel: panel => set({ panel }) }));
