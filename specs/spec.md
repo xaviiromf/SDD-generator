@@ -1,6 +1,6 @@
 # 001 — SDD-Studio: estudio y generador de desarrollo guiado por especificaciones
 
-Fecha: 2026-10-06. Estado: documentación propuesta para revisión. Implementación autorizada: **NO**. Aceptación del usuario: pendiente.
+Fecha: 2026-10-06. Estado: especificación aprobada por el usuario el 2026-10-06. Implementación autorizada: **SÍ**. Aceptación final del producto: pendiente.
 
 ## 1. Fuentes y disciplina
 
@@ -190,3 +190,5 @@ Aspectos que requieren comprobarse antes de cerrar sus tareas: inventario ≥201
 ## 14. Historial
 
 2026-10-06: primera documentación de alcance completo a partir de `prompt.txt`. Revisión y autorización pendientes. No se ha escrito código de aplicación ni instalado dependencias.
+
+2026-10-06: aprobación formal sin objeciones y autorización de Fase 2. Sustituciones tipográficas posteriores aprobadas en D-014, D-016 y D-017. La aceptación final del producto sigue pendiente.

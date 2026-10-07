@@ -1,6 +1,6 @@
 # Plan técnico — 001 / SDD-Studio
 
-Especificación: [spec.md](spec.md). Fecha: 2026-10-06. Estado: **propuesto; sin código**. Implementación: pendiente de autorización.
+Especificación: [spec.md](spec.md). Fecha: 2026-10-06. Estado: **aprobado el 2026-10-06**. Implementación autorizada. Las rutas descritas inicialmente como propuestas se contrastan con la trazabilidad y el informe de verificación.
 
 ## 1. Inspección y decisiones
 
@@ -192,21 +192,21 @@ Esta tabla conserva los valores del prompt; nombres visibles localizados. Los no
 | A03 · Pizarra minimalista nórdica | #F8FAFC / #FFFFFF | #2563EB | #0F172A / #64748B / #E2E8F0 | Plus Jakarta Sans + Inter | 8 px; sombra suave, espacio limpio. |
 | A04 · Precisión suiza para software | #111215 / #18191E | #2D5CF6 | #FFFFFF / #9CA3AF / #262830 | Geist Sans + Inter | 6 px; microbordes de 1 px. |
 | A05 · Pop neobrutalista | #FFFDF5 / #FFFFFF | #FF5D00 / #FFE600 | #000000 / #4B5563 / #000000 | Archivo Black + Public Sans | 0 px; borde 2,5 px, sombra dura 4 px × 4 px negra. |
-| A06 · Tierra orgánica y micelio | #181614 / #26231F | #BC6C25 / #52796F | #EDE0D4 / #A39688 / #38332D | Fraunces + Cabinet Grotesk | 12 px; ruido terrestre sutil. |
-| A07 · Lujo de obsidiana monocromática | #050505 / #0D0D0F | #D4AF37 | #F4F4F5 / #A1A1AA / #1F1F24 | Playfair Display + Satoshi | 2 px; bisel, resplandor contenido. |
+| A06 · Tierra orgánica y micelio | #181614 / #26231F | #BC6C25 / #52796F | #EDE0D4 / #A39688 / #38332D | Fraunces + Space Grotesk | 12 px; ruido terrestre sutil. |
+| A07 · Lujo de obsidiana monocromática | #050505 / #0D0D0F | #D4AF37 | #F4F4F5 / #A1A1AA / #1F1F24 | Playfair Display + Manrope | 2 px; bisel, resplandor contenido. |
 | A08 · Onda sintética retro de Tokio | #120D1D / #1D152E | #00F0FF / #FF007F | #F5F3FF / #938BA1 / #352554 | Syne + Space Mono | 10 px; sombras luminosas de neón. |
 | A09 · Horizonte técnico solarizado | #002B36 / #073642 | #B58900 / #2AA198 | #93A1A1 / #657B83 / #0D4958 | Inconsolata + Source Sans 3 | 4 px; acabado mate. |
 | A10 · Aura de cristal esmerilado | #0A0B12 / rgba(255,255,255,0.04) | #8B5CF6 | #F8FAFC / #94A3B8 / rgba(255,255,255,0.12) | Outfit + Inter | 16 px; desenfoque 24 px y luz flotante. |
-| A11 · Carbón wabi-sabi japonés | #1E1E20 / #28282B | #C84B31 | #DCD6CD / #8A857D / #38383C | Shippori Mincho + Zen Kaku Gothic | 0 px; mate táctil. |
-| A12 · Mar profundo bioluminiscente | #020B14 / #061A29 | #00E5FF | #E0F7FA / #5C8296 / #0D344D | Clash Display + General Sans | 14 px; viñeta oceánica, bordes luminosos. |
+| A11 · Carbón wabi-sabi japonés | #1E1E20 / #28282B | #C84B31 | #DCD6CD / #8A857D / #38383C | Shippori Mincho + Zen Kaku Gothic New | 0 px; mate táctil. |
+| A12 · Mar profundo bioluminiscente | #020B14 / #061A29 | #00E5FF | #E0F7FA / #5C8296 / #0D344D | Syne + Inter | 14 px; viñeta oceánica, bordes luminosos. |
 | A13 · Monolito industrial | #191A1C / #242629 | #F59E0B | #E5E7EB / #9CA3AF / #373A40 | Chivo + DM Mono | 2 px; chaflán, espaciado compacto. |
-| A14 · Calidez del desierto de Sedona | #FDFAF6 / #F5EDE4 | #9C4125 | #2B2623 / #7C7067 / #E5D9CC | Cormorant Infant + Switzer | 8 px; superficies cálidas. |
+| A14 · Calidez del desierto de Sedona | #FDFAF6 / #F5EDE4 | #9C4125 | #2B2623 / #7C7067 / #E5D9CC | Cormorant Infant + Public Sans | 8 px; superficies cálidas. |
 | A15 · Cafetería de espresso aterciopelado | #141110 / #211C1A | #D97706 | #F5EBE0 / #96867B / #3B322D | Newsreader + Epilogue | 10 px; profundidad cálida. |
 | A16 · Titanio de sala limpia aeroespacial | #0E1117 / #161B22 | #FF5C00 | #E6EDF3 / #8B949E / #30363D | Space Grotesk + Geist Mono | 4 px; retícula precisa. |
 | A17 · Musgo de bosque otoñal | #0D1612 / #16231D | #22C55E / #A16207 | #ECFDF5 / #6B8F7D / #22382E | Instrument Serif + Albert Sans | 12 px; sombras orgánicas suaves. |
 | A18 · Brutalismo ácido Y2K | #0C0C0C / #171717 | #CCFF00 | #FFFFFF / #888888 / #262626 | Syne ExtraBold + JetBrains Mono | 0 px; insignias gruesas redondeadas. |
 | A19 · Zafiro de medianoche art déco | #070E1B / #0E182B | #C5A059 | #F1F5F9 / #64748B / #1E304F | Cinzel + Manrope | 6 px; simetría y brillo metálico sutil. |
-| A20 · Lujo sereno de lino y arena | #F7F5F0 / #ECE7DE | #556B2F | #202020 / #66635D / #DED7CB | Bespoke Serif + Neue Montreal | 6 px; sin sombra, espacio amplio. |
+| A20 · Lujo sereno de lino y arena | #F7F5F0 / #ECE7DE | #556B2F | #202020 / #66635D / #DED7CB | Cormorant Garamond + Inter | 6 px; sin sombra, espacio amplio. |
 | A21 · Orquídea botánica oscura | #0B120D / #122017 | #E11D48 | #ECFDF5 / #718C7B / #1E3827 | Playfair Display + Urbanist | 16 px; superficies aterciopeladas. |
 
 Cada ficha incluye categoría, muestra tipográfica real, párrafo español, botón con estado de puntero/foco, cinco muestras de color y acabado. La generación de texturas usa CSS no interactivo y de bajo coste, sin imágenes externas ni SVG decorativos que amplíen el sistema de iconos.

@@ -63,27 +63,27 @@ Antes de T-001-01: registrar autorización explícita y alcance en `docs/PROJECT
   - Dependencias: T-001-02, T-001-04.
   - Archivos previstos: `src/engine/templates/spec.ts`, `src/engine/templates/project.ts`, `tests/fixtures/`.
   - Finaliza cuando: ambas salidas españolas incluyen alcance positivo/negativo, RF, criterios, pila y pendientes; entradas insuficientes quedan señaladas.
-- [ ] T-001-11 — Generar plan y árbol del proyecto objetivo.
+- [x] T-001-11 — Generar plan y árbol del proyecto objetivo.
   - RF: RF-10, RF-12, RF-16.
   - Dependencias: T-001-04, T-001-10, T-001-17.
   - Archivos previstos: `src/engine/templates/plan.ts`, `src/engine/targetTree.ts`.
   - Finaliza cuando: cambios de plataforma y tecnologías modifican rutas propuestas coherentes; el plan incluye contratos, tokens aplicables y pruebas.
-- [ ] T-001-12 — Generar tareas trazables con dependencias acíclicas.
+- [x] T-001-12 — Generar tareas trazables con dependencias acíclicas.
   - RF: RF-10, RF-28.
   - Dependencias: T-001-11.
   - Archivos previstos: `src/engine/templates/tasks.ts`, `src/engine/taskGraph.ts`, `tests/unit/taskGraph.test.ts`.
   - Finaliza cuando: tareas `[T1]`… con RF, dependencias válidas, archivos y condiciones de fin; no aparecen ciclos ni tareas ya completadas.
-- [ ] T-001-13 — Generar constitución y orquestador autónomos.
+- [x] T-001-13 — Generar constitución y orquestador autónomos.
   - RF: RF-10, RF-21, RF-22, RF-28.
   - Dependencias: T-001-10.
   - Archivos previstos: `src/engine/templates/constitution.ts`, `src/engine/templates/orchestrator.ts`.
   - Finaliza cuando: reglas completas en español, simulación por defecto para destinos operativos, límites de actuación y protección de secretos; DOCUMENT se detiene antes de IMPLEMENT y VALIDATE exige evidencia.
-- [ ] T-001-14 — Integrar compilador puro de los seis documentos.
+- [x] T-001-14 — Integrar compilador puro de los seis documentos.
   - RF: RF-10, RF-12, RF-13, RF-23.
   - Dependencias: T-001-06, T-001-09, T-001-10, T-001-11, T-001-12, T-001-13.
   - Archivos previstos: `src/engine/compiler.ts`, `tests/unit/compiler.test.ts`.
   - Finaliza cuando: igual entrada produce igual contenido; rutas permitidas y revisión única; kits representativos web, CLI, API y juego son consistentes y sin emojis.
-- [ ] T-001-15 — Implementar trabajador y coordinación por revisión.
+- [x] T-001-15 — Implementar trabajador y coordinación por revisión.
   - RF: RF-06, RF-07, RF-10, RF-25.
   - Dependencias: T-001-07, T-001-14.
   - Archivos previstos: `src/workers/generator.worker.ts`, `src/workers/generatorClient.ts`, `tests/unit/generatorClient.test.ts`.
@@ -91,47 +91,47 @@ Antes de T-001-01: registrar autorización explícita y alcance en `docs/PROJECT
 
 ## Diseño y estructura adaptable
 
-- [ ] T-001-16 — Auditar disponibilidad y licencias de tipografías.
+- [x] T-001-16 — Auditar disponibilidad y licencias de tipografías.
   - RF: RF-09, RF-19.
   - Dependencias: autorización explícita; puede preceder al código de estética.
   - Archivos previstos: `docs/DECISIONS.md`, `public/fonts/` y avisos de licencia cuando corresponda.
   - Finaliza cuando: parejas exactas tienen recursos redistribuibles y locales; cada sustitución necesaria está aprobada y no se presenta como fuente original.
-- [ ] T-001-17 — Definir 21 arquetipos y cálculo de contraste.
+- [x] T-001-17 — Definir 21 arquetipos y cálculo de contraste.
   - RF: RF-09, RF-16, RF-24.
   - Dependencias: T-001-02, T-001-16.
   - Archivos previstos: `src/catalog/archetypes.ts`, `tests/unit/archetypes.test.ts`.
   - Finaliza cuando: 21 registros coinciden con colores, fuentes, radios y acabados del plan; contraste contempla alfa, texto de botones, AA y AAA sin afirmar aprobaciones falsas.
-- [ ] T-001-18 — Crear tokens y estilo distintivo del estudio.
+- [x] T-001-18 — Crear tokens y estilo distintivo del estudio.
   - RF: RF-20, RF-21, RF-24.
   - Dependencias: T-001-01, T-001-16; aprobación de tema propuesto.
   - Archivos previstos: `src/styles/tokens.css`, `src/styles/app.css`.
   - Finaliza cuando: identidad suiza aprobada, tipografía local, foco visible, AA y movimiento reducido; iconos Lucide; controles de al menos 44 × 44 px.
-- [ ] T-001-19 — Construir estructura semántica y navegación de paneles.
+- [x] T-001-19 — Construir estructura semántica y navegación de paneles.
   - RF: RF-20, RF-24.
   - Dependencias: T-001-07, T-001-18.
   - Archivos previstos: `src/app/StudioLayout.tsx`, `src/components/navigation/PanelNavigation.tsx`.
   - Finaliza cuando: tres rangos exactos, pestañas inferiores móviles, selector en tablet y tres columnas de escritorio; estado preservado y controles ocultos fuera del foco.
-- [ ] T-001-20 — Construir configurador de siete fases.
+- [x] T-001-20 — Construir configurador de siete fases.
   - RF: RF-01, RF-02, RF-03, RF-24.
   - Dependencias: T-001-03, T-001-04, T-001-07, T-001-19.
   - Archivos previstos: `src/components/configurator/Configurator.tsx`, `PhaseSection.tsx`, `TechnologyField.tsx`.
   - Finaliza cuando: todas las fases son editables, filtradas y explicadas; acordeones y atajos funcionan con alternativas visibles; edición por campo no renderiza todo el estudio.
-- [ ] T-001-21 — Integrar selector de conjuntos y confirmaciones.
+- [x] T-001-21 — Integrar selector de conjuntos y confirmaciones.
   - RF: RF-04, RF-24.
   - Dependencias: T-001-05, T-001-20.
   - Archivos previstos: `src/components/configurator/PresetSelector.tsx`.
   - Finaliza cuando: confirma sustitución manual, resuelve variantes y aplica una transacción; cancelar conserva decisiones e idea; foco vuelve al invocador.
-- [ ] T-001-22 — Integrar paleta de comandos accesible.
+- [x] T-001-22 — Integrar paleta de comandos accesible.
   - RF: RF-05, RF-24.
   - Dependencias: T-001-08, T-001-17, T-001-21.
   - Archivos previstos: `src/components/command/CommandPalette.tsx`.
   - Finaliza cuando: Cmd/Ctrl + K, consulta aproximada, flechas, Enter, Escape y sin resultados cubren tecnologías, arquetipos y conjuntos; foco gestionado correctamente.
-- [ ] T-001-23 — Integrar editor de idea y sugerencias.
+- [x] T-001-23 — Integrar editor de idea y sugerencias.
   - RF: RF-06, RF-07, RF-08, RF-23.
   - Dependencias: T-001-09, T-001-15, T-001-19.
   - Archivos previstos: `src/components/storyteller/IdeaEditor.tsx`, `ScopeBadges.tsx`.
   - Finaliza cuando: entradas y negaciones sincronizan inferencias compatibles; decisiones manuales prevalecen; aceptar/descartar sugerencias tiene efecto correcto; errores conservan entrada.
-- [ ] T-001-24 — Construir estudio estético y fichas de arquetipos.
+- [x] T-001-24 — Construir estudio estético y fichas de arquetipos.
   - RF: RF-09, RF-24, RF-25.
   - Dependencias: T-001-17, T-001-18, T-001-20.
   - Archivos previstos: `src/components/aesthetics/AestheticStudio.tsx`, `ArchetypeCard.tsx`.
@@ -139,42 +139,42 @@ Antes de T-001-01: registrar autorización explícita y alcance en `docs/PROJECT
 
 ## Documentos, acciones y persistencia
 
-- [ ] T-001-25 — Construir visor documental y resaltado seguro.
+- [x] T-001-25 — Construir visor documental y resaltado seguro.
   - RF: RF-10, RF-11, RF-21, RF-23, RF-25.
   - Dependencias: T-001-15, T-001-19.
   - Archivos previstos: `src/components/documents/DocumentCanvas.tsx`, `DocumentTabs.tsx`.
   - Finaliza cuando: seis documentos visibles y resaltados sin ejecutar HTML; resaltado memorizado por documento/revisión; estados de actualización y error no ocultan la entrada.
-- [ ] T-001-26 — Construir árbol del kit y medidor de madurez.
+- [x] T-001-26 — Construir árbol del kit y medidor de madurez.
   - RF: RF-12, RF-13, RF-24.
   - Dependencias: T-001-06, T-001-25.
   - Archivos previstos: `src/components/documents/FileTree.tsx`, `MaturityMeter.tsx`.
   - Finaliza cuando: árbol navegable refleja rutas reales del ZIP; porcentaje explica pilares y «No aplica»; navegación por teclado no modifica documentos.
-- [ ] T-001-27 — Implementar copia individual y prompt maestro.
+- [x] T-001-27 — Implementar copia individual y prompt maestro.
   - RF: RF-11, RF-14, RF-24.
   - Dependencias: T-001-25.
   - Archivos previstos: `src/services/clipboard.ts`, `src/components/export/ExportBar.tsx`, `src/components/feedback/StatusMessage.tsx`.
   - Finaliza cuando: copia solo revisión vigente, feedback anunciado y fallback manual ante permisos/origen restringido.
-- [ ] T-001-28 — Implementar exportación ZIP local.
+- [x] T-001-28 — Implementar exportación ZIP local.
   - RF: RF-15, RF-23, RF-25.
   - Dependencias: T-001-14, T-001-25, T-001-27.
   - Archivos previstos: `src/services/zipExport.ts`, `tests/unit/zipExport.test.ts`.
   - Finaliza cuando: ZIP se descomprime y coincide exactamente con seis documentos actuales; rutas seguras, nombre válido, carga diferida, estado ocupado y recuperación de error.
-- [ ] T-001-29 — Implementar exportación de tokens por destino.
+- [x] T-001-29 — Implementar exportación de tokens por destino.
   - RF: RF-16.
   - Dependencias: T-001-17, T-001-27.
   - Archivos previstos: `src/services/tokenExport.ts`, `tests/unit/tokenExport.test.ts`.
   - Finaliza cuando: CSS/JSON contienen tokens exactos; configuración Tailwind solo se ofrece para perfil compatible; descarga no ejecuta código.
-- [ ] T-001-30 — Generar preparación segura y copiable.
+- [x] T-001-30 — Generar preparación segura y copiable.
   - RF: RF-17, RF-22, RF-23.
   - Dependencias: T-001-04, T-001-05, T-001-27.
   - Archivos previstos: `src/services/setupCommands.ts`, `tests/unit/setupCommands.test.ts`.
   - Finaliza cuando: plantillas reflejan destino y herramienta elegidos, identificador validado y escapado seguro; texto libre no se interpola ni se ejecutan órdenes.
-- [ ] T-001-31 — Implementar guardado y recuperación del borrador.
+- [x] T-001-31 — Implementar guardado y recuperación del borrador.
   - RF: RF-18, RF-23.
   - Dependencias: T-001-02, T-001-07, T-001-23.
   - Archivos previstos: `src/services/draftStorage.ts`, `tests/unit/draftStorage.test.ts`.
   - Finaliza cuando: restauración versionada, cuota y corrupción recuperables, guardado diferido; secretos aparentes/emojis no se guardan; borrado confirmado afecta solo clave propia.
-- [ ] T-001-32 — Implementar preparación offline y actualización de caché.
+- [x] T-001-32 — Implementar preparación offline y actualización de caché.
   - RF: RF-19, RF-26.
   - Dependencias: T-001-16, T-001-25, T-001-28, T-001-29, T-001-30, T-001-31.
   - Archivos previstos: `src/offline/service-worker.ts`, `src/services/offlineRegistration.ts`, `vite.config.ts`.
@@ -182,12 +182,12 @@ Antes de T-001-01: registrar autorización explícita y alcance en `docs/PROJECT
 
 ## Verificación, guía y cierre
 
-- [ ] T-001-33 — Completar pruebas de regresión del dominio y motor.
+- [x] T-001-33 — Completar pruebas de regresión del dominio y motor.
   - RF: RF-02…10, RF-12, RF-13, RF-18, RF-21…23, RF-28.
   - Dependencias: T-001-14, T-001-15, T-001-17, T-001-28…31.
   - Archivos previstos: `tests/unit/`, `tests/fixtures/`.
   - Finaliza cuando: casos críticos del plan ejecutados con evidencia; determinismo, prioridades, rutas, borradores y coherencia del kit cubiertos; no se cuentan pruebas sin ejecutar.
-- [ ] T-001-34 — Verificar recorridos en navegador y sin conexión.
+- [x] T-001-34 — Verificar recorridos en navegador y sin conexión.
   - RF: RF-01, RF-03…05, RF-08, RF-10…19, RF-28.
   - Dependencias: T-001-20…32.
   - Archivos previstos: `tests/e2e/workflow.spec.ts`, `tests/e2e/offline.spec.ts`.
@@ -197,12 +197,12 @@ Antes de T-001-01: registrar autorización explícita y alcance en `docs/PROJECT
   - Dependencias: T-001-20…27.
   - Archivos previstos: `tests/e2e/responsive.spec.ts`, `tests/e2e/accessibility.spec.ts`, archivos corregidos según hallazgos.
   - Finaliza cuando: 375/767/768/1279/1280/1440 px, zoom 200 %, teclado, lector, objetivos ≥44 × 44, foco, AA y movimiento reducido verificados; sin overflow de página.
-- [ ] T-001-36 — Medir y ajustar rendimiento.
+- [x] T-001-36 — Medir y ajustar rendimiento.
   - RF: RF-15, RF-25.
   - Dependencias: T-001-15, T-001-24…32, T-001-34.
   - Archivos previstos: `tests/performance/`, servicios/componentes afectados, `docs/ENVIRONMENT_AND_VERIFICATION.md`.
   - Finaliza cuando: CA-11…13 medidos en entorno aprobado con p95, tamaños y trazas; ingreso/controles <16 ms, kit objetivo ≤150 ms, ZIP referencia <100 ms; incumplimientos se corrigen o quedan pendientes explícitos.
-- [ ] T-001-37 — Redactar README y guía de uso completa.
+- [x] T-001-37 — Redactar README y guía de uso completa.
   - RF: RF-21, RF-27, RF-28.
   - Dependencias: T-001-32, T-001-34.
   - Archivos previstos: `README.md`, `docs/PROJECT.md`, `docs/ENVIRONMENT_AND_VERIFICATION.md`.
@@ -229,11 +229,10 @@ Autorización explícita recibida el 2026-10-06: especificación, arquitectura y
 | Fecha | Actividad | Resultado |
 |---|---|---|
 | 2026-10-06 | Lectura de prompt y marco; redacción de especificación, plan, tareas y documentos de soporte | DOCUMENT; sin código, instalaciones ni pruebas de aplicación. |
+| 2026-10-06 | Implementación autorizada, verificaciones por bloques, auditoría de licencias y sincronización | 36 tareas completadas; T-001-35,38,39 abiertas por revisión de accesibilidad manual pendiente. Evidencia en validation.md. |
 
 ## Punto de reanudación
 
-Última acción: documentación entregada para revisión. Siguiente paso: recibir revisión y autorización explícita antes de ejecutar T-001-01 u otra tarea de implementación. Las cifras de rendimiento, accesibilidad y build están pendientes de medición. La aceptación visual del usuario permanece pendiente.
+Implementación funcional terminada; 36 de 39 tareas completadas con evidencia. T-001-35 tiene auditoría automática pasada y revisión con lector real pendiente. T-001-38 y T-001-39 tienen comandos y sincronización ejecutados, pero quedan abiertos por esa dependencia formal. No se presenta la aceptación del usuario como realizada.
 
-2026-10-06 · T-001-01…03: npm run build (salida 0), npm run test (3 pruebas, salida 0), npm run typecheck (salida 0). Catálogo: 215 IDs únicos; alias separados.
-
-2026-10-06 · T-001-04…10: compatibilidades, ocho conjuntos, madurez, estado aislado y reglas de intención verificados con 9 pruebas unitarias y TypeScript sin errores. Plantillas iniciales inspeccionadas; integración determinista se verifica en T-001-14.
+Evidencia: [validation.md](validation.md). Último bloque: 19 pruebas unitarias, 32 pruebas de navegador (2 mediciones omitidas en Firefox), lint, TypeScript y build con salida 0. Rendimiento: entrada p95 1,8 ms; generación p95 46,9 ms; conjuntos p95 13,7 ms; ZIP p95 4,2 ms. Siguiente paso: auditoría con lector de pantalla real y cierre formal posterior.

@@ -1,10 +1,10 @@
 # Trazabilidad prevista
 
-Fecha: 2026-10-06. Todas las rutas de aplicación y pruebas son propuestas. Estado de implementación de cada fila: **pendiente**. Evidencia de ejecución: **ninguna prueba de aplicación ejecutada**.
+Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 19 pruebas unitarias y 32 recorridos de navegador pasan; véase [validation.md](../specs/validation.md). Auditoría con lector real pendiente.
 
 «RF-01» abrevia `RF-001-01`; «T01» abrevia `T-001-01`. Los criterios CA se definen en [spec.md](../specs/spec.md).
 
-| Requisito | Tareas | Archivos/componentes previstos | Verificación prevista |
+| Requisito | Tareas | Archivos/componentes implementados | Verificación ejecutada o pendiente |
 |---|---|---|---|
 | RF-01 | T03, T20, T34 | Configurator, PhaseSection | Siete fases y atajos; CA-01/09. |
 | RF-02 | T03, T20, T33 | catalog/technologies | Cobertura e IDs ≥201; CA-01. |
@@ -36,4 +36,4 @@ Fecha: 2026-10-06. Todas las rutas de aplicación y pruebas son propuestas. Esta
 | RF-28 | T12, T13, T33, T34, T37 | taskGraph, orchestrator | DOCUMENT y autorización posterior; CA-05. |
 | RF-29 | T39; sincronización documental de Fase 1 | Git y documentos de estado | SHA remoto e historial preservado; CA-15. |
 
-En VALIDATE se reemplazarán las rutas propuestas por archivos reales y se enlazará `specs/validation.md`. No convertir una fila a verificada por existir un componente o por compilar la aplicación.
+Las rutas abreviadas corresponden a `src/components/`, `src/domain/`, `src/catalog/`, `src/services/` y `src/engine/`; todas existen. Las pruebas se encuentran en `tests/unit/` y `tests/e2e/`. RF-24 está verificado automáticamente, con lector real pendiente en T-001-35. RF-29 tiene sincronización ejecutada y cierre formal pendiente por dependencia T-001-38. Los demás resultados y sus límites se enlazan en validation.md; no equivalen a aceptación del usuario.
