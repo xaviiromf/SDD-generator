@@ -38,3 +38,18 @@ Fecha: 2026-10-06. Implementación funcional existente. Evidencia: 22 pruebas un
 | RF-30 | T40…43 | Catálogo, modelos, compatibilidad, TechnologyField, Configurator, targetTree | tests/unit/django.test.ts y tests/e2e/django.spec.ts; Django, prerrequisitos, kit y conflictos. |
 
 Las rutas abreviadas corresponden a `src/components/`, `src/domain/`, `src/catalog/`, `src/services/` y `src/engine/`; todas existen. Las pruebas se encuentran en `tests/unit/` y `tests/e2e/`. RF-24 está verificado automáticamente, con lector real pendiente en T-001-35. RF-29 tiene sincronización ejecutada y cierre formal pendiente por dependencia T-001-38. Los demás resultados y sus límites se enlazan en validation.md; no equivalen a aceptación del usuario.
+
+## Ampliación 002 — trazabilidad propuesta
+
+Estado DOCUMENT; ninguna implementación o prueba de esta ampliación ejecutada. Inventario y responsabilidades por archivo: [plan](../specs/002-kit-completo/plan.md).
+
+| Requisito | Tareas propuestas | Verificación prevista | Estado |
+|---|---|---|---|
+| RF-002-01 | T-002-01,05…10,13,14 | 30 rutas base más cuatro activas, ZIP descomprimido y estructura | Propuesto |
+| RF-002-02 | T-002-02,04…09,13 | Cambios de configuración, determinismo y revisión común | Propuesto |
+| RF-002-03 | T-002-02,04…08,13 | Estados honestos, decisiones por origen, guías y registros | Propuesto |
+| RF-002-04 | T-002-01,03,04,06…09,13 | Numeración, IDs, referencias y grafo | Propuesto |
+| RF-002-05 | T-002-03…08,13 | Matriz de destinos; Django y complementos | Propuesto |
+| RF-002-06 | T-002-10,11,13 | Árbol, visor, copia, teclado y foco | Propuesto |
+| RF-002-07 | T-002-01,09,10,12,13 | Rutas, límites, ZIP, trabajador y offline | Propuesto |
+| RF-002-08 | T-002-02,11…13 | Borradores previos, prioridades y transición | Propuesto |

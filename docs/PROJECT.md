@@ -19,6 +19,8 @@ Fecha: 2026-10-06. Estado: documentación aprobada e implementación funcional t
 | Idioma e iconografía | Español integral; cero emojis en artefactos creados/exportados; iconos solo lucide-react. |
 | Distribución prevista | `dist/`, alojamiento estático; compatibilidad con GitHub Pages y subruta `/SDD-generator/`. Publicación no realizada. |
 | Repositorio solicitado | `https://github.com/xaviiromf/SDD-generator`. |
-| Especificación activa | [spec.md](../specs/spec.md), [plan.md](../specs/plan.md), [tasks.md](../specs/tasks.md). |
+| Especificación implementada | [spec.md](../specs/spec.md), [plan.md](../specs/plan.md), [tasks.md](../specs/tasks.md). |
 
 Las tecnologías de servidor, sistemas y móviles del catálogo describen proyectos objetivo: no son dependencias operativas del estudio. El usuario debe revisar los documentos generados y autorizar código por separado. Versiones exactas fijadas en package-lock.json; 30 fuentes OFL locales con sustituciones aprobadas. Evidencia y pendientes en specs/validation.md.
+
+Ampliación propuesta: [002 / Kit completo y adaptable](../specs/002-kit-completo/plan.md). Contempla preservar los 30 archivos del marco y generar cuatro documentos activos numerados, con contenido especializado. Está en DOCUMENT y no cambia todavía el contrato de seis documentos implementado.
