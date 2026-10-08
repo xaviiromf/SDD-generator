@@ -46,7 +46,7 @@ Trazabilidad: RF-01 → 03–06; RF-02 → 07–10; RF-03/04 → 11–12; RF-05/
 
 ## Estado de ejecución
 
-T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparación automatizada solicitada por el usuario ante falta de participantes; no declara evaluación humana ni aceptación. T-005-20…34 pospuestas. T-005-35: comprobaciones técnicas terminadas, consolidación documental y sincronización normal del hito.
+T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparación automatizada solicitada por el usuario ante falta de participantes; no declara evaluación humana ni aceptación. T-005-20…34 pospuestas. T-005-35 completada: comprobaciones técnicas, consolidación documental y push normal del hito 84ed6e0 confirmados en PROJECT_STATUS.
 
 | Tareas | Estado y evidencia |
 |---|---|
@@ -62,6 +62,6 @@ T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparac
 | 18 | 76 unitarias, 87 recorridos correctos y 3 omitidos; lint/TypeScript/build y mediciones en validation.md |
 | 19 | Banco comparison.json: mismos hechos, tiempos y hallazgos estructurales; cero participantes |
 | 20…34 | Pospuestas por el usuario, sin código nuevo ni pruebas atribuidas |
-| 35 | Documentación consolidada; confirmación del push en PROJECT_STATUS |
+| 35 | Completada: push normal de 84ed6e0 confirmado por Git y ls-remote, sin 002 |
 
 Los límites manuales de accesibilidad y semántica constan en validation.md. Completar verificaciones automáticas no autoriza declarar aceptación ni abrir H3–H5.

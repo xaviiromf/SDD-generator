@@ -1,6 +1,6 @@
 # Verificación ejecutada — 005, H0–H2
 
-Fecha: 2026-10-08. Implementación H0–H2 autorizada por el usuario. T-005-02…19 verificadas dentro de sus límites técnicos; T-005-35 consolida y sincroniza. H3–H5 y tareas 20…34 pospuestas. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
+Fecha: 2026-10-08. Implementación H0–H2 autorizada por el usuario. T-005-02…19 verificadas dentro de sus límites técnicos; T-005-35 completada: hito sincronizado. H3–H5 y tareas 20…34 pospuestas. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
 
 ## Entorno y comandos
 
@@ -59,4 +59,4 @@ Revisión semántica del corpus y de cada proyecto generado, aceptación del cli
 
 ## Sincronización
 
-T-005-35: push normal al remoto existente después de las comprobaciones; registrar confirmación y commit en docs/PROJECT_STATUS.md. No incluir specs/002-kit-completo/ ni reescribir historial.
+T-005-35 completada: push normal 53d13c2..84ed6e0 al remoto existente, código 0; ls-remote confirma 84ed6e046e61a8972d5c251e3aae83e897abfb0f en main. Registro de cierre en docs/PROJECT_STATUS.md. 002 excluido, historial sin reescritura y sin despliegue.

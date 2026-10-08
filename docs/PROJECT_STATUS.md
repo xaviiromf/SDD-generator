@@ -6,7 +6,7 @@ Fecha: 2026-10-08.
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
 | Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3–H5 pospuestos. |
-| Fase | VALIDATE 005 concluida técnicamente; consolidación documental y sincronización T-005-35. Aceptación pendiente; H3–H5 pospuestos. |
+| Fase | H0–H2 de 005 verificados técnicamente y sincronizados; T-005-35 completada. Aceptación pendiente; H3–H5 pospuestos. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
 | Implementación | Modelo canónico versionado, editor/entrevista, trazabilidad y preparación de 34 documentos; MCP opcional de 1500 ms y diseño avanzado conservados. Español y migración aditiva sin pérdida de textos/decisiones. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
@@ -16,8 +16,8 @@ Fecha: 2026-10-08.
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
-| Git | Hito previo 53d13c2 sincronizado. T-005-35 pendiente de confirmar push normal de H0–H2. Sin archivos de 002 en el árbol seguido. |
-| Próximo paso | Sincronizar T-005-35 y presentar H2 para revisión del cliente; H3–H5 necesitan autorización posterior. Auditoría manual y revisión semántica pendientes. |
+| Git | Hito 84ed6e0 sincronizado mediante push normal a origin/main y confirmado con ls-remote. Registro documental de cierre consolidado después. 002 sigue excluido. |
+| Próximo paso | Revisión del cliente sobre H2 y su evidencia; H3–H5 requieren autorización posterior. Auditoría manual y revisión semántica pendientes. |
 
 ## Propuesta 005 — Historial DOCUMENT previo a autorización
 
@@ -150,3 +150,5 @@ Lint corregido y correcto. VALIDATE 005: 76 unitarias, TypeScript/build correcto
 Auditoría: 185 archivos de texto propios sin emojis y 002 ignorado/sin archivos seguidos. diff --check señala dos espacios finales en montajes diferidos. IMPLEMENT T-005-17, UI, corrección exclusiva de formato en IdeaEditor/DocumentCanvas; sin cambios de comportamiento. Se retoma VALIDATE y documentación de cierre.
 
 Cierre técnico 005: 76 unitarias y 87 recorridos correctos; tres mediciones Firefox omitidas, cero fallos. Lint/TypeScript/build, corpus doce casos, volumen y banco comparativo correctos. T-005-02…19 completadas con la alternativa de medición autorizada; revisión humana/aceptación pendientes. T-005-35 consolida documentación y prepara commit/push normal; H3–H5 sin ejecutar.
+
+T-005-35 completada: push normal 53d13c2..84ed6e0 confirmado por Git; ls-remote devuelve 84ed6e046e61a8972d5c251e3aae83e897abfb0f en refs/heads/main. Árbol de trabajo limpio después del hito, 002 excluido y copia temporal del banco retirada. Se sincroniza este cierre documental, sin despliegue ni aceptación implícita.
