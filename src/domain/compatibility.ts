@@ -2,7 +2,7 @@ import { technologyById, technologies } from '../catalog/technologies';
 import type { Configuration, Diagnostic, Field, Technology } from './models';
 export const webPlatforms = ['web-spa', 'web-ssr', 'pwa', 'extension'];
 export const visualPlatforms = [...webPlatforms, 'desktop', 'linux', 'windows', 'macos', 'mobile', 'android', 'ios', 'game'];
-export function styleApplies(c: Configuration): boolean { const platform = c.selections.platform?.[0]; return !platform || visualPlatforms.includes(platform); }
+export function styleApplies(c: Configuration): boolean { if(c.project?.mode==='documentacion'||c.project?.implementationRequired===false)return false; if(c.profile?.components.length)return c.profile.components.some(component=>['web','movil','escritorio'].includes(component.kind)); const platform = c.selections.platform?.[0]; return !platform || visualPlatforms.includes(platform); }
 export function optionCompatible(entry: Technology, c: Configuration): boolean {
     const platform = c.selections.platform?.[0];
     if (entry.requires && !Object.entries(entry.requires).every(([field, ids]) =>

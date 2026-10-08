@@ -1,7 +1,7 @@
 # Plan técnico — 001 / SDD-Studio
 
-Contrato vigente: 34 documentos y generación local, con inferencia MCP opcional autorizada en 004. Las referencias históricas a seis documentos o ausencia absoluta de red quedan sustituidas por esos contratos; la ampliación 005 solo cambia H0–H2.
-Estado de la ampliación activa 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
+Contrato vigente: 34 documentos y generación local, con inferencia MCP opcional autorizada en 004. Las referencias históricas a seis documentos o ausencia absoluta de red quedan sustituidas por esos contratos; la ampliación 005 incorpora H0–H4 tras autorizaciones separadas y conserva H5 pospuesto.
+Estado histórico de la ampliación 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
 
 Especificación: [spec.md](spec.md). Fecha: 2026-10-06. Estado: **aprobado el 2026-10-06**. Implementación autorizada. Las rutas descritas inicialmente como propuestas se contrastan con la trazabilidad y el informe de verificación.
 
@@ -377,3 +377,5 @@ La aprobación de este plan autorizará retirar ambos controles de idioma, fijar
 Pruebas propuestas: servidor MCP simulado HTTP JSON/SSE/heredado y fragmentación UTF-8, timeout con reloj controlado, cancelaciones/carreras, CORS real en navegador, IDs/confianza/límites, secreto/emojis sin envío; todos los controles/diseños, contraste alfa/fronteras de ratio, campos inválidos y fuentes locales; 21 posiciones sin cambios de configuración, selección/desactivación/cancelación; ZIP/copia/plan/constitution/tokens coherentes y 34 referencias; borradores previos, modo no visual y offline. Lint, TypeScript, Vitest, build y Playwright Chromium/Firefox solo durante ejecución autorizada. Medir los presupuestos y no marcar aprobación manual inexistente.
 
 Puerta de integración real: probar contra el servidor que el usuario configure, con herramienta y CORS compatibles, sin incluir su endpoint privado/credenciales en evidencia pública. Hasta entonces, distinguir interoperabilidad simulada de conexión real. Sin autorización de implementación, ninguna de estas pruebas nuevas se presenta como ejecutada.
+
+Estado vigente de 005: H0–H4 autorizados; T-005-25…29 implementadas y verificadas; cierre y sincronización en curso. H5 pospuesto. Contratos y evidencia en [plan de 005](005-generador-profesional/plan.md) y [validation de 005](005-generador-profesional/validation.md).

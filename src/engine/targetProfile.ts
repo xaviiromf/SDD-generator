@@ -12,7 +12,14 @@ export interface TargetProfile {
     setup: string;
 }
 export function targetProfile(c: Configuration): TargetProfile {
-    if (c.project?.implementationRequired === false) return {family:'Proceso documental sin software',paths:['docs/OPERACION.md'],domainFiles:['docs/OPERACION.md'],storageFiles:[],visual:false,checks:['Revisar criterios y evidencia del proceso con el responsable.'],setup:'# No aplica preparación de código a este trabajo documental.'};
+    if (c.project?.implementationRequired === false || c.project?.mode === 'documentacion') return {family:'Proceso documental sin software',paths:['docs/OPERACION.md'],domainFiles:['docs/OPERACION.md'],storageFiles:[],visual:false,checks:['Revisar criterios y evidencia del proceso con el responsable.'],setup:'# No aplica preparación de código a este trabajo documental.'};
+    if(c.profile?.components.length){
+        const components=c.profile.components;
+        const paths=components.flatMap(component=>component.kind==='otro'?[]:[`componentes/${component.id}/`]);
+        const domainFiles=components.flatMap(component=>component.kind==='otro'||component.kind==='documental'?[]:[`componentes/${component.id}/${['web','movil','escritorio'].includes(component.kind)?'interfaz':'nucleo'}/`]);
+        return {family:'Proyecto multicomponente declarado',paths,domainFiles,storageFiles:[],visual:styleApplies(c),checks:['Revisar cada responsabilidad, interfaz y tecnología antes de concretar comandos por componente.'],setup:'# Las carpetas por componente son propuestas. Concretar rutas existentes y contratos; no ejecutar una receta global.'};
+    }
+    if(c.profile?.technologies.length && !['platform','language','frontend','backend','runtime'].some(field=>c.selections[field as keyof typeof c.selections]?.length))return {family:'Destino propio pendiente de concretar',paths:[],domainFiles:[],storageFiles:[],visual:false,checks:['Revisar entorno, protocolo y pruebas con el responsable del sistema.'],setup:'# No se conoce una receta para las tecnologías declaradas. No se asume un frontend web.'};
     const languages = c.selections.language ?? [];
     const frontend = c.selections.frontend?.[0];
     const platform = c.selections.platform?.[0];
@@ -81,6 +88,7 @@ export function targetProfile(c: Configuration): TargetProfile {
     if (c.selections.deploy?.includes('docker')) paths.push('Dockerfile');
     if (c.selections.deploy?.includes('compose-deploy')) paths.push('compose.yaml');
     checks.push(...(c.selections.lint ?? []).map(id => template(c.sddLanguage)`Definir configuración y comando de ${id} tras inspección.`));
+    if(c.project?.mode==='ampliacion'||c.project?.mode==='migracion')setup=c.project.mode==='migracion'?'# Inspeccionar el sistema existente; acordar compatibilidad, respaldo, ensayo y reversión antes de migrar. No crear un proyecto nuevo sobre el existente.':'# Inspeccionar rutas y contratos existentes; ampliar el subsistema aprobado sin reinicializar ni reemplazar el proyecto.';
     const visual = styleApplies(c) && !c.selections.styling?.includes('not-applicable') && platform !== 'daemon';
     return { family, paths: [...new Set(paths)], domainFiles, storageFiles, visual, checks, setup };
 }

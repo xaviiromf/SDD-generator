@@ -1,3 +1,4 @@
+import { isolateTasks } from './agentContext';
 import { hasProjectContent } from '../domain/projectDefinition';
 import { implementationTaskId, validationTaskId } from './coverage';
 import { literal } from '../i18n/translate';
@@ -15,11 +16,12 @@ export function targetTasks(c: Configuration, profile: TargetProfile): KitTask[]
         const base:KitTask={id:'T-BASE-REVISION',title:'Revisar requisitos, preguntas y autorización',rf:active.map(r=>r.id).join(', ')||'Pendiente',depends:[],files:[`${folder}/spec.md`,`${folder}/plan.md`],done:'El responsable revisa requisitos y criterios; no se inicia código sin autorización.'};
         const tasks:KitTask[]=[base];
         for(const r of active){
-            const ownFiles=project.implementationRequired?profile.domainFiles:[`${folder}/spec.md`,'docs/PROJECT.md'];
-            tasks.push({id:implementationTaskId(r.id),title:`${project.implementationRequired?'Implementar':'Documentar y revisar'}: ${r.title||r.behavior||'Requisito pendiente'}`,rf:r.id,depends:[base.id],files:ownFiles,done:r.behavior||'Concretar comportamiento antes de ejecutar esta tarea.'});
+            const componentFiles=r.componentIds.length&&c.profile?.components.length?profile.domainFiles.filter(path=>r.componentIds.some(id=>path.startsWith(`componentes/${id}/`))):profile.domainFiles;
+            const ownFiles=project.implementationRequired&&project.mode!=='documentacion'?componentFiles:[`${folder}/spec.md`,'docs/PROJECT.md'];
+            tasks.push({id:implementationTaskId(r.id),title:`${project.implementationRequired&&project.mode!=='documentacion'?'Implementar':'Documentar y revisar'}: ${r.title||r.behavior||'Requisito pendiente'}`,rf:r.id,depends:[base.id],files:ownFiles,done:r.behavior||'Concretar comportamiento antes de ejecutar esta tarea.'});
             tasks.push({id:validationTaskId(r.id),title:`Verificar criterios de ${r.id}`,rf:r.id,depends:[implementationTaskId(r.id)],files:[`${folder}/validation.md`,'docs/TRACEABILITY.md'],done:r.criteria.map(criterion=>`${criterion.id}: ${criterion.text||'Resultado pendiente'}`).join('; ')||'Definir criterios observables antes de declarar verificación.'});
         }
-        assertTaskGraph(tasks);return tasks;
+        const isolated=isolateTasks(tasks,folder);assertTaskGraph(isolated);return isolated;
     }
     const scope = scopeRequirements(c);
     const folder = specificationFolder(c.slug);
@@ -33,7 +35,7 @@ export function targetTasks(c: Configuration, profile: TargetProfile): KitTask[]
         { id: visual, title: literal('Verificar accesibilidad y adaptación cuando aplique', c.sddLanguage), rf: requirementId(4), depends: [taskId(3)], files: profile.domainFiles, done: profile.visual ? literal('Teclado, foco, contraste y adaptación revisados en la interfaz real.', c.sddLanguage) : literal('Verificar ayudas, errores y operación accesible del destino; revisión visual web no aplica.', c.sddLanguage) },
         { id: validation, title: literal('Validar y registrar evidencia', c.sddLanguage), rf: requirementsList(), depends: [security, visual, ...scope.map((_, index) => taskId(4 + index))], files: [`${folder}/validation.md`, 'docs/PROJECT_STATUS.md', 'docs/VERIFICATION.md', 'docs/TRACEABILITY.md'], done: literal('Comandos, salidas y límites reales registrados; aceptación del usuario pendiente hasta confirmación explícita.', c.sddLanguage) }
     ];
-    assertTaskGraph(tasks);
-    return tasks;
+    const isolated=isolateTasks(tasks,folder);assertTaskGraph(isolated);
+    return isolated;
 }
 function requirementsList() { return [1, 2, 3, 4].map(requirementId).join(', '); }

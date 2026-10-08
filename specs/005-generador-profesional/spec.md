@@ -1,6 +1,6 @@
 # 005 — Generador profesional, adaptable y verificable
 
-Fecha: 2026-10-08. Fase: cierre técnico H3 completado. Estado: H0–H3 implementados y verificados técnicamente tras autorizaciones del 2026-10-08. T-005-20…24 y cierre 35 completados; H3 sincronizado en origin/main. Aceptación pendiente. H4/H5 pospuestos.
+Fecha: 2026-10-08. Fase: cierre DOCUMENT H4, T-005-35. Estado: H0–H3 implementados y verificados técnicamente tras autorizaciones del 2026-10-08. T-005-20…24 y cierre 35 completados; H3 sincronizado en origin/main. Aceptación pendiente. H4 autorizado, implementado y verificado en T-005-25…29; cierre y sincronización en curso; H5 pospuesto.
 
 Plan y diagnóstico: [plan.md](plan.md). Secuencia: [tasks.md](tasks.md). Evidencia: [validation.md](validation.md).
 
@@ -48,4 +48,4 @@ No se incluyen ejecución autónoma de código, agentes alojados, servidor de IA
 
 Entrada: «Un taller registra y cancela reservas; no acepta pagos». El usuario declara quién cancela, cuándo se permite, qué ocurre con una reserva ya atendida y dónde se conservan datos. El sistema asigna IDs, muestra lo no contestado, genera requisitos con criterios y enlaza tareas de implementación/validación. No inventa una política de cancelación ni activa pagos.
 
-Objetivo de extensibilidad especializada de H4, aún pospuesto. Entrada fuera de catálogo: «Instrumento científico con protocolo propietario». El usuario describe capacidades, interfaz, formatos y restricciones propias. Se conserva el dominio, se registran preguntas técnicas y no se genera un frontend web por defecto. Validar el instrumento sigue requiriendo conocimiento y entorno del proyecto objetivo.
+Extensibilidad declarativa de H4, implementada sin certificar implementación especializada del destino. Entrada fuera de catálogo: «Instrumento científico con protocolo propietario». El usuario describe capacidades, interfaz, formatos y restricciones propias. Se conserva el dominio, se registran preguntas técnicas y no se genera un frontend web por defecto. Validar el instrumento sigue requiriendo conocimiento y entorno del proyecto objetivo.

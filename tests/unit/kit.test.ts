@@ -28,7 +28,8 @@ describe('Manifiesto del kit completo', () => {
 it('deriva contexto coherente y tareas Django sin imponer rutas web a CLI', () => {
     const django = createKitContext({ ...emptyConfiguration(), slug: 'reservas', positive: 'Crear reservas', selections: { language: ['python'], backend: ['django'], api: ['django-ninja'], platform: ['web-ssr'], architecture: ['monolith'] } });
     expect(django.profile.paths).toContain('config/api.py');
-    expect(django.tasks[2].files).toContain('apps/core/views.py');
+    expect(django.tasks.find(task=>task.id==='T-001-03-NUCLEO')?.files).toContain('apps/core/views.py');
+    expect(django.tasks.find(task=>task.id==='T-001-03-SERVICIOS')?.files).toContain('apps/core/api/router.py');
     expect(django.requirements.at(-1)?.id).toBe('RF-001-05');
     expect(django.tasks.at(-1)?.files).toContain('specs/001-reservas/validation.md');
     expect(django).toEqual(createKitContext(django.config));

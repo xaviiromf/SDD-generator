@@ -1,3 +1,4 @@
+import type { ProfileConfiguration } from './profiles';
 import type { Readiness } from './readiness';
 import type { ManualSection } from './manualSections';
 import type { Coverage } from '../engine/coverage';
@@ -16,6 +17,7 @@ export interface Configuration {
     designVersion?: 1;
     designOverrides?: DesignOverrides;
     project?: ProjectDefinition;
+    profile?: ProfileConfiguration;
     manualSections?: ManualSection[];
     name: string;
     slug: string;

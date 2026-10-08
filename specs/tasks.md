@@ -1,6 +1,6 @@
 # Tareas — 001 / SDD-Studio
 
-Estado de la ampliación activa 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
+Estado histórico de la ampliación 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
 
 Especificación: [spec.md](spec.md). Plan: [plan.md](plan.md). Fecha: 2026-10-06.
 
@@ -354,3 +354,5 @@ Puerta actual: implementación autorizada el 2026-10-07; tareas de aplicación y
 Evidencia final 004 (2026-10-07): lint, TypeScript, 52 unitarias, build y 75 pruebas de navegador correctos; tres mediciones omitidas en Firefox. Muestra de 200 ajustes p95 3,8 ms y seis áreas ajenas sin renders adicionales. T-004-23 registra el push y su comprobación; no se cierran pendientes manuales de 001.
 
 T-004-23: hito de implementación d86c589 enviado mediante push normal a origin/main. Verificación técnica y exclusión de 002 comprobadas; este registro documental de cierre se sincroniza a continuación. Todas las tareas 004 completadas; aceptación y pendientes históricos 001 siguen separados.
+
+Estado vigente de 005: H0–H4 autorizados; T-005-25…29 implementadas y verificadas; cierre y sincronización en curso. H5 pospuesto. Contratos y evidencia en [plan de 005](005-generador-profesional/plan.md) y [validation de 005](005-generador-profesional/validation.md).

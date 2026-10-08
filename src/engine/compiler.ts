@@ -1,3 +1,4 @@
+import { isProfileConfiguration } from '../domain/profiles';
 import { calculateReadiness } from '../domain/readiness';
 import { projectValidationErrors } from '../domain/projectValidation';
 import { calculateCoverage } from './coverage';
@@ -18,6 +19,7 @@ export function compile(c: Configuration, snapshot?: IntentSnapshot): Compilatio
     let remote;
     try { if (snapshot?.fingerprint === intentFingerprint(c)) remote = normalizeIntent(snapshot.result); } catch { /* Datos remotos inválidos: motor local íntegro. */ }
     const diagnostics = [...validateConfiguration(c, knownIds), ...compatibilityDiagnostics(c).map(d=>({...d,kind:'compatibility' as const}))];
+    if(c.profile && !isProfileConfiguration(c.profile))c={...c,profile:undefined};
     if(c.project && projectValidationErrors(c.project).length) c={...c,project:undefined};
     if(c.project) c={...c,project:{...c.project,revision:c.revision}};
     const ctx = createKitContext(c);

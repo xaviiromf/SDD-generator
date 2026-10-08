@@ -144,3 +144,7 @@ La entrega de requisitos estructurados, trazabilidad y preparación H0–H2 se v
 ## Evidencia de H3 de 005
 
 La ampliación autorizada T-005-20…24 está implementada y verificada: biblioteca local/versiones, importación y respaldo JSON, reconciliación de aportaciones y comparación con confirmación. Resultado final: 94 unitarias, 108 recorridos Chromium/Firefox correctos y cuatro mediciones Firefox omitidas; lint y TypeScript/build correctos. Principal 453,60 kB; p95 de biblioteca poblada 3,4 ms y sandbox 4,2 ms. Metodología, cobertura, presupuestos y límites en [validation de 005](005-generador-profesional/validation.md#h3--biblioteca-local-versiones-y-reconciliación). Esta evidencia se añade al historial; H4/H5 permanecen pospuestos.
+
+## Evidencia de H4 de 005
+
+Perfiles JSON versionados, composición, tecnologías propias, modos y paquetes acotados por tarea implementados en T-005-25…28. Pruebas H4/corpus/continuidad documentadas en [validation de 005](005-generador-profesional/validation.md#h4--perfiles-declarativos-composición-y-paquetes-para-agentes). T-005-29 completada: 125 unitarias y 121 recorridos correctos, cinco mediciones Firefox omitidas; lint y TypeScript/build correctos; no se atribuye aceptación ni consumo real de tokens. H5 sigue pospuesto.

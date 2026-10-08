@@ -1,3 +1,5 @@
+import { isProfileConfiguration, type ProfileConfiguration, type WorkMode } from '../domain/profiles';
+import { validateText } from '../domain/validation';
 import { createProjectDefinition, createRequirement, contextKinds, type ContextKind, type ProjectDefinition, type ProjectItem, type StructuredRequirement } from '../domain/projectDefinition';
 import { projectValidationErrors } from '../domain/projectValidation';
 import {isManualSections,type ManualSection} from '../domain/manualSections';
@@ -10,6 +12,8 @@ import { optionCompatible } from '../domain/compatibility';
 interface EditorState {
     config: Configuration;
     projectError: string;
+    setProfileConfiguration: (profile:ProfileConfiguration) => boolean;
+    setWorkMode: (mode:WorkMode) => void;
     setManualSections: (sections:ManualSection[]) => boolean;
     updateProject: (patch: Partial<Pick<ProjectDefinition, 'mode' | 'implementationRequired'>>) => void;
     addProjectItem: (kind: ContextKind) => void;
@@ -49,16 +53,35 @@ export const useEditorStore = create<EditorState>((set, get) => {
         project.revision = config.revision + 1;
         const errors = projectValidationErrors(project);
         if (errors.length) { set({projectError: errors[0]}); return; }
-        set({config:{...config,project,revision:project.revision},projectError:''});
+        let profile=config.profile;
+        if(profile&&profile.components.some(component=>{const item=project.context.components.find(i=>i.id===component.id);return item&&(item.text!==component.responsibility||JSON.stringify(item.references)!==JSON.stringify(component.dependsOn));})){const next=structuredClone(profile);for(const component of next.components){const item=project.context.components.find(i=>i.id===component.id);if(item){component.responsibility=item.text;component.dependsOn=[...item.references];}}
+            if(!isProfileConfiguration(next)||validateText(JSON.stringify(next)).some(d=>d.blocking)){set({projectError:'El componente contiene datos o dependencias inválidos.'});return;}profile=next;
+        }
+        set({config:{...config,...(profile?{profile}:{}),project,revision:project.revision},projectError:''});
     };
     return ({
     config: emptyConfiguration(),
     projectError: '',
     setManualSections: manualSections=>{if(!isManualSections(manualSections)){set({projectError:'Las aportaciones exceden los límites o no son válidas.'});return false;}set(({config})=>({config:{...config,manualSections,revision:config.revision+1},projectError:''}));return true;},
-    updateProject: patch => mutateProject(project=>Object.assign(project,patch)),
+    setProfileConfiguration: profile=>{
+        if(!isProfileConfiguration(profile)||validateText(JSON.stringify(profile)).some(d=>d.blocking)){set({projectError:'Los perfiles contienen datos inválidos, código o textos inseguros.'});return false;}
+        const config=get().config,project=structuredClone(config.project??createProjectDefinition(config.slug,config.revision));
+        const previous=new Set(config.profile?.components.map(c=>c.id)??[]),next=new Set(profile.components.map(c=>c.id));
+        project.context.components=project.context.components.filter(item=>!previous.has(item.id)||next.has(item.id));
+        for(const component of profile.components){const current=project.context.components.find(item=>item.id===component.id);if(current){current.text=component.responsibility;current.references=[...component.dependsOn];}else project.context.components.push({id:component.id,text:component.responsibility,status:'pendiente',origin:'user',references:[...component.dependsOn]});}
+        const errors=projectValidationErrors(project);if(errors.length){set({projectError:'No se pueden sustituir componentes referenciados: '+errors[0]});return false;}
+        project.revision=config.revision+1;set({config:{...config,profile:structuredClone(profile),project,revision:project.revision},projectError:''});return true;
+    },
+    setWorkMode: mode=>get().updateProject({mode}),
+    updateProject: patch => mutateProject(project=>{
+        Object.assign(project,patch);
+        if(patch.mode!==undefined)project.implementationRequired=patch.mode!=='documentacion';
+        else if(patch.implementationRequired===false)project.mode='documentacion';
+        else if(patch.implementationRequired===true&&project.mode==='documentacion')project.mode='nuevo';
+    }),
     addProjectItem: kind => mutateProject(project=>{project.context[kind].push({id:allocate(project,'CTX'),text:'',status:'pendiente',origin:'user',references:[]});}),
     updateProjectItem: (kind,id,patch) => mutateProject(project=>{const item=project.context[kind].find(i=>i.id===id);if(item) Object.assign(item,patch,{origin:'user'});}),
-    removeProjectItem: (kind,id) => mutateProject(project=>{project.context[kind]=project.context[kind].filter(i=>i.id!==id);}),
+    removeProjectItem: (kind,id) => {if(kind==='components'&&get().config.profile?.components.some(c=>c.id===id)){set({projectError:'Elimina el componente desde Perfiles y componentes; se comprobarán sus referencias.'});return;}mutateProject(project=>{project.context[kind]=project.context[kind].filter(i=>i.id!==id);});},
     addRequirement: () => mutateProject(project=>{project.requirements.push(createRequirement(allocate(project,'RF')));}),
     updateRequirement: (id,patch) => mutateProject(project=>{const item=project.requirements.find(i=>i.id===id);if(item) Object.assign(item,patch,{origin:'user'});}),
     removeRequirement: id => mutateProject(project=>{project.requirements=project.requirements.filter(i=>i.id!==id);}),
@@ -113,6 +136,6 @@ export const useEditorStore = create<EditorState>((set, get) => {
         set({ config: { ...config, selections, origins, revision: config.revision + 1 } });
         return true;
     },
-    restore: config => { const project=config.project ?? createProjectDefinition(config.slug,config.revision); if(projectValidationErrors(project).length){set({projectError:'No se puede restaurar un modelo inválido.'});return;} const revision=get().config.revision+1;set({config:{...config,project:{...project,revision},sddLanguage:'es',revision},projectError:''}); }
+    restore: config => { const project=config.project ?? createProjectDefinition(config.slug,config.revision); if(projectValidationErrors(project).length||(config.profile!==undefined&&!isProfileConfiguration(config.profile))){set({projectError:'No se puede restaurar un modelo inválido.'});return;} const revision=get().config.revision+1;set({config:{...config,project:{...project,revision},sddLanguage:'es',revision},projectError:''}); }
 });
 });

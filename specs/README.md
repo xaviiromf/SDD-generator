@@ -2,7 +2,7 @@
 
 | ID | Alcance | Documentos | Estado | Código autorizado |
 |---|---|---|---|---|
-| 005 | Diagnóstico profesional, requisitos estructurados, trazabilidad y extensibilidad | [spec](005-generador-profesional/spec.md), [plan](005-generador-profesional/plan.md), [tasks](005-generador-profesional/tasks.md), [validation](005-generador-profesional/validation.md) | H0–H3 implementados y verificados; aceptación pendiente; H4/H5 pospuestos | H0–H3 |
+| 005 | Diagnóstico profesional, requisitos estructurados, trazabilidad y extensibilidad | [spec](005-generador-profesional/spec.md), [plan](005-generador-profesional/plan.md), [tasks](005-generador-profesional/tasks.md), [validation](005-generador-profesional/validation.md) | H0–H4 implementados y verificados; aceptación pendiente; H5 pospuesto | H0–H4 |
 | 004 | MCP opcional, contexto por fases, diseño avanzado y carrusel | Apartados 004 de [spec.md](spec.md), [plan.md](plan.md), [tasks.md](tasks.md); [AGENTS.md](../AGENTS.md) | Implementación, verificación técnica y sincronización terminadas | Sí |
 | 003 | Idiomas independientes UI / SDD | [spec](003-idiomas/spec.md), [plan](003-idiomas/plan.md), [tasks](003-idiomas/tasks.md), [validation](003-idiomas/validation.md) | Hito histórico; idioma sustituido por español integral en 004 | Sí |
 | 002 | Kit completo y adaptable | Documentación local excluida del repositorio por instrucción del usuario | Implementación y verificación técnica terminadas; evidencia local | Sí |

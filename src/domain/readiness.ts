@@ -1,3 +1,4 @@
+import { profileWarnings } from './profiles';
 import { hasProjectContent } from './projectDefinition';
 import type { Configuration, Diagnostic } from './models';
 import type { Coverage } from '../engine/coverage';
@@ -7,6 +8,7 @@ const normalize=(value:string)=>value.normalize('NFD').replace(/[\u0300-\u036f]/
 export function calculateReadiness(c:Configuration,coverage:Coverage|undefined,diagnostics:Diagnostic[],pillars:{label:string;complete:boolean}[]):Readiness {
  const issues:PreparationIssue[]=[];
  const add=(id:string,source:string,message:string,severity:PreparationIssue['severity']='bloqueo')=>issues.push({id,source,message,severity});
+ if(c.profile)for(const [i,message] of profileWarnings(c.profile,c.project).entries())add(`perfil-${i}`,'Perfiles y componentes',message,'revision');
  const p=c.project,active=p?.requirements.filter(r=>r.status!=='descartado')??[];
  if(!hasProjectContent(p)||!active.length)add('requisitos-ausentes','Proyecto','Declara requisitos y criterios observables; una idea y una pila no bastan.');
  let complete=0;
@@ -34,8 +36,8 @@ export function calculateReadiness(c:Configuration,coverage:Coverage|undefined,d
   const positive=active.map(r=>({id:r.id,text:[r.title,r.behavior].join(' ')})).concat(c.positive.split('\n').filter(Boolean).map((text,index)=>({id:`alcance-${index+1}`,text})));
   for(const item of positive)if((' '+normalize(item.text)+' ').includes(' '+excluded+' '))add(`contradiccion-${item.id}-${exclusion.id}`,`${item.id} / ${exclusion.id}`,'La misma necesidad aparece en el alcance positivo y en una exclusión. Revísala.');
  }
- if(p?.implementationRequired!==false)for(const pillar of pillars.filter(p=>!p.complete))add(`configuracion-${normalize(pillar.label).replaceAll(' ','-')}`,'Configuración',`Pendiente de definir o justificar: ${pillar.label}.`);
+ if(p?.implementationRequired!==false&&p?.mode!=='documentacion')for(const pillar of pillars.filter(p=>!p.complete))add(`configuracion-${normalize(pillar.label).replaceAll(' ','-')}`,'Configuración',`Pendiente de definir o justificar: ${pillar.label}.`);
  for(const diagnostic of diagnostics.filter(d=>d.blocking))add(`seguridad-${issues.length}`,'Datos',diagnostic.message);
  const blocked=issues.some(i=>i.severity==='bloqueo');
- return {state:blocked?'borrador':'listo-para-revision',configuration:{complete:p?.implementationRequired===false?0:pillars.filter(p=>p.complete).length,applicable:p?.implementationRequired===false?0:pillars.length},quality:{complete,applicable:active.length*6},issues,conditions:[{label:'Requisitos y criterios declarados',met:active.length>0},{label:'Referencias y datos seguros',met:!(coverage?.brokenReferences.length)&&!diagnostics.some(d=>d.blocking)},{label:'Sin pendientes bloqueantes conocidos',met:!blocked},{label:'Revisión semántica y autorización explícita',met:false}]};
+ return {state:blocked?'borrador':'listo-para-revision',configuration:{complete:(p?.implementationRequired===false||p?.mode==='documentacion')?0:pillars.filter(p=>p.complete).length,applicable:(p?.implementationRequired===false||p?.mode==='documentacion')?0:pillars.length},quality:{complete,applicable:active.length*6},issues,conditions:[{label:'Requisitos y criterios declarados',met:active.length>0},{label:'Referencias y datos seguros',met:!(coverage?.brokenReferences.length)&&!diagnostics.some(d=>d.blocking)},{label:'Sin pendientes bloqueantes conocidos',met:!blocked},{label:'Revisión semántica y autorización explícita',met:false}]};
 }

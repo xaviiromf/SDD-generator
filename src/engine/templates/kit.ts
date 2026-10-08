@@ -1,3 +1,5 @@
+import { agentAccessMatrix } from '../agentContext';
+import { profileProjection } from '../profileProjection';
 import { hasProjectContent } from '../../domain/projectDefinition';
 import { textSection } from '../kitContext';
 import { calculateCoverage, coverageMarkdown } from '../coverage';
@@ -34,8 +36,10 @@ export function kitDocuments(ctx: KitContext): GeneratedDocument[] {
             for(const kind of includeContext) if(project.context[kind].length) content+=`\n## Declaraciones del contexto (${kind === 'decisions'?'decisiones':kind === 'assumptions'?'supuestos':kind === 'rules'?'reglas':kind === 'exclusions'?'exclusiones':kind === 'actors'?'actores':kind === 'capabilities'?'capacidades':kind === 'processes'?'procesos':kind === 'entities'?'datos':kind === 'questions'?'preguntas':kind === 'components'?'componentes':'contratos'})\n\n${project.context[kind].filter(item=>item.status!=='descartado').map(item=>`- ${item.id}: ${textSection(item.text)} (${item.status}; aportado, no ejecutado).`).join('\n')}\n`;
             if(document.path==='docs/TRACEABILITY.md') content+=`\n## Grafo de requisitos declarados\n\n${coverageMarkdown(coverage)}`;
             if(document.id==='validation') content+=`\n## Criterios declarados, no ejecutados\n\n${coverageMarkdown(coverage)}`;
-            if(!['spec','plan','tasks','validation'].includes(document.id) && document.path!=='docs/TRACEABILITY.md') content+=`\n## Contexto canónico de esta revisión\n\nModelo v${project.schemaVersion}; revisión ${c.revision}. ${project.requirements.filter(r=>r.status!=='descartado').map(r=>r.id).join(', ')||'Requisitos pendientes'}. Consultar la especificación activa y docs/TRACEABILITY.md antes de actuar.\n\n${project.implementationRequired?'Código pendiente de autorización; no hay evidencia ejecutada.':'Trabajo documental sin software: preparación, pruebas de código y tareas de programación no aplican.'}\n`;
+            if(!['spec','plan','tasks','validation'].includes(document.id) && document.path!=='docs/TRACEABILITY.md') content+=`\n## Contexto canónico de esta revisión\n\nModelo v${project.schemaVersion}; revisión ${c.revision}. ${project.requirements.filter(r=>r.status!=='descartado').map(r=>r.id).join(', ')||'Requisitos pendientes'}. Consultar solo el apartado pertinente de la especificación activa al entrar; usar trazabilidad cuando la tarea lo requiera.\n\n${project.implementationRequired?'Código pendiente de autorización; no hay evidencia ejecutada.':'Trabajo documental sin software: preparación, pruebas de código y tareas de programación no aplican.'}\n`;
         }
+        if(c.profile&&(['spec','plan'].includes(document.id)||document.path==='TECHNICAL_CONTEXT.md'))content+='\n'+profileProjection(c);
+        if(document.path==='AGENTS.md'||document.path.startsWith('prompts/'))content+='\n'+agentAccessMatrix();
         return { ...document, content, revision: c.revision };
     });
 }

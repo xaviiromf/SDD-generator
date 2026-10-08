@@ -1,8 +1,8 @@
-# Verificación ejecutada — 005, H0–H3
+# Verificación ejecutada — 005, H0–H4
 
-Fecha: 2026-10-08. H0–H2 e H3 autorizados por separado por el usuario y verificados técnicamente. T-005-02…24 completadas; cierre 35 de H3 completado con push normal de 0bb522e. H4/H5 y tareas 25…34 pospuestos. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
+Fecha: 2026-10-08. H0–H2 e H3 autorizados por separado por el usuario y verificados técnicamente. T-005-02…24 completadas; cierre 35 de H3 completado con push normal de 0bb522e. H4 autorizado, implementado y verificado en T-005-25…29; cierre y sincronización en curso; H5 y tareas 30…34 pospuestos. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
 
-Los apartados anteriores a H3 conservan la evidencia histórica de H0–H2; cifras y exclusiones describen ese momento. La evidencia vigente de biblioteca/versiones y regresión está en el apartado H3.
+Los apartados anteriores a H3 conservan la evidencia histórica de H0–H2; cifras y exclusiones describen ese momento. La evidencia de biblioteca/versiones está en H3; la ampliación y regresión vigentes están en el apartado H4.
 
 ## Entorno y comandos
 
@@ -130,3 +130,60 @@ No se comprueba cierre abrupto del proceso ni pérdida física del almacenamient
 ### Cierre T-005-35 de H3
 
 Documentación y evidencia consolidadas tras pasar pruebas/build. Auditoría final: 200 archivos de texto propios, cero archivos con emojis; enlaces locales de los documentos afectados existentes y git diff --check correcto. git check-ignore confirma 002 ignorado y git ls-files no devuelve archivos de esa carpeta. Push normal a6f0e5f..0bb522e a origin/main, código 0; git ls-remote confirma 0bb522efa9a72e8a243cda28ea30aba57460f8a5 en refs/heads/main. Árbol de trabajo limpio tras sincronizar el código; este registro se consolida en un commit documental posterior. No se reescribe historial ni se despliega el sitio.
+
+## H4 — Perfiles declarativos, composición y paquetes para agentes
+
+Autorización explícita del 2026-10-08: T-005-25…29 y cierre 35. T-005-25…29 implementadas y verificadas con la regresión completa final. No se implementa H5, no se instalan paquetes ni se despliega un sitio. Se mantiene generación local, español, cero emojis y MCP voluntario con el mismo límite de 1500 ms y sin ampliar los datos enviados.
+
+### Comprobaciones H4
+
+| Comando/comprobación | Resultado observado |
+|---|---|
+| npm run test | 125 pruebas correctas en 28 archivos, código 0; 31 pruebas añadidas sobre las 94 de H3 |
+| npm run lint | Código 0 |
+| npm run build | TypeScript estricto y Vite correctos, código 0; sin aviso de paquete principal |
+| npx playwright test tests/e2e/profiles.spec.ts | Trece correctas, una medición Firefox omitida; 14 casos, código 0 |
+| npm run test:e2e | 126 casos: 121 correctos, cinco mediciones Firefox omitidas, cero fallos; 5,1 minutos, código 0 |
+
+### Seguridad, soporte y continuidad
+
+`profiles.test.ts`: seis pruebas de formato/esquema/metadatos, instantáneas exactas verificadas, declaración propia sin promoción a Verificada, composición web/móvil/API, referencias/IDs/ciclos, límites, claves desconocidas/prototipos, fuentes con credenciales, fechas inválidas, código/estilos/comandos, datos inseguros, colisiones con catálogo y contradicción con el contexto canónico. Declaraciones incompletas conservan pendientes; datos inválidos no se guardan ni exportan. Los perfiles son datos JSON con campos conocidos, no módulos o recetas ejecutadas.
+
+`profileProjection.test.ts`: cuatro pruebas de determinismo, versiones/soporte, destino propio sin receta web, modos existentes y documental sin código, y bloqueo de perfil inválido. El manifiesto permanece en 34 documentos. Las fuentes no se consultan automáticamente; el entorno real, la compatibilidad de protocolos y las versiones de terceros no se verifican por registrar datos.
+
+`profileStore.test.ts`: cuatro pruebas de modo sin pérdida de textos/selecciones, una revisión por sincronización, componente referenciado que no puede eliminarse, actualización del contexto/perfil coherente, rechazo sin publicar, restauración de instantánea y conservación de identidad de profile al editar RF ajenos. `profileMigration.test.ts`: dos pruebas de recuperación de declaraciones con advertencias y conservación del registro inválido. La biblioteca H3 acepta el campo opcional y los respaldos incluyen la instantánea completa.
+
+La prueba de navegador de continuidad detectó que readDraft rechazaba cualquier diagnóstico, incluso las nuevas advertencias no bloqueantes. Se corrigió a rechazar solo bloqueantes; una prueba de servicios y los recorridos reales de ambos navegadores confirman recuperación de modo y protocolo. Se corrigieron selectores de combobox según nombres accesibles y la edición con Enter de listas por líneas. Esas correcciones forman parte del build final. Después de la regresión completa se ajustó exclusivamente el encabezado de tasks a «Tareas del proyecto» para evitar llamar implementación a un proceso sin software; 28 pruebas de corpus H2/H4 y paquetes, más TypeScript/build, pasaron de nuevo. El resto de la implementación permanece igual a la regresión de 126 casos.
+
+### Corpus y utilidad para agentes
+
+`profileCorpus.test.ts` ejecuta doce escenarios ficticios conservando actor, comportamiento, criterio, excepción y modo del corpus original. [fixtures/h4-results.json](fixtures/h4-results.json) registra por caso las 34 rutas, tipos de componente, determinismo, tres entradas como máximo, separación de dominios, cero referencias rotas y respaldo/importación sin pérdida de la instantánea. Los casos 11 y 12 mantienen modo documental: el 11 conserva un protocolo propio declarado y el 12 no genera tareas IMPLEMENT. Variantes separadas prueban un destino propio con software pendiente y composición web/móvil/API; no se inventa autorización para el instrumento del corpus.
+
+`agentContext.test.ts`: tres pruebas de entrada de exactamente tres archivos, contratos y aprobación por tarea, tareas mixtas divididas por dominio y dependencias finales actualizadas, raíz ambigua sin permiso de lectura y VALIDATE limitado a reportes. Las guías, AGENTS y tareas del kit comparten la matriz de acceso. El paquete contiene objetivo, fase/dominio, dependencias, contratos, archivos permitidos, criterios y puerta explícita. Los directorios desconocidos quedan pendientes de concretar. No se añaden archivos al kit ni se obliga a cargar sus 34 documentos.
+
+Esta evaluación es estructural y automatizada. No ejecuta un agente real sobre un proyecto objetivo, no mide consumo de tokens ni ahorro humano, ni acredita adecuación semántica especializada del instrumento o de cualquier caso imaginable. Los paquetes delimitan lectura, pero su cumplimiento por una herramienta externa depende de su ejecución y revisión.
+
+### Interfaz y presupuesto
+
+`profiles.spec.ts`: siete recorridos por navegador para registrar protocolo/componentes/modo, ZIP de 34 archivos y recuperación tras recargar; importar/cancelar/confirmar y rechazar código; teclado, retorno de foco y navegación contenida del diálogo a 375/768/1280 px; perfil propio con listas multilínea, fuentes/fecha/versión, guardado y exportación. La medición de referencia se ejecuta solo en Chromium; las demás comprobaciones son funcionales en Chromium y Firefox.
+
+| Recurso final | Tamaño Vite | Comprimido |
+|---|---|---|
+| Paquete principal | 379,12 kB | 122,63 kB |
+| Compartido editorStore | 137,37 kB | 43,55 kB |
+| Panel ProfileStudio diferido | 15,28 kB | 4,31 kB |
+| Trabajador generador | 203,73 kB | — |
+| Trabajador de importación | 120,26 kB | — |
+| CSS | 35,41 kB | 8,37 kB |
+
+El presupuesto <500 kB se verifica sobre el paquete principal; no equivale a la suma de todos los recursos o a una medición de transferencia. La partición en módulos compartidos cambia al incorporar contratos, por lo que la reducción del principal no demuestra una reducción proporcional del coste total. No se incorporan dependencias nuevas.
+
+Medición final Chromium observada durante la regresión: 200 entradas de tecnología con 10 perfiles, 20 componentes y 50 tecnologías, p95 1,7 ms. Instrumentación de captura/burbujeo mide procesamiento síncrono del evento y actualización controlada, excluye espera entre eventos; al guardar se comprueba la última edición persistida. No se presenta como latencia de generación completa ni de pintura universal. Biblioteca con 20 proyectos/100 RF: 200 eventos, p95 3,5 ms. Sandbox estético: 200 ajustes, p95 4,8 ms; cero renders ajenos en raíz, cabecera, idea, árbol, madurez y configuración. Entrada de referencia p95 1,7 ms, sin tareas largas observadas; generación 30 muestras 42,7 ms, conjuntos p95 12,3 ms y ZIP p95 10,9 ms.
+
+### Límites y cierre
+
+Conserva los pendientes históricos de WebKit, lector de pantalla real, ampliación real y teléfono físico. El estado Verificada se restringe a estructura/proyección de perfiles integrados exactos; no certifica versiones, implementaciones, protocolos, seguridad o cumplimiento de un proyecto objetivo. La antigüedad UI usa el reloj del navegador; fechas declaradas/futuras requieren revisión. No hay actualización externa automática, carga de scripts o conversión de textos propios en código.
+
+Los cambios locales de ficha se aplican al guardar, los respaldos no incluyen ediciones de campo aún no aplicadas. Confirmar importación de perfiles sustituye esa configuración; se recomienda guardar antes una versión para reversión. La validación detecta marcadores de código/comandos y campos no permitidos, no sustituye revisión semántica del texto libre. Un destino sin rutas aprobadas queda pendiente de DOCUMENT; los datos no conceden aprobación para programar.
+
+T-005-35 consolida evidencia. Auditoría: 213 archivos de texto propios sin emojis, git diff --check correcto, 15 RF y 35 tareas, corpus H4 de doce casos y 002 ignorado/sin archivos seguidos. Enlaces locales afectados existentes y manifiestos de dependencias sin cambios. Push normal pendiente de confirmación con el SHA remoto. H5 permanece pospuesto, aceptación del cliente pendiente y sin despliegue.

@@ -1,3 +1,4 @@
+import { isProfileConfiguration, profileValidationErrors, profileWarnings } from './profiles';
 import { isProjectDefinition, projectValidationErrors } from './projectValidation';
 import {isManualSections} from './manualSections';
 import { isDesignOverrides } from './design';
@@ -19,6 +20,13 @@ export function validateText(text: string): Diagnostic[] {
 export function validateConfiguration(c: Configuration, knownIds?: ReadonlySet<string>): Diagnostic[] {
     const projectErrors = c.project === undefined ? [] : projectValidationErrors(c.project);
     const result: Diagnostic[] = projectErrors.map(message=>({message,blocking:true}));
+    if(c.profile!==undefined){
+        const errors=profileValidationErrors(c.profile);
+        result.push(...errors.map(message=>({message,blocking:true})));
+        if(!errors.length){result.push(...validateText(JSON.stringify(c.profile)),...profileWarnings(c.profile,c.project).map(message=>({message,blocking:false})));
+            if(!projectErrors.length)for(const component of c.profile.components){const item=c.project?.context.components.find(i=>i.id===component.id);if(!item)result.push({message:`${component.name}: vínculo al contexto canónico pendiente.`,blocking:false});else if(item.text!==component.responsibility||JSON.stringify([...item.references].sort())!==JSON.stringify([...component.dependsOn].sort()))result.push({message:`${component.name}: la responsabilidad o dependencias contradicen el contexto canónico.`,blocking:true});}
+        }
+    }
     if(c.manualSections!==undefined){
         if(!isManualSections(c.manualSections))result.push({message:'Las aportaciones manuales no son válidas o exceden sus límites.',blocking:true});
         else result.push(...validateText(JSON.stringify(c.manualSections)));
@@ -52,7 +60,7 @@ export function isConfiguration(value: unknown): value is Configuration {
     if (!value || typeof value !== 'object')
         return false;
     const c = value as Record<string, unknown>;
-    return (c.manualSections===undefined||isManualSections(c.manualSections)) && (c.project === undefined || isProjectDefinition(c.project)) && (c.designVersion === undefined || c.designVersion === 1) && (c.designOverrides === undefined || isDesignOverrides(c.designOverrides)) && (c.sddLanguage === undefined || isLocale(c.sddLanguage)) && c.version === 1 && typeof c.revision === 'number' && ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') && !!c.selections && typeof c.selections === 'object' && !Array.isArray(c.selections) && Object.values(c.selections).every(ids => Array.isArray(ids) && ids.every(id => typeof id === 'string')) && !!c.origins && typeof c.origins === 'object' && !Array.isArray(c.origins) && Object.keys(c.origins).every(key=>fields.includes(key as Field)) && Object.values(c.origins).every(origin => ['manual', 'preset', 'inference'].includes(String(origin)));
+    return (c.profile===undefined||isProfileConfiguration(c.profile)) && (c.manualSections===undefined||isManualSections(c.manualSections)) && (c.project === undefined || isProjectDefinition(c.project)) && (c.designVersion === undefined || c.designVersion === 1) && (c.designOverrides === undefined || isDesignOverrides(c.designOverrides)) && (c.sddLanguage === undefined || isLocale(c.sddLanguage)) && c.version === 1 && typeof c.revision === 'number' && ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') && !!c.selections && typeof c.selections === 'object' && !Array.isArray(c.selections) && Object.values(c.selections).every(ids => Array.isArray(ids) && ids.every(id => typeof id === 'string')) && !!c.origins && typeof c.origins === 'object' && !Array.isArray(c.origins) && Object.keys(c.origins).every(key=>fields.includes(key as Field)) && Object.values(c.origins).every(origin => ['manual', 'preset', 'inference'].includes(String(origin)));
 }
 export function safeDocumentPath(path: string, slug = 'mi-proyecto'): boolean { return validSlug(slug) && createKitManifest({ slug }).some(d => d.path === path); }
 export function escapeMarkdown(text: string): string { return text.replace(/[<>]/g, char => char === '<' ? '&lt;' : '&gt;'); }

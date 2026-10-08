@@ -83,7 +83,7 @@ El usuario aprobó formalmente la planificación y autorizó implementación el 
 
 Evidencia concreta: tests/unit/design.test.ts (contratos, acciones, kit/tokens y alfa), intent.test.ts (DTO/umbrales/prioridad/fallback), mcp.test.ts (HTTP/SSE y preferencias), coordinator.test.ts (300/1500 ms y cancelación), worker.test.ts (cola y generación de solicitudes); tests/e2e/design.spec.ts, carousel.spec.ts, mcp.spec.ts, languages.spec.ts y performance.spec.ts, más regresión de kit/Django/offline/accesibilidad. Los informes de ejecución, presupuestos y limitaciones están en specs/validation.md.
 
-## Ampliación 005 — H0, H1 y H2
+## Ampliación 005 — H0…H4
 
 | Requisitos | Tareas | Evidencia específica |
 |---|---|---|
@@ -96,6 +96,10 @@ Evidencia concreta: tests/unit/design.test.ts (contratos, acciones, kit/tokens y
 | RF-005-09 | T-005-20…23 | projectLibrary, projectStorage y projectLibraryStore; libraryContracts/Services/Store.test.ts y library.spec.ts: proyectos, versiones, cuota, respaldo e importación |
 | RF-005-10 | T-005-20/22/23 | manualSections, documentStore y componentes projects; comparación, aportaciones, conflictos, cancelación y ZIP de 34 archivos |
 | RF-005-15, parte H3 | T-005-24/35 | Regresión completa de H2/H3, rendimiento, offline y exclusión 002; evidencia en validation.md de 005 |
-| RF-005-11…14 | T-005-25…34 | H4/H5 pospuestos por el usuario, sin implementación ni verificación nueva |
+| RF-005-11 | T-005-25/26/28 | profiles/projection/store/migration.test.ts y profiles.spec.ts: datos, composición, IDs, ciclos, modos, declaración propia y JSON seguro |
+| RF-005-12 | T-005-25/26/28 | Instantáneas, fuente/versión/fecha, antigüedad UI y declaración/verificación acotada; persistencia/respaldo y corpus H4 |
+| RF-005-13 | T-005-27/29 | agentContext.test.ts, taskContexts de doce casos; tres entradas, dominios/dependencias/contratos/criterios y aprobación en 34 documentos |
+| RF-005-15, parte H4 | T-005-29/35 | profiles.spec.ts y regresión completa; límites, seguridad, continuidad y evidencia separada de aceptación |
+| RF-005-14 | T-005-30…34 | H5 pospuesto por el usuario, sin implementación ni verificación nueva |
 
 La evaluación técnica de tiempos/hallazgos fue autorizada ante falta de participantes. No verifica revisión semántica, esfuerzo humano ni aceptación; la migración H1 conserva el borrador actual y H3 añade continuidad multiproyecto/importación tras su autorización específica.

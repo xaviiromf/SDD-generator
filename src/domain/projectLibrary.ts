@@ -21,7 +21,7 @@ export function safeData(value:unknown,depth=0):boolean{
  return Object.entries(value).every(([key,child])=>!['__proto__','constructor','prototype'].includes(key)&&safeData(child,depth+1));
 }
 export function validLibraryConfiguration(value:unknown):value is Configuration{
- if(!isConfiguration(value)||!keys(value,['version','revision','sddLanguage','designVersion','designOverrides','project','manualSections','name','slug','idea','positive','negative','selections','origins'])||!safeData(value))return false;
+ if(!isConfiguration(value)||!keys(value,['version','revision','sddLanguage','designVersion','designOverrides','project','profile','manualSections','name','slug','idea','positive','negative','selections','origins'])||!safeData(value))return false;
  if(Object.keys(value.selections).some(k=>!fields.includes(k as typeof fields[number])))return false;
  const p=value.project;
  if(p&&(!keys(p,['schemaVersion','projectId','revision','nextId','mode','implementationRequired','requirements','context'])||

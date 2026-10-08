@@ -23,7 +23,7 @@ export function readDraft(storage?: Pick<Storage, 'getItem'>): {
         if (!raw)
             return { config: null, message: 'Sesión local preparada.' };
         const data: unknown = JSON.parse(raw);
-        if (!isConfiguration(data) || validateConfiguration(data, knownIds).length)
+        if (!isConfiguration(data) || validateConfiguration(data, knownIds).some(d=>d.blocking))
             throw new Error();
         return { config: { ...data, project: data.project ?? createProjectDefinition(data.slug, data.revision), designVersion: 1, sddLanguage: 'es' }, message: data.sddLanguage === 'en' ? 'Borrador recuperado. El idioma se ha actualizado a español; tus textos y decisiones se conservan.' : 'Borrador recuperado.' };
     }

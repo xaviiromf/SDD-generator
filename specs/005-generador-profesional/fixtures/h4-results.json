@@ -1,0 +1,171 @@
+[
+  {
+    "id": "01",
+    "documents": 34,
+    "componentKinds": [
+      "web"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "02",
+    "documents": 34,
+    "componentKinds": [
+      "web"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "03",
+    "documents": 34,
+    "componentKinds": [
+      "api"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "04",
+    "documents": 34,
+    "componentKinds": [
+      "cli"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "05",
+    "documents": 34,
+    "componentKinds": [
+      "escritorio"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "06",
+    "documents": 34,
+    "componentKinds": [
+      "movil",
+      "api"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "07",
+    "documents": 34,
+    "componentKinds": [
+      "datos"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "08",
+    "documents": 34,
+    "componentKinds": [
+      "dispositivo"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "09",
+    "documents": 34,
+    "componentKinds": [
+      "servicio"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "10",
+    "documents": 34,
+    "componentKinds": [
+      "web"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "11",
+    "documents": 34,
+    "componentKinds": [
+      "otro"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  },
+  {
+    "id": "12",
+    "documents": 34,
+    "componentKinds": [
+      "documental"
+    ],
+    "entryFilesMaximum": 3,
+    "domainIsolation": true,
+    "declaredInputsPreserved": true,
+    "brokenReferences": 0,
+    "deterministic": true,
+    "backupRoundTrip": true,
+    "semanticReview": "Pendiente"
+  }
+]
