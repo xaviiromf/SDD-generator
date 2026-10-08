@@ -19,6 +19,12 @@ Fecha: 2026-10-07.
 | Git | Hito d86c589 sincronizado mediante push normal a origin/main; registro documental de cierre consolidado a continuación. Sin archivos de 002 en el árbol seguido. |
 | Próximo paso | Revisar el producto con el usuario y atender las auditorías manuales históricas cuando exista el entorno; no hay implementación 004 pendiente. |
 
+## Tutorial de túneles MCP
+
+2026-10-07: el usuario solicita añadir INSTRUCCIONES_MCP_TUNNEL.md. Tarea documental del dominio de especificaciones y documentación: tutorial del contrato público, configuración del estudio y clientes Codex, Claude Code, Google Antigravity y Cursor. Se enlaza desde README. Fuentes oficiales contrastadas; la sintaxis de codex mcp add se contrasta también con la ayuda local. No se modifica código ni se instala o despliega un servidor/túnel.
+
+Verificación documental completada: enlaces locales existentes, cinco ejemplos JSON y un TOML válidos, seis bloques Bash revisados mediante bash -n, ausencia de emojis en los tres documentos afectados y git diff --check correcto. Los comandos de configuración no se ejecutaron contra servicios reales; no se repiten pruebas/build de aplicación para esta entrega exclusivamente documental. specs/002-kit-completo/ permanece fuera del árbol seguido. Entrega mediante commit documental y push normal al remoto existente; los resultados de aplicación de 004 permanecen como evidencia histórica independiente.
+
 ## Autorizaciones y preservación
 
 El usuario aprobó documentación/arquitectura/tareas de 001 y autorizó implementación el 2026-10-06. Aprobó después las sustituciones OFL, Zen Kaku Gothic New y limpieza del primer commit de fuentes ITF; el hito corregido 42ccfe4 preservó el padre documental e438cac con autorización específica de force-with-lease. Django fue solicitado e implementado posteriormente.

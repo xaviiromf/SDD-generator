@@ -39,6 +39,8 @@ La interfaz, los 34 documentos generados, la copia, el ZIP, los tokens y los com
 
 ### Inferencia MCP opcional
 
+El tutorial [INSTRUCCIONES_MCP_TUNNEL.md](INSTRUCCIONES_MCP_TUNNEL.md) explica cómo preparar un servidor compatible, publicar su túnel y utilizarlo desde el estudio, Codex, Claude Code, Google Antigravity y Cursor.
+
 En el panel Idea, «Ajustes de MCP» permite indicar un endpoint HTTPS (o HTTP en localhost), transporte automático, HTTP con transmisión o SSE heredado. El servidor debe aceptar CORS desde el origen del estudio y publicar `match_technologies` o `infer_intent` con entrada `text` y respuesta estructurada de coincidencias y alcances. «Probar conexión sin enviar idea» verifica negociación y herramienta.
 
 Antes de guardar la activación se muestra el destino y el permiso para enviar únicamente idea y exclusiones. Una credencial de sesión opcional permanece en memoria; nunca se guarda ni se incluye en el kit. No introduzcas claves de proveedores de IA. El servidor externo es responsable de su modelo, sus costes y su tratamiento de datos.
