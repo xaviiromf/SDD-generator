@@ -355,4 +355,4 @@ Evidencia final 004 (2026-10-07): lint, TypeScript, 52 unitarias, build y 75 pru
 
 T-004-23: hito de implementación d86c589 enviado mediante push normal a origin/main. Verificación técnica y exclusión de 002 comprobadas; este registro documental de cierre se sincroniza a continuación. Todas las tareas 004 completadas; aceptación y pendientes históricos 001 siguen separados.
 
-Estado vigente de 005: H0–H4 autorizados; T-005-25…29 implementadas y verificadas; cierre y sincronización en curso. H5 pospuesto. Contratos y evidencia en [plan de 005](005-generador-profesional/plan.md) y [validation de 005](005-generador-profesional/validation.md).
+Estado vigente de 005: H0–H4 autorizados; T-005-25…29 implementadas y verificadas; cierre y sincronización H4 completados en 9a0e46f. H5 pospuesto. Contratos y evidencia en [plan de 005](005-generador-profesional/plan.md) y [validation de 005](005-generador-profesional/validation.md).

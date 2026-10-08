@@ -1,6 +1,6 @@
 # Verificación ejecutada — 005, H0–H4
 
-Fecha: 2026-10-08. H0–H2 e H3 autorizados por separado por el usuario y verificados técnicamente. T-005-02…24 completadas; cierre 35 de H3 completado con push normal de 0bb522e. H4 autorizado, implementado y verificado en T-005-25…29; cierre y sincronización en curso; H5 y tareas 30…34 pospuestos. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
+Fecha: 2026-10-08. H0–H2 e H3 autorizados por separado por el usuario y verificados técnicamente. T-005-02…24 completadas; cierre 35 de H3 completado con push normal de 0bb522e. H4 autorizado, implementado, verificado y sincronizado en T-005-25…29 y cierre 35; H5 y tareas 30…34 pospuestos. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
 
 Los apartados anteriores a H3 conservan la evidencia histórica de H0–H2; cifras y exclusiones describen ese momento. La evidencia de biblioteca/versiones está en H3; la ampliación y regresión vigentes están en el apartado H4.
 
@@ -186,4 +186,4 @@ Conserva los pendientes históricos de WebKit, lector de pantalla real, ampliaci
 
 Los cambios locales de ficha se aplican al guardar, los respaldos no incluyen ediciones de campo aún no aplicadas. Confirmar importación de perfiles sustituye esa configuración; se recomienda guardar antes una versión para reversión. La validación detecta marcadores de código/comandos y campos no permitidos, no sustituye revisión semántica del texto libre. Un destino sin rutas aprobadas queda pendiente de DOCUMENT; los datos no conceden aprobación para programar.
 
-T-005-35 consolida evidencia. Auditoría: 213 archivos de texto propios sin emojis, git diff --check correcto, 15 RF y 35 tareas, corpus H4 de doce casos y 002 ignorado/sin archivos seguidos. Enlaces locales afectados existentes y manifiestos de dependencias sin cambios. Push normal pendiente de confirmación con el SHA remoto. H5 permanece pospuesto, aceptación del cliente pendiente y sin despliegue.
+T-005-35 consolida evidencia. Auditoría: 213 archivos de texto propios sin emojis, git diff --check correcto, 15 RF y 35 tareas, corpus H4 de doce casos y 002 ignorado/sin archivos seguidos. Enlaces locales afectados existentes y manifiestos de dependencias sin cambios. T-005-35 completada: push normal 46bccaf..9a0e46f a origin/main, código 0; ls-remote confirma 9a0e46f93f4d8fa8b43074d8ffea3bf21d32b697 en refs/heads/main. Árbol de trabajo limpio tras el push de código; este registro se consolida en un commit documental posterior. H5 permanece pospuesto, aceptación del cliente pendiente y sin despliegue.

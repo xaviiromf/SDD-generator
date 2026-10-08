@@ -378,4 +378,4 @@ Pruebas propuestas: servidor MCP simulado HTTP JSON/SSE/heredado y fragmentació
 
 Puerta de integración real: probar contra el servidor que el usuario configure, con herramienta y CORS compatibles, sin incluir su endpoint privado/credenciales en evidencia pública. Hasta entonces, distinguir interoperabilidad simulada de conexión real. Sin autorización de implementación, ninguna de estas pruebas nuevas se presenta como ejecutada.
 
-Estado vigente de 005: H0–H4 autorizados; T-005-25…29 implementadas y verificadas; cierre y sincronización en curso. H5 pospuesto. Contratos y evidencia en [plan de 005](005-generador-profesional/plan.md) y [validation de 005](005-generador-profesional/validation.md).
+Estado vigente de 005: H0–H4 autorizados; T-005-25…29 implementadas y verificadas; cierre y sincronización H4 completados en 9a0e46f. H5 pospuesto. Contratos y evidencia en [plan de 005](005-generador-profesional/plan.md) y [validation de 005](005-generador-profesional/validation.md).

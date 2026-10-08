@@ -6,7 +6,7 @@ Fecha: 2026-10-08.
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
 | Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3 y H4 autorizados; H5 pospuesto. |
-| Fase | DOCUMENT de cierre H4: T-005-25…29 completadas; T-005-35 consolida evidencia y sincroniza. H5 pospuesto. |
+| Fase | H4 implementado, verificado y sincronizado; T-005-25…29 y cierre 35 completados. Revisión del cliente pendiente; H5 pospuesto. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
 | Implementación | Modelo canónico versionado, editor/entrevista, trazabilidad y preparación de 34 documentos; biblioteca local, versiones, respaldos y aportaciones por sección; perfiles JSON, componentes, tecnologías propias, modos y paquetes por tarea; MCP opcional de 1500 ms y diseño avanzado conservados. Español y migración aditiva sin pérdida de textos/decisiones. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
@@ -16,8 +16,8 @@ Fecha: 2026-10-08.
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
-| Git | H3 0bb522e sincronizado mediante push normal a origin/main y confirmado con ls-remote. Registro documental de cierre consolidado después. 002 sigue excluido. |
-| Próximo paso | Sincronizar cierre H4 y entregar para revisión; H5 sin autorización. |
+| Git | H4 9a0e46f sincronizado mediante push normal a origin/main y confirmado con ls-remote. Registro documental de cierre consolidado después. 002 sigue excluido. |
+| Próximo paso | Revisión del cliente de H4; H5 sin autorización. No iniciar sus tareas. |
 
 ## Propuesta 005 — Historial DOCUMENT previo a autorización
 
@@ -240,3 +240,5 @@ T-005-29 completada: regresión final 126 casos, 121 correctos y cinco medicione
 Auditoría del contenido H4: el encabezado histórico de tasks.md decía «Tareas de implementación» también para procesos documentales. IMPLEMENT T-005-27, núcleo: cambiar exclusivamente a «Tareas del proyecto», manteniendo fases, dependencias y paquetes. Verificar corpus y build tras ese ajuste de texto; la regresión funcional completa anterior se conserva como evidencia.
 
 Ajuste de encabezado T-005-27 verificado: 28 pruebas de corpus H2/H4 y paquetes correctas, TypeScript/build correctos; tamaños finales conservados. Se retorna a DOCUMENT T-005-35. Enlaces locales afectados existentes y diff correcto; preparar commit/push normal de H4, sin H5 ni 002.
+
+T-005-35 H4 completada: push normal 46bccaf..9a0e46f, código 0. ls-remote confirma 9a0e46f93f4d8fa8b43074d8ffea3bf21d32b697 en refs/heads/main y árbol limpio tras el push del código. Se registra este cierre documental en un commit posterior. T-005-25…29 verificadas; H5 permanece pospuesto. Sin aceptación implícita, despliegue ni reescritura de historial.

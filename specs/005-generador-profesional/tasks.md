@@ -46,7 +46,7 @@ Trazabilidad: RF-01 → 03–06; RF-02 → 07–10; RF-03/04 → 11–12; RF-05/
 
 ## Estado de ejecución
 
-T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparación automatizada solicitada por el usuario ante falta de participantes; no declara evaluación humana ni aceptación. T-005-20…24 completadas tras autorización de H3; T-005-25…29 completadas y verificadas; T-005-30…34 pospuestas. T-005-35 completada para H0–H2 (84ed6e0) y completada nuevamente para H3: push normal de 0bb522e confirmado con ls-remote.
+T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparación automatizada solicitada por el usuario ante falta de participantes; no declara evaluación humana ni aceptación. T-005-20…24 completadas tras autorización de H3; T-005-25…29 completadas y verificadas; T-005-30…34 pospuestas. T-005-35 completada para H0–H2 (84ed6e0) y completada nuevamente para H3: push normal de 0bb522e confirmado con ls-remote; cierre H4 completado mediante 9a0e46f.
 
 | Tareas | Estado y evidencia |
 |---|---|
@@ -72,10 +72,10 @@ T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparac
 | 28 | Completada: profileStore/profileMigration.test.ts y profiles.spec.ts, controles/JSON/continuidad/teclado |
 | 29 | Completada: 125 unitarias, 121 recorridos correctos y cinco mediciones Firefox omitidas; regresión H2/H3, corpus y rendimiento |
 | 30…34 | Pospuestas por el usuario; H5 sin implementación |
-| 35 | H0–H3 sincronizados; evidencia H4 consolidada y push normal pendiente, 002 excluido |
+| 35 | Completada en H0–H4: push normal de H4 9a0e46f confirmado por Git/ls-remote, 002 excluido |
 
 Los límites manuales de accesibilidad y semántica constan en validation.md. Completar verificaciones automáticas no autoriza declarar aceptación ni abrir H5.
 
 Autorización posterior H3: T-005-20…24 y cierre 35 aprobadas el 2026-10-08. T-005-20…24 ejecutadas y verificadas. T-005-22 se dividió en adaptadores públicos sin leer internals del motor/UI. El cierre anterior 35 corresponde a H0–H2; el cierre H3 queda confirmado con el push de 0bb522e, sin abrir H4/H5.
 
-Autorización posterior H4: T-005-25…29 y cierre 35 aprobadas el 2026-10-08. T-005-25…29 completadas por dominios y verificadas; T-005-35 consolida el cierre y prepara push normal. H5 permanece pospuesto.
+Autorización posterior H4: T-005-25…29 y cierre 35 aprobadas el 2026-10-08. T-005-25…29 completadas por dominios y verificadas; T-005-35 completada: push normal de 9a0e46f confirmado por Git y ls-remote. H5 permanece pospuesto.
