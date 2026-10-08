@@ -1,6 +1,6 @@
 # Verificación ejecutada — 005, H0–H3
 
-Fecha: 2026-10-08. H0–H2 e H3 autorizados por separado por el usuario y verificados técnicamente. T-005-02…24 completadas; cierre 35 de H3 pendiente de sincronización en este registro. H4/H5 y tareas 25…34 pospuestos. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
+Fecha: 2026-10-08. H0–H2 e H3 autorizados por separado por el usuario y verificados técnicamente. T-005-02…24 completadas; cierre 35 de H3 completado con push normal de 0bb522e. H4/H5 y tareas 25…34 pospuestos. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
 
 Los apartados anteriores a H3 conservan la evidencia histórica de H0–H2; cifras y exclusiones describen ese momento. La evidencia vigente de biblioteca/versiones y regresión está en el apartado H3.
 
@@ -129,4 +129,4 @@ No se comprueba cierre abrupto del proceso ni pérdida física del almacenamient
 
 ### Cierre T-005-35 de H3
 
-Documentación y evidencia consolidadas tras pasar pruebas/build. Auditoría final: 200 archivos de texto propios, cero archivos con emojis; enlaces locales de los documentos afectados existentes y git diff --check correcto. git check-ignore confirma 002 ignorado y git ls-files no devuelve archivos de esa carpeta. Sincronización mediante push normal pendiente de registrar con el SHA observado. No se reescribe historial ni se despliega el sitio.
+Documentación y evidencia consolidadas tras pasar pruebas/build. Auditoría final: 200 archivos de texto propios, cero archivos con emojis; enlaces locales de los documentos afectados existentes y git diff --check correcto. git check-ignore confirma 002 ignorado y git ls-files no devuelve archivos de esa carpeta. Push normal a6f0e5f..0bb522e a origin/main, código 0; git ls-remote confirma 0bb522efa9a72e8a243cda28ea30aba57460f8a5 en refs/heads/main. Árbol de trabajo limpio tras sincronizar el código; este registro se consolida en un commit documental posterior. No se reescribe historial ni se despliega el sitio.

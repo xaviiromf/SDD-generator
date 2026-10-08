@@ -6,7 +6,7 @@ Fecha: 2026-10-08.
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
 | Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3 autorizado; H4–H5 pospuestos. |
-| Fase | DOCUMENT de cierre H3: T-005-20…24 completadas; T-005-35 consolida evidencia y sincroniza. H4/H5 pospuestos. |
+| Fase | H3 implementado, verificado y sincronizado; T-005-20…24 y cierre 35 completados. Revisión del cliente pendiente; H4/H5 pospuestos. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
 | Implementación | Modelo canónico versionado, editor/entrevista, trazabilidad y preparación de 34 documentos; biblioteca local, versiones, respaldos y aportaciones por sección; MCP opcional de 1500 ms y diseño avanzado conservados. Español y migración aditiva sin pérdida de textos/decisiones. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
@@ -16,8 +16,8 @@ Fecha: 2026-10-08.
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
-| Git | Hito 84ed6e0 sincronizado mediante push normal a origin/main y confirmado con ls-remote. Registro documental de cierre consolidado después. 002 sigue excluido. |
-| Próximo paso | Sincronizar cierre H3 y entregar para revisión; H4/H5 sin autorización. |
+| Git | H3 0bb522e sincronizado mediante push normal a origin/main y confirmado con ls-remote. Registro documental de cierre consolidado después. 002 sigue excluido. |
+| Próximo paso | Revisión del cliente de H3; H4/H5 sin autorización. No iniciar sus tareas. |
 
 ## Propuesta 005 — Historial DOCUMENT previo a autorización
 
@@ -196,3 +196,5 @@ T-005-24 VALIDATE final: 94 unitarias, lint y TypeScript/build correctos; offlin
 T-005-24 completada: regresión final de 112 casos, 108 correctos y cuatro mediciones Firefox omitidas; cero fallos. 94 unitarias, lint y TypeScript/build correctos. Principal 453,60 kB; p95 de edición con 20 proyectos/100 RF 3,4 ms y sandbox estético 4,2 ms. T-005-35 DOCUMENT activa: consolidar manual, decisiones, trazabilidad y evidencia de H3 antes del commit/push normal. No leer ni modificar implementaciones en este cierre.
 
 Auditoría de cierre H3: 200 archivos de texto propios sin emojis; enlaces locales afectados existentes y git diff --check correcto. 002 ignorado y sin archivos seguidos. Pruebas y build finales completos; preparar commit de H3 y push normal al remoto existente, sin aceptación ni despliegue.
+
+T-005-35 H3 completada: push normal a6f0e5f..0bb522e, código 0. ls-remote confirma 0bb522efa9a72e8a243cda28ea30aba57460f8a5 en refs/heads/main; árbol limpio tras sincronizar el código. Se registra este cierre documental en un commit posterior. T-005-20…24 verificadas; H4/H5 permanecen pospuestos. Sin despliegue, aceptación implícita ni reescritura de historial.
