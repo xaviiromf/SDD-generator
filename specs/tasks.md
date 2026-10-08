@@ -344,7 +344,7 @@ Fecha: 2026-10-07. RF-004-* son requisitos nuevos de spec.md. La autorización e
   - RF: RF-004-05,09,11,14. Dominio: VALIDATE. Dependencia: T-004-21.
   - Evidencia: salidas de tests/e2e/performance.spec.ts y accesibilidad, trazas y docs/ENVIRONMENT_AND_VERIFICATION.md.
   - Finaliza cuando: 320/375/767/768/1279/1280/1440 px, teclado/foco, AA/movimiento reducido y >=200 ajustes con p95 <16 ms sin renders ajenos se registran; generación <=150 ms, ZIP <100 ms y timeout MCP verificados. Fallos vuelven a tarea IMPLEMENT del dominio correspondiente.
-- [ ] T-004-23 — Cerrar evidencia técnica y sincronizar hito autorizado.
+- [x] T-004-23 — Cerrar evidencia técnica y sincronizar hito autorizado.
   - RF: RF-004-01…14. Dominio: VALIDATE/documentación. Dependencia: T-004-22.
   - Archivos: specs/validation.md, docs/TRACEABILITY.md, PROJECT_STATUS.md, specs/tasks.md e historial Git.
   - Finaliza cuando: lint, TypeScript, unitarias/E2E y build tienen códigos reales, texto sin emojis comprobado, límites manuales honestos, tareas verificadas y push normal sin archivos de 002 ni secretos. Aceptación y despliegue separados.
@@ -352,3 +352,5 @@ Fecha: 2026-10-07. RF-004-* son requisitos nuevos de spec.md. La autorización e
 Puerta actual: implementación autorizada el 2026-10-07; tareas de aplicación y verificaciones se registran individualmente. No instalar dependencias ajenas al plan. Los pendientes históricos T-001-35,38,39 se conservan y no se marcan como cerrados por planificar esta ampliación.
 
 Evidencia final 004 (2026-10-07): lint, TypeScript, 52 unitarias, build y 75 pruebas de navegador correctos; tres mediciones omitidas en Firefox. Muestra de 200 ajustes p95 3,8 ms y seis áreas ajenas sin renders adicionales. T-004-23 registra el push y su comprobación; no se cierran pendientes manuales de 001.
+
+T-004-23: hito de implementación d86c589 enviado mediante push normal a origin/main. Verificación técnica y exclusión de 002 comprobadas; este registro documental de cierre se sincroniza a continuación. Todas las tareas 004 completadas; aceptación y pendientes históricos 001 siguen separados.

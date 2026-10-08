@@ -6,7 +6,7 @@ Fecha: 2026-10-07.
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
 | Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados formalmente el 2026-10-07; T-004-04…23, español integral y push del hito autorizados. |
-| Fase | VALIDATE 004 completada técnicamente; T-004-23 en cierre y sincronización autorizada. |
+| Fase | VALIDATE 004 completada; T-004-01…23 cerradas técnicamente. Aceptación y despliegue pendientes. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
 | Implementación | MCP HTTP/SSE con fallback local de 1500 ms; diseño avanzado, muestra aislada y carrusel de 21 estilos; UI y 34 documentos en español, migración sin pérdida de textos/decisiones. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
@@ -16,8 +16,8 @@ Fecha: 2026-10-07.
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
-| Git | main; sincronización mediante push normal a github.com/xaviiromf/SDD-generator. Código y documentación pública, sin archivos de 002 en el árbol seguido. |
-| Próximo paso | Cerrar resultados finales y evidencia; sincronizar main con push normal autorizado cuando todos los checks pasen. |
+| Git | Hito d86c589 sincronizado mediante push normal a origin/main; registro documental de cierre consolidado a continuación. Sin archivos de 002 en el árbol seguido. |
+| Próximo paso | Revisar el producto con el usuario y atender las auditorías manuales históricas cuando exista el entorno; no hay implementación 004 pendiente. |
 
 ## Autorizaciones y preservación
 
@@ -96,3 +96,5 @@ T-004-15: 52 unitarias, lint, TypeScript y build correctos tras protección de g
 T-004-22 detecta un fallo de visibilidad del panel Idea a 768 px incluso tras activar navegación. Volver a IMPLEMENT, dominio UI/responsividad T-004-18/22: inspeccionar estilos de tablet y corregir antes de cerrar; no marcar verificación completa.
 
 Cierre técnico T-004-21/22: ejecución completa final de 78 casos, 75 correctos y tres mediciones Firefox omitidas; 52 unitarias, lint, TypeScript y build con código 0. Texto propio sin emojis, diff correcto y 002 sin archivos seguidos. T-004-23: registrar y verificar el push normal del hito autorizado.
+
+T-004-23 completada: push normal de d86c589 confirmado por Git (64d7916..d86c589, main -> main). Se marca el cierre de 004 y se sincroniza este registro documental. 52 unitarias, 75 pruebas de navegador y tres mediciones Firefox omitidas; lint/TypeScript/build correctos. No se despliega ni se declara aceptación o conexión a un modelo externo real.
