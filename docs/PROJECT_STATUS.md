@@ -1,23 +1,29 @@
 # Estado del proyecto y punto de reanudación
 
-Fecha: 2026-10-07.
+Fecha: 2026-10-08.
 
 | Campo | Estado |
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
-| Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados formalmente el 2026-10-07; T-004-04…23, español integral y push del hito autorizados. |
-| Fase | VALIDATE 004 completada; T-004-01…23 cerradas técnicamente. Aceptación y despliegue pendientes. |
+| Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3–H5 pospuestos. |
+| Fase | VALIDATE 005 concluida técnicamente; consolidación documental y sincronización T-005-35. Aceptación pendiente; H3–H5 pospuestos. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
-| Implementación | MCP HTTP/SSE con fallback local de 1500 ms; diseño avanzado, muestra aislada y carrusel de 21 estilos; UI y 34 documentos en español, migración sin pérdida de textos/decisiones. |
+| Implementación | Modelo canónico versionado, editor/entrevista, trazabilidad y preparación de 34 documentos; MCP opcional de 1500 ms y diseño avanzado conservados. Español y migración aditiva sin pérdida de textos/decisiones. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
-| Verificación actual | Lint, TypeScript, build y 52 unitarias correctos; 75 pruebas de navegador pasan, tres mediciones omitidas en Firefox; 0 fallos/inestables. |
-| Rendimiento de referencia | Muestra 200 ajustes p95 3,8 ms; cero renders ajenos en seis áreas; entrada 1,7 ms, generación 36,2 ms, conjuntos 9,6 ms, ZIP 10,7 ms. No garantía universal de FPS. |
+| Verificación actual | 76 unitarias, 87 pruebas de navegador correctas, tres mediciones Firefox omitidas; lint, TypeScript/build correctos; 0 fallos. Evidencia en specs/005-generador-profesional/validation.md. |
+| Rendimiento de referencia | Sandbox 200 ajustes p95 6,2 ms y cero renders ajenos en seis áreas; entrada 2,6 ms, generación extensa 43,5 ms; corpus H2 48,0 ms, cien requisitos 68,2 ms. Banco técnico sin medición de ahorro humano. |
 | Compatibilidad | Borradores anteriores, actualización de caché sin recargar edición y exportación sin red comprobados en Chromium/Firefox. |
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
-| Git | Hito d86c589 sincronizado mediante push normal a origin/main; registro documental de cierre consolidado a continuación. Sin archivos de 002 en el árbol seguido. |
-| Próximo paso | Revisar el producto con el usuario y atender las auditorías manuales históricas cuando exista el entorno; no hay implementación 004 pendiente. |
+| Git | Hito previo 53d13c2 sincronizado. T-005-35 pendiente de confirmar push normal de H0–H2. Sin archivos de 002 en el árbol seguido. |
+| Próximo paso | Sincronizar T-005-35 y presentar H2 para revisión del cliente; H3–H5 necesitan autorización posterior. Auditoría manual y revisión semántica pendientes. |
+
+## Propuesta 005 — Historial DOCUMENT previo a autorización
+
+2026-10-08: el usuario solicita análisis como líder técnico de un equipo con IA y como cliente, más un plan para revisar. Tarea T-005-01, dominio de documentación, fase DOCUMENT: contratos públicos y evidencia previa, sin leer internals ni modificar aplicación. Diagnóstico, requisitos, plan, tareas y registro en specs/005-generador-profesional/. Se propone priorizar H0–H2 y conservar H3–H5 como evolución secuencial. Ningún hito nuevo de código está autorizado; detenerse al entregar la documentación. No se sincroniza esta propuesta antes de su revisión.
+
+T-005-01 completada documentalmente: enlaces, unicidad de 15 RF/35 tareas, dependencias numéricas, cero emojis y diff correctos. Corpus y mejoras no implementados ni probados; evidencia en specs/005-generador-profesional/validation.md. Próxima tarea T-005-02: registrar instrucciones del usuario.
 
 ## Tutorial de túneles MCP
 
@@ -104,3 +110,43 @@ T-004-22 detecta un fallo de visibilidad del panel Idea a 768 px incluso tras ac
 Cierre técnico T-004-21/22: ejecución completa final de 78 casos, 75 correctos y tres mediciones Firefox omitidas; 52 unitarias, lint, TypeScript y build con código 0. Texto propio sin emojis, diff correcto y 002 sin archivos seguidos. T-004-23: registrar y verificar el push normal del hito autorizado.
 
 T-004-23 completada: push normal de d86c589 confirmado por Git (64d7916..d86c589, main -> main). Se marca el cierre de 004 y se sincroniza este registro documental. 52 unitarias, 75 pruebas de navegador y tres mediciones Firefox omitidas; lint/TypeScript/build correctos. No se despliega ni se declara aceptación o conexión a un modelo externo real.
+
+## Autorización 005 acotada
+
+2026-10-08: el usuario aprueba H0 (corpus/rúbrica/base), H1 (modelo, validación, editor/entrevista) y H2 (34 documentos, trazabilidad y preparación). T-005-02 completada tras contrastar esta autorización; T-005-03 activa, dominio documentación. T-005-20…34 pospuestas; importación, multiproyecto, diffs, perfiles extensibles y adaptadores no autorizados. Se mantienen SPA local, español, cero emojis, 34 rutas, separación por dominios y MCP opcional de 1500 ms. No hay procesos ni cambios de código de la ejecución interrumpida. Sin instalaciones nuevas.
+
+T-005-03…06 verificadas: corpus de 12 entradas y oráculos congelados; base real de 12 ZIP de 34 documentos en Chromium sin MCP; rúbrica/límites/protocolo en corpus.md. La presencia literal de criterios del oráculo no es una evaluación de reglas aún no ingresadas. Sin participantes humanos, no se declara ahorro. Contratos históricos aclarados. T-005-07 activa, núcleo: DTO canónico y validación; lecturas limitadas a modelos/validación y contratos del núcleo.
+
+T-005-07/08 verificadas: DTO y acciones documentados; tres pruebas de validación (versiones, duplicados, referencias, límites, secretos, borrador/no código) y TypeScript correctos. T-005-09 activa, servicios: migración aditiva del borrador existente; contratos públicos del dominio, sin leer UI ni compilador.
+
+T-005-09: migración aditiva implementada; verificación específica en curso. T-005-10 preparada para dominio integración pública, acciones únicamente en src/store/editorStore.ts conforme a DTO documentado; sin lectura de internals de motor/UI.
+
+T-005-09/10 verificadas: cinco pruebas de servicios/migración, dos de acciones/referencias/reordenación y TypeScript correctos. T-005-11/12 activas, UI: src/components/requirements/ y montaje en IdeaEditor; consume DTO/acciones documentados, sin leer motor/compilador.
+
+T-005-11/12 verificadas: TypeScript/lint correctos, flujo Chromium de actor/requisito/criterio sin errores de página. UI consume DTO/acciones y mantiene suscripciones granulares. T-005-13 activa, núcleo: proyección a spec/plan y contratos de requisitos/tareas; no leer componentes ni estilos.
+
+T-005-13: proyección literal de spec/plan comprobada. T-005-14/15 activas en núcleo: tareas por RF y criterios, grafo, gobernanza y contexto de revisión en las 34 rutas. Sin ampliar manifiesto ni desarrollar H3–H5.
+
+T-005-14/15: grafo y tareas estables integrados; criterios iniciales No ejecutado, decisiones/contexto compartidos y 34 rutas preservadas. T-005-16 activa en núcleo: calidad estructural, preparación y contradicciones explícitas, sin sustituir revisión semántica ni autorizar código.
+
+T-005-14…16 verificadas: cuatro pruebas de proyección/preparación, TypeScript/lint correctos. T-005-17a activa, UI: revisión y madurez consumen DTO coverage/readiness; no leer núcleo. T-005-17b será integración de exportación mediante diagnóstico público kind=compatibility; los bloqueos de seguridad/revisión permanecen absolutos.
+
+T-005-17a/b verificadas estáticamente: UI de cobertura/calidad/diagnósticos y permiso explícito de borrador con conflictos tecnológicos; datos inseguros y revisión obsoleta bloqueados. Suite completa actual: 63 pruebas unitarias, TypeScript/lint correctos. T-005-18 preparación IMPLEMENT de pruebas específicas de corpus y navegador, dominio tests/integración; luego VALIDATE lee únicamente resultados.
+
+T-005-18 VALIDATE activa: corpus 12/12 y volumen de 100 requisitos pasan; build correcto con aviso del paquete principal de 513,50 kB. Se leen resultados de navegadores y pruebas, sin inspeccionar implementación en esta fase. T-005-19 requerirá revisión humana: no hay participantes disponibles y no se declarará completada esa evaluación.
+
+T-005-18 detecta un fallo de selector de prueba: getByLabel exact sobre select etiquetado no coincide con sus opciones; el reporte confirma control y actor presentes. Se interrumpe la ejecución específica y se vuelve a IMPLEMENT, dominio tests, para usar el nombre accesible del combobox. Corrección de tamaño de bundle en montaje UI de los paneles nuevos, sin nuevas bibliotecas. Luego repetir VALIDATE.
+
+Corrección de T-005-18 en IMPLEMENT, dominio tests/integración: los controles ya funcionan y exportan, pero la comprobación tras recuperación no debe cerrar un acordeón que el navegador conserve abierto. Se audita el estado DOM del editor al cambiar campos antes de ajustar precondiciones. Bundle dividido en paneles diferidos, principal 499,18 kB sin aviso.
+
+T-005-18: diez recorridos específicos de Chromium/Firefox correctos. T-005-19: el usuario declara que no dispone de participantes y solicita otro método para medir tiempos y correcciones. Se sustituye la evaluación humana por comparación automatizada de ambas versiones con idénticos datos ficticios; se medirán generación/ZIP y hallazgos estructurales, sin atribuir ahorro humano. IMPLEMENT activa, dominio tests/integración pública: crear banco reproducible y ampliar consentimiento de exportación; después VALIDATE.
+
+T-005-18/19 pasan a VALIDATE: banco comparativo ejecutado contra builds aislados sin instalación; prueba de consentimiento positivo añadida. Ejecutar regresión completa, lint, TypeScript y build; registrar solo salidas observadas.
+
+Regresión unitaria: 76 pruebas correctas; TypeScript/build correctos, principal 499,18 kB. Lint detecta los globales de Node/navegador del banco .mjs; volver a IMPLEMENT, dominio tests, para declarar sus entornos explícitamente. No afecta a la aplicación. Comparación ejecutada: generación H2 p95 48 ms y máximo cien requisitos p95 68,2 ms; hallazgos estructurales 60→0, sin medición humana.
+
+Lint corregido y correcto. VALIDATE 005: 76 unitarias, TypeScript/build correctos; regresión completa de 90 recorridos en ejecución. T-005-35 DOCUMENT activa en paralelo a la lectura de resultados: actualizar manual, decisiones y evidencia del alcance H0–H2; no declarar cierre ni sincronización hasta completar las verificaciones.
+
+Auditoría: 185 archivos de texto propios sin emojis y 002 ignorado/sin archivos seguidos. diff --check señala dos espacios finales en montajes diferidos. IMPLEMENT T-005-17, UI, corrección exclusiva de formato en IdeaEditor/DocumentCanvas; sin cambios de comportamiento. Se retoma VALIDATE y documentación de cierre.
+
+Cierre técnico 005: 76 unitarias y 87 recorridos correctos; tres mediciones Firefox omitidas, cero fallos. Lint/TypeScript/build, corpus doce casos, volumen y banco comparativo correctos. T-005-02…19 completadas con la alternativa de medición autorizada; revisión humana/aceptación pendientes. T-005-35 consolida documentación y prepara commit/push normal; H3–H5 sin ejecutar.

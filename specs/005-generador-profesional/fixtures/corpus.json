@@ -1,0 +1,278 @@
+[
+  {
+    "id": "01",
+    "title": "Reservas Django",
+    "idea": "Una aplicación web en Python y Django para registrar y cancelar reservas del taller. La persona administradora puede cancelar una reserva pendiente; una reserva atendida se rechaza. No incluir pagos.",
+    "actor": "Persona administradora",
+    "behavior": "Cancelar una reserva pendiente",
+    "criterion": "La reserva queda cancelada y sigue consultable.",
+    "exception": "Una reserva atendida no se cancela.",
+    "destination": "web",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Persona administradora",
+        "Cancelar una reserva pendiente",
+        "La reserva queda cancelada y sigue consultable.",
+        "Una reserva atendida no se cancela."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "02",
+    "title": "PWA sin servidor",
+    "idea": "Una PWA de inventario sin backend, con IndexedDB y funcionamiento sin conexión. El operador registra unidades; el saldo persiste al recargar. No usar sincronización externa.",
+    "actor": "Operador",
+    "behavior": "Registrar unidades sin red",
+    "criterion": "El saldo se conserva al recargar sin conexión.",
+    "exception": "No sincronizar datos con servicios externos.",
+    "destination": "web",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Operador",
+        "Registrar unidades sin red",
+        "El saldo se conserva al recargar sin conexión.",
+        "No sincronizar datos con servicios externos."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "03",
+    "title": "API sin interfaz",
+    "idea": "Una API REST en Go para consultar pedidos por identificador, sin frontend. Un pedido inexistente devuelve un error de no encontrado. No añadir diseño visual.",
+    "actor": "Cliente de API",
+    "behavior": "Consultar un pedido existente",
+    "criterion": "Se devuelve el identificador y su estado.",
+    "exception": "Un identificador inexistente devuelve un error explícito.",
+    "destination": "api",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Cliente de API",
+        "Consultar un pedido existente",
+        "Se devuelve el identificador y su estado.",
+        "Un identificador inexistente devuelve un error explícito."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "04",
+    "title": "CLI Rust",
+    "idea": "Una CLI en Rust que mueve archivos entre directorios. La simulación no modifica archivos; un archivo de destino existente se rechaza. No incluir interfaz gráfica.",
+    "actor": "Operador",
+    "behavior": "Simular el movimiento de un archivo",
+    "criterion": "Los archivos permanecen intactos y se informa el destino.",
+    "exception": "No sobrescribir un archivo de destino existente.",
+    "destination": "cli",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Operador",
+        "Simular el movimiento de un archivo",
+        "Los archivos permanecen intactos y se informa el destino.",
+        "No sobrescribir un archivo de destino existente."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "05",
+    "title": "Escritorio",
+    "idea": "Una aplicación de escritorio multiplataforma con Tauri y SQLite para registrar notas. El autor guarda una nota y puede leerla tras reiniciar. No incluir cuentas remotas.",
+    "actor": "Autor",
+    "behavior": "Guardar una nota local",
+    "criterion": "La nota permanece disponible tras reiniciar.",
+    "exception": "No enviar notas a servicios remotos.",
+    "destination": "desktop",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Autor",
+        "Guardar una nota local",
+        "La nota permanece disponible tras reiniciar.",
+        "No enviar notas a servicios remotos."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "06",
+    "title": "Móvil y API",
+    "idea": "Una aplicación móvil de inspecciones con una API HTTP. El inspector registra una inspección sin red; se envía al recuperar conexión con aprobación explícita. No aceptar envíos duplicados.",
+    "actor": "Inspector",
+    "behavior": "Registrar una inspección sin conexión",
+    "criterion": "La inspección queda disponible localmente antes del envío.",
+    "exception": "El servidor rechaza un envío repetido con el mismo identificador.",
+    "destination": "mobile",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Inspector",
+        "Registrar una inspección sin conexión",
+        "La inspección queda disponible localmente antes del envío.",
+        "El servidor rechaza un envío repetido con el mismo identificador."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": true
+    }
+  },
+  {
+    "id": "07",
+    "title": "Datos por lotes",
+    "idea": "Un proceso Python por lotes que recibe CSV de mediciones y produce un resumen. Las filas sin fecha se rechazan y se informan; la reejecución con igual entrada produce igual resumen. No crear interfaz web.",
+    "actor": "Analista",
+    "behavior": "Resumir un archivo CSV válido",
+    "criterion": "La misma entrada produce el mismo resumen.",
+    "exception": "Las filas sin fecha se informan como rechazadas.",
+    "destination": "batch",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Analista",
+        "Resumir un archivo CSV válido",
+        "La misma entrada produce el mismo resumen.",
+        "Las filas sin fecha se informan como rechazadas."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "08",
+    "title": "Dispositivo y eventos",
+    "idea": "Un dispositivo ESP32 publica mediciones mediante MQTT. Una lectura inválida no se publica; al perder conexión se conserva la última medición válida. No añadir frontend web.",
+    "actor": "Dispositivo",
+    "behavior": "Publicar una medición válida",
+    "criterion": "El mensaje contiene el identificador de dispositivo y el valor.",
+    "exception": "Una lectura inválida no se publica.",
+    "destination": "embedded",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Dispositivo",
+        "Publicar una medición válida",
+        "El mensaje contiene el identificador de dispositivo y el valor.",
+        "Una lectura inválida no se publica."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "09",
+    "title": "Aprendizaje automático",
+    "idea": "Un servicio de clasificación en Python recibe texto y devuelve categoría. El evaluador aporta un conjunto etiquetado y una métrica; el servicio informa que la calidad está pendiente si no hay evaluación. No inventar una precisión.",
+    "actor": "Evaluador",
+    "behavior": "Evaluar la clasificación con datos etiquetados",
+    "criterion": "El informe identifica conjunto y métrica aportados.",
+    "exception": "Sin evaluación no se declara precisión verificada.",
+    "destination": "api",
+    "mode": "nuevo",
+    "oracle": {
+      "preserve": [
+        "Evaluador",
+        "Evaluar la clasificación con datos etiquetados",
+        "El informe identifica conjunto y métrica aportados.",
+        "Sin evaluación no se declara precisión verificada."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "10",
+    "title": "Ampliación existente",
+    "idea": "Ampliar una aplicación Django existente para exportar pedidos en CSV. El administrador descarga solo pedidos autorizados; se conserva la API actual. No reescribir la aplicación.",
+    "actor": "Administrador",
+    "behavior": "Exportar pedidos autorizados",
+    "criterion": "El CSV contiene únicamente los pedidos autorizados.",
+    "exception": "La API existente conserva sus contratos actuales.",
+    "destination": "web",
+    "mode": "ampliacion",
+    "oracle": {
+      "preserve": [
+        "Administrador",
+        "Exportar pedidos autorizados",
+        "El CSV contiene únicamente los pedidos autorizados.",
+        "La API existente conserva sus contratos actuales."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": false
+    }
+  },
+  {
+    "id": "11",
+    "title": "Protocolo propio",
+    "idea": "Un instrumento científico utiliza el protocolo propietario Delta-7. El operador registra una lectura con unidad y origen; no se supone una biblioteca ni un frontend. El formato del protocolo queda pendiente de definición.",
+    "actor": "Operador",
+    "behavior": "Registrar una lectura del instrumento",
+    "criterion": "La lectura conserva unidad y origen declarados.",
+    "exception": "No inventar el formato del protocolo Delta-7.",
+    "destination": "unknown",
+    "mode": "documentacion",
+    "oracle": {
+      "preserve": [
+        "Operador",
+        "Registrar una lectura del instrumento",
+        "La lectura conserva unidad y origen declarados.",
+        "No inventar el formato del protocolo Delta-7."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": true
+    }
+  },
+  {
+    "id": "12",
+    "title": "Proceso sin código",
+    "idea": "Documentar el proceso operativo de préstamo de herramientas, sin software. El encargado registra entrega y devolución en papel; un préstamo abierto no se marca devuelto sin devolución física. No generar tareas de programación.",
+    "actor": "Encargado",
+    "behavior": "Registrar la devolución física de una herramienta",
+    "criterion": "El registro en papel indica que el préstamo está cerrado.",
+    "exception": "Sin devolución física el préstamo permanece abierto.",
+    "destination": "non-software",
+    "mode": "documentacion",
+    "oracle": {
+      "preserve": [
+        "Encargado",
+        "Registrar la devolución física de una herramienta",
+        "El registro en papel indica que el préstamo está cerrado.",
+        "Sin devolución física el préstamo permanece abierto."
+      ],
+      "forbidInventedRules": true,
+      "expectedDocuments": 34,
+      "validationExecuted": false,
+      "advancedSupportDeferred": true
+    }
+  }
+]

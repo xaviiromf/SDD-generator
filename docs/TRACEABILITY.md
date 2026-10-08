@@ -82,3 +82,17 @@ Resultados reales de la ampliación en specs/003-idiomas/validation.md. No se at
 El usuario aprobó formalmente la planificación y autorizó implementación el 2026-10-07. Los bloques funcionales están implementados y su evidencia se registra en specs/validation.md, apartado 004. El cierre Git se registra por separado al sincronizar el hito; no se atribuye aceptación ni conexión a un modelo externo real.
 
 Evidencia concreta: tests/unit/design.test.ts (contratos, acciones, kit/tokens y alfa), intent.test.ts (DTO/umbrales/prioridad/fallback), mcp.test.ts (HTTP/SSE y preferencias), coordinator.test.ts (300/1500 ms y cancelación), worker.test.ts (cola y generación de solicitudes); tests/e2e/design.spec.ts, carousel.spec.ts, mcp.spec.ts, languages.spec.ts y performance.spec.ts, más regresión de kit/Django/offline/accesibilidad. Los informes de ejecución, presupuestos y limitaciones están en specs/validation.md.
+
+## Ampliación 005 — H0, H1 y H2
+
+| Requisitos | Tareas | Evidencia específica |
+|---|---|---|
+| RF-005-01 | T-005-03…06 | corpus.md, fixtures/corpus.json y baseline.json; vigencia histórica aclarada |
+| RF-005-02 | T-005-07…10 | projectDefinition, projectMigration y projectStore.test.ts: formato, IDs, referencias, límites y migración |
+| RF-005-03/04 | T-005-11/12 | projectDefinition.spec.ts: actor, requisito, criterio, recuperación y proceso sin código |
+| RF-005-05/06 | T-005-13…15 | projectProjection y projectCorpus.test.ts: 34 documentos, determinismo, grafo y criterios No ejecutado |
+| RF-005-07/08 | T-005-16/17 | readiness.test.ts y projectDefinition.spec.ts: pendientes, contradicciones conocidas, consentimiento y bloqueos seguros |
+| RF-005-15, parte H0–H2 | T-005-08/09/18/19/35 | Regresión, corpus, volumen y banco comparison.json; evidencia en validation.md de 005 |
+| RF-005-09…14 | T-005-20…34 | Pospuestos por el usuario, sin implementación ni verificación nueva |
+
+La evaluación técnica de tiempos/hallazgos fue autorizada ante falta de participantes. No verifica revisión semántica, esfuerzo humano ni aceptación; la migración H1 conserva el borrador actual sin desarrollar multiproyecto o importación de H3.

@@ -135,3 +135,8 @@ Se conservan pendientes T-001-35,38,39: lector de pantalla real, ampliación rea
 Comandos finales: `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build` y `PLAYWRIGHT_JSON_OUTPUT_NAME=test-results/final-results.json npx playwright test --reporter=list,json`, todos con código 0. El informe final contiene expected=75, skipped=3, unexpected=0 y flaky=0. El fallo previo de la prueba de modal en tablet se corrigió activando Idea antes de abrir ajustes; la ejecución final completa ya usa esa precondición.
 
 Sincronización autorizada: commit de implementación d86c589 enviado mediante push normal a origin/main. T-004-23 cerrada y registro documental de cierre enviado después. 002 continúa ignorado, sin archivos seguidos ni incluidos en estos commits.
+
+
+## Evidencia vigente de 005
+
+La entrega de requisitos estructurados, trazabilidad y preparación H0–H2 se verifica en [005-generador-profesional/validation.md](005-generador-profesional/validation.md). Resultados nuevos: 76 unitarias, 87 pruebas de navegador correctas y tres mediciones Firefox omitidas; TypeScript/lint/build correctos. Corpus y banco automatizado sin participantes se documentan por separado. Los resultados anteriores se conservan como historial.

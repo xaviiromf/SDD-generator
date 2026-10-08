@@ -1,0 +1,13 @@
+import { memo, useMemo, useState } from 'react';
+import { useDocumentStore } from '../../store/documentStore';
+import type { Readiness } from '../../domain/readiness';
+import type { Coverage } from '../../engine/coverage';
+export const PreparationReview=memo(function PreparationReview(){
+ const metadata=useDocumentStore(s=>JSON.stringify({readiness:s.compilation?.readiness,coverage:s.compilation?.coverage}));
+ const {readiness,coverage}=useMemo(()=>JSON.parse(metadata) as {readiness?:Readiness;coverage?:Coverage},[metadata]);
+ const [issuesOpen,setIssuesOpen]=useState(false),[coverageOpen,setCoverageOpen]=useState(false);
+ if(!readiness)return null;
+ return <section className="preparation-review" aria-label="Preparación y trazabilidad"><h3>Preparación para revisar</h3><p className="preparation-state">{readiness.state==='borrador'?'Borrador con decisiones pendientes':'Listo para revisión humana'}</p><p>Comprobaciones de campos: {readiness.quality.complete} / {readiness.quality.applicable}. Esto no mide la corrección del negocio.</p><ul>{readiness.conditions.map(condition=><li key={condition.label}><span className={condition.met?'complete':'incomplete'}/>{condition.label}: {condition.met?'Declarado':'Pendiente'}</li>)}</ul>
+ <details open={issuesOpen} onToggle={e=>setIssuesOpen(e.currentTarget.open)}><summary>Diagnósticos de preparación <small>{readiness.issues.length}</small></summary>{issuesOpen&&<ul className="preparation-issues">{readiness.issues.map(issue=><li key={issue.id}><strong>{issue.source}</strong><span>{issue.message} {issue.severity==='bloqueo'?'Pendiente para implementar.':'Revisar.'}</span></li>)}</ul>}</details>
+ <details open={coverageOpen} onToggle={e=>setCoverageOpen(e.currentTarget.open)}><summary>Grafo de trazabilidad <small>{coverage?.links.length??0} requisitos</small></summary>{coverageOpen&&(coverage?.links.length?<div className="coverage-scroll" tabIndex={0} role="region" aria-label="Tabla de trazabilidad"><table><thead><tr><th>Requisito</th><th>Trabajo y validación</th><th>Criterios</th><th>Decisiones y contratos</th></tr></thead><tbody>{coverage.links.map(link=><tr key={link.requirementId}><td>{link.requirementId}</td><td>{link.taskId}<br/>{link.validationTaskId}{!link.applicable&&<p>Código no aplicable</p>}</td><td>{link.criterionIds.join(', ')||'Pendientes'}</td><td>{[...link.decisionIds,...link.contractIds].join(', ')||'Pendientes'}</td></tr>)}</tbody></table><p>Todos los resultados de validación empiezan «No ejecutado».</p></div>:<p>Añade requisitos estructurados para construir su trazabilidad.</p>)}</details><p>El análisis detecta reglas estructurales y contradicciones explícitas conocidas. Revisión semántica, autorización y aceptación siguen siendo decisiones humanas.</p></section>;
+});

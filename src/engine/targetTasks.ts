@@ -1,3 +1,5 @@
+import { hasProjectContent } from '../domain/projectDefinition';
+import { implementationTaskId, validationTaskId } from './coverage';
 import { literal } from '../i18n/translate';
 import type { Configuration } from '../domain/models';
 import { scopeRequirements, requirementId } from './requirements';
@@ -6,6 +8,19 @@ import { assertTaskGraph, type KitTask } from './taskGraph';
 import type { TargetProfile } from './targetProfile';
 const taskId = (number: number) => `T-001-${String(number).padStart(2, '0')}`;
 export function targetTasks(c: Configuration, profile: TargetProfile): KitTask[] {
+    if (hasProjectContent(c.project)) {
+        const project=c.project!;
+        const folder=specificationFolder(c.slug);
+        const active=project.requirements.filter(r=>r.status!=='descartado');
+        const base:KitTask={id:'T-BASE-REVISION',title:'Revisar requisitos, preguntas y autorización',rf:active.map(r=>r.id).join(', ')||'Pendiente',depends:[],files:[`${folder}/spec.md`,`${folder}/plan.md`],done:'El responsable revisa requisitos y criterios; no se inicia código sin autorización.'};
+        const tasks:KitTask[]=[base];
+        for(const r of active){
+            const ownFiles=project.implementationRequired?profile.domainFiles:[`${folder}/spec.md`,'docs/PROJECT.md'];
+            tasks.push({id:implementationTaskId(r.id),title:`${project.implementationRequired?'Implementar':'Documentar y revisar'}: ${r.title||r.behavior||'Requisito pendiente'}`,rf:r.id,depends:[base.id],files:ownFiles,done:r.behavior||'Concretar comportamiento antes de ejecutar esta tarea.'});
+            tasks.push({id:validationTaskId(r.id),title:`Verificar criterios de ${r.id}`,rf:r.id,depends:[implementationTaskId(r.id)],files:[`${folder}/validation.md`,'docs/TRACEABILITY.md'],done:r.criteria.map(criterion=>`${criterion.id}: ${criterion.text||'Resultado pendiente'}`).join('; ')||'Definir criterios observables antes de declarar verificación.'});
+        }
+        assertTaskGraph(tasks);return tasks;
+    }
     const scope = scopeRequirements(c);
     const folder = specificationFolder(c.slug);
     const security = taskId(4 + scope.length), visual = taskId(5 + scope.length), validation = taskId(6 + scope.length);

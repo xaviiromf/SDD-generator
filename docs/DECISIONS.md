@@ -85,3 +85,13 @@ La UI persiste su preferencia en una clave separada; Configuration añade sddLan
 2026-10-07: el usuario aprueba AGENTS.md, spec, plan, tasks y matriz por dominios, autoriza T-004-04…23 y el push del hito final. Confirma retirar ES/EN y fijar UI/documentación/kits en español conservando datos existentes; esta decisión sustituye D-022 para el producto vigente. D-023 conserva el contexto de planificación anterior, ya autorizado mediante esta decisión.
 
 Se implementa transporte nativo HTTP/SSE sin paquetes nuevos, consentido y acotado a 1500 ms; la inferencia llega al trabajador como DTO validado y el motor mantiene fallback local. La generación de solicitudes evita aceptar resultados anteriores al cambio de preferencias incluso con revisión de borrador idéntica. Diseño efectivo único, tokens y recetas compartidos; carrusel con selección explícita y protección de ajustes. Las comprobaciones con servidores simulados no garantizan precisión de un modelo real. Se mantienen la exclusión de 002, las tareas manuales históricas y la separación entre verificación técnica, aceptación y despliegue.
+
+## D-025 — Alcance 005 aprobado y modelo canónico local
+
+2026-10-08: el usuario autoriza exclusivamente H0, H1 y H2. Se añade ProjectDefinition schemaVersion 1 al borrador actual: requisitos, criterios y contexto con IDs estables, estado, origen y referencias; migración aditiva sin servicios ni paquetes nuevos. La proyección comparte revisión y conserva 34 rutas, validaciones inicialmente no ejecutadas y textos aportados. Cobertura de configuración, calidad estructural y preparación se presentan separadas; revisión humana y autorización de código permanecen explícitas. H3, H4 y H5 siguen pospuestos.
+
+Los límites son 256 KiB de modelo y 1 MiB de kit, cien requisitos y elementos por colección, diez criterios/excepciones por requisito. MCP mantiene idea/exclusiones, activación voluntaria y 1500 ms; los nuevos campos no amplían su transmisión. Borradores incompletos se conservan; referencias inválidas, secretos o rutas inseguras se rechazan. Permitir conflictos tecnológicos para revisión exige consentimiento y conserva los bloqueos de seguridad.
+
+## D-026 — Evaluación técnica sin participantes
+
+El usuario declara que no dispone de participantes y solicita otra manera de medir tiempo y correcciones. Se autoriza un banco automatizado entre el commit anterior y H2 con los mismos hechos de doce casos, generación/ZIP cronometrados y siete comprobaciones estructurales. Los hallazgos pendientes no representan acciones de corrección humanas ni prueban ahorro del 25 %. Método, condiciones y resultados en specs/005-generador-profesional/corpus.md. No se sustituye la aceptación del cliente ni la revisión semántica.

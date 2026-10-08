@@ -1,5 +1,6 @@
 # Plan técnico — 001 / SDD-Studio
 
+Contrato vigente: 34 documentos y generación local, con inferencia MCP opcional autorizada en 004. Las referencias históricas a seis documentos o ausencia absoluta de red quedan sustituidas por esos contratos; la ampliación 005 solo cambia H0–H2.
 Estado de la ampliación activa 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
 
 Especificación: [spec.md](spec.md). Fecha: 2026-10-06. Estado: **aprobado el 2026-10-06**. Implementación autorizada. Las rutas descritas inicialmente como propuestas se contrastan con la trazabilidad y el informe de verificación.

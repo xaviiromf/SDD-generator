@@ -1,0 +1,302 @@
+[
+  {
+    "id": "01",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Persona administradora",
+        "found": false
+      },
+      {
+        "value": "Cancelar una reserva pendiente",
+        "found": false
+      },
+      {
+        "value": "La reserva queda cancelada y sigue consultable.",
+        "found": false
+      },
+      {
+        "value": "Una reserva atendida no se cancela.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "02",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Operador",
+        "found": false
+      },
+      {
+        "value": "Registrar unidades sin red",
+        "found": false
+      },
+      {
+        "value": "El saldo se conserva al recargar sin conexión.",
+        "found": false
+      },
+      {
+        "value": "No sincronizar datos con servicios externos.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "03",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Cliente de API",
+        "found": false
+      },
+      {
+        "value": "Consultar un pedido existente",
+        "found": false
+      },
+      {
+        "value": "Se devuelve el identificador y su estado.",
+        "found": false
+      },
+      {
+        "value": "Un identificador inexistente devuelve un error explícito.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "04",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Operador",
+        "found": false
+      },
+      {
+        "value": "Simular el movimiento de un archivo",
+        "found": false
+      },
+      {
+        "value": "Los archivos permanecen intactos y se informa el destino.",
+        "found": false
+      },
+      {
+        "value": "No sobrescribir un archivo de destino existente.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "05",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Autor",
+        "found": true
+      },
+      {
+        "value": "Guardar una nota local",
+        "found": false
+      },
+      {
+        "value": "La nota permanece disponible tras reiniciar.",
+        "found": false
+      },
+      {
+        "value": "No enviar notas a servicios remotos.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "06",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Inspector",
+        "found": false
+      },
+      {
+        "value": "Registrar una inspección sin conexión",
+        "found": false
+      },
+      {
+        "value": "La inspección queda disponible localmente antes del envío.",
+        "found": false
+      },
+      {
+        "value": "El servidor rechaza un envío repetido con el mismo identificador.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "07",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Analista",
+        "found": false
+      },
+      {
+        "value": "Resumir un archivo CSV válido",
+        "found": false
+      },
+      {
+        "value": "La misma entrada produce el mismo resumen.",
+        "found": false
+      },
+      {
+        "value": "Las filas sin fecha se informan como rechazadas.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "08",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Dispositivo",
+        "found": false
+      },
+      {
+        "value": "Publicar una medición válida",
+        "found": false
+      },
+      {
+        "value": "El mensaje contiene el identificador de dispositivo y el valor.",
+        "found": false
+      },
+      {
+        "value": "Una lectura inválida no se publica.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "09",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Evaluador",
+        "found": false
+      },
+      {
+        "value": "Evaluar la clasificación con datos etiquetados",
+        "found": false
+      },
+      {
+        "value": "El informe identifica conjunto y métrica aportados.",
+        "found": false
+      },
+      {
+        "value": "Sin evaluación no se declara precisión verificada.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "10",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Administrador",
+        "found": false
+      },
+      {
+        "value": "Exportar pedidos autorizados",
+        "found": false
+      },
+      {
+        "value": "El CSV contiene únicamente los pedidos autorizados.",
+        "found": false
+      },
+      {
+        "value": "La API existente conserva sus contratos actuales.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "11",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Operador",
+        "found": false
+      },
+      {
+        "value": "Registrar una lectura del instrumento",
+        "found": false
+      },
+      {
+        "value": "La lectura conserva unidad y origen declarados.",
+        "found": false
+      },
+      {
+        "value": "No inventar el formato del protocolo Delta-7.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  },
+  {
+    "id": "12",
+    "documents": 34,
+    "preserved": [
+      {
+        "value": "Encargado",
+        "found": false
+      },
+      {
+        "value": "Registrar la devolución física de una herramienta",
+        "found": false
+      },
+      {
+        "value": "El registro en papel indica que el préstamo está cerrado.",
+        "found": false
+      },
+      {
+        "value": "Sin devolución física el préstamo permanece abierto.",
+        "found": false
+      }
+    ],
+    "explicitCriterionFound": false,
+    "validationInitial": true,
+    "status": "ZIP evaluado"
+  }
+]

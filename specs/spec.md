@@ -1,5 +1,8 @@
 # 001 — SDD-Studio: estudio y generador de desarrollo guiado por especificaciones
 
+Contrato vigente: 34 documentos y generación local, con inferencia MCP opcional autorizada en 004. Las referencias históricas a seis documentos o ausencia absoluta de red quedan sustituidas por esos contratos; la ampliación 005 solo cambia H0–H2.
+Propuesta actual para revisión: [005 — Generador profesional](005-generador-profesional/spec.md). H0–H2 autorizados el 2026-10-08; H3–H5 pospuestos. Preserva los guardarraíles y el kit estándar aprobado de 001–004.
+
 Estado de la ampliación activa 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
 
 Fecha: 2026-10-06. Estado: especificación aprobada por el usuario el 2026-10-06. Implementación autorizada: **SÍ**. Aceptación final del producto: pendiente.

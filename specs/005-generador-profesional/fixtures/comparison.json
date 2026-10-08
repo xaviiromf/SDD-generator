@@ -1,0 +1,433 @@
+{
+  "date": "2026-10-08",
+  "browser": "153.0.8010.12",
+  "baselineCommit": "53d13c20339ebc9316b44e26247eb60f44eee781",
+  "method": "Datos preparados, mismo texto libre y selección manual client-spa; H2 recibe además sus campos estructurados. Un calentamiento y cinco muestras por caso/versión. Generación observada hasta botón de ZIP habilitado; ZIP según Performance API. Orden anterior seguido de H2, sin estimación de trabajo humano.",
+  "humanParticipants": 0,
+  "humanTimeSaving": "No medido",
+  "semanticReview": "Pendiente",
+  "mcp": "Desactivado",
+  "results": [
+    {
+      "version": "anterior",
+      "generation": {
+        "samples": 60,
+        "medianMs": 35.700000000186265,
+        "p95Ms": 46.60000000009313
+      },
+      "zip": {
+        "samples": 60,
+        "medianMs": 7.5,
+        "p95Ms": 19.299999999813735
+      },
+      "pendingStructuralFindings": 60,
+      "cases": [
+        {
+          "id": "01",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "02",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "03",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "04",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "05",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "06",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "07",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "08",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "09",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "10",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "11",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        },
+        {
+          "id": "12",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": false,
+            "criterioConId": false,
+            "tareaConCriterio": false,
+            "grafoCompleto": false,
+            "validacionInicialConCriterio": false,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": [
+            "comportamientoConId",
+            "criterioConId",
+            "tareaConCriterio",
+            "grafoCompleto",
+            "validacionInicialConCriterio"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "H2",
+      "generation": {
+        "samples": 60,
+        "medianMs": 35.90000000037253,
+        "p95Ms": 48
+      },
+      "zip": {
+        "samples": 60,
+        "medianMs": 8.800000000279397,
+        "p95Ms": 18.100000000093132
+      },
+      "pendingStructuralFindings": 0,
+      "cases": [
+        {
+          "id": "01",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "02",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "03",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "04",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "05",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "06",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "07",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "08",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "09",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "10",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "11",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        },
+        {
+          "id": "12",
+          "checks": {
+            "hechosLiterales": true,
+            "comportamientoConId": true,
+            "criterioConId": true,
+            "tareaConCriterio": true,
+            "grafoCompleto": true,
+            "validacionInicialConCriterio": true,
+            "manifiesto34": true
+          },
+          "pendingStructuralFindings": []
+        }
+      ]
+    }
+  ],
+  "maximum100Requirements": {
+    "samples": 30,
+    "medianMs": 53.5,
+    "p95Ms": 68.1999999997206
+  }
+}

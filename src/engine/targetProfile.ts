@@ -12,6 +12,7 @@ export interface TargetProfile {
     setup: string;
 }
 export function targetProfile(c: Configuration): TargetProfile {
+    if (c.project?.implementationRequired === false) return {family:'Proceso documental sin software',paths:['docs/OPERACION.md'],domainFiles:['docs/OPERACION.md'],storageFiles:[],visual:false,checks:['Revisar criterios y evidencia del proceso con el responsable.'],setup:'# No aplica preparación de código a este trabajo documental.'};
     const languages = c.selections.language ?? [];
     const frontend = c.selections.frontend?.[0];
     const platform = c.selections.platform?.[0];

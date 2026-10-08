@@ -1,3 +1,6 @@
+import type { Readiness } from './readiness';
+import type { Coverage } from '../engine/coverage';
+import { createProjectDefinition, type ProjectDefinition } from './projectDefinition';
 import type { DesignOverrides } from './design';
 import type { Locale } from '../i18n/translate';
 import type { KitDocument } from '../engine/kitManifest';
@@ -11,6 +14,7 @@ export interface Configuration {
     sddLanguage?: Locale;
     designVersion?: 1;
     designOverrides?: DesignOverrides;
+    project?: ProjectDefinition;
     name: string;
     slug: string;
     idea: string;
@@ -30,6 +34,7 @@ export interface Technology {
     requires?: Selection;
 }
 export interface Diagnostic {
+    kind?: 'compatibility' | 'safety';
     message: string;
     field?: Field;
     blocking: boolean;
@@ -53,6 +58,8 @@ export interface GeneratedDocument extends KitDocument {
     revision: number;
 }
 export interface Compilation {
+    coverage?: Coverage;
+    readiness?: Readiness;
     sddLanguage?: Locale;
     revision: number;
     slug: string;
@@ -69,5 +76,5 @@ export interface Compilation {
     };
     targetTree: string[];
 }
-export function emptyConfiguration(): Configuration { return { version: 1, designVersion: 1, revision: 0, sddLanguage: 'es', name: 'Mi proyecto', slug: 'mi-proyecto', idea: '', positive: '', negative: '', selections: {}, origins: {} }; }
+export function emptyConfiguration(): Configuration { return { version: 1, designVersion: 1, revision: 0, sddLanguage: 'es', name: 'Mi proyecto', slug: 'mi-proyecto', idea: '', positive: '', negative: '', selections: {}, origins: {}, project: createProjectDefinition() }; }
 export const singleFields = new Set<Field>(['platform', 'architecture', 'runtime', 'frontend', 'styling', 'archetype', 'auth']);
