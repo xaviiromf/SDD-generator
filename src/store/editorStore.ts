@@ -1,5 +1,6 @@
 import { createProjectDefinition, createRequirement, contextKinds, type ContextKind, type ProjectDefinition, type ProjectItem, type StructuredRequirement } from '../domain/projectDefinition';
 import { projectValidationErrors } from '../domain/projectValidation';
+import {isManualSections,type ManualSection} from '../domain/manualSections';
 import { hasDesignOverrides, validDesignValue, type DesignGroups } from '../domain/design';
 import type { Locale } from '../i18n/translate';
 import { create } from 'zustand';
@@ -9,6 +10,7 @@ import { optionCompatible } from '../domain/compatibility';
 interface EditorState {
     config: Configuration;
     projectError: string;
+    setManualSections: (sections:ManualSection[]) => boolean;
     updateProject: (patch: Partial<Pick<ProjectDefinition, 'mode' | 'implementationRequired'>>) => void;
     addProjectItem: (kind: ContextKind) => void;
     updateProjectItem: (kind: ContextKind, id: string, patch: Partial<Pick<ProjectItem, 'text' | 'status' | 'references'>>) => void;
@@ -52,6 +54,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
     return ({
     config: emptyConfiguration(),
     projectError: '',
+    setManualSections: manualSections=>{if(!isManualSections(manualSections)){set({projectError:'Las aportaciones exceden los límites o no son válidas.'});return false;}set(({config})=>({config:{...config,manualSections,revision:config.revision+1},projectError:''}));return true;},
     updateProject: patch => mutateProject(project=>Object.assign(project,patch)),
     addProjectItem: kind => mutateProject(project=>{project.context[kind].push({id:allocate(project,'CTX'),text:'',status:'pendiente',origin:'user',references:[]});}),
     updateProjectItem: (kind,id,patch) => mutateProject(project=>{const item=project.context[kind].find(i=>i.id===id);if(item) Object.assign(item,patch,{origin:'user'});}),

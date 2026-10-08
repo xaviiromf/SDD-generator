@@ -18,5 +18,7 @@ export function App() {
         catch { /* La sesión permanece en memoria. */ }
     } useUIStore.setState({ notice: message }); }, 500); }); void registerOffline(); return () => { clearTimeout(timer); unsubscribe(); }; }, []);
     useEffect(() => startGenerator(), [restart]);
+    useEffect(()=>{const flush=()=>{saveDraft(useEditorStore.getState().config);};const hidden=()=>{if(document.visibilityState==='hidden')flush();};window.addEventListener('pagehide',flush);document.addEventListener('visibilitychange',hidden);return ()=>{window.removeEventListener('pagehide',flush);document.removeEventListener('visibilitychange',hidden);};},[]);
+    useEffect(()=>{let cancelled=false;let stop:(()=>void)|undefined;void import('../store/projectLibraryStore').then(async module=>{if(cancelled)return;stop=await module.initializeLibrary();if(cancelled)stop();});return ()=>{cancelled=true;stop?.();};},[]);
     return <><StudioLayout /><StatusMessage /></>;
 }

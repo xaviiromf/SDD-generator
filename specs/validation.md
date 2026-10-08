@@ -140,3 +140,7 @@ Sincronización autorizada: commit de implementación d86c589 enviado mediante p
 ## Evidencia vigente de 005
 
 La entrega de requisitos estructurados, trazabilidad y preparación H0–H2 se verifica en [005-generador-profesional/validation.md](005-generador-profesional/validation.md). Resultados nuevos: 76 unitarias, 87 pruebas de navegador correctas y tres mediciones Firefox omitidas; TypeScript/lint/build correctos. Corpus y banco automatizado sin participantes se documentan por separado. Los resultados anteriores se conservan como historial.
+
+## Evidencia de H3 de 005
+
+La ampliación autorizada T-005-20…24 está implementada y verificada: biblioteca local/versiones, importación y respaldo JSON, reconciliación de aportaciones y comparación con confirmación. Resultado final: 94 unitarias, 108 recorridos Chromium/Firefox correctos y cuatro mediciones Firefox omitidas; lint y TypeScript/build correctos. Principal 453,60 kB; p95 de biblioteca poblada 3,4 ms y sandbox 4,2 ms. Metodología, cobertura, presupuestos y límites en [validation de 005](005-generador-profesional/validation.md#h3--biblioteca-local-versiones-y-reconciliación). Esta evidencia se añade al historial; H4/H5 permanecen pospuestos.

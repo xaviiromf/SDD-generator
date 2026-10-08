@@ -93,6 +93,9 @@ Evidencia concreta: tests/unit/design.test.ts (contratos, acciones, kit/tokens y
 | RF-005-05/06 | T-005-13…15 | projectProjection y projectCorpus.test.ts: 34 documentos, determinismo, grafo y criterios No ejecutado |
 | RF-005-07/08 | T-005-16/17 | readiness.test.ts y projectDefinition.spec.ts: pendientes, contradicciones conocidas, consentimiento y bloqueos seguros |
 | RF-005-15, parte H0–H2 | T-005-08/09/18/19/35 | Regresión, corpus, volumen y banco comparison.json; evidencia en validation.md de 005 |
-| RF-005-09…14 | T-005-20…34 | Pospuestos por el usuario, sin implementación ni verificación nueva |
+| RF-005-09 | T-005-20…23 | projectLibrary, projectStorage y projectLibraryStore; libraryContracts/Services/Store.test.ts y library.spec.ts: proyectos, versiones, cuota, respaldo e importación |
+| RF-005-10 | T-005-20/22/23 | manualSections, documentStore y componentes projects; comparación, aportaciones, conflictos, cancelación y ZIP de 34 archivos |
+| RF-005-15, parte H3 | T-005-24/35 | Regresión completa de H2/H3, rendimiento, offline y exclusión 002; evidencia en validation.md de 005 |
+| RF-005-11…14 | T-005-25…34 | H4/H5 pospuestos por el usuario, sin implementación ni verificación nueva |
 
-La evaluación técnica de tiempos/hallazgos fue autorizada ante falta de participantes. No verifica revisión semántica, esfuerzo humano ni aceptación; la migración H1 conserva el borrador actual sin desarrollar multiproyecto o importación de H3.
+La evaluación técnica de tiempos/hallazgos fue autorizada ante falta de participantes. No verifica revisión semántica, esfuerzo humano ni aceptación; la migración H1 conserva el borrador actual y H3 añade continuidad multiproyecto/importación tras su autorización específica.

@@ -1,6 +1,8 @@
-# Verificación ejecutada — 005, H0–H2
+# Verificación ejecutada — 005, H0–H3
 
-Fecha: 2026-10-08. Implementación H0–H2 autorizada por el usuario. T-005-02…19 verificadas dentro de sus límites técnicos; T-005-35 completada: hito sincronizado. H3–H5 y tareas 20…34 pospuestas. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
+Fecha: 2026-10-08. H0–H2 e H3 autorizados por separado por el usuario y verificados técnicamente. T-005-02…24 completadas; cierre 35 de H3 pendiente de sincronización en este registro. H4/H5 y tareas 25…34 pospuestos. La aprobación del plan no equivale a aceptación del producto. No se despliega un sitio.
+
+Los apartados anteriores a H3 conservan la evidencia histórica de H0–H2; cifras y exclusiones describen ese momento. La evidencia vigente de biblioteca/versiones y regresión está en el apartado H3.
 
 ## Entorno y comandos
 
@@ -55,8 +57,76 @@ Un hallazgo es una propiedad estructural pendiente, no una acción manual ni una
 
 ## Límites y pendientes
 
-Revisión semántica del corpus y de cada proyecto generado, aceptación del cliente, lector de pantalla real, ampliación real del navegador y teléfono físico pendientes. La evidencia automatizada no verifica adecuación especializada de móvil/API, protocolos propios o cualquier dominio imaginable; H4 sigue pospuesto. El detector cubre contradicciones conocidas y literales, no semántica universal. No se desarrolla importación/multiproyecto/diffs de H3 ni adaptadores de H5. No se ejecuta código de un proyecto generado.
+Revisión semántica del corpus y de cada proyecto generado, aceptación del cliente, lector de pantalla real, ampliación real del navegador y teléfono físico pendientes. La evidencia automatizada no verifica adecuación especializada de móvil/API, protocolos propios o cualquier dominio imaginable; H4 sigue pospuesto. El detector cubre contradicciones conocidas y literales, no semántica universal. En ese cierre no se desarrollaba H3; biblioteca/importación/diferencias se verifican posteriormente en el apartado siguiente. H5 sigue pospuesto. No se ejecuta código de un proyecto generado.
 
 ## Sincronización
 
 T-005-35 completada: push normal 53d13c2..84ed6e0 al remoto existente, código 0; ls-remote confirma 84ed6e046e61a8972d5c251e3aae83e897abfb0f en main. Registro de cierre en docs/PROJECT_STATUS.md. 002 excluido, historial sin reescritura y sin despliegue.
+
+## H3 — Biblioteca local, versiones y reconciliación
+
+Autorización explícita del 2026-10-08 para T-005-20…24 y cierre 35. H4/H5 no implementados. Cambios de fase/dominio y correcciones registrados en PROJECT_STATUS. Dependencias y manifiestos permanecen sin cambios. Las mediciones siguientes proceden del build final, servido localmente; no son estimaciones ni resultados del proyecto generado.
+
+### Comprobaciones finales
+
+| Comando o comprobación | Resultado observado |
+|---|---|
+| npm run test | 94 pruebas correctas en 22 archivos, código 0; incluye las 76 previas y 18 de H3 |
+| npm run lint | Código 0 |
+| npm run build | TypeScript estricto y Vite correctos, código 0; sin aviso de tamaño |
+| npm run test:e2e | 112 casos: 108 correctos, 4 omitidos, 0 fallos; 5,1 minutos |
+| Regresión H2 | Corpus de 12 escenarios, volumen de 100 requisitos, proyección/grafo/34 documentos y recorridos de requisitos incluidos en las suites |
+
+Las cuatro omisiones son mediciones instrumentadas de rendimiento en Firefox: las tres históricas y la nueva biblioteca poblada. Los recorridos funcionales H3 se ejecutaron en Chromium y Firefox, incluidas continuidad, importación, aportaciones, foco, conflictos, cuota/corrupción y funcionamiento sin red. No se atribuyen mediciones p95 a Firefox.
+
+### Contratos, servicios e integración
+
+- `libraryContracts.test.ts`: cuatro pruebas de formato y límites, IDs/versiones, campos desconocidos, claves y orden de diferencias, máximo de 200 entradas, secciones con IDs de RF, encabezados dentro de cercas de código, destinos ausentes y orden de varias aportaciones al mismo destino. Los textos manuales se preservan sin reemplazar el contenido generado.
+- `libraryServices.test.ts`: cinco pruebas de lectura/escritura y revisión concurrente, cuota simulada, registro corrupto conservado, formato incompatible, campos/prototipos peligrosos, IDs duplicados, exceso de tamaño, referencias/rutas inválidas, credenciales aparentes en datos/metadatos y cancelación anterior al commit.
+- `libraryStore.test.ts`: nueve pruebas de crear/cambiar/guardar/recuperar, comparación y cancelación sin escritura, copia previa al reemplazar importación, recuperación inmediata por procedencia, conservación como copia ante revisión ajena, generación pendiente y resolución manual, respaldo completo con historial pese a cuota y autoguardado sin deshabilitar acciones.
+
+La escritura valida y serializa en un trabajador nativo; una cola local y comprobación del registro anterior evitan cambios obsoletos. Web Locks coordina pestañas donde exista; la alternativa comprueba y escribe en el mismo turno, sin garantía universal de exclusión entre procesos. No hay persistencia remota. Ante corrupción no se borra ni se sustituye el registro original. Importar solo permite JSON del formato versionado del estudio y exige confirmación antes de aplicar; cancelar conserva datos.
+
+### Recorridos reales de navegador
+
+`tests/e2e/library.spec.ts`: recuperar proyectos y versiones tras recargar; cierre inmediato antes del guardado diferido; comparación previa a recuperación; respaldo/importación, copia del registro reemplazado y JSON inválido; aportación que cambia de sección, cancelación que mantiene el bloqueo, resolución y ZIP con 34 archivos. El diálogo devuelve foco, contiene navegación Tab y permite Escape; no se detecta desbordamiento a 375, 768 y 1280 px.
+
+Dos páginas reales verifican que una revisión concurrente no sobrescribe la edición local y permite respaldarla. Un trabajador con entrega retrasada verifica que un clic de creación no se pierde durante autoguardado. La biblioteca corrupta conserva su texto y permite respaldar la edición segura. Tras completar la caché, versiones y respaldo funcionan con la red desconectada en ambos navegadores. Las pruebas usan datos ficticios, nunca secretos reales.
+
+La regresión completa conserva idiomas históricos migrados a español, Django/catálogo, diseño/carrusel, fuentes locales, MCP HTTP/SSE con fallback de 1500 ms, límites, compatibilidad, trabajador, caché, portapapeles y exportación. No se añade información estructurada al envío MCP.
+
+### Paquetes y rendimiento
+
+| Recurso final de producción | Tamaño Vite | Comprimido |
+|---|---|---|
+| Paquete principal | 453,60 kB | 148,39 kB |
+| Módulo compartido editorStore | 51,21 kB | 15,24 kB |
+| Adaptador projectLibraryStore | 14,19 kB | 4,94 kB |
+| Interfaz ProjectLibrary | 7,25 kB | 2,56 kB |
+| Interfaz ManualSections | 5,32 kB | 1,97 kB |
+| Trabajador de importación | 112,85 kB | — |
+| Trabajador generador | 186,15 kB | — |
+| CSS | 34,13 kB | — |
+
+El presupuesto autorizado de <500 kB se comprueba sobre el paquete principal, no sobre la suma de todos los recursos. La tabla hace visible el módulo compartido adicional y los módulos separados; los tamaños comprimidos son los informados por Vite, no mediciones de transferencia de una red real. La biblioteca y los paneles se cargan de forma diferida; no se incorporan bibliotecas nuevas.
+
+| Escenario Chromium final | Muestras/eventos | Resultado |
+|---|---|---|
+| Edición con 20 proyectos y 100 RF | 200 entradas | p95 3,4 ms; guardado posterior conserva la última edición |
+| Sandbox estético | 200 ajustes | p95 4,2 ms; cero renders ajenos en raíz, cabecera, idea, árbol, madurez y configuración |
+| Procesamiento de entrada de referencia | 230 eventos | p95 2,0 ms; sin tareas largas observadas |
+| Generación de referencia | 30 muestras | 38,4 ms en el presupuesto de generación |
+| Aplicación de conjuntos | 30 muestras | p95 10,1 ms |
+| ZIP de referencia | 30 muestras | p95 9,5 ms |
+
+El límite <16 ms corresponde a entrada/interacción y muestra; no al ciclo completo de generación/ZIP ni a MCP. Estas cifras son del entorno probado, no una garantía para cualquier equipo, volumen o navegador.
+
+### Correcciones verificadas y límites
+
+La primera prueba de recarga inmediata evidenció edición anterior al guardado diferido; se corrigió continuidad al ocultar/cerrar página con procedencia para no sobrescribir una revisión ajena. Una prueba adicional reprodujo bloqueo del respaldo completo ante cuota; ahora se exporta una instantánea validada de solo lectura. Una regresión intermedia detectó un fallo Firefox al crear tras guardar; se corrigió que el autoguardado deshabilitara acciones y se añadió el caso con entrega de trabajador retrasada. Se corrigieron asimismo selectores de pruebas y se reforzaron orden de aportaciones y cercas de código. La regresión final de 112 casos usa todas esas correcciones.
+
+No se comprueba cierre abrupto del proceso ni pérdida física del almacenamiento. El navegador puede imponer una cuota inferior al presupuesto interno; biblioteca, borrador histórico y registro de continuidad ocupan claves independientes. Los respaldos descargados requieren conservación por el usuario. WebKit, lector de pantalla real, ampliación real y teléfono físico mantienen sus pendientes históricos. No se mide ahorro humano ni precisión de un modelo MCP real. Aceptación del cliente, H4/H5 y despliegue quedan fuera de este cierre.
+
+### Cierre T-005-35 de H3
+
+Documentación y evidencia consolidadas tras pasar pruebas/build. Auditoría final: 200 archivos de texto propios, cero archivos con emojis; enlaces locales de los documentos afectados existentes y git diff --check correcto. git check-ignore confirma 002 ignorado y git ls-files no devuelve archivos de esa carpeta. Sincronización mediante push normal pendiente de registrar con el SHA observado. No se reescribe historial ni se despliega el sitio.

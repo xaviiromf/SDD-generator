@@ -1,4 +1,5 @@
 import type { Readiness } from './readiness';
+import type { ManualSection } from './manualSections';
 import type { Coverage } from '../engine/coverage';
 import { createProjectDefinition, type ProjectDefinition } from './projectDefinition';
 import type { DesignOverrides } from './design';
@@ -15,6 +16,7 @@ export interface Configuration {
     designVersion?: 1;
     designOverrides?: DesignOverrides;
     project?: ProjectDefinition;
+    manualSections?: ManualSection[];
     name: string;
     slug: string;
     idea: string;

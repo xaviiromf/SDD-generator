@@ -1,6 +1,6 @@
 # 005 — Generador profesional, adaptable y verificable
 
-Fecha: 2026-10-08. Fase: VALIDATE. Estado: H0–H2 implementados y verificados técnicamente tras aprobación del 2026-10-08. Aceptación pendiente. H3–H5 pospuestos. Implementación autorizada exclusivamente para H0–H2.
+Fecha: 2026-10-08. Fase: cierre DOCUMENT de T-005-35. Estado: H0–H3 implementados y verificados técnicamente tras autorizaciones del 2026-10-08. T-005-20…24 completadas; sincronización H3 pendiente en este registro. Aceptación pendiente. H4/H5 pospuestos.
 
 Plan y diagnóstico: [plan.md](plan.md). Secuencia: [tasks.md](tasks.md). Evidencia: [validation.md](validation.md).
 

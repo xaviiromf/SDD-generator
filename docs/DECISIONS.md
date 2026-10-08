@@ -95,3 +95,13 @@ Los límites son 256 KiB de modelo y 1 MiB de kit, cien requisitos y elementos p
 ## D-026 — Evaluación técnica sin participantes
 
 El usuario declara que no dispone de participantes y solicita otra manera de medir tiempo y correcciones. Se autoriza un banco automatizado entre el commit anterior y H2 con los mismos hechos de doce casos, generación/ZIP cronometrados y siete comprobaciones estructurales. Los hallazgos pendientes no representan acciones de corrección humanas ni prueban ahorro del 25 %. Método, condiciones y resultados en specs/005-generador-profesional/corpus.md. No se sustituye la aceptación del cliente ni la revisión semántica.
+
+## D-027 — H3 autorizado: continuidad local y conservación explícita
+
+2026-10-08: el usuario autoriza exclusivamente T-005-20…24 y el cierre 35. H4/H5 permanecen pospuestos. Se implementa una biblioteca schemaVersion 1 con hasta 20 proyectos, cinco versiones explícitas por proyecto y presupuesto local de 2 MiB UTF-16; configuraciones de hasta 512 KiB UTF-8 e importación JSON de hasta 2 MiB UTF-8. No se añaden paquetes, servidor ni sincronización de cuentas.
+
+La validación nativa fuera del hilo de UI precede a las escrituras. Una cola por pestaña, comparación del registro anterior y Web Locks donde exista protegen la revisión; sin Web Locks la comprobación y escritura ocurren en el mismo turno, sin prometer exclusión atómica entre procesos. Si cambia la biblioteca en otra pestaña se bloquea la sustitución automática y se conserva la edición. Un registro de procedencia recupera la edición pendiente del proyecto activo o la conserva como copia ante una revisión ajena. El autoguardado no interrumpe acciones de puntero. El respaldo completo no exige guardar antes: incluye la edición activa y permite recuperar datos ante cuota o conflicto.
+
+Importar crea copias por defecto. Sustituir exige comparación y confirmación, conservando otra copia del registro anterior; una cuota insuficiente rechaza toda la operación. Recuperar una versión conserva previamente el borrador como versión explícita. No se purgan proyectos/versiones para hacer espacio. Datos corruptos, campos desconocidos, prototipos peligrosos, referencias inválidas, textos inseguros y formatos incompatibles se rechazan sin borrar el registro original.
+
+Las aportaciones manuales son bloques separados por destino, con texto literal preservado. Un cambio de sección deja la generación pendiente hasta resolver mantener o trasladar al final; nunca se sobrescribe el texto del usuario. El grafo H2 conserva su modelo canónico y no inventa requisitos a partir de notas libres. Verificación y límites reales en specs/005-generador-profesional/validation.md; aceptación humana y despliegue no incluidos.

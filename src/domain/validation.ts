@@ -1,4 +1,5 @@
 import { isProjectDefinition, projectValidationErrors } from './projectValidation';
+import {isManualSections} from './manualSections';
 import { isDesignOverrides } from './design';
 import { isLocale } from '../i18n/translate';
 import { fields, singleFields, type Configuration, type Diagnostic, type Field } from './models';
@@ -18,6 +19,10 @@ export function validateText(text: string): Diagnostic[] {
 export function validateConfiguration(c: Configuration, knownIds?: ReadonlySet<string>): Diagnostic[] {
     const projectErrors = c.project === undefined ? [] : projectValidationErrors(c.project);
     const result: Diagnostic[] = projectErrors.map(message=>({message,blocking:true}));
+    if(c.manualSections!==undefined){
+        if(!isManualSections(c.manualSections))result.push({message:'Las aportaciones manuales no son válidas o exceden sus límites.',blocking:true});
+        else result.push(...validateText(JSON.stringify(c.manualSections)));
+    }
     if (c.project !== undefined && projectErrors.length === 0) result.push(...validateText(JSON.stringify(c.project)));
     result.push(...validateText([c.name, c.idea, c.positive, c.negative].join('\n')));
     if ((c.designVersion !== undefined && c.designVersion !== 1) || (c.designOverrides !== undefined && !isDesignOverrides(c.designOverrides)))
@@ -47,7 +52,7 @@ export function isConfiguration(value: unknown): value is Configuration {
     if (!value || typeof value !== 'object')
         return false;
     const c = value as Record<string, unknown>;
-    return (c.project === undefined || isProjectDefinition(c.project)) && (c.designVersion === undefined || c.designVersion === 1) && (c.designOverrides === undefined || isDesignOverrides(c.designOverrides)) && (c.sddLanguage === undefined || isLocale(c.sddLanguage)) && c.version === 1 && typeof c.revision === 'number' && ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') && !!c.selections && typeof c.selections === 'object' && !Array.isArray(c.selections) && Object.values(c.selections).every(ids => Array.isArray(ids) && ids.every(id => typeof id === 'string')) && !!c.origins && typeof c.origins === 'object' && !Array.isArray(c.origins) && Object.keys(c.origins).every(key=>fields.includes(key as Field)) && Object.values(c.origins).every(origin => ['manual', 'preset', 'inference'].includes(String(origin)));
+    return (c.manualSections===undefined||isManualSections(c.manualSections)) && (c.project === undefined || isProjectDefinition(c.project)) && (c.designVersion === undefined || c.designVersion === 1) && (c.designOverrides === undefined || isDesignOverrides(c.designOverrides)) && (c.sddLanguage === undefined || isLocale(c.sddLanguage)) && c.version === 1 && typeof c.revision === 'number' && ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') && !!c.selections && typeof c.selections === 'object' && !Array.isArray(c.selections) && Object.values(c.selections).every(ids => Array.isArray(ids) && ids.every(id => typeof id === 'string')) && !!c.origins && typeof c.origins === 'object' && !Array.isArray(c.origins) && Object.keys(c.origins).every(key=>fields.includes(key as Field)) && Object.values(c.origins).every(origin => ['manual', 'preset', 'inference'].includes(String(origin)));
 }
 export function safeDocumentPath(path: string, slug = 'mi-proyecto'): boolean { return validSlug(slug) && createKitManifest({ slug }).some(d => d.path === path); }
 export function escapeMarkdown(text: string): string { return text.replace(/[<>]/g, char => char === '<' ? '&lt;' : '&gt;'); }

@@ -11,7 +11,7 @@ Identificar la tarea antes de ampliar lectura. Consultar después solo los apart
 
 El usuario aprobó formalmente el plan y la matriz el 2026-10-07 y autorizó IMPLEMENT de T-004-04…23, registrada en docs/PROJECT_STATUS.md. No requiere otra confirmación para estas tareas. Mantener lectura por dominio, verificar bloques y sincronizar al pasar pruebas/build; despliegue y dependencias nuevas fuera del plan requieren autorización separada.
 
-El usuario autorizó H0–H2 de 005 el 2026-10-08: corpus, modelo/editor estructurado, proyección de 34 documentos, trazabilidad y preparación; tareas T-005-02…19 y cierre 35. H3–H5 y tareas 20…34 quedan pospuestos. Ante falta de participantes, autorizó comparar tiempos y hallazgos mediante un banco automatizado, sin atribuir ahorro humano. Consultar evidencia y siguiente paso en docs/PROJECT_STATUS.md.
+El usuario autorizó H0–H2 de 005 el 2026-10-08: corpus, modelo/editor estructurado, proyección de 34 documentos, trazabilidad y preparación; tareas T-005-02…19 y cierre 35. H3 fue autorizado posteriormente: T-005-20…24 y cierre 35. H4/H5 y tareas 25…34 siguen pospuestos. Ante falta de participantes, autorizó comparar tiempos y hallazgos mediante un banco automatizado, sin atribuir ahorro humano. Consultar evidencia y siguiente paso en docs/PROJECT_STATUS.md.
 
 ## Matriz obligatoria de acceso
 

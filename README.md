@@ -38,6 +38,26 @@ Usa el árbol anidado o «Documento del kit» para consultar cualquiera de los 3
 
 La interfaz, los 34 documentos generados, la copia, el ZIP, los tokens y los comentarios de preparación se presentan exclusivamente en español. Las antiguas preferencias ES/EN se migran sin eliminar nombre, idea, alcance, selecciones ni personalizaciones. Tus textos se conservan literalmente; no se traducen automáticamente. Las rutas, los identificadores y los nombres de productos mantienen su forma técnica.
 
+### Proyectos locales, versiones y respaldos
+
+Abre «Proyectos» en la cabecera para crear un proyecto vacío o duplicar la edición actual. Cada proyecto conserva nombre, idea, configuración, requisitos, diseño y aportaciones manuales. El guardado automático del borrador se programa tras 800 ms sin cambios; «Guardar versión» crea una instantánea explícita con una etiqueta. Abrir otro proyecto o recuperar una versión muestra primero las diferencias. Recuperar conserva también una versión del borrador anterior; cancela o libera una versión si se alcanza el límite. No se eliminan proyectos ni versiones automáticamente.
+
+El respaldo JSON incluye los proyectos elegidos y sus versiones; el respaldo completo incorpora la edición activa en memoria sin exigir una escritura previa. También puedes respaldar solo la edición actual si la biblioteca está dañada o no puede guardarse. Descarga un respaldo antes de borrar los datos del navegador, cambiar de equipo u origen del sitio. El ZIP del kit mantiene sus 34 documentos; el JSON es el formato para recuperar proyectos en el estudio.
+
+Para importar, elige un respaldo JSON. Se validan formato, versión, campos, referencias, IDs, límites y textos antes de mostrar la comparación; cancelar no escribe. La opción predeterminada crea copias con IDs nuevos. La sustitución de proyectos coincidentes exige marcarla expresamente y confirmar; se conserva una copia del proyecto anterior con su historial. Si falta espacio para esa copia, se rechaza la operación completa. No se importan ZIP, directorios ni código ejecutable.
+
+La biblioteca admite hasta 20 proyectos y cinco versiones explícitas por proyecto. Su presupuesto es 2 MiB de texto serializado contado como UTF-16; cada configuración admite 512 KiB UTF-8 y un archivo de importación hasta 2 MiB UTF-8. Son límites del estudio: el navegador puede imponer una cuota menor o restringir el almacenamiento. Las diferencias muestran hasta 200 entradas e indican el total. Ante cuota, revisión concurrente o datos corruptos se conserva la edición, se explica el fallo y se permite respaldarla; no se sustituye silenciosamente el registro anterior.
+
+La biblioteca pertenece al navegador y al origen del sitio; no se sincroniza entre equipos ni cuentas. Si otra pestaña cambia la biblioteca, la pestaña anterior conserva su edición y pide recargar o respaldar antes de escribir. Al cerrar u ocultar la página se guarda una referencia de continuidad; una recarga normal puede recuperar la edición pendiente sin reemplazar una revisión ajena. Un cierre abrupto del proceso o un fallo de cuota puede impedir ese último guardado: el respaldo descargado sigue siendo la vía de recuperación externa. «Borrar borrador» no elimina la biblioteca completa; elimina proyectos y versiones desde sus acciones con confirmación.
+
+### Aportaciones manuales por sección
+
+En el visor abre «Aportaciones manuales por sección», elige un destino del documento generado y redacta tu aportación. Se añade como bloque propio sin reemplazar el texto generado y se conserva al regenerar, duplicar, respaldar o recuperar el proyecto. Los requisitos de negocio y sus criterios deben declararse en el editor estructurado para formar parte del grafo; una aportación libre no se convierte automáticamente en requisito.
+
+Si cambia o desaparece la sección de destino, la nueva generación queda pendiente. «Revisar cambios de secciones» permite comparar el contenido anterior y el nuevo, mantener la aportación en su sección o llevarla al final del documento. Confirmar preserva el texto aportado y regenera; cancelar conserva el resultado anterior y la exportación permanece bloqueada para evitar entregar una revisión obsoleta. Las aportaciones siguen los controles de seguridad y el límite total del kit.
+
+Hay hasta 50 aportaciones, 128 KiB UTF-8 en conjunto y 10.000 caracteres por texto. Se guarda una referencia de la sección de hasta 40.000 caracteres; una sección mayor no puede usarse como destino directo. El encabezado completo del documento permite añadir al final. Los encabezados dentro de bloques de código no se interpretan como destinos.
+
 ### Inferencia MCP opcional
 
 El tutorial [INSTRUCCIONES_MCP_TUNNEL.md](INSTRUCCIONES_MCP_TUNNEL.md) explica cómo preparar un servidor compatible, publicar su túnel y utilizarlo desde el estudio, Codex, Claude Code, Google Antigravity y Cursor.
@@ -72,7 +92,7 @@ El medidor «Cobertura de configuración» valora seis pilares con peso igual. �
 
 SDD-Studio funciona en el cliente y no depende de un backend propio. El motor local es determinista. Idea, configuración y documentos permanecen en memoria y en localStorage cuando es posible guardar; activar MCP autoriza el envío de idea y exclusiones al servidor configurado. Los servidores y bases del catálogo describen tu proyecto objetivo; seleccionarlos no conecta el estudio a esos servicios.
 
-No ejecuta ni compila el código del proyecto objetivo; estructura especificaciones para que una persona o agente autorizado lo implemente. No reemplaza el juicio de ingeniería ni inventa reglas complejas cuando falta contexto. Los documentos generados requieren revisión. El alcance actual conserva un único borrador local. Multiproyecto, diferencias, perfiles extensibles y adaptadores de contratos están pospuestos; los destinos fuera del catálogo pueden documentarse sin prometer una implementación especializada. Los presets versionados conservan las versiones declaradas en el prompt y no se presentan como recomendaciones sobre versiones recientes.
+No ejecuta ni compila el código del proyecto objetivo; estructura especificaciones para que una persona o agente autorizado lo implemente. No reemplaza el juicio de ingeniería ni inventa reglas complejas cuando falta contexto. Los documentos generados requieren revisión. El alcance actual incluye biblioteca multiproyecto, versiones explícitas, respaldos JSON y comparación de diferencias. Los perfiles extensibles y adaptadores de contratos siguen pospuestos; los destinos fuera del catálogo pueden documentarse sin prometer una implementación especializada. Los presets versionados conservan las versiones declaradas en el prompt y no se presentan como recomendaciones sobre versiones recientes.
 
 La primera carga necesita descargar los recursos propios. Cuando aparece «Preparación sin conexión completa», puedes recargar, cambiar estilos y exportar con la red desconectada. Las fuentes, el trabajador y los módulos de exportación se guardan localmente en la caché. El service worker requiere origen seguro, como HTTPS o localhost. Abrir `index.html` directamente con `file://` no sustituye servir el sitio estático.
 

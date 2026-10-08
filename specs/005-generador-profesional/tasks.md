@@ -1,6 +1,6 @@
 # Tareas — 005
 
-Fecha: 2026-10-08. H0–H2 autorizados formalmente; tareas 02–19 y cierre 35 en alcance. Tareas 20–34 pospuestas. Dependencias indican orden; trabajar por dominio, definir contratos antes de integraciones y verificar antes de marcar completado.
+Fecha: 2026-10-08. H0–H2 autorizados formalmente; tareas 02–19 y cierre 35 en alcance. Tareas 20–24 autorizadas posteriormente para H3; 25–34 pospuestas. Dependencias indican orden; trabajar por dominio, definir contratos antes de integraciones y verificar antes de marcar completado.
 
 | ID | Hito / dominio | Acción y resultado revisable | Depende de | Evidencia de cierre |
 |---|---|---|---|---|
@@ -46,7 +46,7 @@ Trazabilidad: RF-01 → 03–06; RF-02 → 07–10; RF-03/04 → 11–12; RF-05/
 
 ## Estado de ejecución
 
-T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparación automatizada solicitada por el usuario ante falta de participantes; no declara evaluación humana ni aceptación. T-005-20…34 pospuestas. T-005-35 completada: comprobaciones técnicas, consolidación documental y push normal del hito 84ed6e0 confirmados en PROJECT_STATUS.
+T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparación automatizada solicitada por el usuario ante falta de participantes; no declara evaluación humana ni aceptación. T-005-20…24 completadas tras autorización de H3; T-005-25…34 pospuestas. T-005-35 completada para H0–H2 (84ed6e0) y repetida para H3: cierre documental en curso, push pendiente de confirmación.
 
 | Tareas | Estado y evidencia |
 |---|---|
@@ -61,7 +61,14 @@ T-005-01…19 completadas en el alcance autorizado. T-005-19 utiliza la comparac
 | 17 | Grafo, borrador consentido, bloqueo por secreto/ruta: projectDefinition.spec.ts |
 | 18 | 76 unitarias, 87 recorridos correctos y 3 omitidos; lint/TypeScript/build y mediciones en validation.md |
 | 19 | Banco comparison.json: mismos hechos, tiempos y hallazgos estructurales; cero participantes |
-| 20…34 | Pospuestas por el usuario, sin código nuevo ni pruebas atribuidas |
-| 35 | Completada: push normal de 84ed6e0 confirmado por Git y ls-remote, sin 002 |
+| 20 | Completada: projectLibrary/manualSections; cuatro pruebas de contratos, cuotas, diferencias y secciones |
+| 21 | Completada: almacenamiento CAS, trabajador, respaldo/importación; cinco pruebas de servicios y entradas adversas |
+| 22 | Completada: adaptadores públicos, versiones, procedencia, cancelación y reconciliación; nueve pruebas de integración |
+| 23 | Completada: biblioteca, diferencias y aportaciones; flujos Chromium/Firefox, foco y anchos 375/768/1280 px |
+| 24 | Completada: 94 unitarias, 108 recorridos correctos, cuatro mediciones Firefox omitidas, lint/build y regresión H2 |
+| 25…34 | Pospuestas por el usuario; H4/H5 sin implementación |
+| 35 | H0–H2 sincronizado; cierre H3 documental en curso, pendiente de push normal |
 
-Los límites manuales de accesibilidad y semántica constan en validation.md. Completar verificaciones automáticas no autoriza declarar aceptación ni abrir H3–H5.
+Los límites manuales de accesibilidad y semántica constan en validation.md. Completar verificaciones automáticas no autoriza declarar aceptación ni abrir H4/H5.
+
+Autorización posterior H3: T-005-20…24 y cierre 35 aprobadas el 2026-10-08. T-005-20…24 ejecutadas y verificadas. T-005-22 se dividió en adaptadores públicos sin leer internals del motor/UI. El cierre anterior 35 corresponde a H0–H2; el cierre H3 se confirma por separado tras el push.

@@ -265,3 +265,14 @@ summary{display:flex;align-items:center;gap:7px;cursor:pointer;min-height:44px;c
 .coverage-scroll th,.coverage-scroll td{border:1px solid #494e5c;text-align:left;padding:8px;vertical-align:top}
 .draft-export-note{border:1px solid #494e5c;border-radius:6px;padding:12px;margin-bottom:12px;font-size:11px}
 .draft-export-note p{color:var(--muted)}
+
+.library-trigger{min-height:44px;display:inline-flex;gap:8px;align-items:center}
+.library-dialog{width:min(1000px,calc(100vw - 32px));max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px);overflow:auto}
+.library-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.library-actions .field{flex:1;min-width:160px}.library-actions button{min-height:44px}
+.local-project{border:1px solid #494e5c;border-radius:6px;margin:14px 0;padding:14px;min-width:0}
+.local-project h3{font-size:16px}.local-project small{overflow-wrap:anywhere;color:#b6bfce}
+.version-list{list-style:none;padding:0}.version-list li{border-top:1px solid #494e5c;padding-top:10px;overflow-wrap:anywhere}
+.diff-scroll{overflow:auto;max-height:45dvh;border:1px solid #494e5c}.diff-scroll table{border-collapse:collapse;width:100%;table-layout:fixed;min-width:540px}.diff-scroll th,.diff-scroll td{border:1px solid #494e5c;padding:8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}.diff-scroll pre,.section-comparison pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;max-height:230px;overflow:auto}
+.manual-sections{margin:14px 0;border-top:1px solid #494e5c;padding-top:14px;min-width:0}.manual-sections summary{min-height:44px;cursor:pointer}.manual-sections p{font-size:11px;color:#b6bfce}.manual-addition{padding:12px;border:1px solid #494e5c;margin:12px 0;border-radius:6px}.manual-addition textarea{min-height:100px}.manual-addition small{overflow-wrap:anywhere}.section-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.section-comparison label{min-width:0}.section-comparison pre{padding:10px;border:1px solid #494e5c}
+@media(max-width:767px){.library-dialog{padding:22px 14px}.section-comparison{grid-template-columns:1fr}.header-meta .local-pill{display:none}}

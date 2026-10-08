@@ -5,19 +5,19 @@ Fecha: 2026-10-08.
 | Campo | Estado |
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
-| Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3–H5 pospuestos. |
-| Fase | H0–H2 de 005 verificados técnicamente y sincronizados; T-005-35 completada. Aceptación pendiente; H3–H5 pospuestos. |
+| Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3 autorizado; H4–H5 pospuestos. |
+| Fase | DOCUMENT de cierre H3: T-005-20…24 completadas; T-005-35 consolida evidencia y sincroniza. H4/H5 pospuestos. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
-| Implementación | Modelo canónico versionado, editor/entrevista, trazabilidad y preparación de 34 documentos; MCP opcional de 1500 ms y diseño avanzado conservados. Español y migración aditiva sin pérdida de textos/decisiones. |
+| Implementación | Modelo canónico versionado, editor/entrevista, trazabilidad y preparación de 34 documentos; biblioteca local, versiones, respaldos y aportaciones por sección; MCP opcional de 1500 ms y diseño avanzado conservados. Español y migración aditiva sin pérdida de textos/decisiones. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
-| Verificación actual | 76 unitarias, 87 pruebas de navegador correctas, tres mediciones Firefox omitidas; lint, TypeScript/build correctos; 0 fallos. Evidencia en specs/005-generador-profesional/validation.md. |
-| Rendimiento de referencia | Sandbox 200 ajustes p95 6,2 ms y cero renders ajenos en seis áreas; entrada 2,6 ms, generación extensa 43,5 ms; corpus H2 48,0 ms, cien requisitos 68,2 ms. Banco técnico sin medición de ahorro humano. |
+| Verificación actual | 94 unitarias, 108 pruebas de navegador correctas, cuatro mediciones Firefox omitidas; lint, TypeScript/build correctos; 0 fallos. Evidencia en specs/005-generador-profesional/validation.md. |
+| Rendimiento de referencia | Principal 453,60 kB; sandbox 200 ajustes p95 4,2 ms y cero renders ajenos en seis áreas; entrada 2,0 ms; biblioteca con 20 proyectos/100 RF y 200 eventos p95 3,4 ms. Banco H2 histórico sin medición de ahorro humano. |
 | Compatibilidad | Borradores anteriores, actualización de caché sin recargar edición y exportación sin red comprobados en Chromium/Firefox. |
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
 | Git | Hito 84ed6e0 sincronizado mediante push normal a origin/main y confirmado con ls-remote. Registro documental de cierre consolidado después. 002 sigue excluido. |
-| Próximo paso | Revisión del cliente sobre H2 y su evidencia; H3–H5 requieren autorización posterior. Auditoría manual y revisión semántica pendientes. |
+| Próximo paso | Sincronizar cierre H3 y entregar para revisión; H4/H5 sin autorización. |
 
 ## Propuesta 005 — Historial DOCUMENT previo a autorización
 
@@ -152,3 +152,47 @@ Auditoría: 185 archivos de texto propios sin emojis y 002 ignorado/sin archivos
 Cierre técnico 005: 76 unitarias y 87 recorridos correctos; tres mediciones Firefox omitidas, cero fallos. Lint/TypeScript/build, corpus doce casos, volumen y banco comparativo correctos. T-005-02…19 completadas con la alternativa de medición autorizada; revisión humana/aceptación pendientes. T-005-35 consolida documentación y prepara commit/push normal; H3–H5 sin ejecutar.
 
 T-005-35 completada: push normal 53d13c2..84ed6e0 confirmado por Git; ls-remote devuelve 84ed6e046e61a8972d5c251e3aae83e897abfb0f en refs/heads/main. Árbol de trabajo limpio después del hito, 002 excluido y copia temporal del banco retirada. Se sincroniza este cierre documental, sin despliegue ni aceptación implícita.
+
+## Autorización H3 de 005
+
+2026-10-08: el usuario autoriza exclusivamente T-005-20…24 y cierre T-005-35: biblioteca/versiones locales, respaldo/importación validada, diferencias y adiciones manuales por sección, UI accesible y regresión H2. H4/H5 pospuestos. Presupuesto principal <500 kB, controles/sandbox <16 ms, SPA local, español y cero emojis; 002 excluido. T-005-20 activa, núcleo: src/domain/projectLibrary.ts, manualSections.ts, modelos/validación y pruebas específicas; contratos antes de servicios/UI. Sin dependencias nuevas.
+
+T-005-20 verificada: cuatro pruebas de contratos/diferencias/secciones, TypeScript correcto. Límites/retención y DTO definidos. T-005-21 activa, servicios/trabajadores: almacenamiento CAS, respaldo e importación validada fuera del hilo de UI; pruebas específicas, sin leer componentes/motor.
+
+T-005-21 verificada: ocho pruebas de contratos/servicios, importación adversa, cuota y concurrencia; TypeScript correcto. Trabajador nativo separado del transporte para evitar referencias circulares al empaquetar. T-005-22 activa, integración pública: projectLibraryStore/editorStore/documentStore y App mediante contratos; no leer internals de UI/motor.
+
+Corrección de evidencia intermedia: las ocho pruebas de T-005-21 pasaron, pero TypeScript detectó que el Storage simulado carecía de length/key/clear; corregido el contrato de la prueba. T-005-22 integra transacciones CAS, comparación previa y preservación de aportaciones. Verificación de tipos y continuidad en curso.
+
+T-005-22 verificada: cuatro pruebas de continuidad/importación/CAS/reconciliación y cuatro de servicios, TypeScript correcto. Comparación obsoleta rechazada y estado previo conservado al recuperar/importar. T-005-23 activa, UI: components/projects/, DocumentCanvas, cabecera de StudioLayout y estilos; consume acciones/DTO documentados, sin leer internals del núcleo.
+
+T-005-23: TypeScript/lint/build correctos; principal 453,30 kB, trabajador de importación 112,79 kB y módulos UI separados. T-005-24 preparación IMPLEMENT, dominio pruebas: recorridos de biblioteca, restauración/importación y aportaciones; luego VALIDATE sin lectura de implementaciones.
+
+T-005-24 parcial: 88 unitarias correctas; cuatro recorridos nuevos Chromium pasan. Dos fallos: recarga inmediata anterior al guardado diferido y nombre de sección incorrecto en la prueba. Volver a IMPLEMENT T-005-22 (App/biblioteca): guardar borrador al ocultar/cerrar página y reconciliar recuperación con el proyecto activo; luego corregir selectores de prueba en T-005-24. No se declara validación completa.
+
+Revisión final de conflictos antes de VALIDATE completa: IMPLEMENT T-005-20/21, núcleo/servicios, rechazar credenciales en metadatos de respaldo y serializar escrituras con Web Locks cuando esté disponible. T-005-22 registra procedencia de la edición para distinguir recuperación inmediata de una biblioteca actualizada por otra pestaña; no sustituir una revisión ajena al recargar. Sin cambios de alcance ni dependencias.
+
+T-005-20…22: procedencia de cierre y recuperación como copia ante revisión ajena integrada. T-005-23/24 IMPLEMENT: ajustar cancelación durante confirmación y retorno de foco, ampliar casos de cuota/seguridad; después regresión final.
+
+IMPLEMENT T-005-20 (núcleo): revisión final de invariantes de activeId/revision y evitar parsear secciones cuando no existen aportaciones. T-005-24 amplía pruebas de continuidad y mide interfaz con biblioteca poblada; luego VALIDATE.
+
+Regresión previa a cierre: lint correcto; una prueba de cuota usa nombre de helper incorrecto (memory en lugar de memoryStorage), causando fallo de prueba y TypeScript. Corregido en IMPLEMENT T-005-24, dominio tests; repetir unitarias y build antes de navegador completo. No hay fallo de cuota atribuido al producto.
+
+T-005-24 pasa a VALIDATE: ejecutar salidas de regresión completa H2/H3 y medir corpus/límites/rendimiento. No se inspecciona implementación en esta fase; cualquier corrección vuelve a tarea/domain registrado.
+
+T-005-24: todos los recorridos H3 Chromium pasan; biblioteca con veinte proyectos/cien RF mide p95 3,4 ms. Verificación adicional de recuperación: IMPLEMENT T-005-22, exportar respaldo debe ser lectura sin exigir escritura previa cuando se agota cuota o hay conflicto entre pestañas; añadir prueba antes de ajustar el adaptador. La regresión ya iniciada continúa contra su build aislado, sin cambiar dist en vuelo.
+
+T-005-22: la prueba adicional reprodujo bloqueo del respaldo completo al fallar cuota. Corregido: exportación de solo lectura sobre instantánea validada con edición activa, sin exigir escribir biblioteca. La prueba conserva historial y textos; verificarla y repetir recorridos afectados tras terminar la regresión en curso.
+
+Regresión completa intermedia: 101 correctas, cuatro mediciones Firefox omitidas y un fallo Firefox al crear un proyecto después de guardar una versión. Volver a IMPLEMENT T-005-22/24 (integración/pruebas): reproducir la transición y conservar diagnóstico antes de corregir; no atribuir el fallo a un selector sin evidencia.
+
+Reproducción: tres repeticiones Firefox de continuidad pasan; captura de estados no muestra rechazo del modelo. Se identifica una posible carrera: el guardado automático puede deshabilitar el botón entre eventos de puntero; se añade una prueba con trabajador retrasado para comprobarla. IMPLEMENT T-005-22: separar estado ocupado de acciones explícitas y guardado en segundo plano, manteniendo cola/CAS. Añadir prueba de interacción durante autoguardado y volver a verificar Firefox.
+
+T-005-22: prueba de clic con trabajador retrasado pasa en Chromium/Firefox; autoguardado no deshabilita acciones. 94 unitarias correctas, lint/TypeScript/build correctos. Prueba offline adicional detecta selector ambiguo (tres role=status); corregir en IMPLEMENT tests T-005-24 hacia aviso .notice y verificar ese flujo antes de la regresión final.
+
+Última revisión IMPLEMENT T-005-20/24: conservar el orden de varias aportaciones al mismo destino y comprobar encabezados dentro de cercas de código; contratos de fidelidad, sin cambiar UI ni manifiesto. Después build/pruebas y VALIDATE final.
+
+T-005-24 VALIDATE final: 94 unitarias, lint y TypeScript/build correctos; offline H3 correcto en Chromium/Firefox y clic con autoguardado retrasado correcto. Se ejecuta regresión completa final de H2/H3 sobre el último build; no modificar implementación ni archivos de pruebas en vuelo.
+
+T-005-24 completada: regresión final de 112 casos, 108 correctos y cuatro mediciones Firefox omitidas; cero fallos. 94 unitarias, lint y TypeScript/build correctos. Principal 453,60 kB; p95 de edición con 20 proyectos/100 RF 3,4 ms y sandbox estético 4,2 ms. T-005-35 DOCUMENT activa: consolidar manual, decisiones, trazabilidad y evidencia de H3 antes del commit/push normal. No leer ni modificar implementaciones en este cierre.
+
+Auditoría de cierre H3: 200 archivos de texto propios sin emojis; enlaces locales afectados existentes y git diff --check correcto. 002 ignorado y sin archivos seguidos. Pruebas y build finales completos; preparar commit de H3 y push normal al remoto existente, sin aceptación ni despliegue.

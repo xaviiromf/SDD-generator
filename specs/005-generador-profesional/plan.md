@@ -1,6 +1,6 @@
 # Plan de evolución profesional de SDD-Studio
 
-Fecha: 2026-10-08. Estado: H0–H2 aprobados el 2026-10-08; IMPLEMENT autorizado con dependencias existentes. H3–H5 pospuestos; no se autoriza despliegue. [Requisitos](spec.md), [tareas](tasks.md) y [verificación documental](validation.md).
+Fecha: 2026-10-08. Estado: H0–H3 aprobados, implementados y verificados el 2026-10-08 con dependencias existentes. Cierre documental y sincronización H3 en curso; H4/H5 pospuestos; no se autoriza despliegue. [Requisitos](spec.md), [tareas](tasks.md) y [verificación documental](validation.md).
 
 ## 1. Dictamen como líder técnico y cliente
 
@@ -93,12 +93,12 @@ El diseño de revisión y procedencia toma como referencia la documentación de 
 |---|---|---|
 | Núcleo | src/domain/projectDefinition.ts, projectValidation.ts y readiness.ts; src/engine/projectProjection.ts, requirements.ts, coverage.ts y plantillas afectadas | Esquema, IDs, revisión, diagnósticos y resultados de generación. |
 | Catálogo, dentro del núcleo | H4 pospuesto: src/catalog/profiles.ts y metadatos del catálogo | Perfiles declarativos y lista de IDs permitidos versionada. |
-| UI | H1/H2: src/components/requirements/, review/ y estilos; projects/ queda para H3 | Props, DTO y acciones públicas documentadas; sin leer compilador. |
-| Servicios | H1: src/services/draftStorage.ts; projectStorage.ts/projectImport.ts quedan para H3 | Respaldo, migración, límites, cancelación y revisiones. |
+| UI | H1/H2: src/components/requirements/, review/ y estilos; H3: src/components/projects/ | Props, DTO y acciones públicas documentadas; sin leer compilador. |
+| Servicios | H1: src/services/draftStorage.ts; H3: src/services/projectStorage.ts, projectImport.ts y trabajador de validación | Respaldo, migración, límites, cancelación y revisiones. |
 | Integración | Adaptadores concretos en src/store/ y src/app/, nombrados por tarea | Acciones transaccionales y selectores superficiales; sin acceso masivo a internals. |
 | Documentación | specs/005-generador-profesional/, documentación vigente y guías afectadas | Requisitos, contratos, fuentes, pruebas y autorización. |
 
-Las rutas de H1/H2 se concretaron durante las tareas de contrato antes de abrir sus subsistemas; las rutas H3–H5 siguen propuestas y sin implementación. Cada tarea cambia de dominio de forma registrada, conforme a AGENTS.md.
+Las rutas de H1/H2 se concretaron durante las tareas de contrato antes de abrir sus subsistemas; las rutas H3 se concretaron en los contratos añadidos al final de este plan. Solo H4/H5 siguen propuestas y sin implementación. Cada tarea cambia de dominio de forma registrada, conforme a AGENTS.md.
 
 ## 6. Entregas secuenciales y puertas de salida
 
@@ -170,4 +170,31 @@ Compilation añade coverage/readiness opcionales. Coverage contiene enlaces {req
 
 ## Resultado de H0–H2
 
-Implementación y verificación técnica completadas el 2026-10-08; método de evaluación T-005-19 sustituido por banco automatizado a petición del usuario. Evidencia en validation.md y corpus.md. La revisión semántica y aceptación siguen pendientes. H3–H5 no ejecutados. La recomendación de aprobación anterior se conserva como contexto histórico, ya resuelta para H0–H2.
+Implementación y verificación técnica completadas el 2026-10-08; método de evaluación T-005-19 sustituido por banco automatizado a petición del usuario. Evidencia en validation.md y corpus.md. La revisión semántica y aceptación siguen pendientes. En ese cierre H3–H5 no estaban ejecutados; H3 se autorizó e implementó posteriormente conforme al contrato siguiente. La recomendación de aprobación anterior se conserva como contexto histórico, ya resuelta para H0–H2.
+
+
+## Contrato H3 autorizado: T-005-20…24
+
+Persistencia: localStorage con biblioteca serializada atómica bajo `sdd-studio:biblioteca:v1`, independiente de la clave histórica del borrador. Máximo veinte proyectos, cinco versiones explícitas por proyecto y 2 MiB de representación UTF-16 por biblioteca. Configuración por instantánea: máximo 512 KiB UTF-8. Al alcanzar cuota/retención se rechaza el cambio sin borrar historial; eliminación es explícita. El borrador activo se guarda con espera de 800 ms y al cambiar proyecto; las versiones se crean por acción expresa. No se guarda un ZIP ni 34 documentos en cada versión: basta configuración y adiciones.
+
+Biblioteca schemaVersion 1: revision, activeId y projects. Proyecto: id independiente del slug, createdAt/updatedAt ISO, draft Configuration y versions. Versión: id estable, label y createdAt, configuration. Fechas de metadatos nunca se inyectan en documentos deterministas. Migrar el borrador histórico una sola vez y conservar su clave. Si una biblioteca existente diverge de un borrador no representado en sus proyectos/versiones, preservarlo como proyecto recuperado antes de cambiar la edición; si falla la persistencia, no sustituir la edición. Compare-and-swap del valor almacenado y eventos storage evitan sobrescrituras silenciosas entre pestañas.
+
+Respaldo JSON: format `sdd-studio-backup`, schemaVersion 1 y projects, sin sesiones/credenciales MCP. Exportar un proyecto o todos; importación limitada a 2 MiB UTF-8, claves permitidas, profundidad 50, IDs únicos, versiones/fechas, configuración/diseño/modelo y textos seguros. Rechazar esquemas desconocidos, claves de prototipo, rutas ajenas, referencias rotas, emojis o secretos aparentes. No aceptar ZIP ni código ejecutable. Leer/validar/comparar no escribe almacenamiento; confirmar permite copia con nuevo ID o sustitución explícita conservando respaldo del estado anterior. Cancelar mantiene estado y almacenamiento idénticos.
+
+Configuration.manualSections es opcional, migración aditiva: hasta cincuenta adiciones, total 128 KiB UTF-8, id, documentId del manifiesto, sectionKey, title, text y baseContent. Texto hasta 10000 caracteres, base hasta 40000. Se añaden aportaciones separadas, nunca se edita directamente el bloque generado. La clave de sección deriva de encabezado normalizado (ID de RF estable cuando exista); `documento` añade al final. Regenerar conserva adiciones. Si cambia o desaparece la sección base, publicar queda pendiente y exportación bloqueada por revisión hasta resolver: conservar aportación en la sección nueva o moverla al final. Cancelar no acepta la nueva revisión. No borrar texto automáticamente ni resolver por heurística. El contenido combinado sigue limitado a 1 MiB y los bloqueos de seguridad permanecen absolutos.
+
+Diferencias públicas: entradas {path,before,after,kind}, total y máximo 200 entradas mostradas, sin ocultar el recuento restante. Comparar configuración por campos e IDs; revisión/metadatos se muestran aparte. UI siempre presenta origen/destino antes de reemplazar o recuperar una versión.
+
+Adaptadores nombrados de T-005-22: src/store/projectLibraryStore.ts (acciones initialize/save/open/create/delete/export/prepareImport/confirmImport/prepareRestore/confirmRestore y pendingComparison/error); src/store/editorStore.ts (restore validado y acciones de adiciones); src/store/documentStore.ts (pendingCompilation/manualConflicts y confirmación mediante DTO). src/app/App.tsx monta inicialización diferida y acceso a biblioteca sin suscribir raíz; componentes de proyectos consumen estos contratos, nunca internals del compilador. T-005-23 incluye montajes diferidos en IdeaEditor/DocumentCanvas y estilos. Servicios publican read/writeLibrary, exportBackup y parseBackup; rechazos contienen mensajes españoles, no contenido sensible.
+
+Refinamiento T-005-21: análisis/importación y validación/serialización de biblioteca mediante trabajador dedicado nativo, sin dependencias. readLibrary/writeLibrary son asíncronos; CAS se verifica inmediatamente antes de setItem, después del trabajo externo al hilo UI. Sin Worker disponible, validación local conservadora como recuperación; informar fallo de trabajador sin escribir datos inválidos.
+
+Montajes UI concretados T-005-23: src/app/StudioLayout.tsx integra el acceso diferido a biblioteca; DocumentCanvas integra aportaciones/conflictos también con carga diferida. documentStore expone generatedCompilation (texto base), pendingCompilation y manualConflicts; documentSections/reconcileDocuments son contratos públicos de manualSections. El editor manual usa el texto base, nunca captura una sección ya combinada.
+
+Conflictos entre pestañas: Web Locks serializa la comprobación CAS y escritura donde esté disponible; alternativa conservadora CAS en el mismo turno si no hay Web Locks. Una instantánea auxiliar de edición, `sdd-studio:edicion:v1`, guarda configuración y referencia a proyecto/revisión de biblioteca (hasta 512 KiB de configuración); no forma parte del respaldo exportado. Se actualiza tras escrituras y al cerrar. Solo recuperar sobre el proyecto activo cuando esa procedencia coincide; en caso de divergencia conservar la edición como proyecto nuevo sin sobrescribir una revisión ajena. El límite de 2 MiB corresponde a la biblioteca, aparte de las claves de borrador/continuidad.
+
+## Cierre técnico H3
+
+T-005-20…24 ejecutadas secuencialmente con cambios de dominio registrados. La biblioteca usa localStorage, validación en un trabajador nativo y comparación previa a toda activación/recuperación/importación. El respaldo es una lectura de instantáneas validadas; no depende de disponer de cuota para guardar. La procedencia de la edición distingue una recuperación normal de cambios hechos por otra pestaña. El autoguardado no deshabilita las acciones de usuario.
+
+Se preservan las 34 rutas y el motor de H2. Las aportaciones se reconcilian mediante DTO públicos antes de publicar una generación; la resolución nunca elimina el texto del usuario. Evidencia de importación adversa, cuota, conflictos, continuidad, funcionamiento sin red, accesibilidad automatizada y presupuesto de rendimiento en [validation.md](validation.md). Sin nuevos paquetes, H4/H5 ni despliegue.
