@@ -1,0 +1,24 @@
+import { memo, useState, useEffect } from 'react';
+import { useShallow } from 'zustand/react/shallow';
+import { useEditorStore } from '../../store/editorStore';
+import { resolveDesign, neutralDesign, type DesignGroups } from '../../domain/design';
+import { finishes, finishLabels, fontFamilies, monoFamilies } from '../../catalog/designOptions';
+const colorNames = { background: 'Fondo', surface: 'Superficie y tarjetas', primaryAccent: 'Acento principal', secondaryAccent: 'Acento secundario', border: 'Borde', text: 'Texto' };
+const HexField = memo(function HexField({ name, value, onChange, optional }: { name: string; value: string; onChange: (value: string) => void; optional: boolean }) {
+    const [draft, setDraft] = useState(value);
+    useEffect(() => setDraft(value), [value]);
+    const valid = /^#[\da-f]{6}([\da-f]{2})?$/i.test(draft) || optional && draft === '';
+    return <label className="design-color"><span>{name}</span><div><input aria-label={`Selector de ${name.toLowerCase()}`} type="color" value={/^#[\da-f]{6}/i.test(value) ? value.slice(0, 7) : '#000000'} onChange={e => { setDraft(e.target.value); onChange(e.target.value); }}/><input aria-label={`HEX de ${name.toLowerCase()}`} value={draft} maxLength={9} aria-invalid={!valid} onChange={e => { const v = e.target.value; setDraft(v); if (/^#[\da-f]{6}([\da-f]{2})?$/i.test(v) || optional && !v) onChange(v); }}/></div>{!valid && <small>Usa #RRGGBB o #RRGGBBAA.</small>}{optional && <small>Vacío desactiva el acento secundario.</small>}</label>;
+});
+export const AdvancedDesignPanel = memo(function AdvancedDesignPanel() {
+    const [archetype, designOverrides] = useEditorStore(useShallow(s => [s.config.selections.archetype, s.config.designOverrides] as const));
+    const config = { selections: { archetype }, designOverrides };
+    const set = useEditorStore(s => s.setDesignOverride);
+    const clear = useEditorStore(s => s.clearDesignOverrides);
+    const d = resolveDesign(config) ?? neutralDesign;
+    function select<G extends keyof DesignGroups>(group: G, key: keyof DesignGroups[G], label: string, options: readonly (string | number)[], labels?: Record<string, string>) {
+        const originalFinish = group === 'finish' && !!d.baseTexture;
+        return <label className="field"><span>{label}</span><select aria-label={label} value={originalFinish ? 'original' : String(d[group][key])} onChange={e => set(group, key, (typeof options[0] === 'number' ? Number(e.target.value) : e.target.value) as DesignGroups[G][keyof DesignGroups[G]])}>{originalFinish && <option value="original">Original: {d.baseTexture}</option>}{!options.includes(d[group][key] as string | number) && <option value={String(d[group][key])}>Original: {String(d[group][key])}</option>}{options.map(o => <option key={o} value={o}>{labels?.[o] ?? o}</option>)}</select></label>;
+    }
+    return <details className="advanced-design"><summary>Ajustes Avanzados de Diseño</summary><div className="design-controls"><fieldset><legend>Tipografía local</legend>{select('typography', 'headingFont', 'Fuente de títulos', fontFamilies)}{select('typography', 'bodyFont', 'Fuente de cuerpo', fontFamilies)}{select('typography', 'monoFont', 'Fuente de código', monoFamilies)}</fieldset><fieldset><legend>Colores</legend>{Object.entries(colorNames).map(([key, name]) => <HexField key={key} name={name} value={d.colors[key as keyof typeof d.colors]} optional={key === 'secondaryAccent'} onChange={v => set('colors', key as keyof DesignGroups['colors'], v)}/>)}</fieldset><fieldset><legend>Acabado y botones</legend>{d.baseTexture && <p>Acabado original: {d.baseTexture}</p>}{select('finish', 'texture', 'Textura', finishes, finishLabels)}{select('buttons', 'radius', 'Radio de esquinas (px)', [0, 6, 24], { 0: 'Recto (0 px)', 6: 'Suave (6 px)', 24: 'Cápsula (24 px)' })}{select('buttons', 'variant', 'Variante del botón', ['solid', 'outline', 'ghost'], { solid: 'Sólido', outline: 'Contorno', ghost: 'Discreto' })}{select('buttons', 'shadowDepth', 'Profundidad de sombra', [0, 1, 2, 3])}</fieldset><fieldset><legend>Tarjetas e iconos</legend>{select('cards', 'borderWidth', 'Ancho del borde (px)', [0, 1, 2])}{select('cards', 'shadow', 'Sombra de tarjetas', ['none', 'soft', 'hard'], { none: 'Sin sombra', soft: 'Desenfoque suave', hard: 'Desplazada' })}{select('cards', 'density', 'Densidad del contenido', ['compact', 'normal', 'spacious'], { compact: 'Compacta (12 px)', normal: 'Normal (20 px)', spacious: 'Amplia (28 px)' })}{select('icons', 'strokeWidth', 'Grosor de iconos (px)', [1.5, 2, 2.5])}{select('icons', 'size', 'Tamaño de iconos (px)', [16, 20, 24])}{select('motion', 'preset', 'Transiciones', ['snappy', 'fluid', 'spring', 'none'], { snappy: 'Rápidas (100 ms)', fluid: 'Fluidas (300 ms)', spring: 'Elásticas', none: 'Sin animaciones' })}</fieldset><button onClick={clear}>Restablecer ajustes personalizados</button></div></details>;
+});

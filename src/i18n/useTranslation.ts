@@ -1,8 +1,3 @@
-import { useCallback } from 'react';
-import { useUIStore } from '../store/uiStore';
 import { uiText } from './translate';
-export function useTranslation() {
-    const locale = useUIStore(s => s.locale);
-    const t = useCallback((text: string | undefined) => uiText(text, locale), [locale]);
-    return { locale, t };
-}
+const t = (text: string | undefined) => uiText(text, 'es');
+export function useTranslation() { return { locale: 'es' as const, t }; }

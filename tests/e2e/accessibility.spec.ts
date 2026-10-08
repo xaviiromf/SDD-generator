@@ -36,7 +36,8 @@ test('los arquetipos usan fuentes locales incluso sin conexión', async ({ page,
     await page.reload();
     await context.setOffline(true);
     await page.getByRole('button', { name: 'Estética y tokens' }).click();
-    const families = await page.locator('.archetype-sample h3,.archetype-sample p').evaluateAll(elements => [...new Set(elements.map(e => getComputedStyle(e).fontFamily.split(',')[0].replaceAll('"', '').replaceAll("'", '').trim()))]);
+    await page.getByText('Ajustes Avanzados de Diseño', { exact: true }).click();
+    const families = await page.getByLabel('Fuente de títulos', { exact: true }).locator('option').evaluateAll(elements => elements.map(e => (e as HTMLOptionElement).value));
     expect(families).toHaveLength(30);
     const results = await page.evaluate(async (names) => { const result = []; for (const name of names) {
         try {
@@ -48,7 +49,7 @@ test('los arquetipos usan fuentes locales incluso sin conexión', async ({ page,
         }
     } return result; }, families);
     expect(results.filter(r => !r.loaded)).toEqual([]);
-    await expect(page.locator('.archetype')).toHaveCount(21);
+    await expect(page.locator('.archetype')).toHaveCount(1);
 });
 test('portapapeles denegado muestra copia manual; borrar borrador requiere confirmación', async ({ page }) => {
     await page.addInitScript(() => { Object.defineProperty(navigator, 'clipboard', { value: { writeText: () => Promise.reject(new Error('Denegado')) } }); });

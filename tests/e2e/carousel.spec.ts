@@ -1,0 +1,21 @@
+import { test, expect } from '@playwright/test';
+test('navega sin seleccionar y protege los ajustes al cambiar de base', async ({ page }) => {
+    await page.goto('./');
+    await page.getByRole('button', { name: 'Estética y tokens' }).click();
+    await page.getByRole('button', { name: 'Estilo siguiente' }).click();
+    await expect(page.getByText('2 / 21', { exact: true })).toBeVisible();
+    await expect(page.getByTestId('design-sandbox')).toHaveCount(0);
+    await page.getByRole('button', { name: 'Seleccionar este estilo' }).click();
+    await expect(page.getByRole('button', { name: 'Preset Activo' })).toHaveAttribute('aria-pressed', 'true');
+    await page.getByText('Ajustes Avanzados de Diseño', { exact: true }).click();
+    await page.getByLabel('HEX de texto', { exact: true }).fill('#FFFFFF');
+    await page.getByRole('button', { name: 'Estilo siguiente' }).click();
+    await page.getByRole('button', { name: 'Seleccionar este estilo' }).click();
+    await page.getByRole('button', { name: 'Cancelar', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Seleccionar este estilo' })).toBeFocused();
+    await page.getByRole('button', { name: 'Seleccionar este estilo' }).click();
+    await page.getByRole('button', { name: 'Conservar ajustes' }).click();
+    await expect(page.getByLabel('HEX de texto', { exact: true })).toHaveValue('#FFFFFF');
+    await page.getByRole('button', { name: 'Preset Activo' }).click();
+    await expect(page.getByTestId('design-sandbox')).toBeVisible();
+});

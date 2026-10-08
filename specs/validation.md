@@ -93,3 +93,43 @@ La evidencia detallada de 002 se conserva localmente fuera del seguimiento Git p
 Implementación 003 solicitada por el usuario, con confirmación de preservar sus textos. UI y kit admiten ES/EN de forma independiente; el catálogo, mensajes, plantillas de los 34 documentos y políticas del destino siguen su selección correspondiente. Visor, copia, ZIP, comentarios de preparación y metadatos de tokens coherentes; rutas e identificadores preservados.
 
 Lint, TypeScript, build y 35 unitarias pasan. Suite completa Chromium/Firefox: 50 pruebas pasan y dos mediciones omitidas, salida 0. Referencia p95: ingreso 1,3 ms; generación española 39 ms, inglesa 54,7 ms; conjuntos 10,9 ms; ZIP 9,5 ms. Ninguna tarea larga en la referencia española. Matriz de cuatro combinaciones, recarga/offline, datos de usuario, teclado y ancho 320 px comprobados. Evidencia detallada en [003-idiomas/validation.md](003-idiomas/validation.md). Los pendientes manuales, aceptación y publicación siguen separados.
+
+## Ampliación 004 — Implementación autorizada y evidencia técnica
+
+Fecha: 2026-10-07. Plan, AGENTS.md y cambio a español integral aprobados formalmente por el usuario. Implementación secuencial T-004-04…20 realizada; T-004-21/22 verifican los escenarios y T-004-23 registra la sincronización. No se añaden dependencias, servidor propio ni modelo de IA.
+
+La aplicación elimina ambos controles ES/EN y migra borradores/preferencias conservando nombre, idea, alcance, selecciones y personalización. Los 34 documentos, copia, ZIP, tokens y preparación usan español. Los textos escritos por el usuario permanecen literales. Los identificadores y nombres técnicos conservan su forma.
+
+### Resultados y método de referencia
+
+- Lint y TypeScript: código de salida 0.
+- Vitest: 52 pruebas en 13 archivos, código 0; incluye descarte de compilación remota anterior al apagar MCP aunque no cambie la revisión del borrador.
+- Build de producción: código 0; aplicación 492,56 kB / 159,06 kB gzip, trabajador 169,77 kB, CSS 29,83 kB / 7,34 kB gzip. Exportaciones ZIP diferidas.
+- Navegadores: 75 pruebas pasan en una ejecución completa Chromium/Firefox de 78 casos; 0 fallos, 0 inestables, código de salida 0 (178,92 s). Tres mediciones se reservan a Chromium por ser el entorno de referencia.
+- Exploración de diseño y paneles: 320, 375, 767, 768, 1279, 1280 y 1440 px, sin desbordamiento. Teclado, foco, movimiento reducido y fuentes locales sin conexión verificados. El modal MCP se comprueba además a 320/768/1280 px; tablet requiere activar el panel Idea conforme a su navegación.
+
+| Medición Chromium sobre producción | Muestras | p95 | Presupuesto |
+|---|---|---|---|
+| Ajuste hasta mutación de estilos y lectura de estilo calculado | 200 | 3,8 ms | <16 ms |
+| Evento de edición de idea cercana a 20.000 caracteres | 230 | 1,7 ms | <16 ms |
+| Disponibilidad de revisión documental | 30 | 36,2 ms | <=150 ms |
+| Aplicación de conjuntos | 30 | 9,6 ms | <16 ms |
+| Empaquetado ZIP tras preparación inicial | 30 | 10,7 ms | <100 ms |
+
+La instrumentación React identifica seis áreas y compara propiedades/estado entre commits: raíz, cabecera, idea, árbol documental, medidor y campos tecnológicos. Ninguna presenta renders adicionales durante los 200 ajustes; los controles, muestra y documentos cuyo contenido cambia sí se actualizan. No hay tareas largas en el escenario de edición. La medición describe actualización de estilos, no una garantía universal de frecuencia de pantalla o FPS.
+
+### MCP y límites de la verificación
+
+HTTP JSON, respuestas SSE, transporte heredado, autodetección tras 405, fragmentación UTF-8, líneas múltiples, negociación de versión/sesión/herramienta, límites de 128 KiB y respuestas incompatibles se verifican con transporte simulado. Un servidor HTTP/SSE local de pruebas verifica CORS real, credencial en cabecera, ausencia de idea durante prueba de conexión y apagado sin nuevos envíos. Se comprueban 401/403/500, IDs desconocidos, confianza inválida, compatibilidad, prioridades, exclusiones, propuestas y respuestas obsoletas. El plazo total de 1500 ms y espera de 300 ms se verifican con reloj controlado; el navegador también prueba respuesta demorada, fallback, desconexión y vuelta a conexión.
+
+El token queda exclusivamente en memoria; preferencias persistidas contienen enabled/endpoint/transport. No hay datos MCP en ZIP ni en el precache. La conexión a un servidor/modelo externo del usuario y su precisión semántica real no se han evaluado: requieren endpoint y configuración concretos. La confianza declarada por el servidor no equivale a precisión calibrada.
+
+### Diseño, regresión y exclusiones
+
+Contratos rechazan opciones, claves, familias no locales y valores inválidos. Resolver neutro/base/personalización compartido por muestra, plan, constitution y tokens; acabados base se conservan hasta elegir una textura propia. HEX parcial permanece en el campo, alfa se compone para contraste y botones se evalúan sobre su tarjeta/fondo. CSS/SVG propios sin recursos remotos; seis acabados, fuentes de código, estados, sombras, densidad, iconos y movimiento forman parte de la salida. Tailwind 4 usa CSS y Tailwind 3 su perfil explícito con recetas. El ZIP conserva exactamente 34 archivos.
+
+El carrusel muestra una ficha, navega sin aplicar, conserva ajustes al cancelar o desactivar y devuelve foco; cambiar de base pide conservar/restablecer/cancelar. Se mantiene regresión de Django, incompatibilidades, portapapeles denegado, datos corruptos, secretos, HTML como texto, trabajador y caché offline.
+
+Se conservan pendientes T-001-35,38,39: lector de pantalla real, ampliación real del navegador y teléfono físico. WebKit mantiene la limitación del entorno ya registrada. La emulación y revisión de capturas no sustituyen aceptación humana; no se despliega el sitio. `specs/002-kit-completo/` continúa ignorado y sin archivos seguidos por Git. Escaneo de texto propio: cero emojis; `git diff --check` correcto.
+
+Comandos finales: `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build` y `PLAYWRIGHT_JSON_OUTPUT_NAME=test-results/final-results.json npx playwright test --reporter=list,json`, todos con código 0. El informe final contiene expected=75, skipped=3, unexpected=0 y flaky=0. El fallo previo de la prueba de modal en tablet se corrigió activando Idea antes de abrir ajustes; la ejecución final completa ya usa esa precondición.

@@ -1,5 +1,7 @@
 # Plan técnico — 001 / SDD-Studio
 
+Estado de la ampliación activa 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
+
 Especificación: [spec.md](spec.md). Fecha: 2026-10-06. Estado: **aprobado el 2026-10-06**. Implementación autorizada. Las rutas descritas inicialmente como propuestas se contrastan con la trazabilidad y el informe de verificación.
 
 ## 1. Inspección y decisiones
@@ -283,3 +285,94 @@ Añadir campos api y addons al contrato versionado compatible con borradores pre
 ## Integración 003 — Idiomas
 
 Catálogos en src/i18n/, useTranslation para UI y renderer literal/template para documentos. Locale UI en uiStore; sddLanguage en editorStore/Configuration con revisión y persistencia del borrador. Contexto y templates reciben idioma explícito; servicios de exportación mantienen coherencia. El visor declara su lang independientemente de document.documentElement.lang. Diseño y verificación en specs/003-idiomas/plan.md.
+
+## Ampliación 004 — Plan aprobado
+
+Fecha: 2026-10-07. Plan y AGENTS.md aprobados; implementación autorizada formalmente tras DOCUMENT. RF-004-01…14 en spec.md gobiernan esta ampliación y sus cambios respecto a 003. No se instalan dependencias en esta fase.
+
+### Arquitectura y límites entre dominios
+
+Mantener React, TypeScript, Zustand, Radix, lucide-react, worker y exportaciones existentes. Transporte propuesto mediante fetch, AbortController, ReadableStream y TextDecoder; controles nativos/Radix existentes; carrusel manual con una ficha, sin librería. No utilizar el worker de compilación como cliente HTTP ni hacer depender la muestra visual de la red. Una revisión documental completa permanece asíncrona; la muestra recibe los valores efectivos directamente.
+
+| Dominio/tarea | Archivos propuestos o afectados | Contrato y límite de lectura |
+|---|---|---|
+| Documentación | AGENTS.md, specs/spec.md, plan.md, tasks.md, docs/PROJECT_STATUS.md, DECISIONS.md, TRACEABILITY.md | Definir contratos antes de programar; no leer implementación completa en DOCUMENT |
+| Núcleo de diseño | src/domain/design.ts, src/domain/models.ts, validation.ts, maturity.ts, src/catalog/designOptions.ts | Tipos, valores por defecto, resolución y validación; sin acceso a componentes/estilos |
+| Núcleo de inferencia | src/domain/intent.ts, src/domain/compatibility.ts, src/engine/matcher.ts, scopeRules.ts | Normalizar inferencias compatibles y prioridades; no leer UI ni cliente de transporte |
+| Núcleo documental | src/engine/kitContext.ts, templates/plan.ts, constitution.ts y otras plantillas afectadas | Recibir diseño efectivo validado; no inspeccionar sandbox/carrusel |
+| Servicios | src/services/mcpClient.ts, intentCoordinator.ts, draftStorage.ts, tokenExport.ts, offlineRegistration.ts; src/workers/generatorClient.ts | Adaptadores y coordinación con DTO de contrato; sin leer internals de UI o compilador |
+| UI | src/components/storyteller/McpStatus.tsx, McpSettings.tsx; aesthetics/AdvancedDesignPanel.tsx, DesignSandbox.tsx, ArchetypeCarousel.tsx, AestheticStudio.tsx, ArchetypeCard.tsx; src/styles/app.css | Props/acciones documentadas; prohibido inspeccionar internals del motor/compilador |
+| Integración | src/store/mcpStore.ts, editorStore.ts, uiStore.ts; src/app/App.tsx, StudioLayout.tsx; src/components/navigation/LanguageToggles.tsx; src/i18n/ | Tareas separadas de conexión/migración, solo consumidores públicos de los contratos |
+| Verificación | tests/unit/mcp.test.ts, design.test.ts, intent.test.ts, services.test.ts; tests/e2e/mcp.spec.ts, design.spec.ts, carousel.spec.ts, performance.spec.ts | Preparar casos durante IMPLEMENT; en VALIDATE leer solo salidas, trazas y reportes |
+
+Las rutas nuevas son propuestas; src/offline/service-worker.js ya existe y conserva su función de caché de recursos. La sección anterior enumera destinos de tareas, no concede permiso para abrirlos todos. En cada tarea registrar dominio y leer únicamente lo necesario. Los DTO y las reglas de importación se fijan en este documento; consumir un tipo no obliga a leer la implementación de otro dominio.
+
+### Diseño: esquema, resolución y acciones
+
+Extender Configuration con designVersion:1 y designOverrides opcionales, preservando el esquema externo v1 de borradores si una migración aditiva resulta compatible; validar antes de restore y antes del worker. Mantener selections.archetype como referencia única de base; no duplicar otro ID mutable en persistencia. baseArchetypeId del DTO efectivo se deriva de esa selección.
+
+| Grupo | Propiedades y valores propuestos |
+|---|---|
+| Tipografía | headingFont, bodyFont, monoFont: familias OFL ya incluidas; filtrar monoespaciadas reales para código, conservar licencias y disponibilidad offline |
+| Colores | background, surface, primaryAccent, secondaryAccent, border, text; HEX 6/8 dígitos, secundario desactivable; texto secundario existente conserva valor de base o neutro |
+| Acabado | grain, scanlines, paper, frosted, matte, mesh; recetas cerradas locales, sin URL ni CSS arbitrario |
+| Botones | radius 0/6/24 px, variant solid/outline/ghost; shadowDepth 0/1/2/3, presets de geometría explicitados en el catálogo |
+| Tarjetas | borderWidth 0/1/2 px; shadow none/soft/hard; density compact/normal/spacious con padding 12/20/28 px |
+| Iconos | strokeWidth 1.5/2/2.5; size 16/20/24 px, sin reducir área de clic de 44 px |
+| Movimiento | snappy 100 ms, fluid 300 ms, spring 300 ms con curva de rebote documentada, none 0 ms; prefers-reduced-motion fuerza 0 ms |
+
+Valores neutros de diseño personal: tipografías Geist Sans/Inter/JetBrains Mono, paleta del estudio documentada, secundario desactivado, mate, botón sólido 6 px sin sombra, tarjeta borde 1 px sin sombra/padding 20 px, icono 20 px y trazo 2 px, movimiento 100 ms. Solo se materializan al activar personalización sin arquetipo; no rellenar automáticamente un proyecto cuyo diseño siga pendiente. Los 21 arquetipos conservan sus valores iniciales, fuentes y acabados; propiedades nuevas no declaradas usan valores neutros. Evitar convertir silenciosamente acabados de los arquetipos en otra estética: documentar sus recetas compatibles o conservarlas como base hasta elegir un acabado nuevo.
+
+Acciones públicas: setDesignOverride(grupo, clave, valor), clearDesignOverrides(), selectArchetype(id, preserveOverrides), detachArchetype(). Validación por clave y transacción atómica; incremento de revisión solo ante cambio semántico válido. Preset de arquitectura conserva personalización. Al activar un arquetipo distinto con overrides: diálogo Conservar ajustes / Restablecer ajustes / Cancelar. Sin overrides, selección directa. Desactivar conserva overrides; si no queda diseño completo, madurez vuelve a pendiente. Una plataforma no visual conserva overrides en borrador, pero diseño efectivo de exportación es no aplicable.
+
+HEX parcial se guarda solo en estado de campo, con error visible y sin commit al editor. La resolución combina base+overrides en una función pura compartida. No introducir una segunda resolución distinta para el preview, las plantillas o los tokens.
+
+### UI y muestra interactiva
+
+AestheticStudio contiene ArchetypeCarousel y un apartado plegable Ajustes Avanzados de Diseño con DesignSandbox. Índice del carrusel y estados de interacción permanecen locales; navegar no dispara editorStore ni generación. Flechas operan solo cuando el foco está en el carrusel, nunca dentro de inputs, selectores o texto editable. Contador anunciado moderadamente y sin autoplay; anterior/siguiente con retorno circular 1…21; ficha activa identificada además del color. Botón seleccionado con aria-pressed; segunda activación desconecta base explícitamente.
+
+Panel avanzado dividido en tipografía, colores, acabado, botones/tarjetas, iconos y movimiento. Móvil una columna; tablet/escritorio columnas internas solo si el ancho real del panel lo permite. No asumir que escritorio implica panel ancho. Muestra con CSS variables y valores tipados, colores alfa compuestos sobre fondo real, foco visible y botones interactivos no asociados a acciones del proyecto. Añadir estados de muestra con controles que simulen hover/activo sin depender exclusivamente del puntero.
+
+Granulado y papel con SVG local/embebido sanitizado sin JavaScript; CRT y malla con capas CSS; cristal con transparencia y backdrop-filter con alternativa plana si no está soportado. No descargar imágenes ni fuentes. Mostrar ratios de texto normal/grande y texto de botón efectivo para los tres tipos, AA/AAA (4,5/3/7/4,5) y contraste de bordes/foco pertinente. No redondear un ratio que falle para declararlo aprobado.
+
+Suscripciones pequeñas por grupo, useShallow cuando el selector devuelve objeto, memoización por diseño efectivo y montaje de una ficha. App/StudioLayout no se suscriben al objeto Configuration ni al diseño; controles actualizan sandbox sin recorrer las 34 plantillas en el hilo principal. Registrar commits DOM con Performance API y React Profiler de prueba, además de trazas de pintura/tareas largas.
+
+### MCP: protocolo, transporte y servidor requerido
+
+Referencia versionada de diseño: MCP 2025-11-25 y SSE heredado 2024-11-05; negociar la versión soportada, sin asumir compatibilidad con borradores del protocolo. [Transportes MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports), [ciclo de vida](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle), [herramientas](https://modelcontextprotocol.io/specification/2025-11-25/server/tools). Verificar nuevamente interoperabilidad con el endpoint concreto al implementar; no instalar un SDK sin aprobación.
+
+Secuencia: initialize, validar versión/capacidad tools, notifications/initialized, tools/list y tools/call de una herramienta permitida. Preservar IDs JSON-RPC, sesión/versión negociadas y cierre/cancelación. HTTP admite JSON o SSE incremental con UTF-8, eventos multilínea y fragmentos partidos. En modo automático intentar HTTP con transmisión y negociar SSE heredado solo ante respuestas compatibles de detección, dentro del mismo plazo. En SSE heredado aceptar endpoint de envío del servidor únicamente del mismo origen autorizado; no seguir destinos externos silenciosamente.
+
+McpSettings permite URL y transporte, activar/desactivar, probar conexión y token de sesión opcional no persistente. Sin clave de proveedor IA, OAuth, instalación ni servidor propio. URL HTTP únicamente localhost/127.0.0.1/[::1], HTTPS para otros destinos; bloquear protocolos ajenos, credenciales embebidas, fragmentos y query con secretos. No usar credentials:include implícito. El endpoint debe permitir CORS para el origen real del estudio, métodos/cabeceras necesarios y exposición de cabeceras de sesión. Las restricciones de origen, permisos de acceso a red local y contenido mixto del navegador no se eluden. Referencia: [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS). La lista de orígenes, autenticación y coste del modelo pertenecen al operador del servidor.
+
+Contrato de herramienta: entrada text y exclusions opcional; respuesta structuredContent o único bloque JSON con matches/missingScopes conforme a spec.md. El cliente pide explicaciones en español si el inputSchema lo admite; respuestas con mensajes no aptos se descartan o usan textos locales de catálogo, nunca se muestran instrucciones remotas libres. El servicio recibe validadores públicos; no deduce el catálogo leyendo el compilador. Limitar cuerpo normalizado a 128 KiB antes de parsear, acumulador SSE a 128 KiB y matches <=237/missingScopes <=24. Error MCP/isError activa local; no ejecutar herramientas adicionales ni aceptar callbacks de muestreo/acciones del servidor.
+
+### Coordinación local/remota y carreras
+
+Analizar localmente siempre con la coordinación existente y mantener kit utilizable. Tras 300 ms sin escritura, si MCP está habilitado y el texto es válido, empezar inferencia remota con plazo total 1500 ms; como máximo una solicitud vigente y una nueva intención reemplazable. Inicialización/listado necesarios consumen ese mismo plazo, no un plazo nuevo por cada operación. La prueba de conexión tampoco envía idea.
+
+Cada petición captura revision, requestId, generación de conexión y huella de idea/exclusiones. Cualquier edición semántica, cambio de URL, apagado, timeout o desmontaje cancela lo obsoleto. La respuesta se acepta solo si todos esos datos siguen vigentes; aborto HTTP no garantiza cancelación del cálculo del servidor, por lo que se notifica cancelación MCP cuando proceda. ID de sesión/token y contenido remoto no se persistirán ni entrarán en caché del service worker.
+
+Añadir metadatos de inferencia local/mcp en la coordinación, sin atribuir origen manual ni reaplicar ambas fuentes en bucle. El trabajador consume una instantánea de inferencias externas validadas para la revisión y omite sustituirlas por el matcher local de la misma idea mientras sean vigentes. No introducir network dentro del motor puro. Al terminar por error/plazo, retirar fuente remota y recomponer local para esa idea; elecciones manuales o de conjunto no se borran. Sugerencias remotas nunca inventan RF ni objetivos: se presentan para aceptar/descartar con IDs compatibles. Confianza <0,85 o ambigüedad no autoaplican.
+
+Indicador conectado solo tras sesión validada con herramienta compatible; timeout/fallo vuelve a Motor Local Activo y aplica enfriamiento de 5 s antes del siguiente intento automático, sin alertas repetitivas. Probar conexión explícitamente permite reintento inmediato. No guardar ideas ni tokens en logs, trazas persistidas de red o errores públicos.
+
+### Exportación, idioma y migración
+
+Plan generado en specs/001-<slug>/plan.md incluye tabla de todos los valores efectivos y fragmentos completos reproducibles de tokens.css/recetas CSS; perfil Tailwind 3 autorizado incluye configuración y CSS complementario de texturas/estados. Tailwind 4 recibe CSS. Constitution exige respetar la personalización y revisar fallos de contraste, fuentes, iconos y movimiento reducido. Documentos PROJECT/TECHNICAL_CONTEXT/DECISIONS deben reflejar las decisiones de diseño pertinentes sin contradicciones. CSS/JSON/config exportados consumen el mismo diseño resuelto; no añadir archivos al manifiesto ZIP sin cambio de alcance.
+
+Migrar borradores sin personalización preservando arquetipo y versiones previas; validar arrays, enums, números, colores y familias antes de usar. Mover MCP a clave independiente de preferencias; no guardar su token en Configuration, URLs, ZIP ni localStorage. Recursos de UI/diseño y fuentes se cachean como propios; URLs MCP y respuestas de inferencia quedan excluidas.
+
+La aprobación de este plan autorizará retirar ambos controles de idioma, fijar es en UI/config/visor/copias/tokens, ignorar y limpiar exclusivamente la preferencia de idioma del estudio y mostrar una explicación española al recuperar una selección en inglés. No borrar borradores ni otras claves. La infraestructura i18n anterior puede conservarse inactiva para no duplicar una refactorización ajena; los tests de cuatro combinaciones de 003 quedan históricos y se sustituyen por pruebas de migración española. No traducir texto libre con MCP ni transmitirlo por cambiar idioma.
+
+### Orden de entrega y verificación
+
+1. Documentación y AGENTS.md, revisión humana; parada obligatoria.
+2. Tras aprobación: contratos y validadores de diseño/inferencia, migración y acciones de editor por tareas aisladas.
+3. Renderer/tokens y coherencia del kit; UI avanzada y muestra; carrusel y selección explícita.
+4. Transporte MCP, coordinación y presentación/configuración; modo local primero y escenarios de fallo.
+5. Español integral, guías actualizadas y pruebas de migración; regresión completa, accesibilidad y rendimiento; evidencia y push normal del hito aprobado.
+
+Pruebas propuestas: servidor MCP simulado HTTP JSON/SSE/heredado y fragmentación UTF-8, timeout con reloj controlado, cancelaciones/carreras, CORS real en navegador, IDs/confianza/límites, secreto/emojis sin envío; todos los controles/diseños, contraste alfa/fronteras de ratio, campos inválidos y fuentes locales; 21 posiciones sin cambios de configuración, selección/desactivación/cancelación; ZIP/copia/plan/constitution/tokens coherentes y 34 referencias; borradores previos, modo no visual y offline. Lint, TypeScript, Vitest, build y Playwright Chromium/Firefox solo durante ejecución autorizada. Medir los presupuestos y no marcar aprobación manual inexistente.
+
+Puerta de integración real: probar contra el servidor que el usuario configure, con herramienta y CORS compatibles, sin incluir su endpoint privado/credenciales en evidencia pública. Hasta entonces, distinguir interoperabilidad simulada de conexión real. Sin autorización de implementación, ninguna de estas pruebas nuevas se presenta como ejecutada.

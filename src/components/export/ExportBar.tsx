@@ -5,7 +5,8 @@ import { Copy, Download, Terminal, Palette, X } from 'lucide-react';
 import { useDocumentStore } from '../../store/documentStore';
 import { useEditorStore } from '../../store/editorStore';
 import { useUIStore } from '../../store/uiStore';
-import { archetypeById } from '../../catalog/archetypes';
+import { resolveDesign } from '../../domain/design';
+import { styleApplies } from '../../domain/compatibility';
 import { copyText } from '../../services/clipboard';
 import { packageKit, saveDownload } from '../../services/zipExport';
 import { exportTokens, type TokenFormat } from '../../services/tokenExport';
@@ -21,7 +22,7 @@ export function ExportBar() { const { t } = useTranslation();
     const invoker = useRef<HTMLElement | null>(null);
     const openManual = (text: string) => { invoker.current = document.activeElement as HTMLElement; setManual(text); };
     const blocked = pending || busy || !compilation || compilation.revision !== config.revision || compilation.diagnostics.some(d => d.blocking);
-    const a = archetypeById.get(config.selections.archetype?.[0] ?? '');
+    const a = styleApplies(config) ? resolveDesign(config) : undefined;
     const notify = (notice: string) => useUIStore.setState({ notice });
     async function copy(text: string) { if (await copyText(text))
         notify('Copiado al portapapeles.');
@@ -46,7 +47,7 @@ export function ExportBar() { const { t } = useTranslation();
     }
     catch (e) {
         notify(e instanceof Error ? e.message : 'No se pudo preparar el comando.');
-    } }}><Terminal size={14}/>{t("Comando de Setup Rápido")}</button></div><details><summary><Palette size={14}/>  {t("Exportar Design Tokens")}</summary><label className="field"><span>{t("Formato y perfil del destino")}</span><select aria-label={t("Formato de tokens")} value={format} onChange={e => setFormat(e.target.value as TokenFormat)}><option value="css">CSS / Tailwind 4</option><option value="json">JSON</option>{config.selections.styling?.includes('tailwind') && <option value="tailwind">{t("Configuración Tailwind 3 (perfil explícito)")}</option>}</select></label><button disabled={blocked || !a} onClick={() => { if (!a)
-        return; const result = exportTokens(a, format, config.sddLanguage); void saveDownload(new Blob([result.content], { type: 'text/plain;charset=utf-8' }), result.filename).then(() => notify('Tokens descargados.')); }}>{t("Descargar tokens")}</button>{!a && <p>{t("Selecciona un arquetipo visual para exportar tokens.")}</p>}</details><Dialog.Root open={!!manual} onOpenChange={open => { if (!open)
+    } }}><Terminal size={14}/>{t("Comando de preparación rápida")}</button></div><details><summary><Palette size={14}/>  {t("Exportar tokens de diseño")}</summary><label className="field"><span>{t("Formato y perfil del destino")}</span><select aria-label={t("Formato de tokens")} value={format} onChange={e => setFormat(e.target.value as TokenFormat)}><option value="css">CSS / Tailwind 4</option><option value="json">JSON</option>{config.selections.styling?.includes('tailwind') && <option value="tailwind">{t("Configuración Tailwind 3 (perfil explícito)")}</option>}</select></label><button disabled={blocked || !a} onClick={() => { if (!a)
+        return; const result = exportTokens(a, format, config.sddLanguage); void saveDownload(new Blob([result.content], { type: 'text/plain;charset=utf-8' }), result.filename).then(() => notify('Tokens descargados.')); }}>{t("Descargar tokens")}</button>{!a && <p>{t("Selecciona un estilo o personaliza el diseño para exportar tokens.")}</p>}</details><Dialog.Root open={!!manual} onOpenChange={open => { if (!open)
         setManual(''); }}><Dialog.Portal><Dialog.Overlay className="overlay"/><Dialog.Content className="dialog" onCloseAutoFocus={event => { event.preventDefault(); invoker.current?.focus(); }}><Dialog.Title>{t("Texto para copiar")}</Dialog.Title><Dialog.Description>{t("Selecciona el contenido y cópialo. Los comandos se muestran; no se ejecutan.")}</Dialog.Description><textarea lang={config.sddLanguage ?? 'es'} aria-label={t("Contenido para copiar")} className="copy-area" value={manual} readOnly onFocus={e => e.target.select()}/><button onClick={() => void copy(manual)}>{t("Copiar contenido")}</button><Dialog.Close className="close-icon" aria-label={t("Cerrar")}><X size={18}/></Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root></div>;
 }

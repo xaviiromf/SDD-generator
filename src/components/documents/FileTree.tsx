@@ -1,12 +1,14 @@
+import type { GeneratedDocument } from '../../domain/models';
 import { useTranslation } from '../../i18n/useTranslation';
-import { useMemo, useRef, useState, useEffect } from 'react';
+import { memo, useMemo, useRef, useState, useEffect } from 'react';
 import { Folder, FileText, ChevronRight, ChevronDown } from 'lucide-react';
 import { useUIStore } from '../../store/uiStore';
 import { useDocumentStore } from '../../store/documentStore';
 import { kitTree, type KitNode } from '../../engine/kitTree';
 interface Row { node: KitNode; level: number; parent?: string; position: number; size: number; }
-export function FileTree() { const { t } = useTranslation();
-    const documents = useDocumentStore(s => s.compilation?.documents);
+export const FileTree = memo(function FileTree() { const { t } = useTranslation();
+    const metadata = useDocumentStore(s => JSON.stringify(s.compilation?.documents.map(({ content, revision, ...rest }) => { void content; void revision; return rest; }) ?? []));
+    const documents = useMemo(() => (JSON.parse(metadata) as GeneratedDocument[]).map(d => ({ ...d, content: '', revision: 0 })), [metadata]);
     const active = useUIStore(s => s.activeDocument);
     const roots = useMemo(() => kitTree(documents ?? []), [documents]);
     const [expanded, setExpanded] = useState<string[]>(['specs']);
@@ -33,4 +35,4 @@ export function FileTree() { const { t } = useTranslation();
             if (event.key === 'ArrowLeft') { if (folder && expanded.includes(node.key)) toggle(node.key); else move(row.parent); }
         }} onClick={() => folder ? toggle(node.key) : useUIStore.setState({ activeDocument: node.document!.id })}>{folder ? expanded.includes(node.key) ? <ChevronDown size={14}/> : <ChevronRight size={14}/> : <FileText size={14}/>}<span>{node.name}</span></button>;
     })}</div></details>;
-}
+});

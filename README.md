@@ -1,6 +1,6 @@
 # SDD-Studio
 
-Una idea. Un plan claro. Genera kits de desarrollo guiado por especificaciones en español o inglés, mediante reglas locales y sin consumir tokens de API de IA.
+Una idea. Un plan claro. Genera kits de desarrollo guiado por especificaciones exclusivamente en español, mediante reglas locales y con inferencia MCP opcional.
 
 Aplicación estática construida con React 19, TypeScript estricto, Vite, Zustand y Tailwind CSS. Compila documentos en un Web Worker y exporta ZIP en memoria. La interfaz usa exclusivamente iconos de lucide-react.
 
@@ -26,18 +26,24 @@ npm run preview
 
 1. **Define el concepto en Idea / Prompt.** Cuenta quién necesita el proyecto, qué problema resuelve y cómo debería usarse. Por ejemplo: «Un taller necesita crear y cancelar reservas sin conexión». El análisis reconoce tecnologías y algunas señales de alcance; no comprende arbitrariamente todas las reglas del negocio.
 2. **Refina las siete fases en Configuración.** Elige plataforma, arquitectura, lenguajes, persistencia, estética, seguridad y flujo. Puedes partir de uno de los ocho conjuntos predefinidos. Su aplicación exige confirmar la sustitución de decisiones; las variantes de motor, framework y base de datos deben elegirse explícitamente. Acepta sugerencias como persistencia ausente. Las selecciones manuales prevalecen sobre las inferencias.
-3. **Elige estética y tokens.** Hay 21 arquetipos con parejas tipográficas, paletas, radios y acabados concretos. Las fichas calculan contraste y muestran resultados reales, incluso cuando una paleta original no pasa AA. Seleccionar un arquetipo configura el proyecto generado; el estudio conserva su propia identidad. Puedes descargar CSS, JSON o una configuración de Tailwind 3 si escoges expresamente ese perfil. Para Tailwind 4 usa variables CSS.
+3. **Personaliza estética y tokens.** Recorre el carrusel sin aplicar cambios; selecciona o desactiva explícitamente su estilo. Hay 21 arquetipos con parejas tipográficas, paletas, radios y acabados concretos. Las fichas calculan contraste y muestran resultados reales, incluso cuando una paleta original no pasa AA. Los ajustes avanzados permiten elegir tres fuentes locales, seis colores con transparencia, texturas, botones, tarjetas, iconos y movimiento; la muestra es interactiva y advierte el contraste insuficiente. Al cambiar la base puedes conservar ajustes, restablecerlos o cancelar. Seleccionar un arquetipo configura el proyecto generado; el estudio conserva su propia identidad. Puedes descargar CSS, JSON o una configuración de Tailwind 3 si escoges expresamente ese perfil. Para Tailwind 4 usa variables CSS.
 4. **Revisa y entrega el kit.** Recorre los 34 documentos, examina madurez y pendientes, copia el prompt maestro o descarga el ZIP. Abre la carpeta extraída en VS Code y entrega `prompts/00-orchestrator.md` a Codex o Cursor. Lee también `AGENTS.md` y los manuales; para cambios o continuidad utiliza las guías 06 y 07. Solicita primero DOCUMENT, revisa lo que complete el agente y autoriza código solo después. El ZIP incluye documentación; los archivos de implementación dibujados dentro del plan son propuestas, no código ya generado.
 
 El kit se organiza en 34 documentos: seis archivos raíz, diez documentos de gobernanza en `docs/`, nueve guías en `prompts/`, un índice de especificaciones, cuatro plantillas reutilizables en `specs/_templates/` y cuatro documentos activos en `specs/001-<identificador>/`: `spec.md`, `plan.md`, `tasks.md` y `validation.md`. El registro de validación empieza «No ejecutado»; no incluye resultados del generador.
 
 Usa el árbol anidado o «Documento del kit» para consultar cualquiera de los 34 archivos, incluido el manual TXT. Los accesos rápidos conservan spec, plan, tasks, constitution, PROJECT y el orquestador. Cambiar el identificador actualiza la carpeta activa y sus referencias sin cambiar el documento seleccionado. El ZIP coincide con el visor; las rutas de código del plan siguen siendo propuestas.
 
-### Idiomas independientes
+### Idioma y recuperación de preferencias
 
-El encabezado incluye dos interruptores ES/EN: «Idioma de la UI» controla toda la interfaz y «Idioma del SDD» controla el contenido de los 34 documentos, el prompt maestro, la copia, el ZIP, los comentarios de preparación y los metadatos de tokens. Las cuatro combinaciones son válidas. Ambas preferencias se guardan localmente; los borradores antiguos empiezan en español.
+La interfaz, los 34 documentos generados, la copia, el ZIP, los tokens y los comentarios de preparación se presentan exclusivamente en español. Las antiguas preferencias ES/EN se migran sin eliminar nombre, idea, alcance, selecciones ni personalizaciones. Tus textos se conservan literalmente; no se traducen automáticamente. Las rutas, los identificadores y los nombres de productos mantienen su forma técnica.
 
-Cambiar la UI conserva el kit; cambiar el SDD conserva decisiones, datos y documento seleccionado. El idioma de la página y el del visor se declaran por separado para tecnologías de asistencia. Tus textos de nombre, idea y alcance se conservan literalmente, según la decisión confirmada; redacta esos campos en el idioma que quieras. Las rutas del marco, los comandos, los identificadores RF/T y los nombres de productos no cambian. No se llama a servicios de traducción.
+### Inferencia MCP opcional
+
+En el panel Idea, «Ajustes de MCP» permite indicar un endpoint HTTPS (o HTTP en localhost), transporte automático, HTTP con transmisión o SSE heredado. El servidor debe aceptar CORS desde el origen del estudio y publicar `match_technologies` o `infer_intent` con entrada `text` y respuesta estructurada de coincidencias y alcances. «Probar conexión sin enviar idea» verifica negociación y herramienta.
+
+Antes de guardar la activación se muestra el destino y el permiso para enviar únicamente idea y exclusiones. Una credencial de sesión opcional permanece en memoria; nunca se guarda ni se incluye en el kit. No introduzcas claves de proveedores de IA. El servidor externo es responsable de su modelo, sus costes y su tratamiento de datos.
+
+El motor local actúa inmediatamente. Tras 300 ms sin cambios, MCP dispone de un máximo total de 1500 ms para negociar e inferir. Sin configurar, sin conexión, con errores o al exceder ese plazo, el análisis vuelve al motor local. Las coincidencias de confianza inferior a 0,85 y los alcances ausentes requieren confirmación; las decisiones manuales y los conjuntos prevalecen. La confianza declarada por un servidor no garantiza precisión. La integración se verifica con servidores simulados; un endpoint real debe comprobarse con su configuración concreta.
 
 ### Atajos y búsqueda
 
@@ -59,7 +65,7 @@ El medidor valora seis pilares con peso igual. «En memoria» es una decisión v
 
 ## Limitaciones y Alcance del Generador
 
-SDD-Studio es determinista y funciona en el cliente. No llama a modelos de IA ni depende de un backend propio. Idea, configuración y documentos permanecen en memoria y en localStorage del navegador cuando es posible guardar. Los servidores y bases del catálogo describen tu proyecto objetivo; seleccionarlos no conecta el estudio a esos servicios.
+SDD-Studio funciona en el cliente y no depende de un backend propio. El motor local es determinista. Idea, configuración y documentos permanecen en memoria y en localStorage cuando es posible guardar; activar MCP autoriza el envío de idea y exclusiones al servidor configurado. Los servidores y bases del catálogo describen tu proyecto objetivo; seleccionarlos no conecta el estudio a esos servicios.
 
 No ejecuta ni compila el código del proyecto objetivo; estructura especificaciones para que una persona o agente autorizado lo implemente. No reemplaza el juicio de ingeniería ni inventa reglas complejas cuando falta contexto. Los documentos generados requieren revisión. Los presets versionados conservan las versiones declaradas en el prompt y no se presentan como recomendaciones sobre versiones recientes.
 

@@ -67,3 +67,18 @@ La ampliación pasa pruebas de manifiesto, referencias, perfiles, ocho conjuntos
 | RF-003-05 | T-003-01,02,04 | Validación, restauración, LanguageToggles y CSS | Borradores antiguos, idioma inválido, teclado, almacenamiento restringido y ancho 320 px |
 
 Resultados reales de la ampliación en specs/003-idiomas/validation.md. No se atribuye revisión con lector de pantalla real.
+
+## Ampliación 004 — Trazabilidad de implementación y verificación
+
+| Requisitos | Tareas | Verificación ejecutada |
+|---|---|---|
+| RF-004-01 | T-004-01…03 | AGENTS, matriz de acceso, puerta de revisión y estado |
+| RF-004-02,03,05,06 | T-004-13…18,21…23 | MCP simulado HTTP/SSE/heredado, timeout, carreras, configuración, privacidad y estado |
+| RF-004-04 | T-004-05,15,16,21 | IDs, confianza, compatibilidad, prioridad manual y recomposición local |
+| RF-004-07,08,09,10 | T-004-04,06…10,20…23 | Todos los controles, resolución única, ratios reales, <16 ms y kit/tokens coherentes |
+| RF-004-11,12 | T-004-06,11,12,21,22 | 21 posiciones, navegación sin commit, selección/desactivación y ajustes preservados |
+| RF-004-13,14 | T-004-04…23 | Migración, español, cero emojis, offline, límites, accesibilidad, 34 rutas y Git |
+
+El usuario aprobó formalmente la planificación y autorizó implementación el 2026-10-07. Los bloques funcionales están implementados y su evidencia se registra en specs/validation.md, apartado 004. El cierre Git se registra por separado al sincronizar el hito; no se atribuye aceptación ni conexión a un modelo externo real.
+
+Evidencia concreta: tests/unit/design.test.ts (contratos, acciones, kit/tokens y alfa), intent.test.ts (DTO/umbrales/prioridad/fallback), mcp.test.ts (HTTP/SSE y preferencias), coordinator.test.ts (300/1500 ms y cancelación), worker.test.ts (cola y generación de solicitudes); tests/e2e/design.spec.ts, carousel.spec.ts, mcp.spec.ts, languages.spec.ts y performance.spec.ts, más regresión de kit/Django/offline/accesibilidad. Los informes de ejecución, presupuestos y limitaciones están en specs/validation.md.

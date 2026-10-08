@@ -18,3 +18,11 @@ El presupuesto de 100 ms se refiere al empaquetado del kit de referencia, no a l
 WebKit fue descargado, pero su inicio falla en esta máquina por ausencia de `libicu74` y `libflite1`; no se modificaron paquetes del sistema. Se ejecutan Chromium y Firefox y se conserva esa limitación en el informe.
 
 No se ha desplegado el sitio. La sincronización Git está autorizada por el usuario y es independiente del alojamiento de producción.
+
+## Evidencia de ampliación 004
+
+2026-10-07, mismo entorno Node 26.5.0/npm 11.17.0. Build de producción en la subruta /SDD-generator/. Lint, TypeScript, 52 unitarias y build: código 0. Referencia Chromium: muestra de 200 ajustes p95 3,8 ms; seis áreas React ajenas sin renders adicionales; edición 1,7 ms, revisión documental 36,2 ms, conjuntos 9,6 ms, ZIP 10,7 ms. Casos Firefox funcionales; rendimiento medido solo en Chromium. Detalle y límites: specs/validation.md, apartado 004.
+
+Los escenarios MCP incluyen un servidor local de pruebas con CORS/SSE reales; no prueban un modelo externo real. El plazo total de 1500 ms se verifica con reloj controlado y respuesta demorada en navegador. El token nunca se persiste ni se exporta. La captura de diseño a 320 px se inspeccionó como evidencia visual de reflujo, sin atribuir aceptación al usuario.
+
+Suite final completa: 75 pruebas de navegador correctas, tres mediciones omitidas en Firefox, cero fallos/inestables y código 0; duración 178,92 s. Lint, TypeScript, 52 unitarias y build también correctos.

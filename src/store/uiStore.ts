@@ -1,8 +1,11 @@
-import { isLocale, type Locale } from '../i18n/translate';
+import { type Locale } from '../i18n/translate';
 import { create } from 'zustand';
 export type Panel = 'config' | 'idea' | 'docs';
 export const uiLanguageKey = 'sdd-studio:ui-language:v1';
-function savedLocale(): Locale { try { const value = localStorage.getItem(uiLanguageKey); return isLocale(value) ? value : 'es'; } catch { return 'es'; } }
+export function migrateUiLanguage(storage?: Pick<Storage, 'getItem' | 'removeItem'>): string {
+    try { const target = storage ?? localStorage; const previous = target.getItem(uiLanguageKey); target.removeItem(uiLanguageKey); return previous === 'en' ? 'La interfaz se ha actualizado a español; tus textos y decisiones se conservan.' : ''; } catch { return ''; }
+}
+const migrationNotice = migrateUiLanguage();
 interface InterfaceState {
     locale: Locale;
     setLocale: (locale: Locale) => void;
@@ -16,4 +19,4 @@ interface InterfaceState {
     notice: string;
     setPanel: (panel: Panel) => void;
 }
-export const useUIStore = create<InterfaceState>(set => ({ locale: savedLocale(), setLocale: locale => { set({locale}); try { localStorage.setItem(uiLanguageKey, locale); } catch { set({notice: 'La preferencia de idioma se mantiene solo en memoria; no se pudo guardar.'}); } }, panel: 'config', phase: '1', palette: false, requestedPreset: '', restart: 0, activeDocument: 'spec', dismissed: [], notice: '', setPanel: panel => set({ panel }) }));
+export const useUIStore = create<InterfaceState>(set => ({ locale: 'es', setLocale: () => set({ locale: 'es' }), panel: 'config', phase: '1', palette: false, requestedPreset: '', restart: 0, activeDocument: 'spec', dismissed: [], notice: migrationNotice, setPanel: panel => set({ panel }) }));

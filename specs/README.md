@@ -2,7 +2,8 @@
 
 | ID | Alcance | Documentos | Estado | Código autorizado |
 |---|---|---|---|---|
-| 003 | Idiomas independientes UI / SDD | [spec](003-idiomas/spec.md), [plan](003-idiomas/plan.md), [tasks](003-idiomas/tasks.md), [validation](003-idiomas/validation.md) | Implementación y verificación técnica terminadas | Sí |
+| 004 | MCP opcional, contexto por fases, diseño avanzado y carrusel | Apartados 004 de [spec.md](spec.md), [plan.md](plan.md), [tasks.md](tasks.md); [AGENTS.md](../AGENTS.md) | Implementación y verificación técnica terminadas; sincronización en cierre | Sí |
+| 003 | Idiomas independientes UI / SDD | [spec](003-idiomas/spec.md), [plan](003-idiomas/plan.md), [tasks](003-idiomas/tasks.md), [validation](003-idiomas/validation.md) | Hito histórico; idioma sustituido por español integral en 004 | Sí |
 | 002 | Kit completo y adaptable | Documentación local excluida del repositorio por instrucción del usuario | Implementación y verificación técnica terminadas; evidencia local | Sí |
 | 001 | SDD-Studio completo | [spec.md](spec.md), [plan.md](plan.md), [tasks.md](tasks.md) | Implementación funcional; auditoría manual pendiente | Sí |
 

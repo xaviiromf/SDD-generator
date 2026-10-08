@@ -1,5 +1,7 @@
 # Tareas — 001 / SDD-Studio
 
+Estado de la ampliación activa 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
+
 Especificación: [spec.md](spec.md). Plan: [plan.md](plan.md). Fecha: 2026-10-06.
 
 Estado: aprobado por el usuario el 2026-10-06. Implementación autorizada: **SÍ**. Las casillas se completarán únicamente con evidencia de verificación. «RF-01» abrevia `RF-001-01`; las dependencias mantienen el identificador completo de tarea.
@@ -251,3 +253,102 @@ Verificación de la ampliación: lint, TypeScript, 22 pruebas unitarias, build y
 ## Contrato sustituido por ampliación 002
 
 Las comprobaciones de seis documentos en T-001-14/24/27 corresponden al hito inicial. La ampliación autorizada reemplaza esa salida por 34 documentos y navegación por manifiesto. Sus tareas y evidencia se conservan solo localmente en la carpeta excluida de Git por el usuario. Los pendientes T-001-35,38,39 mantienen su condición original; no se confunde la verificación automática ampliada con lectura asistida real.
+
+## Ampliación 004 — Implementación autorizada
+
+Fecha: 2026-10-07. RF-004-* son requisitos nuevos de spec.md. La autorización explícita del 2026-10-07 habilita T-004-04…23. AGENTS.md define límites de lectura por fase/dominio. La secuencia siguiente es obligatoria; un fallo se corrige en su dominio antes de continuar, sin marcar resultados pendientes como completados.
+
+- [x] T-004-01 — Crear AGENTS.md con entrada limitada y matriz de acceso.
+  - RF: RF-004-01. Dominio: documentación. Dependencias: solicitud actual.
+  - Archivos: AGENTS.md. Finaliza cuando: tres archivos de entrada, fases, dominios, prohibición UI/motor y puerta de autorización están documentados; no cambia aplicación.
+- [x] T-004-02 — Formalizar ampliación, contratos, tareas y estado.
+  - RF: RF-004-01…14. Dominio: documentación. Dependencia: T-004-01.
+  - Archivos: specs/spec.md, plan.md, tasks.md; docs/PROJECT_STATUS.md, DECISIONS.md, TRACEABILITY.md y PROJECT.md; specs/README.md.
+  - Finaliza cuando: cuatro mejoras y cambios de idioma/privacidad tienen criterios, modelos y pruebas propuestas; coherencia documental verificada; entregar resumen y detenerse.
+- [x] T-004-03 — Registrar autorización concreta de implementación.
+  - RF: RF-004-01,14. Dominio: documentación. Dependencia: T-004-02 y respuesta explícita del usuario.
+  - Archivos: docs/PROJECT_STATUS.md, specs/tasks.md. Finaliza cuando: alcance e IDs autorizados quedan registrados; no inferir permiso de aprobaciones anteriores.
+- [x] T-004-04 — Definir contrato y validación del diseño avanzado.
+  - RF: RF-004-07,08,10,13. Dominio: núcleo. Dependencia: T-004-03.
+  - Archivos: src/domain/design.ts, models.ts, validation.ts; src/catalog/designOptions.ts; tests/unit/design.test.ts.
+  - Finaliza cuando: enums, HEX/alfa, números y familias locales se validan; resolución neutro/base/overrides es pura y única; ninguna lectura UI.
+- [x] T-004-05 — Definir contrato y normalización de inferencia MCP.
+  - RF: RF-004-04,05,13. Dominio: núcleo. Dependencia: T-004-04.
+  - Archivos: src/domain/intent.ts, compatibility.ts; tests/unit/intent.test.ts.
+  - Finaliza cuando: IDs, confianza, límites, exclusiones, prioridades y DTO de sugerencias se validan sin transporte/red ni lectura UI.
+- [x] T-004-06 — Incorporar acciones públicas de diseño y migración de borrador.
+  - RF: RF-004-07,12,13. Dominio: integración/servicios. Dependencia: T-004-05.
+  - Archivos: src/store/editorStore.ts, src/services/draftStorage.ts, tests/unit/services.test.ts y design.test.ts.
+  - Finaliza cuando: set/clear/select/detach son atómicos, revision cambia solo con valores válidos, presets conservan overrides y borradores antiguos recuperan base intacta; no inspeccionar sandbox ni compilador.
+- [x] T-004-07 — Integrar diseño efectivo y madurez en núcleo documental.
+  - RF: RF-004-10,13. Dominio: núcleo. Dependencia: T-004-06.
+  - Archivos: src/domain/maturity.ts, src/engine/kitContext.ts, templates/plan.ts, constitution.ts y metadatos pertinentes; tests/unit/design.test.ts y kit.test.ts.
+  - Finaliza cuando: diseño personal completo cuenta sin arquetipo; no visual excluye diseño; plan/constitution declaran todos los parámetros con 34 rutas/revisión coherentes; no leer UI.
+- [x] T-004-08 — Exportar tokens y recetas reproducibles del diseño efectivo.
+  - RF: RF-004-08,10. Dominio: servicios. Dependencia: T-004-07.
+  - Archivos: src/services/tokenExport.ts; tests/unit/services.test.ts y design.test.ts.
+  - Finaliza cuando: CSS/JSON/Tailwind usan el DTO efectivo, incluyen fuentes/código, colores, texturas, estados y movimiento; respetan perfil Tailwind y no amplían ZIP.
+- [x] T-004-09 — Construir controles avanzados accesibles.
+  - RF: RF-004-07,08,14. Dominio: UI. Dependencia: T-004-08.
+  - Archivos: src/components/aesthetics/AdvancedDesignPanel.tsx, AestheticStudio.tsx, src/styles/app.css.
+  - Finaliza cuando: todos los selectores y colores tienen etiqueta española, HEX temporal corregible y acciones públicas documentadas; adaptan al ancho real sin leer motor/compilador.
+- [x] T-004-10 — Construir muestra interactiva, texturas y contraste.
+  - RF: RF-004-08,09,14. Dominio: UI. Dependencia: T-004-09.
+  - Archivos: src/components/aesthetics/DesignSandbox.tsx, src/styles/app.css; pruebas específicas de diseño.
+  - Finaliza cuando: una muestra usa valores efectivos, estados simulados y reales, seis acabados, ratios correctos, CSS/SVG local seguro y movimiento reducido; suscripciones aisladas y sin lectura núcleo.
+- [x] T-004-11 — Implementar navegación compacta de 21 arquetipos.
+  - RF: RF-004-11,14. Dominio: UI. Dependencia: T-004-10.
+  - Archivos: src/components/aesthetics/ArchetypeCarousel.tsx, AestheticStudio.tsx, ArchetypeCard.tsx, src/styles/app.css.
+  - Finaliza cuando: ficha única, contador, vuelta circular, flechas/teclado y foco operan sin alterar configuración/revisión; no autoplay ni capturar flechas de inputs.
+- [x] T-004-12 — Integrar selección, desactivación y protección de personalización.
+  - RF: RF-004-12,13. Dominio: UI/integración pública. Dependencia: T-004-11.
+  - Archivos: src/components/aesthetics/ArchetypeCard.tsx, ArchetypeCarousel.tsx y diálogo de selección; tests/e2e/carousel.spec.ts.
+  - Finaliza cuando: seleccionar/apagar es explícito, conservar/restablecer/cancelar tiene comportamiento verificable, overrides se preservan al navegar o desactivar y foco vuelve al invocador.
+- [x] T-004-13 — Implementar transporte MCP HTTP con transmisión.
+  - RF: RF-004-02,03,05,13. Dominio: servicios. Dependencia: T-004-12.
+  - Archivos: src/services/mcpClient.ts; tests/unit/mcp.test.ts y servidor simulado de pruebas.
+  - Finaliza cuando: initialize/initialized/list/call, JSON/SSE, IDs/sesión/versión, límites de cuerpo y cierre respetan contrato; datos/modelo ajenos nunca se ejecutan.
+- [x] T-004-14 — Incorporar compatibilidad SSE heredada y cancelación.
+  - RF: RF-004-03,05. Dominio: servicios. Dependencia: T-004-13.
+  - Archivos: src/services/mcpClient.ts; tests/unit/mcp.test.ts.
+  - Finaliza cuando: detección de transporte, evento endpoint mismo origen, POST de envío, SSE fragmentado/UTF-8 y aborto funcionan dentro de un único plazo, sin reintentos ilimitados.
+- [x] T-004-15 — Coordinar inferencias locales/remotas y respuestas vigentes.
+  - RF: RF-004-04,05,13. Dominio: servicios/trabajadores. Dependencia: T-004-14.
+  - Archivos: src/services/intentCoordinator.ts, src/workers/generatorClient.ts y contrato público de mensajes; pruebas de coordinación.
+  - Finaliza cuando: local inmediato, intervalo 300 ms, timeout total 1500 ms, una solicitud vigente, confianza/compatibilidad y cancelación por revisión/URL/apagado tienen resultados deterministas.
+- [x] T-004-16 — Integrar inferencias externas en motor puro sin bucles.
+  - RF: RF-004-04,05. Dominio: núcleo. Dependencia: T-004-15.
+  - Archivos: src/domain/models.ts, src/engine/compiler.ts, matcher.ts, scopeRules.ts, src/workers/generator.worker.ts; tests/unit/intent.test.ts y worker.test.ts.
+  - Finaliza cuando: DTO vigente sustituye solo inferencias de la misma idea, respeta manual/conjunto, fallback recompone local y no introduce red en compilador; no leer UI ni internals de transporte.
+- [x] T-004-17 — Persistir preferencias MCP separadas y conectar acciones públicas.
+  - RF: RF-004-02,06,13. Dominio: integración/servicios. Dependencia: T-004-16.
+  - Archivos: src/store/mcpStore.ts, src/services/intentCoordinator.ts, src/app/App.tsx; pruebas de preferencias.
+  - Finaliza cuando: URL/enabled/transporte persisten sin token/idea, prueba sin datos del usuario, desconexión limpia sesión y recursos MCP quedan fuera de service worker/ZIP.
+- [x] T-004-18 — Construir ajustes y estado MCP del panel Idea.
+  - RF: RF-004-02,06,14. Dominio: UI. Dependencia: T-004-17.
+  - Archivos: src/components/storyteller/McpStatus.tsx, McpSettings.tsx, IdeaEditor.tsx, src/styles/app.css.
+  - Finaliza cuando: aviso de envío y destino preceden activación, badge corresponde al estado válido, modal/prueba son accesibles y errores no interrumpen escritura; solo consume contratos públicos.
+- [x] T-004-19 — Migrar UI/kit a español integral.
+  - RF: RF-004-14. Dominio: integración pública. Dependencia: T-004-18.
+  - Archivos: src/app/App.tsx, StudioLayout.tsx, src/store/uiStore.ts, editorStore.ts, src/components/navigation/LanguageToggles.tsx, src/i18n/; pruebas de migración y servicios.
+  - Finaliza cuando: ambos controles ES/EN se retiran, preferencias previas se migran con explicación, no se pierden textos/decisiones y datos viejos no activan UI/kit ingleses.
+- [x] T-004-20 — Completar textos españoles de núcleo/exportaciones y guía de usuario.
+  - RF: RF-004-10,13,14. Dominio: núcleo/servicios/documentación, por subtareas sin lectura cruzada de internals. Dependencia: T-004-19.
+  - Archivos: templates/contexto afectados, src/services/tokenExport.ts y setupCommands.ts, README.md, docs/PROJECT.md, tests/unit/languages.test.ts y tests/e2e/languages.spec.ts.
+  - Finaliza cuando: 34 archivos, tokens, preparación, errores y políticas son españoles; tests de 003 sustituidos por migración; guía explica MCP opcional y diseño sin afirmar traducción libre ni conexión real no probada.
+- [x] T-004-21 — Preparar y ejecutar regresión de escenarios funcionales.
+  - RF: RF-004-01…14. Dominio: pruebas específicas durante IMPLEMENT; reportes durante VALIDATE. Dependencia: T-004-20.
+  - Archivos: tests/unit/mcp.test.ts, design.test.ts, tests/e2e/mcp.spec.ts, design.spec.ts, carousel.spec.ts y suites existentes.
+  - Finaliza cuando: matriz MCP, carreras, diseño, contraste, carrusel, datos antiguos, seguridad, offline y 34 contenidos/ZIP/copia tienen evidencia; la conexión simulada se distingue del endpoint real.
+- [x] T-004-22 — Verificar accesibilidad, adaptación y presupuestos.
+  - RF: RF-004-05,09,11,14. Dominio: VALIDATE. Dependencia: T-004-21.
+  - Evidencia: salidas de tests/e2e/performance.spec.ts y accesibilidad, trazas y docs/ENVIRONMENT_AND_VERIFICATION.md.
+  - Finaliza cuando: 320/375/767/768/1279/1280/1440 px, teclado/foco, AA/movimiento reducido y >=200 ajustes con p95 <16 ms sin renders ajenos se registran; generación <=150 ms, ZIP <100 ms y timeout MCP verificados. Fallos vuelven a tarea IMPLEMENT del dominio correspondiente.
+- [ ] T-004-23 — Cerrar evidencia técnica y sincronizar hito autorizado.
+  - RF: RF-004-01…14. Dominio: VALIDATE/documentación. Dependencia: T-004-22.
+  - Archivos: specs/validation.md, docs/TRACEABILITY.md, PROJECT_STATUS.md, specs/tasks.md e historial Git.
+  - Finaliza cuando: lint, TypeScript, unitarias/E2E y build tienen códigos reales, texto sin emojis comprobado, límites manuales honestos, tareas verificadas y push normal sin archivos de 002 ni secretos. Aceptación y despliegue separados.
+
+Puerta actual: implementación autorizada el 2026-10-07; tareas de aplicación y verificaciones se registran individualmente. No instalar dependencias ajenas al plan. Los pendientes históricos T-001-35,38,39 se conservan y no se marcan como cerrados por planificar esta ampliación.
+
+Evidencia final 004 (2026-10-07): lint, TypeScript, 52 unitarias, build y 75 pruebas de navegador correctos; tres mediciones omitidas en Firefox. Muestra de 200 ajustes p95 3,8 ms y seis áreas ajenas sin renders adicionales. T-004-23 registra el push y su comprobación; no se cierran pendientes manuales de 001.

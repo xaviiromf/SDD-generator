@@ -1,15 +1,13 @@
-import { literal, template, type Locale } from '../i18n/translate';
+import type { Locale } from '../i18n/translate';
 import type { Archetype } from '../catalog/archetypes';
+import { resolveDesign, type EffectiveDesign } from '../domain/design';
+import { designCss, designPresentation } from '../domain/designRecipes';
 export type TokenFormat = 'css' | 'json' | 'tailwind';
-export function exportTokens(a: Archetype, format: TokenFormat, locale: Locale = 'es'): {
-    filename: string;
-    content: string;
-} {
-    const colors = { background: a.background, surface: a.surface, accent: a.accent, text: a.foreground, muted: a.muted, border: a.border };
-    const css = ':root {\n' + Object.entries(colors).map(([key, value]) => `  --${key}: ${value};`).join('\n') + `\n  --font-heading: '${a.heading}';\n  --font-body: '${a.body}';\n  --radius: ${a.radius}px;\n}\n`;
-    if (format === 'css')
-        return { filename: 'tokens.css', content: css };
-    if (format === 'json')
-        return { filename: 'tokens.json', content: JSON.stringify(locale === 'en' ? { name: literal(a.name, locale), colors, typography: { headings: a.heading, body: a.body }, radius: a.radius, finish: literal(a.texture, locale) } : { nombre: a.name, colores: colors, tipografia: { titulos: a.heading, cuerpo: a.body }, radio: a.radius, acabado: a.texture }, null, 2) };
-    return { filename: 'tailwind.config.ts', content: template(locale)`// Perfil de configuración para Tailwind CSS 3. Importar tokens.css en los estilos.\nexport default { content: ['./src/**/*.{ts,tsx,html}'], theme: { extend: { colors: ${JSON.stringify(Object.fromEntries(Object.keys(colors).map(key => [key, `var(--${key})`])), null, 2)}, fontFamily: { heading: [${JSON.stringify(a.heading)}], body: [${JSON.stringify(a.body)}] }, borderRadius: { theme: '${a.radius}px' } } } };\n` };
+export function exportTokens(input: Archetype | EffectiveDesign, format: TokenFormat, locale: Locale = 'es', tailwindVersion: 3 | 4 = 3): { filename: string; content: string } {
+    void locale; // Compatibilidad con llamadas antiguas; salida siempre española.
+    const d = 'typography' in input ? input : resolveDesign({ selections: { archetype: [input.id] } })!;
+    const css = designCss(d);
+    if (format === 'css' || format === 'tailwind' && tailwindVersion === 4) return { filename: 'tokens.css', content: css };
+    if (format === 'json') return { filename: 'tokens.json', content: JSON.stringify({ nombre: 'typography' in input ? 'Diseño personalizado' : input.name, colores: d.colors, tipografia: { titulos: d.typography.headingFont, cuerpo: d.typography.bodyFont, codigo: d.typography.monoFont }, botones: d.buttons, tarjetas: d.cards, iconos: d.icons, movimiento: d.motion, acabado: d.baseTexture ?? d.finish.texture, variables: designPresentation(d), recetasCSS: css }, null, 2) };
+    return { filename: 'tailwind.config.ts', content: `// Perfil de configuración para Tailwind CSS 3. Guardar e importar el bloque tokens.css incluido abajo.\nexport default { content: ['./src/**/*.{ts,tsx,html}'], theme: { extend: { colors: { fondo: 'var(--background)', superficie: 'var(--surface)', principal: 'var(--accent)', secundario: 'var(--secondary-accent)', texto: 'var(--text)', borde: 'var(--border)' }, fontFamily: { titulos: [${JSON.stringify(d.typography.headingFont)}], cuerpo: [${JSON.stringify(d.typography.bodyFont)}], codigo: [${JSON.stringify(d.typography.monoFont)}] }, borderRadius: { tema: 'var(--radius)' }, transitionDuration: { tema: 'var(--motion-duration)' } } } };\n/* tokens.css\n${css.replaceAll('/*', '').replaceAll('*/', '')}*/\n` };
 }

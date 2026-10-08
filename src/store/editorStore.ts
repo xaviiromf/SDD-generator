@@ -1,3 +1,4 @@
+import { hasDesignOverrides, validDesignValue, type DesignGroups } from '../domain/design';
 import type { Locale } from '../i18n/translate';
 import { create } from 'zustand';
 import { emptyConfiguration, singleFields, type Configuration, type Field, type Inference, type Selection } from '../domain/models';
@@ -5,6 +6,10 @@ import { technologyById } from '../catalog/technologies';
 import { optionCompatible } from '../domain/compatibility';
 interface EditorState {
     config: Configuration;
+    setDesignOverride: <G extends keyof DesignGroups>(group: G, key: keyof DesignGroups[G], value: DesignGroups[G][keyof DesignGroups[G]]) => void;
+    clearDesignOverrides: () => void;
+    selectArchetype: (id: string, preserveOverrides: boolean) => void;
+    detachArchetype: () => void;
     setSDDLanguage: (locale: Locale) => void;
     setText: (field: 'name' | 'slug' | 'idea' | 'positive' | 'negative', value: string) => void;
     select: (field: Field, id: string) => void;
@@ -14,7 +19,17 @@ interface EditorState {
 }
 export const useEditorStore = create<EditorState>((set, get) => ({
     config: emptyConfiguration(),
-    setSDDLanguage: sddLanguage => set(({config}) => (config.sddLanguage ?? 'es') === sddLanguage ? {} : {config: {...config, sddLanguage, revision: config.revision + 1}}),
+    setDesignOverride: (group, key, value) => {
+        if (!validDesignValue(group, String(key), value)) return;
+        set(({ config }) => config.designOverrides?.[group]?.[key] === value ? {} : { config: { ...config, designVersion: 1, designOverrides: { ...config.designOverrides, [group]: { ...config.designOverrides?.[group], [key]: value } }, revision: config.revision + 1 } });
+    },
+    clearDesignOverrides: () => set(({ config }) => !hasDesignOverrides(config.designOverrides) ? {} : { config: { ...config, designOverrides: undefined, revision: config.revision + 1 } }),
+    selectArchetype: (id, preserveOverrides) => {
+        if (technologyById.get(id)?.field !== 'archetype') return;
+        set(({ config }) => config.selections.archetype?.[0] === id && (preserveOverrides || !hasDesignOverrides(config.designOverrides)) ? {} : ({ config: { ...config, selections: { ...config.selections, archetype: [id] }, origins: { ...config.origins, archetype: 'manual' }, designOverrides: preserveOverrides ? config.designOverrides : undefined, revision: config.revision + 1 } }));
+    },
+    detachArchetype: () => set(({ config }) => !config.selections.archetype?.length ? {} : { config: { ...config, selections: { ...config.selections, archetype: [] }, origins: { ...config.origins, archetype: 'manual' }, revision: config.revision + 1 } }),
+    setSDDLanguage: () => set(({config}) => config.sddLanguage === 'es' ? {} : { config: { ...config, sddLanguage: 'es', revision: config.revision + 1 } }),
     setText: (field, value) => set(state => state.config[field] === value ? state : { config: { ...state.config, [field]: value, revision: state.config.revision + 1 } }),
     select: (field, id) => {
         const entry = technologyById.get(id);
@@ -51,5 +66,5 @@ export const useEditorStore = create<EditorState>((set, get) => ({
         set({ config: { ...config, selections, origins, revision: config.revision + 1 } });
         return true;
     },
-    restore: config => set({ config: { ...config, sddLanguage: config.sddLanguage ?? 'es', revision: get().config.revision + 1 } })
+    restore: config => set({ config: { ...config, sddLanguage: 'es', revision: get().config.revision + 1 } })
 }));

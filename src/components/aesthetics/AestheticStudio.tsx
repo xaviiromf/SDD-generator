@@ -1,7 +1,11 @@
-import { useTranslation } from '../../i18n/useTranslation';
-import { archetypes } from '../../catalog/archetypes';
+import { memo } from 'react';
 import { useEditorStore } from '../../store/editorStore';
 import { styleApplies } from '../../domain/compatibility';
-import { ArchetypeCard } from './ArchetypeCard';
-export function AestheticStudio() { const { t } = useTranslation(); const selected = useEditorStore(s => s.config.selections.archetype?.[0]); const platform = useEditorStore(s => s.config.selections.platform?.[0]); const select = useEditorStore(s => s.select); if (!styleApplies({ ...useEditorStore.getState().config, selections: { platform: platform ? [platform] : [] } }))
-    return <p>{t("El diseño visual no aplica a esta plataforma. Tu elección anterior se conserva para volver a un destino visual.")}</p>; return <div className="archetype-list">{archetypes.map(a => <ArchetypeCard key={a.id} a={a} selected={selected === a.id} onSelect={() => select('archetype', a.id)}/>)}</div>; }
+import { AdvancedDesignPanel } from './AdvancedDesignPanel';
+import { ArchetypeCarousel } from './ArchetypeCarousel';
+import { DesignSandbox } from './DesignSandbox';
+export const AestheticStudio = memo(function AestheticStudio() {
+    const platform = useEditorStore(s => s.config.selections.platform?.[0]);
+    if (!styleApplies({ ...useEditorStore.getState().config, selections: { platform: platform ? [platform] : [] } })) return <p>El diseño visual no aplica a esta plataforma. Tu elección anterior se conserva para volver a un destino visual.</p>;
+    return <><ArchetypeCarousel/><AdvancedDesignPanel/><DesignSandbox/></>;
+});

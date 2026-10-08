@@ -1,3 +1,4 @@
+import { resolveDesign } from './design';
 import { compatibilityDiagnostics, styleApplies } from './compatibility';
 import type { Configuration, Field } from './models';
 export function calculateMaturity(c: Configuration) {
@@ -7,7 +8,7 @@ export function calculateMaturity(c: Configuration) {
         { label: 'Plataforma', complete: valid('platform') },
         { label: 'Pila tecnológica', complete: valid('language') && valid('architecture') && (valid('frontend') || valid('backend') || ['cli', 'shell', 'daemon', 'esp32', 'arduino', 'arm', 'raspberry-pi'].includes(c.selections.platform?.[0] ?? '')) },
         { label: 'Almacenamiento', complete: valid('storage') },
-        { label: 'Estilo', complete: !styleApplies(c) || (valid('styling') && valid('archetype')) },
+        { label: 'Estilo', complete: !styleApplies(c) || (valid('styling') && !!resolveDesign(c)) },
         { label: 'Seguridad', complete: valid('auth') || valid('security') },
         { label: 'Pruebas', complete: valid('testing') }
     ];

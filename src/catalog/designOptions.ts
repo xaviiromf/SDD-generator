@@ -1,0 +1,4 @@
+export const fontFamilies = ['Albert Sans', 'Archivo Black', 'Chivo', 'Cinzel', 'Cormorant Garamond', 'Cormorant Infant', 'DM Mono', 'Epilogue', 'Fira Code', 'Fraunces', 'Geist Mono', 'Geist Sans', 'Inconsolata', 'Instrument Serif', 'Inter', 'JetBrains Mono', 'Manrope', 'Newsreader', 'Outfit', 'Playfair Display', 'Plus Jakarta Sans', 'Public Sans', 'Shippori Mincho', 'Source Sans 3', 'Space Grotesk', 'Space Mono', 'Syne', 'Syne ExtraBold', 'Urbanist', 'Zen Kaku Gothic New'] as const;
+export const monoFamilies = ['DM Mono', 'Fira Code', 'Geist Mono', 'Inconsolata', 'JetBrains Mono', 'Space Mono'] as const;
+export const finishes = ['grain', 'scanlines', 'paper', 'frosted', 'matte', 'mesh'] as const;
+export const finishLabels = { grain: 'Granulado analógico', scanlines: 'Líneas de barrido', paper: 'Papel y lienzo', frosted: 'Cristal esmerilado', matte: 'Mate plano', mesh: 'Degradado de malla sutil' };

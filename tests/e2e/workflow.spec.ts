@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-async function chooseSPA(page: Page) { await page.getByLabel('Conjunto predefinido').selectOption('client-spa'); await page.getByRole('button', { name: 'Aplicar conjunto', exact: true }).click(); await page.getByRole('button', { name: 'Estética y tokens' }).click(); await page.getByRole('button', { name: 'Precisión suiza para software', exact: true }).click(); }
+async function chooseSPA(page: Page) { await page.getByLabel('Conjunto predefinido').selectOption('client-spa'); await page.getByRole('button', { name: 'Aplicar conjunto', exact: true }).click(); await page.getByRole('button', { name: 'Estética y tokens' }).click(); for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'Estilo siguiente' }).click(); await page.getByRole('button', { name: 'Seleccionar este estilo', exact: true }).click(); }
 test('genera kit, respeta intención y descarga ZIP', async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -13,7 +13,7 @@ test('genera kit, respeta intención y descarga ZIP', async ({ page }) => {
     expect((await download).suggestedFilename()).toBe('mi-proyecto-sdd.zip');
     await page.getByRole('tab', { name: 'constitution', exact: true }).click();
     await expect(page.locator('pre')).toContainText('Cero emojis');
-    await page.getByRole('button', { name: 'Comando de Setup Rápido' }).click();
+    await page.getByRole('button', { name: 'Comando de preparación rápida' }).click();
     await expect(page.getByLabel('Contenido para copiar')).toContainText('npm create vite');
     await page.getByRole('button', { name: 'Cerrar', exact: true }).click();
     expect(errors).toEqual([]);
@@ -52,7 +52,7 @@ test('recarga y exporta sin red tras preparar la caché', async ({ page, context
     await page.getByRole('button', { name: 'Descargar Kit SDD (.zip)', exact: true }).click();
     await download;
 });
-for (const width of [375, 767, 768, 1279, 1280, 1440])
+for (const width of [320, 375, 767, 768, 1279, 1280, 1440])
     test(`adapta paneles a ${width}px sin desbordamiento`, async ({ page }) => {
         await page.setViewportSize({ width, height: 1000 });
         await page.goto('./');

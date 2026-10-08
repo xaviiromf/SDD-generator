@@ -24,7 +24,7 @@ export function readDraft(storage?: Pick<Storage, 'getItem'>): {
         const data: unknown = JSON.parse(raw);
         if (!isConfiguration(data) || validateConfiguration(data, knownIds).length)
             throw new Error();
-        return { config: data, message: 'Borrador recuperado.' };
+        return { config: { ...data, designVersion: 1, sddLanguage: 'es' }, message: data.sddLanguage === 'en' ? 'Borrador recuperado. El idioma se ha actualizado a español; tus textos y decisiones se conservan.' : 'Borrador recuperado.' };
     }
     catch {
         return { config: null, message: 'No se pudo recuperar el borrador. El registro no es válido o el almacenamiento está restringido.' };

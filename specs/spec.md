@@ -1,5 +1,7 @@
 # 001 — SDD-Studio: estudio y generador de desarrollo guiado por especificaciones
 
+Estado de la ampliación activa 004: plan y matriz aprobados formalmente el 2026-10-07. T-004-04…23 autorizadas; implementación y verificación técnica final completadas. Aceptación y despliegue pendientes.
+
 Fecha: 2026-10-06. Estado: especificación aprobada por el usuario el 2026-10-06. Implementación autorizada: **SÍ**. Aceptación final del producto: pendiente.
 
 ## 1. Fuentes y disciplina
@@ -204,3 +206,61 @@ Contrato vigente tras autorización de 002: el kit completo conserva nombres y c
 ## Ampliación 003 — Idiomas independientes
 
 RF-003-01…05 en [003-idiomas/spec.md](003-idiomas/spec.md) sustituyen las restricciones de idioma único en RF-001-08,09,10,21 y sus criterios: UI y kit admiten español/inglés de forma independiente, con español por defecto. Nombres de productos, rutas y sintaxis conservan su forma técnica; los textos del usuario se preservan por decisión explícita. Cero emojis, las 34 responsabilidades y la pila local determinista permanecen vigentes.
+
+## Ampliación 004 — MCP, contexto por fases y diseño avanzado
+
+Fecha: 2026-10-07. Plan y matriz formalmente aprobados; código de aplicación autorizado: **SÍ**, T-004-04…23. El usuario aprobó español integral y migración sin pérdida de datos. Implementación realizada, verificación final registrada en validation.md y aceptación humana pendiente.
+
+### Necesidad y cambios de contrato
+
+Mejorar la precisión del análisis cuando exista un servidor MCP disponible, reducir la lectura innecesaria de contexto por agentes y permitir diseñar el proyecto objetivo con controles completos y navegación compacta entre 21 arquetipos. Mantener SPA estática, funcionamiento local, borradores compatibles y estructura de 34 documentos.
+
+Esta propuesta modifica las exclusiones de RF-001-06/19: una conexión MCP opcional puede transmitir la idea a un servidor elegido expresamente por el usuario. El generador documental continúa local; el servidor MCP y el modelo externo no forman parte de esta entrega. MCP transporta llamadas a herramientas; la precisión semántica depende de la herramienta/modelo del servidor, no del protocolo por sí solo. No se promete exactitud del 100 %.
+
+La nueva restricción de español sustituye RF-003-01…03 para futuras versiones: retirar los dos controles ES/EN, fijar interfaz y contenido propio del kit en español y migrar preferencias inglesas sin perder datos. Conservar historial de 003 y textos libres del usuario según su decisión anterior; no incorporar traducción automática ni reescribir su significado. Nombres de productos, identificadores y sintaxis técnica se conservan. README y guías futuras explicarán el modo local y la conexión opcional, sin atribuir origen del kit a archivos de una máquina particular.
+
+### Requisitos formales
+
+| ID | Comportamiento y criterio requerido |
+|---|---|
+| RF-004-01 | AGENTS.md define entrada de hasta tres archivos, matriz DOCUMENT/IMPLEMENT/VALIDATE, dominios y prohibición bidireccional de leer internals UI/motor; tareas de integración consumen contratos documentados. |
+| RF-004-02 | Configuración MCP con URL, transporte automático/HTTP con transmisión/SSE heredado y activación explícita. Guardar URL válida y preferencia; desconectar cancela solicitudes y sesiones. Mostrar destino y qué texto se enviará antes de activar; por defecto no hay tráfico externo. |
+| RF-004-03 | Cliente MCP negocia inicialización/capacidades y descubre únicamente match_technologies o infer_intent mediante tools/list; invoca la disponible con tools/call. Admite respuestas JSON y SSE del transporte acordado; un endpoint SSE no se trata como un REST arbitrario. |
+| RF-004-04 | Respuesta validada: IDs del catálogo, campos compatibles, confianza numérica finita 0…1, justificación y alcances ausentes. Confianza >=0,85 permite inferencia compatible en campos sin decisión manual/conjunto; el resto se propone para revisión. La confianza es declarada por el servidor, no una probabilidad calibrada. |
+| RF-004-05 | Sin configuración, offline, error, CORS, autenticación no disponible, respuesta inválida o plazo total >=1500 ms, conservar resultado local íntegro sin modal de error ni bloquear edición. El plazo comprende conexión necesaria y herramienta, después del intervalo de agrupación de entrada. Respuestas tardías, de otra revisión/URL o de conexión anterior no modifican estado. |
+| RF-004-06 | Panel Idea muestra MCP Conectado solo tras negociación válida, herramienta compatible y conexión vigente; en los demás casos Motor Local Activo. Ajustes accesibles, prueba de conexión sin enviar idea, detalle de error solo al solicitarlo y sin notificaciones repetitivas durante escritura. |
+| RF-004-07 | Ajustes Avanzados de Diseño selecciona independientemente fuente de títulos, cuerpo y código desde familias locales autorizadas, y fondo, superficie, acento primario/secundario, borde y texto mediante selector y HEX editable. Validar #RRGGBB/#RRGGBBAA y componer alfa para contraste. No admitir fuentes remotas ni CSS libre. |
+| RF-004-08 | Ofrecer seis acabados: Granulado analógico, Líneas CRT, Papel/lienzo, Cristal esmerilado, Mate plano y Degradado de malla sutil. Botones: radio 0/6/24 px, sólido/contorno/transparente y profundidad de sombra. Tarjetas: borde 0/1/2 px, sin sombra/difusa/desplazada y densidad compacta/normal/amplia. Iconos Lucide: trazo 1,5/2/2,5 px y escala de tamaño. Movimiento: rápido 100 ms, fluido 300 ms, rebote y sin animaciones. |
+| RF-004-09 | Muestra interactiva aislada refleja cada ajuste en <16 ms en el entorno de referencia medido, sin renderizar la raíz ni las áreas de idea/documentos/configuración ajenas al control. Mostrar títulos, cuerpo, código, botones y estados hover/active, etiquetas, tarjetas, texturas y contraste AA/AAA real. Movimiento reducido prevalece sobre el perfil animado. |
+| RF-004-10 | Modelo de diseño efectivo compartido por muestra, plan técnico generado, constitution y exportaciones CSS/JSON/Tailwind compatibles. Incluir los parámetros avanzados, fuentes, iconos, movimiento, recetas de textura y estados; no declarar contraste aprobado si falla. Los 34 archivos conservan rutas y revisión común, sin agregar archivos de código al ZIP por este cambio. |
+| RF-004-11 | Carrusel compacto de 21 arquetipos con anterior/siguiente, contador 1…21, flechas de teclado y sin reproducción automática. Navegar solo cambia el índice de muestra; no altera arquetipo, personalización, revisión ni exportación. Montar una ficha visible, evitando renderizar 21 muestras completas. |
+| RF-004-12 | Seleccionar este estilo aplica expresamente el arquetipo; Preset Activo permite desactivarlo. Activar otro arquetipo con ajustes personales pide conservarlos o restablecerlos, con cancelación. Desactivar retira la base y conserva ajustes personales; no inventa otro preset. Las variantes siguen siendo decisiones explícitas. |
+| RF-004-13 | Restaurar borradores anteriores y persistir ajustes validados de diseño; URL MCP por separado, credenciales solo en memoria. En plataformas no visuales conservar diseño como borrador inactivo y excluirlo del kit/madurez. Mantener modo offline, exportación, prioridades y protección de secretos/emojis; textos inválidos nunca se envían a MCP. |
+| RF-004-14 | UI, mensajes, nombres accesibles y contenido propio generado en español integral, sin emojis; iconos Lucide. Tres rangos responsivos exactos, controles >=44 x 44 px, foco y teclado completos. Cambios de idioma previos migran a español con explicación, conservando datos. Actualizar guías y evidencia, respetar exclusión de 002 y sincronizar solo el hito aprobado. |
+
+### Contratos públicos propuestos
+
+| Modelo | Campos y fronteras |
+|---|---|
+| Ajustes MCP persistentes | enabled boolean, endpoint URL <=2048 caracteres, transport auto/streamable-http/sse. Deshabilitado y URL vacía por defecto; HTTPS remoto y HTTP solo loopback explícito. Sin usuario/contraseña, fragmentos ni secretos en URL. |
+| Sesión MCP volátil | Estado local/conectando/conectado, versión negociada, ID de sesión, herramienta admitida, generación de conexión, error de prueba. Token de acceso opcional en memoria; no claves del modelo ni OAuth propio en esta ampliación. |
+| Entrada de inferencia | requestId, revision, texto original <=20.000 caracteres y exclusiones explícitas. El cliente valida datos antes de enviar; no envía documentos, datos del navegador ni borrador entero. |
+| Salida normalizada | requestId/revision asociados localmente, matches <=237 entradas {id, confidence, reason}, missingScopes <=24 entradas {id, message, options}. reason/message <=500 caracteres en español, opciones como IDs permitidos. Sin HTML, rutas, instrucciones ejecutables ni modificaciones arbitrarias. Duplicados, valores no finitos o formato incorrecto invalidan la respuesta. |
+| Diseño personal | Versión de diseño 1; baseArchetypeId opcional; overrides parciales tipados de tipografía, colores, acabado, botones, tarjetas, iconos y movimiento; cero cadenas CSS arbitrarias. |
+| Diseño efectivo | Resolución única: valores neutros documentados → arquetipo explícito → ajustes personales. Sin base ni ajustes: diseño pendiente. Un diseño personal completo puede satisfacer el pilar estético sin un arquetipo activo. |
+
+Contrato del servidor requerido: herramienta con inputSchema compatible con text y exclusions opcionales y salida normalizada acordada. Preferir match_technologies; infer_intent sirve como alternativa, no segunda llamada encadenada por defecto. Leer structuredContent o un bloque JSON textual conforme al esquema; no interpretar prosa arbitraria como instrucciones. Un servidor que solo ofrezca nombres iguales con esquema incompatible activa el motor local. Se acordará el endpoint real y su autenticación durante implementación; no hace falta disponer de él para probar con servidor simulado.
+
+### Recorridos y aceptación
+
+1. Sin MCP, editar/generar/copiar/descargar permanece completamente local. Activar URL y probar conexión solo negocia herramientas; el aviso de envío precede a cualquier idea externa. La falta de servidor no impide configurar diseño ni usar el kit.
+2. Escribir con MCP operativo muestra resultado local inmediatamente; un resultado remoto vigente y validado sustituye únicamente inferencias de la misma idea, respetando manual > conjunto > inferencia. Al fallar elimina la inferencia remota de esa idea y recompone la local; no pierde elecciones manuales.
+3. Ajustar fuentes, cada color, textura, botones, tarjetas, iconos y movimiento actualiza muestra, cálculo de contraste y posterior kit. HEX inválido se mantiene como edición temporal corregible, sin contaminar configuración/exportación.
+4. Recorrer los 21 estilos no selecciona ninguno. Selección, desactivación y cambio con personalización tienen transacciones explícitas y recuperables; elección persistida se distingue del estilo que se está mirando.
+5. Verificar límites 320/375/767/768/1279/1280/1440 px, teclado, foco, movimiento reducido y ausencia de desplazamiento horizontal. La UI propia cumple AA; la muestra informa fallos de la paleta personal sin corregirla silenciosamente.
+6. Matriz MCP: apagado, éxito HTTP/JSON/SSE, SSE heredado, servidor sin herramienta, 401/403, CORS, desconexión, respuesta malformada, IDs inválidos, baja confianza, demora >=1500 ms y carrera por edición/URL/desconexión. Sin envíos cuando texto contiene posibles secretos o emojis.
+7. Medir >=200 cambios de controles para p95 de actualización DOM de la muestra <16 ms, sin renders de raíz/áreas ajenas; contrastar pintura y tareas largas en trazas. Generación de 34 documentos conserva p95 <=150 ms y ZIP de referencia <100 ms; inferencia remota tiene su plazo separado de 1500 ms. No afirmar esos tiempos para cualquier hardware o red.
+
+### Límites explícitos
+
+No se implementa servidor MCP, modelo, túnel, despliegue, telemetría, pagos, gestión de credenciales del proveedor de IA ni OAuth completo. El operador del endpoint debe proveer herramienta, CORS, validación de origen, autenticación y modelo adecuados. No sortear restricciones del navegador mediante no-cors ni proxy añadido silenciosamente. El modo local continúa disponible ante cualquier incompatibilidad. No agregar bibliotecas ni fuentes sin una revisión específica; se propone resolver controles, texturas y transporte con la pila existente.

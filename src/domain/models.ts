@@ -1,3 +1,4 @@
+import type { DesignOverrides } from './design';
 import type { Locale } from '../i18n/translate';
 import type { KitDocument } from '../engine/kitManifest';
 export const fields = ['platform', 'architecture', 'language', 'runtime', 'frontend', 'backend', 'api', 'addons', 'state', 'primitives', 'highlight', 'packaging', 'content', 'storage', 'protocol', 'styling', 'archetype', 'auth', 'security', 'integrity', 'tooling', 'testing', 'lint', 'deploy'] as const;
@@ -8,6 +9,8 @@ export interface Configuration {
     version: 1;
     revision: number;
     sddLanguage?: Locale;
+    designVersion?: 1;
+    designOverrides?: DesignOverrides;
     name: string;
     slug: string;
     idea: string;
@@ -66,5 +69,5 @@ export interface Compilation {
     };
     targetTree: string[];
 }
-export function emptyConfiguration(): Configuration { return { version: 1, revision: 0, sddLanguage: 'es', name: 'Mi proyecto', slug: 'mi-proyecto', idea: '', positive: '', negative: '', selections: {}, origins: {} }; }
+export function emptyConfiguration(): Configuration { return { version: 1, designVersion: 1, revision: 0, sddLanguage: 'es', name: 'Mi proyecto', slug: 'mi-proyecto', idea: '', positive: '', negative: '', selections: {}, origins: {} }; }
 export const singleFields = new Set<Field>(['platform', 'architecture', 'runtime', 'frontend', 'styling', 'archetype', 'auth']);
