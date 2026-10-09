@@ -1,6 +1,6 @@
 # Validación y evidencia — 006
 
-Fecha de propuesta: 2026-10-08; cierre técnico: 2026-10-09. Fase **DOCUMENT T-006-27**; H1 sincronizada y H2 verificada, cierre Git pendiente. [Especificación](spec.md), [plan](plan.md), [tareas](tasks.md) y [estado del proyecto](../../docs/PROJECT_STATUS.md).
+Fecha de propuesta: 2026-10-08; cierre técnico: 2026-10-09. Fase **DOCUMENT de cierre**; H1 y H2 verificadas y sincronizadas por separado. [Especificación](spec.md), [plan](plan.md), [tareas](tasks.md) y [estado del proyecto](../../docs/PROJECT_STATUS.md).
 
 ## Registro histórico de DOCUMENT
 
@@ -211,4 +211,11 @@ Cierre documental T-006-26: [auditoría de enlaces/IDs](../../docs/evidence/006-
 
 Auditorías finales observadas: 85 enlaces locales válidos; 15 RF/seis RNF/17 CA/ocho D/27 T, 27 dependencias anteriores y cero referencias desconocidas. 277 archivos textuales elegibles sin emojis; git diff --check código 0, 002 ignorado/sin archivos seguidos. T-006-26 completada, T-006-27 activa.
 
-Comprobación del índice: primer diff --cached --check detectó espaciado final en registros nuevos (salida 2); se normalizó solo ese formato, conservando resultados. La comprobación final del índice debe pasar antes del commit.
+Comprobación del índice: primer diff --cached --check detectó espaciado final en registros nuevos (salida 2); se normalizó solo ese formato, conservando resultados. La comprobación final del índice pasó con salida 0 antes del commit.
+
+
+## T-006-27 — Sincronización observada de H2
+
+Commit exclusivo de H2 **c6a499c566a5dcea2f55cf5baf69ed5789b92b62**, padre H1 **8514ddcc25442dedbd8c7c8d5315c6a951bc837f**. git push origin main salida 0; ls-remote confirma el mismo hash y status sin cambios. Se prepararon 64 archivos autorizados, sin 002 ni manifiestos/dependencias nuevos. [Registro Git](../../docs/evidence/006-h2/git.json). T-006-01…27 completadas. Este cierre documental registra el push observado y se sincroniza después mediante commit documental normal, sin modificar el código validado, reescribir historial ni desplegar.
+
+Auditoría del cierre documental: 87 enlaces locales válidos, 27 tareas completadas y 278 archivos textuales sin emojis; diff 0. No hay cambios de aplicación, pruebas ni dependencias desde los resultados verificados.

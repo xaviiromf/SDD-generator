@@ -6,7 +6,7 @@ Fecha: 2026-10-09.
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
 | Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3 y H4 autorizados; H5 pospuesto. 006: H1 y H2 autorizados, Mermaid exacto autorizado; commits y push separados por hito. |
-| Fase | DOCUMENT 006 H2: T-006-27, commit/push exclusivo del hito verificado. T-006-26 completada; H1 sincronizada antes de iniciar H2. H5 de 005 pospuesto. |
+| Fase | DOCUMENT de cierre de 006: T-006-01…27 completadas. H1/H2 verificadas y sincronizadas por separado. Revisión del cliente y límites manuales pendientes; H5 de 005 pospuesto. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
 | Implementación | Kit local de 34 documentos y modelo canónico preservados; H1 Mermaid determinista/visor SVG/PNG/mapa, H2 portada ejecutiva/alertas/badges/tablas sticky/explorador con estados. Biblioteca, versiones, aportaciones y MCP opcional conservados. Español integral, sin dependencias nuevas de H2. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
@@ -16,8 +16,8 @@ Fecha: 2026-10-09.
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
-| Git | H1 8514ddcc25442dedbd8c7c8d5315c6a951bc837f sincronizado y hash remoto/árbol limpio confirmados antes de H2. Cambios H2 aún locales; commit/push pendiente en T-006-27. 002 sigue excluido. |
-| Próximo paso | Completar auditoría documental T-006-26 y commit/push normal exclusivo de H2 T-006-27 a origin/main. Revisión visual/semántica del cliente y límites manuales pendientes; H5 de 005 sin autorización. |
+| Git | H1 8514ddcc25442dedbd8c7c8d5315c6a951bc837f y H2 c6a499c566a5dcea2f55cf5baf69ed5789b92b62 sincronizados mediante push normal a origin/main; hash remoto H2 y árbol limpio confirmados. Registro documental de cierre posterior separado, sin cambios de aplicación. 002 excluido. |
+| Próximo paso | Revisión visual/semántica del cliente de H1/H2 y auditorías manuales pendientes (lector de pantalla, zoom real, teléfono físico). Sin implementación adicional, H5, Parte 3 ni despliegue autorizados. |
 
 ## Propuesta 006 — DOCUMENT
 
@@ -544,3 +544,7 @@ T-006-26 actualiza enlaces a reportes .txt y confirma destinos existentes. Cambi
 T-006-25 auditorías finales: 277 archivos textuales sin emojis, diff 0, 002 ignorado/sin archivos seguidos; origin/main sigue en 8514ddc. Cambio a DOCUMENT T-006-26 y cierre: 85 enlaces válidos, IDs/dependencias sin errores, manual/evidencia/decisiones/trazabilidad consolidados. T-006-27 activa para stage/commit/push exclusivamente de H2, sin despliegue ni reescritura. Confirmación de sincronización se registrará después de observarla.
 
 T-006-27: stage confirma 64 archivos exclusivos autorizados. Primer git diff --cached --check salida 2 detecta espacios/líneas finales de los registros nuevos, invisibles al diff de archivos aún no seguidos. Se normaliza únicamente su espaciado, preservando resultados y valores; sin cambios de aplicación. Repetir comprobación del índice antes de commit.
+
+2026-10-09 — T-006-27 completada: commit H2 c6a499c566a5dcea2f55cf5baf69ed5789b92b62, padre H1 8514ddc. Push normal origin/main salida 0, hash remoto idéntico y árbol limpio observados. Las 27 tareas de 006 completadas; registro documental posterior de esta evidencia se sincroniza sin cambiar código ni repetir pruebas inalteradas. Sin despliegue ni reescritura; 002 excluido y H5 pospuesto.
+
+Auditoría del cierre documental: 87 enlaces locales válidos, 27 tareas completadas y 278 archivos textuales sin emojis; diff 0. No hay cambios de aplicación, pruebas ni dependencias desde los resultados verificados.

@@ -7,3 +7,5 @@ Integral: 173 correctas y siete mediciones Firefox omitidas, cero fallos; comple
 Resultados, presupuestos y límites de revisión manual en [validation.md](../../../specs/006-diagramas-y-experiencia-visual/validation.md). Los datos corresponden a pruebas automatizadas con fixtures, sin medición de ahorro humano ni aceptación del proyecto objetivo.
 
 Los registros conservan salidas y valores; se normalizaron espacios finales y líneas vacías finales para cumplir git diff --check.
+
+[Sincronización Git observada](git.json): H2 c6a499c, padre H1 8514ddc, push normal y hash remoto/árbol limpio confirmados antes del cierre documental.

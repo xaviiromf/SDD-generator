@@ -146,7 +146,7 @@ Entrada de cada tarea: AGENTS.md, estado del proyecto y apartado pertinente de s
   - RF: RF-006-15. CA: CA-006-17. Decisiones: D-006-08.
   - Rutas: documentos 006, README.md, docs/PROJECT_STATUS.md, docs/TRACEABILITY.md, docs/DECISIONS.md, specs/README.md.
   - Cierre: manual de portada/visor/estados, métricas observadas y límites, enlaces/IDs correctos; Parte 3 excluida, H5 de 005 intacto y aceptación pendiente hasta revisión humana.
-- [ ] T-006-27 — Sincronizar H2 autorizado.
+- [x] T-006-27 — Sincronizar H2 autorizado.
   - Fase/dominio: DOCUMENT / cierre del hito verificado. Dependencias: T-006-26.
   - RF: RF-006-15. CA: CA-006-17. Decisiones: D-006-08.
   - Alcance: diff/status/lista de archivos y resultados; commit/push normal del hito autorizado, sin archivos de 002, cambios ajenos, force ni despliegue.
@@ -154,4 +154,4 @@ Entrada de cada tarea: AGENTS.md, estado del proyecto y apartado pertinente de s
 
 ## Estado y próximo paso
 
-T-006-01…18 completadas. H1 sincronizada como 8514ddc y árbol limpio confirmado. T-006-19…26 completadas; T-006-27 pendiente de commit/push exclusivo de H2. Autorización vigente, sin otra confirmación.
+T-006-01…18 completadas. H1 sincronizada como 8514ddc y árbol limpio confirmado. T-006-19…27 completadas. H2 sincronizada como c6a499c, push normal a origin/main, hash remoto idéntico y árbol limpio confirmados. Registro documental posterior separado de código; revisión visual/semántica y límites manuales pendientes.
