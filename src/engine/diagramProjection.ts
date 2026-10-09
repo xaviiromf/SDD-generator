@@ -25,7 +25,7 @@ function flowParts(id: string, kind: DiagramKind, documents: string[], header: s
     const add = (ns: Node[], e?: Edge) => {
         const candidate = { nodes: new Map(group.nodes), edges: e ? [...group.edges, e] : [...group.edges] };
         ns.forEach(n => candidate.nodes.set(n.id, n));
-        if (candidate.nodes.size > (kind === 'architecture' ? 6 : diagramLimits.nodes) || candidate.edges.length > (kind === 'architecture' ? 20 : diagramLimits.edges) || bytes(source(candidate)) > diagramLimits.sourceBytes) {
+        if (candidate.nodes.size > (kind === 'architecture' ? 4 : diagramLimits.nodes) || candidate.edges.length > (kind === 'architecture' ? 8 : diagramLimits.edges) || bytes(source(candidate)) > diagramLimits.sourceBytes) {
             if (group.nodes.size) groups.push(group);
             group = { nodes: new Map(ns.map(n => [n.id, n])), edges: e ? [e] : [] };
         } else group = candidate;

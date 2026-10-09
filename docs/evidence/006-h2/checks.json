@@ -1,0 +1,65 @@
+[
+  {
+    "check": "lint",
+    "command": "npm run lint",
+    "exit_code": 0,
+    "started": "2026-10-09T21:06:44.078545+00:00",
+    "ended": "2026-10-09T21:06:49.890945+00:00"
+  },
+  {
+    "check": "types",
+    "command": "npm run typecheck",
+    "exit_code": 0,
+    "started": "2026-10-09T21:06:49.891526+00:00",
+    "ended": "2026-10-09T21:07:00.758524+00:00"
+  },
+  {
+    "check": "unit",
+    "command": "npm test",
+    "exit_code": 0,
+    "started": "2026-10-09T21:07:00.759256+00:00",
+    "ended": "2026-10-09T21:07:07.078566+00:00"
+  },
+  {
+    "check": "build",
+    "command": "npm run build",
+    "exit_code": 0,
+    "started": "2026-10-09T21:07:07.079410+00:00",
+    "ended": "2026-10-09T21:07:21.929231+00:00"
+  },
+  {
+    "check": "directed",
+    "command": "npx playwright test tests/e2e/diagrams.spec.ts --grep visor renderiza|200 entradas",
+    "exit_code": 0,
+    "started": "2026-10-09T21:07:21.929884+00:00",
+    "ended": "2026-10-09T21:08:16.980916+00:00"
+  },
+  {
+    "check": "e2e",
+    "command": "npm run test:e2e",
+    "exit_code": 0,
+    "started": "2026-10-09T21:09:09.956320+00:00",
+    "ended": "2026-10-09T21:20:36.060170+00:00"
+  },
+  {
+    "check": "lint-tablet",
+    "command": "npm run lint",
+    "exit_code": 0,
+    "started": "2026-10-09T21:21:57.259328+00:00",
+    "ended": "2026-10-09T21:22:02.834650+00:00"
+  },
+  {
+    "check": "types-tablet",
+    "command": "npm run typecheck",
+    "exit_code": 0,
+    "started": "2026-10-09T21:22:02.835436+00:00",
+    "ended": "2026-10-09T21:22:13.140396+00:00"
+  },
+  {
+    "check": "tablet",
+    "command": "npx playwright test tests/e2e/documentExperience.spec.ts --grep 768px",
+    "exit_code": 0,
+    "started": "2026-10-09T21:22:13.140951+00:00",
+    "ended": "2026-10-09T21:22:25.657461+00:00"
+  }
+]

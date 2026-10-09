@@ -1,0 +1,56 @@
+{
+  "principal": {
+    "file": "principal-DBi6wocU.js",
+    "bytes": 372905,
+    "gzip_level_6_bytes": 118122
+  },
+  "static_imports": [
+    {
+      "file": "preload-helper-noc18GVc.js",
+      "bytes": 2071
+    },
+    {
+      "file": "principal-DBi6wocU.js",
+      "bytes": 372905
+    },
+    {
+      "file": "project-model-DV1HzTZS.js",
+      "bytes": 136962
+    },
+    {
+      "file": "react-D9bKjYXg.js",
+      "bytes": 7876
+    },
+    {
+      "file": "rolldown-runtime-W7wSyTde.js",
+      "bytes": 979
+    }
+  ],
+  "static_total_bytes": 520793,
+  "css_bytes": 46056,
+  "all_js_bytes": 6142684,
+  "largest_js": [
+    {
+      "file": "elk-IJKZMXRS-DZvBQXqE.js",
+      "bytes": 1462935
+    },
+    {
+      "file": "chunk-NGNAAXSQ-DqoPQk1a.js",
+      "bytes": 629058
+    },
+    {
+      "file": "cytoscape.esm-Yq6u8L66.js",
+      "bytes": 434855
+    },
+    {
+      "file": "principal-DBi6wocU.js",
+      "bytes": 372905
+    },
+    {
+      "file": "katex-ZlcWpGUi.js",
+      "bytes": 258685
+    }
+  ],
+  "static_mermaid_dependency": false,
+  "renderer_html_exists": true
+}

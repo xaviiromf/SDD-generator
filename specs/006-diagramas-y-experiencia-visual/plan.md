@@ -4,9 +4,9 @@ Fecha: 2026-10-08. **Aprobado: H1 y H2 secuenciales, commits/push separados**. [
 
 ## Base, decisiones y límites de lectura
 
-Base documental: [contratos de 005](../005-generador-profesional/plan.md), [evidencia H4](../005-generador-profesional/validation.md), [flujo general](../plan.md) y manifiesto de dependencias existente. No se leyeron implementaciones del motor, UI ni pruebas. Las rutas siguientes son inventario existente o propuestas de archivos nuevos, no descripciones de internals inspeccionados.
+Base del DOCUMENT inicial: [contratos de 005](../005-generador-profesional/plan.md), [evidencia H4](../005-generador-profesional/validation.md), [flujo general](../plan.md) y manifiesto de dependencias existente. En ese DOCUMENT inicial no se leyeron implementaciones del motor, UI ni pruebas. Las rutas siguientes son inventario existente o propuestas de archivos nuevos, no descripciones de internals inspeccionados.
 
-H4 registra 379,12 kB de principal, 137,37 kB de editorStore compartido y ProfileStudio diferido de 15,28 kB; edición con colecciones máximas p95 1,7 ms. Son referencias históricas, no evidencia de Mermaid ni garantía de margen del conjunto inicial. Mermaid no figura en las dependencias actuales.
+H4 registra 379,12 kB de principal, 137,37 kB de editorStore compartido y ProfileStudio diferido de 15,28 kB; edición con colecciones máximas p95 1,7 ms. Son referencias históricas, no evidencia de Mermaid ni garantía de margen del conjunto inicial. Mermaid aún no figuraba en las dependencias de esa base; H1 instaló la versión autorizada 12.1.0.
 
 | ID | Decisión propuesta | Consecuencia |
 |---|---|---|
@@ -170,4 +170,36 @@ El banco de volumen detectó bloqueo por mediciones SVG en el documento principa
 
 ProfileStudio monta diferidamente ProfilePanelRuntime; opciones de conexiones se montan al abrir su ficha. La proyección de arquitectura produce partes de hasta seis nodos/20 conexiones legibles, preservando todos los hechos entre partes. DocumentTabs monta DocumentContent/DiagramView: texto seguro y cercas intactas en H1, Markdown enriquecido pendiente de H2. Las revisiones de candidato no re-renderizan partes sin cambios.
 
-T-006-16/17 verificadas: lint, tipos, 144 unitarias, build y 146 recorridos correctos; seis mediciones Firefox omitidas. Principal 359178 bytes; JS inicial estático 507066 bytes publicado por separado. T-006-18 aún debe confirmar commit/push limpio para habilitar H2. Evidencia y límites en validation.md.
+T-006-16/17 verificadas: lint, tipos, 144 unitarias, build y 146 recorridos correctos; seis mediciones Firefox omitidas. Principal 359178 bytes; JS inicial estático 507066 bytes publicado por separado. T-006-18 confirmó commit 8514ddcc25442dedbd8c7c8d5315c6a951bc837f, push normal y árbol limpio antes de iniciar H2. Evidencia y límites en validation.md.
+
+
+## Contrato H2 concretado T-006-19
+
+Aplicabilidad: guías `prompts/*`, manuales, AGENTS, constitution, índice specs y cuatro plantillas son contenido reutilizable; pendientes del proyecto no se imputan a una plantilla. README/PROJECT: nombre, descripción y requisitos declarados. TECHNICAL_CONTEXT y BASE_ARCHITECTURE: configuración (no aplica software en modo documental), componentes/contratos y diagnósticos de arquitectura. BASE_OBSERVATIONS: preguntas/supuestos; DECISIONS: decisiones declaradas. ROADMAP/tasks/TRACEABILITY: requisitos y enlaces efectivos; spec/plan: preparación global, contexto y diagramas respectivos. PROJECT_STATUS: preparación y autorización aún pendiente. ENVIRONMENT_AND_VERIFICATION, SDD_VALIDATION, VERIFICATION y validation: evidencia por realizar, nunca completos por generación. Cada identidad del manifiesto tiene grupo explícito; una identidad no reconocida queda borrador por aplicabilidad pendiente.
+
+`DocumentStatus.reasons` usa `{id,message}`; deduplicación por ID, revisión de configuración. Campo `applicability` explica alcance. `ProjectOverview` incluye también architectureDiagramIds (todas las partes), counts.rf/rnf/components/entities/technologies/pending/documentDrafts/documentComplete; technology y profile son listas `{id,name}`. Métricas solo declaraciones activas, componentes por unión de IDs perfil/contexto y tecnologías únicas seleccionadas/declaradas; no cuenta marcadores visuales. navigationTargets usa documentId o panel idea/configuration. Validación/aceptación no se deducen de ninguna métrica.
+
+
+### Contrato de integración T-006-20
+
+Panel añade `overview` manteniendo `config` inicial. StudioLayout monta ProjectDashboard con import dinámico solo al abrir Portada; conserva el montaje de los paneles existentes. Portada consume `useDocumentStore` con selectores propios de overview/diagrams/pending/conflicts/error y revisión actual desde editorStore; muestra explícitamente la revisión confirmada mientras espera. `openOverviewTarget(OverviewTarget)` selecciona documento/panel y enfoca el título de destino tras el commit. La API pública `presentDocumentStatus(base,{revision,pending,conflict,error})` devuelve un estado visual derivado, deduplica razones y fuerza borrador por generación pendiente/conflicto/error; no persiste ni modifica la compilación. Los consumidores leen DTO/acciones públicas, sin abrir internals del store/motor.
+
+Corrección T-006-20: portada permanece montada tras primera visita para reutilizar SVG/controles al navegar. Mientras está oculta retiene la última proyección visible; al volver muestra la revisión vigente, sin renderizar automáticamente sus nuevas fuentes en segundo plano.
+
+T-006-20 añade límites memoizados en los adaptadores públicos Configurator/IdeaEditor/DocumentCanvas/CommandPalette: cambiar panel no re-renderiza sus formularios/Markdown; cada consumidor conserva sus suscripciones y acciones propias.
+
+
+Refinamientos de H2: README/PROJECT incluyen preparación aplicable de ficha/pila/requisitos; spec/plan incluyen confirmación de contexto y relaciones, además de diagnósticos. Los campos pendientes del documento no se ocultan por tener nombre/idea. El visor retiene como máximo dos documentos visitados, con contenido original y navegación estable; solo la vista activa participa de foco/lectura. Las vistas explícitamente inactivas conservan SVG y difieren nuevas fuentes hasta su activación. En escritorio, ocultar paneles conserva su anchura/layout para evitar recalcular cien formularios al volver. Se registran por separado commit, layout y tareas largas.
+
+Corrección de visibilidad: la pausa explícita afecta portada oculta y documentos inactivos. El mapa ya abierto mantiene su proyección reactiva incluso al desplazar el formulario fuera de vista; la primera carga sigue exigiendo un bloque visible. No se confunde mapa cerrado con scroll del configurador abierto.
+
+
+### Contratos y cierre técnico final de H2
+
+Arquitectura limita cada partición a cuatro nodos/ocho conexiones, dentro de los límites generales 200/250 y 32 KiB; conserva todos los hechos y nodos frontera. MermaidBlock reutiliza un resultado completado mientras fuente/título/descripción/reintento no cambien; cambiar revisión actualiza metadatos y nombres de exportación. Las solicitudes de fuentes nuevas mantienen revisión/token/cancelación. Diagrama/Código conserva zoom y SVG.
+
+DocumentContent utiliza Markdown semántico React sin HTML activo, con cercas anidadas preservadas, cinco alertas, enlaces admitidos y tablas con encabezados sticky/overflow. La disposición de bloques fuera de pantalla se difiere mediante content-visibility:auto, conservando DOM/fuente. FileTree separa estructura de selectores de estado; el explorador cerrado se monta al abrir. Entrevista y tarjetas de requisitos difieren controles hasta la primera apertura y los conservan después.
+
+PresetSelector conserva un diálogo en portal y gestiona modalidad mediante fondo, aria-modal, ocultación temporal de root, trampa de foco/Tab/Escape y restauración de overflow/foco; publicación/cierre/foco son síncronos y se miden dentro del commit. No agrega dependencias ni cambia decisiones al cancelar.
+
+T-006-25 verificada: lint/tipos/149 unitarias/build sin errores; integral 173 recorridos correctos/siete omitidos y complemento tablet dos correctos. Principal 372905 bytes, JS estático total 520793 informado; p95 de controles <16 ms, mapa 298,3 ms, layout/tareas largas separados. Evidencia y límites manuales en validation.md. T-006-27 registra la sincronización efectiva tras observarla.

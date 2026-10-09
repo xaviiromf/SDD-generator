@@ -1,6 +1,6 @@
 # 006 — Diagramas y experiencia visual de SDD-Studio
 
-Fecha: 2026-10-08. Estado: **aprobada**; H1 y H2 autorizados el 2026-10-08, Mermaid con versión exacta autorizado. Commits/push separados por hito; H2 solo tras sincronización limpia de H1. Despliegue no autorizado.
+Fecha: 2026-10-08. Estado: **aprobada y verificada técnicamente en H1/H2** (2026-10-09); H1 y H2 autorizados el 2026-10-08, Mermaid con versión exacta autorizado. Commits/push separados por hito; H2 solo tras sincronización limpia de H1. Despliegue no autorizado.
 
 [Plan técnico](plan.md), [tareas](tasks.md), [validación y límites](validation.md), [estado del proyecto](../../docs/PROJECT_STATUS.md) y [contratos vigentes de 005](../005-generador-profesional/plan.md).
 

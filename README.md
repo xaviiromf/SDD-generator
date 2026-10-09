@@ -84,6 +84,18 @@ En «Perfiles y componentes», el mapa muestra «Vista previa» mientras cambias
 
 Mermaid 12.1.0 se importa al solicitar el primer diagrama. La primera carga necesita red; después de «Preparación sin conexión completa», también la primera apertura de un diagrama funciona sin red. La preparación descarga los módulos sin ejecutarlos; perder la caché exige prepararla de nuevo. El principal cumple el límite de 500000 bytes; la evidencia publica además la suma estática inicial y los módulos diferidos. Presupuestos, pruebas y límites manuales: [validación de 006](specs/006-diagramas-y-experiencia-visual/validation.md).
 
+### Portada del proyecto y explorador documental
+
+Abre «Portada» para consultar la ficha técnica, requisitos funcionales y no funcionales activos, componentes, entidades, tecnologías y pendientes. La arquitectura central usa las mismas fuentes del kit, incluidas todas sus partes. Los accesos directos llevan al documento o panel correspondiente y trasladan el foco al destino. Durante la generación se identifica la revisión anterior y sus pendientes.
+
+El explorador conserva las 34 rutas e incorpora iconos Lucide de carpeta, Markdown y texto. Usa las flechas para recorrer, expandir o contraer, Inicio/Fin para llegar a los extremos y Enter para abrir. En móvil se despliega encima del documento. Los estados «Completo» y «Borrador» incluyen texto y explicación de pendientes; las carpetas agregan los estados de sus hijos. «Completo» expresa cobertura documental. La ejecución de validaciones y la aceptación requieren evidencia independiente.
+
+### Alertas, tablas y lectura enriquecida
+
+El visor reconoce `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]` y `> [!CAUTION]` como Nota, Consejo, Importante, Advertencia y Precaución. Las citas desconocidas conservan su contenido. Las cercas de código muestran texto literal y las aportaciones HTML permanecen inertes.
+
+Las tablas conservan sus celdas y encabezados, con desplazamiento horizontal y vertical dentro de un contenedor accesible. El encabezado permanece visible al desplazarse. Alternar «Diagrama» y «Código» conserva el SVG y el zoom si su fuente sigue igual. El visor mantiene los dos últimos documentos visitados para agilizar la navegación; las descargas y el ZIP conservan el contenido original.
+
 ### Contexto acotado para agentes
 
 El kit mantiene sus 34 documentos. En `tasks.md`, «Paquetes de contexto por tarea» entrega objetivo, dominio, dependencias, contratos, archivos permitidos, criterios y puerta de aprobación. La entrada consta de tres archivos como máximo: `AGENTS.md`, `docs/PROJECT_STATUS.md` y únicamente el apartado pertinente de la especificación activa. Después de identificar la tarea se consultan sus contratos y archivos autorizados; no es necesario cargar todo el kit ni las nueve guías.
@@ -143,7 +155,7 @@ npm run build
 npm run test:e2e
 ```
 
-Las pruebas de navegador usan el build de producción servido localmente. Resultados y limitaciones de requisitos/trazabilidad están en [validación 005](specs/005-generador-profesional/validation.md), y la evidencia histórica en [specs/validation.md](specs/validation.md); estado y autorización, en [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md). Las pruebas automáticas no sustituyen la aceptación visual del usuario ni una revisión con lector de pantalla real.
+Las pruebas de navegador usan el build de producción servido localmente. Diagramas, portada, estados y visor enriquecido: [validación 006](specs/006-diagramas-y-experiencia-visual/validation.md). Resultados y limitaciones de requisitos/trazabilidad están en [validación 005](specs/005-generador-profesional/validation.md), y la evidencia histórica en [specs/validation.md](specs/validation.md); estado y autorización, en [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md). Las pruebas automáticas no sustituyen la aceptación visual del usuario ni una revisión con lector de pantalla real.
 
 ## Fuentes y licencias
 

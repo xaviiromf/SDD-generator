@@ -1,23 +1,23 @@
 # Estado del proyecto y punto de reanudación
 
-Fecha: 2026-10-08.
+Fecha: 2026-10-09.
 
 | Campo | Estado |
 |---|---|
 | Producto | SDD-Studio, SPA estática con motor local determinista y MCP opcional. |
 | Autorización | 001, Django, 002 y 003 autorizados previamente. Plan 004 y matriz aprobados el 2026-10-07. H0–H2 de 005, tareas 02…19 y cierre 35 autorizados el 2026-10-08; H3 y H4 autorizados; H5 pospuesto. 006: H1 y H2 autorizados, Mermaid exacto autorizado; commits y push separados por hito. |
-| Fase | DOCUMENT 006 H1: T-006-16/17 verificadas; T-006-18 activa para commit/push exclusivo H1. H2 aún sin iniciar. H4 de 005 implementado, verificado y sincronizado; revisión del cliente pendiente; H5 de 005 pospuesto. |
+| Fase | DOCUMENT 006 H2: T-006-27, commit/push exclusivo del hito verificado. T-006-26 completada; H1 sincronizada antes de iniciar H2. H5 de 005 pospuesto. |
 | Contrato vigente | 34 documentos: seis raíz, diez docs, nueve prompts, índice, cuatro plantillas y cuatro activos en specs/001-<slug>/. |
-| Implementación | Modelo canónico versionado, editor/entrevista, trazabilidad y preparación de 34 documentos; biblioteca local, versiones, respaldos y aportaciones por sección; perfiles JSON, componentes, tecnologías propias, modos y paquetes por tarea; MCP opcional de 1500 ms y diseño avanzado conservados. Español y migración aditiva sin pérdida de textos/decisiones. |
+| Implementación | Kit local de 34 documentos y modelo canónico preservados; H1 Mermaid determinista/visor SVG/PNG/mapa, H2 portada ejecutiva/alertas/badges/tablas sticky/explorador con estados. Biblioteca, versiones, aportaciones y MCP opcional conservados. Español integral, sin dependencias nuevas de H2. |
 | Catálogo/fuentes | 237 opciones, ocho conjuntos, 21 arquetipos; 30 familias OFL locales. |
-| Verificación actual | 006 H1: 144 unitarias, 146 pruebas de navegador correctas, seis mediciones Firefox omitidas; lint, tipos/build correctos; 0 fallos. Evidencia en specs/006-diagramas-y-experiencia-visual/validation.md. |
-| Rendimiento de referencia | Principal 379,12 kB y compartido editorStore 137,37 kB; sandbox 200 ajustes p95 4,8 ms y cero renders ajenos; perfiles al máximo de colecciones p95 1,7 ms; biblioteca con 20 proyectos/100 RF p95 3,5 ms. Banco H2 histórico sin medición de ahorro humano. |
+| Verificación actual | 006 H1/H2: lint/tipos/149 unitarias/build salidas 0; integral 173 recorridos correctos y siete mediciones Firefox omitidas, cero fallos; complemento tablet dos correctos. Cobertura de 175 casos distintos correctos/siete omitidos. Evidencia en specs/006-diagramas-y-experiencia-visual/validation.md y docs/evidence/006-h2/. |
+| Rendimiento de referencia | Principal 372905 bytes; JS estático total 520793 informado por separado, Mermaid diferido. UI evento/cola a commit p95 <16 ms: mapa entrada 2,2/alternador 5,6; portada alternador 2,1/navegación 4,9. Mapa p95 298,3 ms con poco margen; layout posterior navegación 30,9 ms y tareas largas separados. Sin atribución de ahorro humano. |
 | Compatibilidad | Borradores anteriores, actualización de caché sin recargar edición y exportación sin red comprobados en Chromium/Firefox. |
 | Trabajo previo | 40/43 tareas de 001 completadas; pendientes T-001-35,38,39 por auditoría manual de accesibilidad. |
 | Límites | Lector de pantalla real, ampliación real de navegador y teléfono físico pendientes; límite de WebKit registrado previamente. No se modifican paquetes del sistema. |
 | Evidencia de 002 | Conservada solo localmente por instrucción del usuario, sin enlaces públicos a archivos ignorados. |
-| Git | H4 9a0e46f sincronizado mediante push normal a origin/main y confirmado con ls-remote. Registro documental de cierre consolidado después. 002 sigue excluido. |
-| Próximo paso | Confirmar commit/push exclusivo de H1; iniciar H2 solo después de confirmar push y árbol limpio. Revisión de H4 de 005 pendiente; H5 de 005 sin autorización. |
+| Git | H1 8514ddcc25442dedbd8c7c8d5315c6a951bc837f sincronizado y hash remoto/árbol limpio confirmados antes de H2. Cambios H2 aún locales; commit/push pendiente en T-006-27. 002 sigue excluido. |
+| Próximo paso | Completar auditoría documental T-006-26 y commit/push normal exclusivo de H2 T-006-27 a origin/main. Revisión visual/semántica del cliente y límites manuales pendientes; H5 de 005 sin autorización. |
 
 ## Propuesta 006 — DOCUMENT
 
@@ -380,3 +380,167 @@ Se retoma VALIDATE T-006-16 para lint/tipos/144 unitarias/build y regresión com
 T-006-16 final: lint/tipos/build/unitarias/e2e códigos 0; 144 unitarias y 146 recorridos correctos, seis mediciones Firefox omitidas. Se activa DOCUMENT T-006-17: manual, decisiones, trazabilidad y evidencia observada; después T-006-18 sincronización exclusiva H1.
 
 T-006-17 completada: manual README, decisiones D-029 y trazabilidad H1; T-006-18 activa, documental/Git sin cambios de código. H2 sigue sin iniciar.
+
+T-006-18 completada: commit 8514ddcc25442dedbd8c7c8d5315c6a951bc837f, push normal origin/main código 0; ls-remote coincide y status vacío. 002 ignorado y sin archivos seguidos. Se habilita H2 y activa IMPLEMENT T-006-19 / núcleo: tipos projectOverview, tabla de aplicabilidad de 34 rutas, proyección y pruebas específicas; sin lectura UI/servicios.
+
+T-006-19 núcleo: DTO y aplicabilidad de 34 identidades, proyección en Compilation, tres pruebas específicas/tipos correctos. Se activa IMPLEMENT T-006-20 / integración pública: documentStore/uiStore/App/StudioLayout y contrato de montaje; sin leer internals UI o motor.
+
+T-006-20 integración: panel overview y montaje diferido registrados, navegación con foco y estado visual sin persistencia. Se activa IMPLEMENT T-006-21 / interfaz y estética para dashboard/PanelNavigation/estilos; solo DTO y API públicas, sin lectura de stores internos o motor.
+
+T-006-21 UI: dashboard diferido con ficha, métricas declaradas, todas las partes de arquitectura y navegación/foco; tipos correctos. Se activa IMPLEMENT T-006-22 / interfaz y estética: DocumentCanvas/Tabs/Content y auxiliares Markdown/badge, estilos. Sin lectura de núcleo/servicios/stores internos.
+
+T-006-22 UI: cinco alertas, Markdown seguro, tablas sticky y badges/razones; tipos correctos. Lint detecta dos aserciones de prueba T-006-19, se corrigen al entrar T-006-24 sin tocar UI desde pruebas. Se activa IMPLEMENT T-006-23 / interfaz y estética: FileTree y adaptación lateral de DocumentCanvas (ruta expresamente añadida), estilos/navegación.
+
+T-006-23 UI: explorador lateral con 34 rutas, iconos MD/TXT/carpeta, badges con descripción y agregación deduplicada; estructura/teclado aislados de suscripciones de estado. Tipos correctos. Se activa IMPLEMENT T-006-24 / pruebas de integración pública: fixtures dashboard/Markdown, estado/conflicto, instrumentación y regresión. Sin leer implementación.
+
+T-006-24: cuatro pruebas de overview/estado pasan, fixtures de alertas/cercas/tabla/anexos y portada preparadas; instrumentación 200 alternadores/navegaciones con 100 RF. Lint detectó escape inútil en fixture y fue corregido preservando barra literal. Se activa VALIDATE T-006-25: lint/tipos/148 unitarias/build y recorridos específicos de H2 antes de regresión completa H1/H2.
+
+T-006-25 banco específico: 20 correctos, cinco fallos, una medición omitida. Se retoma IMPLEMENT T-006-20 / integración pública para mantener portada visitada montada; navegación p95 18,7 ms supera presupuesto. Sin lectura UI/core.
+
+Corrección de montaje T-006-20 aplicada. Se retoma IMPLEMENT T-006-21 / UI dashboard y DiagramView: montaje retenido, foco al volver y fuentes pausadas mientras oculto; luego T-006-22 / UI MarkdownText: decodificación textual acotada, siempre React y sin HTML activo.
+
+Correcciones UI T-006-21/22 aplicadas; tipos correctos. Se retoma VALIDATE T-006-25: lint/build y segundo banco específico H2; no se modifican umbrales ni fixtures fallidos.
+
+Segundo banco T-006-25: alertas presentes, cuatro fallos por selector ambiguo de dos cercas; navegación sigue fuera de presupuesto p95 21 ms. Se retoma IMPLEMENT T-006-21 / UI dashboard/DiagramView/MermaidBlock para inspección acotada del render/foco. Después T-006-19 / núcleo y T-006-24 / pruebas en transiciones separadas.
+
+T-006-21 corrección: foco inicial conserva navegación posterior en su botón; bloque memoizado y ResizeObserver usa contentRect sin lectura síncrona ni ajuste a anchura cero. Contención de layout en portada/lector. Se activa IMPLEMENT T-006-19 / núcleo para retirar una clave de aplicabilidad sin documento (AGENTS) y conservar tabla exacta de 34 IDs.
+
+T-006-19 corrección aplicada sin alterar métricas/proyección. Se retoma IMPLEMENT T-006-24 / pruebas: selector de cerca específico, contraste y máximo de colecciones en banco H2; sin inspección de aplicación.
+
+T-006-24 ajusta únicamente selector de cerca, comprueba tabla exacta de 34 IDs, añade contraste y banco H2 de 10 perfiles/20 componentes/50 tecnologías/20 proyectos/100 RF/100 relaciones. Se retoma VALIDATE T-006-25: lint/tipos/unitarias/build y pruebas específicas corregidas.
+
+T-006-25 tipos detecta discrepancia entre componente memoizado y fallback. Se retoma IMPLEMENT T-006-21 / UI DiagramView para memoizar también fallback; luego VALIDATE T-006-25 sin relajar tipos.
+
+T-006-25 tercer banco: cuatro fallos de prueba por origin localhost vs 127.0.0.1; alertas/cercas/tablas/sticky/contraste/almacenamiento pasan antes de esa aserción. Máximo de colecciones navegación p95 29,8 ms; se retoma IMPLEMENT T-006-20 / integración pública para memoizar adaptadores de panel, sin leer UI interna.
+
+T-006-20 aislamiento aplicado. Se retoma IMPLEMENT T-006-24 / pruebas: origen del servidor desde baseURL y conteo de cambios SVG separado por alternador/navegación. Luego VALIDATE T-006-25: lint/tipos/build/banco Chromium específico.
+
+T-006-25 banco Chromium: 13 correctos; alternador p95 5,8 ms, navegación 4,3 ms al máximo, cero recreaciones SVG por navegación. Se retoma IMPLEMENT T-006-21 / UI MermaidBlock para retener SVG al alternar Código; las 100 reconstrucciones al alternar y tareas largas 51–186 ms justifican el ajuste antes de regresión final.
+
+T-006-21: vista SVG retenida/oculta en Código y visible al volver, sin alterar fuente ni descargas; se retoma IMPLEMENT T-006-24 / pruebas para verificar cero reinserciones SVG y publicar layout separado. Luego VALIDATE T-006-25 para comandos y regresión completa.
+
+T-006-25 primera regresión integral: 165 correctos, siete omitidos y seis fallos (tres presupuestos Chromium, dos expectativas HTML escapado y carrera de preparación del árbol Firefox). Consulté un fragmento de prueba en VALIDATE antes de registrar transición; se corrige la fase inmediatamente. Se retoma IMPLEMENT T-006-22 / UI DocumentTabs/DocumentContent para navegación estable y caché de dos vistas; después T-006-20 montaje/estilos en tarea UI explícita. Sin leer internals de otros dominios.
+
+T-006-22 reutiliza dos vistas, callback de navegación estable y señal booleana de revisión vigente (no una suscripción por cada tecla). DiagramView conserva SVG de bloques no visibles hasta volver a entrar. Se retoma IMPLEMENT T-006-20 / integración pública para identificar portada visitada en el montaje; después T-006-21 / UI estilos retiene layout de paneles de escritorio.
+
+T-006-20 adaptador aplicado. Se retoma IMPLEMENT T-006-21 / UI estilos para conservar anchuras/layout al ocultar paneles de escritorio; no inspección de integración/core.
+
+Se retoma IMPLEMENT T-006-19 / núcleo: completar aplicabilidad de README/PROJECT con preparación y de spec/plan con estados de declaraciones contextuales/relaciones; estas fichas no deben aparecer completas con campos propios pendientes. Tabla documentada antes de consumidores.
+
+Se retoma IMPLEMENT T-006-24 / pruebas: HTML literal inerte, espera de 34 rutas antes de expandir árbol, estado de declaraciones y selectores de TXT activos. No se lee aplicación.
+
+T-006-24: expectativas de HTML literal conservan comprobación de cero scripts y ausencia de ejecución; TXT se selecciona dentro de la vista activa; árbol espera 34 opciones y cada apertura confirmada antes de enumerar. Nueva prueba de pendientes propios preparada. Se retoma VALIDATE T-006-25 para lint/tipos/149 unitarias/build y recorridos de presupuesto/función corregidos.
+
+T-006-25 delta: seis recorridos correctos y dos fallos. Biblioteca p95 2,7 ms, navegación documental 6,6 ms, portada 3,1 ms; layout de panel 37,3 ms separado. Mapa sin muestras al quedar fuera de vista por scroll y conjunto p95 18 ms. Se retoma IMPLEMENT T-006-21 / UI DiagramView/estilos y handler de conjunto en Configurator, ruta acotada antes de lectura.
+
+El handler de conjunto se encuentra en PresetSelector.tsx; se incorpora explícitamente a T-006-21 como adaptador UI antes de abrirlo, sin lectura de store interno.
+
+T-006-21 handler de conjunto consume acción pública y cierra diálogo con foco; no se cambia sin diagnóstico. Se retoma IMPLEMENT T-006-24 / pruebas para medir captura/espera/commit por separado manteniendo el mismo presupuesto de 16 ms y 200 muestras.
+
+Se retoma VALIDATE T-006-25: lint/tipos/build y presupuesto de conjunto con espera de captura/handler separados; umbral original intacto.
+
+Diagnóstico T-006-25: espera de captura p95 3,3 ms y handler p95 15,9 ms; total 18,8 ms. Se retoma IMPLEMENT T-006-23 / UI FileTree: no montar estados/filas hasta abrir explorador. Los estados cerrados no necesitan reconciliar iconos por cada conjunto. Sin lectura de stores internos.
+
+T-006-23 montaje diferido aplicado. Se retoma VALIDATE T-006-25: lint/tipos/build y tres bancos de presupuesto (conjunto, mapa, portada).
+
+T-006-25: mapa y portada pasan; conjunto sigue fuera de presupuesto (espera 4,7 / handler 20,6 / total 25,3 ms). Se retoma IMPLEMENT T-006-24 / pruebas para traza temporal de navegador y diagnóstico de layout, sin alterar umbrales. Instrumentación de diagnóstico temporal se retira antes del banco final.
+
+T-006-25: traza diagnóstica de 200 conjuntos: p95 total 22 ms, espera 4,6 ms, manejador 18,1 ms; falla. La traza registra recalculados de estilo por foco y apertura/cierre modal; se usa para diagnóstico, no como aceptación por su sobrecoste. Regreso a IMPLEMENT T-006-21 (UI Configurator/PresetSelector) y T-006-24 (prueba específica).
+
+T-006-21: la traza atribuye un recalculado de estilo al eliminar el botón modal enfocado durante la actualización del conjunto. Se cierra el modal con flushSync y se restaura el foco sin desplazamiento antes de cambiar decisiones; ambos trabajos permanecen dentro de la interacción medida. T-006-24 retira la traza CDP temporal, conserva tiempos del evento nativo, espera y manejador. VALIDATE T-006-25 activa.
+
+T-006-25: cierre previo reduce el manejador p95 a 13,2 ms, pero el evento completo sigue en 16,7 ms (espera 3,5 ms), ZIP 12,1 ms. Presupuesto todavía incumplido. Regreso a T-006-21 para liberar el foco del botón antes de desmontarlo.
+
+T-006-21 libera el foco del botón de aplicar antes del cierre síncrono y lo devuelve inmediatamente al selector sin scroll. Conserva diálogo modal, trampa de foco y Escape. VALIDATE T-006-25 activa.
+
+T-006-25: banco tras liberar foco: lint/tipos/build 0; 200 conjuntos p95 15,4 ms (espera 3,3, manejador 12,5), 30 ZIP p95 15 ms, prueba 0. Se ejecuta regresión integral final del mismo candidato H1/H2; resultado aún pendiente.
+
+T-006-25: regresión integral interrumpida después de observar conjunto p95 17 ms (espera 3,8, manejador 14,3), ZIP 15,9; no se declara completada ni correcta. Lint/tipos/149 unitarias/build 0. Se vuelve a IMPLEMENT T-006-21 para reemplazar únicamente el diálogo de conjunto por dialog modal nativo; conserva confirmación, variantes, Escape, foco y cancelación, evitando la mutación global de pointer-events del portal. No incorpora dependencias.
+
+T-006-21: PresetSelector usa dialog.showModal local, fondo nativo, Escape/cancelación y devolución síncrona de foco; no muta pointer-events de body ni desmonta el contenedor enfocado al aplicar. T-006-24 activa para añadir comprobación de trampa de foco, cancelación sin pérdida y retorno al selector en ambos navegadores.
+
+T-006-24 añade recorrido de diálogo en workflow: ocho pasos Tab/Shift+Tab, foco exterior rechazado, Escape, cancelación sin cambios y aplicar con retorno de foco. VALIDATE T-006-25 activa: lint/tipos/unitarias/build y bancos dirigidos secuenciales.
+
+T-006-25: diálogo nativo no basta: conjunto p95 16,5 ms. Banco dirigido un correcto, tres fallos, dos omitidos. La nueva prueba de foco falla al buscar Estilo sin abrir su fase (error de fixture, antes del diálogo). Regreso a IMPLEMENT T-006-21, lectura delimitada de TechnologyField, registrada como corrección de regresión en la ruta del configurador.
+
+T-006-21 amplía la lectura delimitada a PhaseSection.tsx: comprobar montaje de fases ocultas y coste de actualización de controles, sin leer catálogo/compatibilidad internos.
+
+T-006-21: las fases cerradas no tienen forceMount; los controles abiertos consumen selectores granulares. Cambio a integración pública T-006-20 para leer únicamente la acción applyPreset y su adaptador de publicación en editorStore.ts, ruta explícita de regresión; sin abrir internals del núcleo ni componentes desde esta tarea.
+
+T-006-20: applyPreset publica selecciones/revisión sin compilación síncrona; no se modifica la acción. Regreso a UI T-006-21 para medir resolución, cierre/foco y publicación por separado; medición temporal no contiene textos del usuario.
+
+T-006-24 abre la sección de estética antes de leer Estilo, usa referencia DOM para probar foco exterior al modal. VALIDATE T-006-25: lint/tipos/build y conjunto/foco secuenciales.
+
+T-006-25: p95 16,6 ms, resolver 0,2, cerrar/foco 10,2, publicar 0,5. La prueba de foco vuelve a fallar antes del diálogo: nombre exacto de la fase omitía su prefijo numérico. Regreso a T-006-21 para retirar blur previo (necesario en el portal desmontado, redundante con dialog nativo permanente) y medir API/foco por separado.
+
+T-006-25: sin blur previo, tres recorridos correctos y uno omitido; foco/modalidad Chrome y Firefox correctos, 200 conjuntos p95 15,1 ms (cerrar 8,9, API nativa 8,6, foco 0,1), ZIP 10,2. Regreso T-006-22 para aplicar content-visibility:auto a bloques Markdown fuera de viewport, manteniendo DOM semántico y contenido. Se busca margen frente a variación observada, sin diferir trabajo del propio evento.
+
+T-006-25: bloques Markdown pasan móvil/escritorio en Chrome/Firefox y foco/modalidad también: siete correctos, uno omitido. Conjunto p95 15,2 ms (espera 2,9, manejador 12,5), ZIP 11,8. La disposición diferida no reduce perceptiblemente el cierre nativo; se conserva como optimización de bloques fuera de pantalla, sin atribuirle esa mejora. Se retiran sondas temporales antes del candidato final.
+
+Candidato final: solo medición de timestamp nativo, espera/manejador y presupuestos existentes en prueba; sondas/CDP temporales retiradas. Se repiten lint, typecheck, npm test, build y test:e2e íntegros secuencialmente.
+
+T-006-25: segundo intento integral interrumpido tras fallos conocidos (navegador -15). Conjuntos p95 14,6 ms/ZIP 11,1; portada alternador 2 y navegación 3,6, layout posterior 20,7. Kit exige longitud de innerText >150 pero recibe 82 por disposición diferida; contenido/descarga deben verificarse con DOM/fuente íntegros. Mapa 19 muestras p95 309,7 ms, incumple 300; entrada p95 2,1/alternador 5,1/navegación 4,6 sí pasan. Cambio a núcleo T-006-19 para reducir tamaño de cada partición de arquitectura sin pérdida de hechos ni cambio de contrato, ruta diagramProjection.ts añadida explícitamente.
+
+T-006-19 limita cada bloque de arquitectura a cuatro nodos/ocho aristas, conservando todos los nodos/aristas/IDs en particiones completas y descripción textual. Cambio de tarea a T-006-24 antes de leer kit.spec.ts; comprobar fuente/DOM completos frente a innerText de bloques diferidos.
+
+T-006-24 verifica contenido completo por textContent y visibilidad del visor para cada ruta; innerText excluye bloques diferidos fuera de pantalla. Conserva comprobación de 34 entradas ZIP y coincidencia exacta del manual TXT. VALIDATE T-006-25: comandos completos, mapa/parser/kit dirigidos y después suite integral del mismo build si pasan.
+
+T-006-25: intento integral interrumpido (navegador -15): mapa 20 muestras p95 257,4 ms, máximo 313,7; interacción 2,4 y navegación 5,6; conjunto p95 16,8 ms (espera 3,1, manejador 13,9), aún falla. Regreso a T-006-21: agrupar cambios de controles y cierre/foco en un único commit síncrono con useLayoutEffect, evitando lecturas de geometría entre mutaciones. El trabajo de cierre sigue dentro de la interacción, antes de devolver el control.
+
+T-006-25: cierre agrupado pasa banco dirigido, tres correctos/uno omitido, p95 15,9 ms (espera 3, manejador 13,5), ZIP 9,8. Margen insuficiente frente a variaciones integrales previas. Se prepara traza temporal para contar elementos afectados y distinguir root/iframe; no se usa para aceptación.
+
+Traza temporal de cierre agrupado: DOM 577 elementos, documento 85, sin iframe ni SVG cargados; cierre recalcula 456–457 elementos (6–8 ms) por modalidad nativa. No se atribuye el coste a Mermaid. Regreso a T-006-22 para lectura delimitada de ManualSections.tsx, ruta añadida: comprobar montaje de editor auxiliar cerrado y preservar borradores al abrir.
+
+Inventario corrige la ruta del editor auxiliar a src/components/projects/ManualSections.tsx, antes de abrir contenido.
+
+T-006-22: ManualSections ya monta controles solo al abrir; sin cambios. Cambio a T-006-21, rutas IdeaEditor/ContextInterview y editor de requisitos: comprobar detalles cerrados de la idea antes de modificar. No se amplía capacidad de 005/H5.
+
+T-006-21 difiere controles de entrevista y tarjetas de requisitos hasta la primera apertura de sus detalles; una vez abiertos conserva el montaje y estado local al cerrar. Contadores/modelo/acciones se mantienen, no se elimina contenido del proyecto ni se retrasa la aplicación del conjunto. Cambio a pruebas T-006-24 antes de retirar la traza temporal.
+
+T-006-25: candidato con editores cerrados diferidos: lint/tipos/149 unitarias/build 0; once recorridos dirigidos correctos, uno omitido, Chrome/Firefox edición, RF/criterio/ZIP, modalidad/foco. Conjuntos p95 14,3 (espera 2,8, manejador 12), ZIP 13,8. Se ejecuta test:e2e íntegro sobre ese mismo build, sin modificaciones adicionales.
+
+T-006-25: integral interrumpida (salida -15): mapa p95 255,3/máximo 270 y entrada 2,3 correctos; conjuntos vuelven a fallar 19,4 (espera 3,5, manejador 16,1). Árbol observó solo once rutas porque carpetas abiertas se cerraron durante actualización. Regreso a T-006-21: diálogo en portal con modalidad controlada (fondo, aria-modal, ocultación accesible de root, trampa de Tab/foco/Escape y bloqueo de scroll exterior), sin inert global nativo. Trabajo de cierre permanece en commit síncrono medido. Luego T-006-23 para preservación de expansión.
+
+T-006-21: portal en body usa dialog.show con modalidad gestionada: fondo, aria-modal y ocultación accesible de #root, foco/Tab/Escape y scroll exterior bloqueados; cierre/publicación/foco dentro de flushSync/useLayoutEffect. No usa inert global ni diferimiento del cierre fuera del commit medido. Cambio a T-006-23 antes de leer FileTree.
+
+T-006-23: FileTree conserva expansión mediante unión de padres; no hay reset ni corrección de aplicación justificados. La explicación de carpetas cerradas era una hipótesis. Cambio a pruebas T-006-24 para comprobar espera del árbol después de su montaje diferido; ninguna escritura de FileTree por este diagnóstico.
+
+T-006-24: árbol espera su role tree visible antes de contar carpetas cerradas (la isla se monta tras onToggle); foco/modalidad agrega aria-modal, ocultación/restauración de root y wheel exterior sin scroll. Banco dirigido con presupuestos originales.
+
+T-006-25: portal controlado pasa cinco recorridos, uno omitido; árbol 34 rutas y foco/modalidad/scroll exterior correctos en ambos motores. Conjuntos p95 8,2 ms (espera 2,6, manejador 6,3), ZIP 12,4. Se completa bloqueo de scroll de fondo también para scrollbar/teclado mediante overflow temporal restaurado y gutter estable; sin propagación inert ni cambio de foco fuera del commit.
+
+2026-10-09 — Reanudación T-006-25, fase VALIDATE: cambios de H2 conservados; procesos y registros temporales de la ejecución anterior no disponibles. No se certifica su terminación. Se repiten lint, tipos, unitarias, build y test:e2e secuencialmente sobre el candidato conservado, con registros duraderos en docs/evidence/006-h2/. H1 8514ddcc25442dedbd8c7c8d5315c6a951bc837f ya sincronizado antes de iniciar H2.
+
+T-006-25: ejecución reanudada detecta fallo del banco H1 en Chromium: alternador p95 18 ms, mapa 19 muestras/p95 319,7 ms; entrada 3 ms y portada 2,5/4,7 ms. Suite aún ejecutándose sobre build congelado. Cambio a IMPLEMENT T-006-24, dominio pruebas de integración pública: lectura delimitada de diagrams.spec.ts para diagnóstico del contrato temporal, sin editar el candidato mientras termina la suite ni relajar presupuestos.
+
+T-006-24: el banco mantiene 200 eventos, espera de cola y commit; observación de mapa puede descartar una actualización al empezar la siguiente entrada, no se cambia el presupuesto. Cambio a IMPLEMENT T-006-21, interfaz: inspección delimitada de MermaidBlock/DiagramView y reglas CSS de diagramas para identificar trabajo del alternador; sin lectura de motor/servicios ni modificaciones hasta terminar ejecución en curso.
+
+T-006-25 termina intento reanudado: lint/tipos/149 unitarias/build correctos; navegador 172 correctos, siete omitidos y un fallo en 11,4 minutos. Alternador 18 ms, mapa 319,7 ms, ambos fuera de presupuesto; restantes funcionalidades de Chromium/Firefox pasan. Evidencia íntegra archivada en docs/evidence/006-h2/intento-01/. T-006-21 IMPLEMENT: evitar solicitud de render en bloques con fuente/título/descripción/reintento iguales, mantener revision/token para solicitudes nuevas y conservar SVG/zoom al alternar.
+
+T-006-21 conserva identidad gráfica completada. Cambio a IMPLEMENT T-006-24, pruebas: ampliar recorrido existente de visor para comprobar que Diagrama/Código conserva zoom y SVG cuando la fuente no cambia; mantener todas las mediciones y límites originales.
+
+T-006-25 VALIDATE: candidato con reutilización de SVG por contenido. Ejecutar lint/tipos/unitarias/build y banco dirigido de diagramas Chromium/Firefox antes de repetir integral; sin cambios de umbral, volumen, debounce ni método.
+
+T-006-25 banco dirigido: entrada p95 2,4 ms, alternador 4,9, zoom 1,4, pan 1,5; mapa 20 muestras p95 282,7/máximo 304,4 ms. Navegación 5 ms; 18 tareas largas de 53–91 ms publicadas por separado. El máximo de mapa supera 300 aunque el criterio p95 pasa. Cambio a IMPLEMENT T-006-19, núcleo: lectura delimitada de composición de descripciones/particiones en diagramProjection.ts para comprobar si bloques gráficos sin cambios reciben descripciones globales y repiten trabajo. No leer UI/servicios desde este dominio.
+
+T-006-19: descripciones ya están limitadas a nodos/conexiones de cada partición; no hay cambio de núcleo por esta inspección. Cambio a IMPLEMENT T-006-21, UI: revisar únicamente la clave/props de DiagramView en ProfilePanelRuntime antes de cerrar la optimización.
+
+T-006-21: claves de bloques estables por documentId; no remonte por revisión ni cambio adicional justificados. T-006-25 vuelve a VALIDATE: lint/tipos/149 unitarias/build y tres recorridos dirigidos correctos, uno omitido. Ejecutar regresión integral sobre el mismo candidato con presupuesto intacto.
+
+2026-10-09 — T-006-25 completada: lint/tipos/149 unitarias/build/test:e2e salidas 0, navegador 173 correctas/siete mediciones Firefox omitidas/cero fallos en 11,4 minutos. Mapa 20 muestras p95 298,3 ms y controles <16 ms; archivo principal 372905 bytes. Cambio a DOCUMENT T-006-26, dominio especificaciones/documentación: consolidar manual, decisiones, trazabilidad, propuesta y evidencia real; auditar enlaces/IDs/emoji/002. Sin cambios de aplicación ni nuevas pruebas repetidas después de pasar este candidato. T-006-27 pendiente.
+
+T-006-26 detecta una cobertura concreta pendiente: CA-006-12 pide tablas/badges a 375/768/1280 px; recorridos dedicados ejecutados cubren 375/1280 y la suite general 768. Regreso a IMPLEMENT T-006-24, solo documentExperience.spec.ts: añadir 768 a la misma matriz observable. No cambia aplicación/build ni escenarios anteriores; ejecutar dos recorridos tablet nuevos, lint y tipos, conservando la integral previa de 180 casos como evidencia independiente.
+
+T-006-25 VALIDATE complementaria: matriz de tablas añade 768 px. Ejecutar lint/tipos y únicamente los dos casos nuevos Chromium/Firefox sobre el build final ya verificado; no se repiten escenarios inalterados ni se presenta la ejecución separada como una única suite de 182 casos.
+
+T-006-25 complemento tablet: lint/tipos salidas 0 y dos recorridos 768 px correctos en Chromium/Firefox (11 segundos). Sin cambios de aplicación/build desde integral. Cobertura actual: 175 casos distintos correctos y siete mediciones omitidas, obtenidos por integral de 180 más complemento de dos casos; dirigidas duplicadas no se suman. Cambio a DOCUMENT T-006-26 para cierre documental.
+
+T-006-26: 83 enlaces locales y fragmentos existentes, 15 RF/seis RNF/17 CA/ocho D/27 T sin referencias desconocidas, 27 dependencias anteriores sin ciclos. Cambio a VALIDATE T-006-25 para auditorías automáticas de emoji/diff/exclusión: solo salidas y reportes, sin abrir implementación como contexto.
+
+Auditorías automáticas: diff sin errores, 002 ignorado/sin archivos seguidos, 262 archivos textuales elegibles sin emojis (los logs aún ignorados por la regla general de Git). Regreso a DOCUMENT T-006-26: conservar registros como .txt para que sus enlaces públicos incluyan la evidencia; no alterar .gitignore ni forzar inclusiones.
+
+T-006-26 actualiza enlaces a reportes .txt y confirma destinos existentes. Cambio a VALIDATE T-006-25 para último escaneo automático Unicode/diff del conjunto elegible, incluidos los registros antes ignorados; sin lectura de implementación como contexto.
+
+T-006-25 auditorías finales: 277 archivos textuales sin emojis, diff 0, 002 ignorado/sin archivos seguidos; origin/main sigue en 8514ddc. Cambio a DOCUMENT T-006-26 y cierre: 85 enlaces válidos, IDs/dependencias sin errores, manual/evidencia/decisiones/trazabilidad consolidados. T-006-27 activa para stage/commit/push exclusivamente de H2, sin despliegue ni reescritura. Confirmación de sincronización se registrará después de observarla.
+
+T-006-27: stage confirma 64 archivos exclusivos autorizados. Primer git diff --cached --check salida 2 detecta espacios/líneas finales de los registros nuevos, invisibles al diff de archivos aún no seguidos. Se normaliza únicamente su espaciado, preservando resultados y valores; sin cambios de aplicación. Repetir comprobación del índice antes de commit.

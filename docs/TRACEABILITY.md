@@ -116,6 +116,19 @@ La evaluación técnica de tiempos/hallazgos fue autorizada ante falta de partic
 | RF-006-08 | T-006-09/13 | descargas SVG/PNG completas y filtro SVG público adversario |
 | RF-006-09 | T-006-04/10/14 | candidato no aplicado, cancelar, tokens obsoletos y latencia medida |
 | RF-006-15, H1 | T-006-11/15…18 | continuidad, offline, seguridad, presupuestos/regresión; [resultados y límites](../specs/006-diagramas-y-experiencia-visual/validation.md) |
-| RF-006-10…14 | T-006-19…27 | H2 autorizado, pendiente de iniciar tras push limpio de H1 |
+| RF-006-10…14 | T-006-19…27 | H2 iniciado tras push limpio de H1; evidencia específica abajo |
 
 144 unitarias, 146 recorridos correctos y seis mediciones Firefox omitidas. No acredita ejecución/aceptación del proyecto objetivo ni auditoría manual completa. 002 continúa fuera del árbol seguido.
+
+
+## Ampliación 006 — H2
+
+| Requisito / criterio | Tareas | Evidencia observada |
+|---|---|---|
+| RF-006-10 / CA-006-10 | T-006-19…21/24/25 | projectOverview.test y projectDashboard.spec: contadores activos, revisión, todas las partes de arquitectura, vacío, offline, accesos/foco y siete anchuras |
+| RF-006-11 / CA-006-11 | T-006-22/24/25 | documentExperience.spec: cinco alertas, citas/cercas, contenido HTML inerte y fuente exacta |
+| RF-006-12/13 / CA-006-12 | T-006-19/22/24/25 | aplicabilidad/pendientes, badges textuales, semántica/contraste y tablas sticky con scroll a 375/768/1280 px, Chromium/Firefox |
+| RF-006-14 / CA-006-13 | T-006-20/23…25 | 34 rutas coinciden con manifiesto/ZIP, iconos MD/TXT, carpetas agregadas, selección y teclado |
+| RF-006-15 / CA-006-14…17 | T-006-24…27 | regresión H1/H2, SVG/PNG, cancelación/revisión, continuidad/borradores/offline, presupuestos y exclusión 002; [resultados y límites](../specs/006-diagramas-y-experiencia-visual/validation.md) |
+
+149 unitarias. Integral de 180 casos: 173 correctos/siete mediciones Firefox omitidas; complemento tablet: dos casos correctos. Cobertura actual de 175 casos distintos correctos/siete omitidos, sin sumar dirigidas duplicadas ni atribuir auditoría manual completa. [Comandos y salidas](evidence/006-h2/checks.json). H1 sincronizado independientemente; cierre Git de H2 se registra después del push observado.

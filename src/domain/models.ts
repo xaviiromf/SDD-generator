@@ -1,3 +1,4 @@
+import type { DocumentStatus, ProjectOverview } from './projectOverview';
 import type { DiagramProjection } from './diagrams';
 import type { ProfileConfiguration } from './profiles';
 import type { Readiness } from './readiness';
@@ -63,6 +64,8 @@ export interface GeneratedDocument extends KitDocument {
     revision: number;
 }
 export interface Compilation {
+    overview?: ProjectOverview;
+    documentStatuses?: DocumentStatus[];
     diagrams?: DiagramProjection;
     coverage?: Coverage;
     readiness?: Readiness;

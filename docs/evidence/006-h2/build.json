@@ -1,0 +1,71 @@
+{
+  "principal": {
+    "file": "principal-DuFInNmx.js",
+    "bytes": 372905,
+    "gzip_level_6_bytes": 118119
+  },
+  "static_imports": [
+    {
+      "file": "preload-helper-noc18GVc.js",
+      "bytes": 2071
+    },
+    {
+      "file": "principal-DuFInNmx.js",
+      "bytes": 372905
+    },
+    {
+      "file": "project-model-DV1HzTZS.js",
+      "bytes": 136962
+    },
+    {
+      "file": "react-D9bKjYXg.js",
+      "bytes": 7876
+    },
+    {
+      "file": "rolldown-runtime-W7wSyTde.js",
+      "bytes": 979
+    }
+  ],
+  "static_total_bytes": 520793,
+  "css_bytes": 46056,
+  "workers_and_renderer_entry": [
+    {
+      "file": "diagramas-VytI8N5y.js",
+      "bytes": 3859
+    },
+    {
+      "file": "generator.worker-BLFvZLi1.js",
+      "bytes": 222744
+    },
+    {
+      "file": "projectImport.worker-Cyq10XUl.js",
+      "bytes": 121859
+    }
+  ],
+  "all_js_bytes": 6142891,
+  "largest_js": [
+    {
+      "file": "elk-IJKZMXRS-DZvBQXqE.js",
+      "bytes": 1462935
+    },
+    {
+      "file": "chunk-NGNAAXSQ-DqoPQk1a.js",
+      "bytes": 629058
+    },
+    {
+      "file": "cytoscape.esm-Yq6u8L66.js",
+      "bytes": 434855
+    },
+    {
+      "file": "principal-DuFInNmx.js",
+      "bytes": 372905
+    },
+    {
+      "file": "katex-ZlcWpGUi.js",
+      "bytes": 258685
+    }
+  ],
+  "static_mermaid_dependency": false,
+  "renderer_html_exists": true,
+  "renderer_html_precache": true
+}

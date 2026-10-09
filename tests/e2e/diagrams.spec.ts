@@ -43,6 +43,11 @@ test('visor renderiza, alterna fuente exacta y descarga SVG y PNG completos', as
     await expect(block.getByRole('button', { name: 'Código', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await block.getByRole('button', { name: 'Diagrama', exact: true }).click(); await expect(block.locator('.diagram-stage svg')).toBeVisible();
     await block.getByRole('button', { name: 'Acercar diagrama', exact: true }).click();
+    await expect(block.locator('.diagram-tools span')).toHaveText('125 %');
+    await block.getByRole('button', { name: 'Código', exact: true }).click();
+    await block.getByRole('button', { name: 'Diagrama', exact: true }).click();
+    await expect(block).toHaveAttribute('aria-busy', 'false');
+    await expect(block.locator('.diagram-tools span')).toHaveText('125 %');
     const region = block.getByRole('region', { name: /Vista interactiva/ }); await region.focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('Home');
     for (const format of ['SVG', 'PNG']) {
         const [download] = await Promise.all([page.waitForEvent('download'), block.getByRole('button', { name: `Descargar ${format}`, exact: true }).click()]);
@@ -135,6 +140,6 @@ test('200 entradas incluyen espera del evento y commit con mapa de volumen activ
         times.sort((a,b) => a-b); return { samples: times.length, p95: times[189], max: times.at(-1), destinations: values };
     });
     console.info('Navegación H1:', JSON.stringify(navigation)); expect(navigation.samples).toBe(200); expect(navigation.p95).toBeLessThan(16);
-    console.info('Rendimiento H1 con mapa:',  JSON.stringify(result)); await testInfo.attach('mapa-rendimiento', { body: JSON.stringify(result, null, 2), contentType: 'application/json' });
+    await testInfo.attach('mapa-rendimiento', { body: JSON.stringify(result, null, 2), contentType: 'application/json' });
     for (const control of Object.values(result.controls)) { expect(control.samples).toBe(200); expect(control.p95).toBeLessThan(16); } expect(result.missingCommits).toBe(0); expect(result.interaction.samples).toBe(200); expect(result.interaction.p95).toBeLessThan(16); expect(result.map.samples).toBeGreaterThan(0); expect(result.map.p95).toBeLessThanOrEqual(300);
 });

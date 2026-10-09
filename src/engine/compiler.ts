@@ -1,3 +1,4 @@
+import { deriveDocumentStatuses, deriveProjectOverview } from './documentStatus';
 import { isProfileConfiguration } from '../domain/profiles';
 import { calculateReadiness } from '../domain/readiness';
 import { projectValidationErrors } from '../domain/projectValidation';
@@ -41,5 +42,7 @@ export function compile(c: Configuration, snapshot?: IntentSnapshot): Compilatio
     if (brokenReferences(documents).length)
         diagnostics.push({ message: 'Hay referencias internas fuera del kit. Revisa los enlaces del texto introducido.', blocking: true });
     const readiness=calculateReadiness(c,coverage,diagnostics,maturity.pillars);
-    return { diagrams, readiness, coverage, sddLanguage: c.sddLanguage ?? 'es', revision: c.revision, slug: ctx.config.slug, documents, diagnostics, suggestions: [...scopeSuggestions(c), ...(remote ? intentSuggestions(remote, c) : [])], inferences: remote ? intentInferences(remote, c) : inferTechnologies(c.idea), maturity, targetTree: ctx.profile.paths };
+    const documentStatuses = deriveDocumentStatuses(c, documents, readiness, diagrams);
+    const overview = deriveProjectOverview(c, readiness, diagrams, documentStatuses);
+    return { overview, documentStatuses, diagrams, readiness, coverage, sddLanguage: c.sddLanguage ?? 'es', revision: c.revision, slug: ctx.config.slug, documents, diagnostics, suggestions: [...scopeSuggestions(c), ...(remote ? intentSuggestions(remote, c) : [])], inferences: remote ? intentInferences(remote, c) : inferTechnologies(c.idea), maturity, targetTree: ctx.profile.paths };
 }

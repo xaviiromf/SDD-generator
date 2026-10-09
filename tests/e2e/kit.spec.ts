@@ -14,11 +14,12 @@ test('navega y exporta los 34 documentos, TXT y carpeta activa adaptada', async 
     for (const option of options) {
         await selector.selectOption(option.id);
         await expect(page.locator('.document-path')).toContainText(option.path);
-        expect((await page.locator('.document-content').innerText()).length).toBeGreaterThan(150);
+        await expect(page.locator('.document-content')).toBeVisible();
+        expect((await page.locator('.document-content').textContent())!.length).toBeGreaterThan(150);
     }
     await selector.selectOption('MANUAL-PARA-USUARIO.txt');
     await expect(page.locator('.document-path')).toContainText('TXT');
-    await expect(page.locator('pre')).toContainText('GUÍA BREVE');
+    await expect(page.locator('.document-content pre')).toContainText('GUÍA BREVE');
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Descargar Kit SDD (.zip)', exact: true }).click();
     const download = await downloadPromise;
@@ -29,7 +30,7 @@ test('navega y exporta los 34 documentos, TXT y carpeta activa adaptada', async 
     expect(await zip.file('docs/PROJECT_STATUS.md')!.async('string')).toContain('Código autorizado | No;');
     expect(await zip.file('specs/001-reservas/validation.md')!.async('string')).toContain('No ejecutado');
     expect(zip.file('specs/spec.md')).toBeNull();
-    expect(await zip.file('MANUAL-PARA-USUARIO.txt')!.async('string')).toBe(await page.locator('pre').innerText());
+    expect(await zip.file('MANUAL-PARA-USUARIO.txt')!.async('string')).toBe(await page.locator('.document-content pre').innerText());
     await selector.selectOption('spec');
     await page.getByLabel('Identificador', { exact: true }).fill('pedidos');
     await expect(selector).toHaveValue('spec');

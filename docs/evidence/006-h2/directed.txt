@@ -1,0 +1,20 @@
+[WebServer] (node:130050) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:130111) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Primera vista SVG H1: {"milliseconds":1869,"cache":"módulo sin ejecutar","browser":"chromium"}
+  ✓  1 [chromium] › tests/e2e/diagrams.spec.ts:38:1 › visor renderiza, alterna fuente exacta y descarga SVG y PNG completos (2.9s)
+Rendimiento H1 con mapa: {"interaction":{"samples":200,"p50":1.400000000372529,"p95":2.3999999994412065,"max":4.900000000372529},"layout":{"samples":200,"p50":1.2000000001862645,"p95":1.7000000001862645,"max":2.7999999998137355},"missingCommits":0,"controls":{"alternador":{"samples":200,"p50":3.3999999994412065,"p95":4.900000000372529,"max":13.600000000558794},"zoom":{"samples":200,"p50":1.099999999627471,"p95":1.3999999994412065,"max":3.7000000001862645},"pan":{"samples":200,"p50":1.1000000005587935,"p95":1.5,"max":2.300000000745058}},"queue":{"samples":200,"p50":0.20000000018626451,"p95":0.30000000074505806,"max":3.599999999627471},"map":{"samples":20,"p50":259.59999999962747,"p95":282.70000000018626,"max":304.3999999994412},"longTasks":[61,70,91,75,56,66,60,74,70,65,74,56,53,57,53,65,57,57],"volume":{"profiles":10,"components":20,"technologies":50,"projects":20,"requirements":100},"method":"Evento creado antes de MessageChannel: espera de cola, dispatch, microtarea posterior al commit React comprobado por hook; layout forzado medido después, por separado."}
+Navegación H1: {"samples":200,"p95":5,"max":39.89999999944121,"destinations":["README.md","MANUAL-PARA-USUARIO.txt"]}
+  ✓  2 [chromium] › tests/e2e/diagrams.spec.ts:83:1 › 200 entradas incluyen espera del evento y commit con mapa de volumen activo (37.3s)
+(node:130871) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Primera vista SVG H1: {"milliseconds":3183,"cache":"módulo sin ejecutar","browser":"firefox"}
+  ✓  3 [firefox] › tests/e2e/diagrams.spec.ts:38:1 › visor renderiza, alterna fuente exacta y descarga SVG y PNG completos (7.0s)
+  -  4 [firefox] › tests/e2e/diagrams.spec.ts:83:1 › 200 entradas incluyen espera del evento y commit con mapa de volumen activo
+
+  1 skipped
+  3 passed (53.1s)

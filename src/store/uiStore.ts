@@ -1,6 +1,7 @@
+import type { OverviewTarget } from '../domain/projectOverview';
 import { type Locale } from '../i18n/translate';
 import { create } from 'zustand';
-export type Panel = 'config' | 'idea' | 'docs';
+export type Panel = 'config' | 'idea' | 'docs' | 'overview';
 export const uiLanguageKey = 'sdd-studio:ui-language:v1';
 export function migrateUiLanguage(storage?: Pick<Storage, 'getItem' | 'removeItem'>): string {
     try { const target = storage ?? localStorage; const previous = target.getItem(uiLanguageKey); target.removeItem(uiLanguageKey); return previous === 'en' ? 'La interfaz se ha actualizado a español; tus textos y decisiones se conservan.' : ''; } catch { return ''; }
@@ -20,3 +21,10 @@ interface InterfaceState {
     setPanel: (panel: Panel) => void;
 }
 export const useUIStore = create<InterfaceState>(set => ({ locale: 'es', setLocale: () => set({ locale: 'es' }), panel: 'config', phase: '1', palette: false, requestedPreset: '', restart: 0, activeDocument: 'spec', dismissed: [], notice: migrationNotice, setPanel: panel => set({ panel }) }));
+
+
+export function openOverviewTarget(target: OverviewTarget): void {
+    const panel = target.documentId ? 'docs' : target.panel === 'configuration' ? 'config' : 'idea';
+    useUIStore.setState({ panel, ...(target.documentId ? { activeDocument: target.documentId } : {}) });
+    requestAnimationFrame(() => document.querySelector<HTMLElement>(`.${panel === 'config' ? 'config' : panel}-panel h2`)?.focus());
+}

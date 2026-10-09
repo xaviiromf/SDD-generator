@@ -1,0 +1,205 @@
+[
+  {
+    "scenario": "Rendimiento de biblioteca",
+    "result": {
+      "samples": 200,
+      "p95": 2.8999999994412065,
+      "projects": 20,
+      "requirements": 100
+    }
+  },
+  {
+    "scenario": "Rendimiento H4",
+    "result": {
+      "samples": 200,
+      "p95": 1.8999999994412065
+    }
+  },
+  {
+    "scenario": "Primera vista SVG H1",
+    "result": {
+      "milliseconds": 1845,
+      "cache": "módulo sin ejecutar",
+      "browser": "chromium"
+    }
+  },
+  {
+    "scenario": "Rendimiento H1 con mapa",
+    "result": {
+      "interaction": {
+        "samples": 200,
+        "p50": 1.5,
+        "p95": 2.2000000001862645,
+        "max": 5.7000000001862645
+      },
+      "layout": {
+        "samples": 200,
+        "p50": 1.2000000001862645,
+        "p95": 1.7000000001862645,
+        "max": 2
+      },
+      "missingCommits": 0,
+      "controls": {
+        "alternador": {
+          "samples": 200,
+          "p50": 4.2000000001862645,
+          "p95": 5.6000000005587935,
+          "max": 7.300000000745058
+        },
+        "zoom": {
+          "samples": 200,
+          "p50": 1.199999999254942,
+          "p95": 1.7999999998137355,
+          "max": 11.5
+        },
+        "pan": {
+          "samples": 200,
+          "p50": 1.2000000001862645,
+          "p95": 1.7000000001862645,
+          "max": 2.5
+        }
+      },
+      "queue": {
+        "samples": 200,
+        "p50": 0.20000000018626451,
+        "p95": 0.2999999998137355,
+        "max": 4.300000000745058
+      },
+      "map": {
+        "samples": 20,
+        "p50": 276.69999999925494,
+        "p95": 298.30000000074506,
+        "max": 299.29999999981374
+      },
+      "longTasks": [
+        63,
+        54,
+        76,
+        78,
+        58,
+        60,
+        59,
+        52,
+        69,
+        81,
+        79,
+        64,
+        57,
+        57,
+        82,
+        56,
+        54,
+        60,
+        73,
+        57,
+        79,
+        73
+      ],
+      "volume": {
+        "profiles": 10,
+        "components": 20,
+        "technologies": 50,
+        "projects": 20,
+        "requirements": 100
+      },
+      "method": "Evento creado antes de MessageChannel: espera de cola, dispatch, microtarea posterior al commit React comprobado por hook; layout forzado medido después, por separado."
+    }
+  },
+  {
+    "scenario": "Mediciones de rendimiento",
+    "result": {
+      "inputP95": 3.7999999998137355,
+      "generationMs": 51.5,
+      "generationSamples": 30,
+      "longTasks": [],
+      "events": 230
+    }
+  },
+  {
+    "scenario": "Mediciones de conjunto y ZIP",
+    "result": {
+      "captureWaitP95": 3.199999999254942,
+      "handlerP95": 8.200000000186265,
+      "presetSamples": 200,
+      "presetP95": 11.299999999813735,
+      "zipSamples": 30,
+      "zipP95": 17
+    }
+  },
+  {
+    "scenario": "Mediciones de muestra",
+    "result": {
+      "samples": 200,
+      "p95": 7.5,
+      "commits": 676,
+      "foreignRenders": {
+        "raiz": 0,
+        "cabecera": 0,
+        "idea": 0,
+        "arbol": 0,
+        "madurez": 0,
+        "configuracion": 0
+      },
+      "tracked": [
+        "idea",
+        "madurez",
+        "arbol",
+        "cabecera",
+        "raiz",
+        "configuracion"
+      ]
+    }
+  },
+  {
+    "scenario": "Rendimiento H2 portada",
+    "result": {
+      "svgMutations": 0,
+      "toggleMutations": 0,
+      "layout": {
+        "alternador": {
+          "samples": 200,
+          "p95": 6.400000000372529,
+          "max": 7.7999999998137355
+        },
+        "navegacion": {
+          "samples": 200,
+          "p95": 30.90000000037253,
+          "max": 40.39999999944121
+        }
+      },
+      "scenarios": {
+        "alternador": {
+          "samples": 200,
+          "p50": 1.400000000372529,
+          "p95": 2.099999999627471,
+          "max": 4.7000000001862645
+        },
+        "navegacion": {
+          "samples": 200,
+          "p50": 2.7999999998137355,
+          "p95": 4.900000000372529,
+          "max": 11.799999999813735
+        }
+      },
+      "missingCommits": 0,
+      "longTasks": [],
+      "volume": {
+        "profiles": 10,
+        "components": 20,
+        "technologies": 50,
+        "projects": 20,
+        "requirements": 100,
+        "relations": 100
+      },
+      "method": "Evento creado antes de MessageChannel, cola incluida hasta microtarea posterior al commit React; caché preparada del SVG."
+    }
+  },
+  {
+    "scenario": "Primera vista SVG H1",
+    "result": {
+      "milliseconds": 2717,
+      "cache": "módulo sin ejecutar",
+      "browser": "firefox"
+    }
+  }
+]

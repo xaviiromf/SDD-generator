@@ -1,0 +1,23 @@
+
+> sdd-studio@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.3 /home/xavi/Projects/SDD-generator
+
+(node:106644) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:106785) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:107073) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  38 passed (38)
+      Tests  149 passed (149)
+   Start at  17:54:11
+   Duration  5.12s (tests 40%, transform 31%, import 25%, worker 4%)
+
+  Transform  transforming modules took 9.80s · 31% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             on CI this only helps when the cache directory is persisted between runs
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns

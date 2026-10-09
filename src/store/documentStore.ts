@@ -1,3 +1,4 @@
+import type { DocumentStatus } from '../domain/projectOverview';
 import {create} from 'zustand';
 import type {Compilation} from '../domain/models';
 import {documentSections,reconcileDocuments,type SectionConflict} from '../domain/manualSections';
@@ -29,3 +30,15 @@ export const useDocumentStore=create<Documents>((set,get)=>({
   });return useEditorStore.getState().setManualSections(sections);
  },
 }));
+
+
+/** Estado de presentación; los datos de la revisión confirmada permanecen intactos. */
+export function presentDocumentStatus(base: DocumentStatus | undefined, view: { revision: number; pending: boolean; conflict: boolean; error: string }): DocumentStatus {
+ const reasons = new Map((base?.reasons ?? []).map(reason => [reason.id, reason]));
+ if (!base) reasons.set('estado-pendiente', { id: 'estado-pendiente', message: 'Estado documental pendiente de generar.' });
+ if (view.pending || base?.revision !== view.revision) reasons.set('revision-pendiente', { id: 'revision-pendiente', message: 'Actualización pendiente: se muestra una revisión anterior.' });
+ if (view.conflict) reasons.set('conflicto-manual', { id: 'conflicto-manual', message: 'Aportaciones manuales pendientes de reconciliar.' });
+ if (view.error) reasons.set('generacion-error', { id: 'generacion-error', message: view.error });
+ const list = [...reasons.values()];
+ return { documentId: base?.documentId ?? '', revision: base?.revision ?? view.revision, state: list.length ? 'borrador' : 'completo', pendingCount: list.length, reasons: list, applicability: base?.applicability ?? 'Aplicabilidad pendiente.' };
+}

@@ -27,18 +27,23 @@ function EntityRelations(){
  <label className="field"><span>Estado de relación {r.id}</span><select aria-label={`Estado de relación ${r.id}`} value={r.status} onChange={e=>update(r.id,{status:e.target.value as EntityRelation['status']})}>{Object.entries(statusLabels).map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>
  <button onClick={()=>remove(r.id)}><Trash2 size={16} aria-hidden="true"/>Eliminar relación {r.id}</button></fieldset>)}<button disabled={!entities.length||(relations?.length??0)>=100} onClick={add}><Plus size={16} aria-hidden="true"/>Añadir relación ER</button></section>;
 }
-export function ContextInterview(){
+function ContextControls(){
  const [kind,setKind]=useState<ContextKind>('actors');
  const ids=useEditorStore(useShallow(s=>s.config.project?.context[kind].map(i=>i.id)??[]));
  const mode=useEditorStore(s=>s.config.project?.mode??'nuevo'),implementation=useEditorStore(s=>s.config.project?.implementationRequired??true);
  const update=useEditorStore(s=>s.updateProject),add=useEditorStore(s=>s.addProjectItem);
  const platform=useEditorStore(s=>s.config.selections.platform?.[0]);
- return <details className="context-interview"><summary>Entrevista y contexto</summary><p>Responde con información de tu proyecto. Las preguntas orientan; no completan reglas automáticamente.</p>
+ return <><p>Responde con información de tu proyecto. Las preguntas orientan; no completan reglas automáticamente.</p>
  <label className="field"><span>Modo de trabajo</span><select value={mode} onChange={e=>update({mode:e.target.value as ProjectDefinition['mode']})}><option value="nuevo">Proyecto nuevo</option><option value="ampliacion">Ampliación existente</option><option value="migracion">Migración</option><option value="documentacion">Documentación o diagnóstico</option></select></label>
  <label className="context-reference"><input type="checkbox" checked={implementation} onChange={e=>update({implementationRequired:e.target.checked})}/><span>El proyecto requiere implementación de software</span></label>
  <ul className="interview-questions"><li>¿Quién necesita el trabajo y en qué situación?</li><li>¿Qué datos entran, qué resultado sale y qué debe rechazarse?</li><li>¿Cómo comprobarás que cada requisito se cumple?</li>{mode!=='nuevo'&&<li>¿Qué interfaces y comportamientos existentes deben conservarse?</li>}{implementation&&['web-spa','web-ssr','pwa'].includes(platform??'')&&<li>¿Qué necesita quien usa la interfaz y cuándo debe funcionar sin red?</li>}{implementation&&['cli','daemon','shell'].includes(platform??'')&&<li>¿Qué entradas, salidas y efectos operativos deben controlarse?</li>}{!implementation&&<li>¿Quién revisará la evidencia del proceso sin tareas de programación?</li>}</ul>
  <label className="field"><span>Aspecto del contexto</span><select value={kind} onChange={e=>setKind(e.target.value as ContextKind)}>{contextKinds.map(value=><option key={value} value={value}>{contextLabels[value]}</option>)}</select></label>
  {ids.map(id=><ContextRow key={id} kind={kind} id={id}/>)}<button disabled={ids.length>=100} onClick={()=>add(kind)}><Plus size={16}/>Añadir {contextLabels[kind].toLocaleLowerCase('es')}</button>
  {kind==='entities'&&<EntityRelations/>}
- </details>;
+ </>;
+}
+
+export function ContextInterview(){
+ const [visited,setVisited]=useState(false);
+ return <details className="context-interview" onToggle={event=>{if(event.currentTarget.open)setVisited(true);}}><summary>Entrevista y contexto</summary>{visited&&<ContextControls/>}</details>;
 }

@@ -37,9 +37,10 @@ const RequirementCard=memo(function RequirementCard({id,index,total}:{id:string;
  </details>;
 });
 export function RequirementsEditor(){
+ const [visited,setVisited]=useState(false);
  const ids=useEditorStore(useShallow(s=>s.config.project?.requirements.map(r=>r.id)??[]));
  const add=useEditorStore(s=>s.addRequirement),error=useEditorStore(s=>s.projectError);
  return <section className="requirements-editor" aria-label="Definición estructurada del proyecto"><h3>Define el trabajo y cómo comprobarlo</h3><p>Conserva tus reglas y criterios. Lo no declarado seguirá pendiente.</p><ContextInterview/>
- <details className="requirements-list"><summary>Requisitos y criterios <small>{ids.length} / 100</small></summary><p>Puedes empezar aquí sin escoger tecnologías.</p>{ids.map((id,index)=><RequirementCard key={id} id={id} index={index} total={ids.length}/>)}<button disabled={ids.length>=100} onClick={add}><Plus size={16}/>Añadir requisito</button></details>
+ <details className="requirements-list" onToggle={event=>{if(event.currentTarget.open)setVisited(true);}}><summary>Requisitos y criterios <small>{ids.length} / 100</small></summary>{visited&&<><p>Puedes empezar aquí sin escoger tecnologías.</p>{ids.map((id,index)=><RequirementCard key={id} id={id} index={index} total={ids.length}/>)}<button disabled={ids.length>=100} onClick={add}><Plus size={16}/>Añadir requisito</button></>}</details>
  {error&&<p className="diagnostic" role="alert">{error} Desvincula las referencias antes de eliminar un elemento.</p>}</section>;
 }

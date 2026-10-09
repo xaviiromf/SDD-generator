@@ -1,0 +1,26 @@
+{
+  "proposal_ids": {
+    "RF": 15,
+    "RNF": 6,
+    "CA": 17,
+    "D": 8,
+    "T": 27
+  },
+  "unknown_ids": [],
+  "local_links_checked": 85,
+  "link_errors": [],
+  "dependencies_checked": 27,
+  "acyclic_dependencies": true,
+  "files_checked": [
+    "specs/006-diagramas-y-experiencia-visual/spec.md",
+    "specs/006-diagramas-y-experiencia-visual/plan.md",
+    "specs/006-diagramas-y-experiencia-visual/tasks.md",
+    "specs/006-diagramas-y-experiencia-visual/validation.md",
+    "README.md",
+    "specs/README.md",
+    "docs/PROJECT_STATUS.md",
+    "docs/DECISIONS.md",
+    "docs/TRACEABILITY.md",
+    "docs/evidence/006-h2/README.md"
+  ]
+}

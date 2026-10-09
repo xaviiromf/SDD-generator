@@ -98,7 +98,7 @@ Entrada de cada tarea: AGENTS.md, estado del proyecto y apartado pertinente de s
   - RF: RF-006-15. CA: CA-006-17. Decisiones: D-006-08.
   - Rutas: documentos 006, README.md, docs/PROJECT_STATUS.md, docs/TRACEABILITY.md, docs/DECISIONS.md, specs/README.md; solo resultados verificados.
   - Cierre: manual de diagramas/mapa/exportación/offline, contratos finales, decisiones y límites actualizados; revisión/aceptación humana separada. No empezar H2 por marcar casillas.
-- [ ] T-006-18 — Sincronizar H1 autorizado y habilitar puerta H2.
+- [x] T-006-18 — Sincronizar H1 autorizado y habilitar puerta H2.
   - Fase/dominio: DOCUMENT / cierre Git documental y del hito verificado. Dependencias: T-006-17.
   - RF: RF-006-15. CA: CA-006-17. Decisiones: D-006-08.
   - Alcance: diff/status/lista de archivos y resultados; commit de rutas autorizadas y push normal al remoto existente, excluyendo 002 y cambios ajenos. No modificar implementación.
@@ -106,42 +106,42 @@ Entrada de cada tarea: AGENTS.md, estado del proyecto y apartado pertinente de s
 
 ## H2 — Dashboard del Proyecto y Visor Enriquecido
 
-- [ ] T-006-19 — Definir y proyectar overview y estados documentales.
+- [x] T-006-19 — Definir y proyectar overview y estados documentales.
   - Fase/dominio: IMPLEMENT / núcleo. Dependencias: T-006-18 y autorización de H2.
   - RF: RF-006-10, RF-006-12, RF-006-14. CA: CA-006-10, CA-006-12, CA-006-13. Decisiones: D-006-07.
-  - Rutas: src/domain/projectOverview.ts, src/engine/documentStatus.ts (nuevos); compiler.ts, kitManifest.ts, coverage.ts, src/domain/readiness.ts; tests/unit/projectOverview.test.ts (nuevo); contratos públicos canónicos/diagramas.
+  - Rutas: src/domain/projectOverview.ts, src/engine/documentStatus.ts (nuevos); compiler.ts, kitManifest.ts, coverage.ts, diagramProjection.ts (límites de partición de arquitectura para regresión del mapa), src/domain/readiness.ts y models.ts; tests/unit/projectOverview.test.ts (nuevo); contratos públicos canónicos/diagramas.
   - Cierre: tabla de aplicabilidad de 34 documentIds y razones de pendiente, contadores definidos y revisión única; validación prevista nunca cuenta como realizada; sin UI.
-- [ ] T-006-20 — Integrar portada y navegación mediante contratos.
+- [x] T-006-20 — Integrar portada y navegación mediante contratos.
   - Fase/dominio: IMPLEMENT / integración pública. Dependencias: T-006-19.
   - RF: RF-006-10, RF-006-14. CA: CA-006-10, CA-006-13. Decisiones: D-006-03, D-006-07.
-  - Rutas: src/store/documentStore.ts, uiStore.ts; src/app/App.tsx, StudioLayout.tsx; DTO públicos ProjectOverview/DocumentStatus y contrato de props de portada. No abrir internals de UI/motor.
+  - Rutas: src/store/documentStore.ts, uiStore.ts, editorStore.ts (acción pública applyPreset y publicación de regresión); src/app/App.tsx, StudioLayout.tsx; DTO públicos ProjectOverview/DocumentStatus y contrato de props de portada. No abrir internals de UI/motor.
   - Cierre: DTO publicados con selector granular, montaje diferido de portada y destinos de navegación; raíz no escucha cada ajuste de estética/mapa.
-- [ ] T-006-21 — Construir dashboard del proyecto.
+- [x] T-006-21 — Construir dashboard del proyecto.
   - Fase/dominio: IMPLEMENT / interfaz y estética. Dependencias: T-006-20.
   - RF: RF-006-10, RF-006-12. CA: CA-006-10, CA-006-12. Decisiones: D-006-03, D-006-07.
-  - Rutas: src/components/dashboard/ (nuevo), src/components/diagrams/, src/components/navigation/PanelNavigation.tsx, src/styles/app.css; DTO/acciones públicas de navegación.
+  - Rutas: src/components/dashboard/ (nuevo), src/components/storyteller/IdeaEditor.tsx, src/components/requirements/ContextInterview.tsx y RequirementsEditor.tsx (solo montaje de detalles cerrados para regresión), src/components/diagrams/, src/components/navigation/PanelNavigation.tsx, src/components/configurator/Configurator.tsx, PhaseSection.tsx, TechnologyField.tsx y PresetSelector.tsx (controles y diálogo de conjunto para regresión de presupuesto), src/styles/app.css; DTO/acciones públicas de navegación.
   - Cierre: ficha, métricas/pendientes, arquitectura central reutilizada y accesos directos con foco; vacío/actualización visible, responsivo y sin nuevo documento de kit.
-- [ ] T-006-22 — Enriquecer visor Markdown.
+- [x] T-006-22 — Enriquecer visor Markdown.
   - Fase/dominio: IMPLEMENT / interfaz y estética. Dependencias: T-006-21.
   - RF: RF-006-11, RF-006-12, RF-006-13. CA: CA-006-11, CA-006-12, CA-006-14. Decisiones: D-006-05, D-006-07.
-  - Rutas: src/components/documents/DocumentCanvas.tsx y componentes auxiliares nuevos en documents/; src/styles/app.css; DTO públicos de estado.
+  - Rutas: src/components/documents/DocumentCanvas.tsx, DocumentTabs.tsx, DocumentContent.tsx, src/components/projects/ManualSections.tsx (montaje cerrado para regresión de presupuesto) y componentes auxiliares nuevos en documents/; src/styles/app.css; DTO públicos de estado.
   - Cierre: cinco alertas españolas respetando cercas/citas, badges no cromáticos, tablas semánticas con encabezado fijo/overflow; contenido preservado e inerte; sin dependencias adicionales.
-- [ ] T-006-23 — Enriquecer explorador documental.
+- [x] T-006-23 — Enriquecer explorador documental.
   - Fase/dominio: IMPLEMENT / interfaz y estética. Dependencias: T-006-22.
   - RF: RF-006-12, RF-006-14. CA: CA-006-12, CA-006-13. Decisiones: D-006-07.
-  - Rutas: src/components/documents/FileTree.tsx, auxiliares documents/, src/components/navigation/PanelNavigation.tsx, src/styles/app.css; DocumentStatus/árbol/navegación públicos.
+  - Rutas: src/components/documents/FileTree.tsx, DocumentCanvas.tsx, auxiliares documents/, src/components/navigation/PanelNavigation.tsx, src/styles/app.css; DocumentStatus/árbol/navegación públicos.
   - Cierre: 34 rutas, iconos Lucide por tipo, estados por documento/carpeta, explicación de pendientes, teclado/selección/foco y adaptación lateral/móvil coherentes.
-- [ ] T-006-24 — Preparar regresión e instrumentación H2.
+- [x] T-006-24 — Preparar regresión e instrumentación H2.
   - Fase/dominio: IMPLEMENT / pruebas de integración pública. Dependencias: T-006-23.
   - RF: RF-006-10 a RF-006-15. CA: CA-006-10 a CA-006-17. Decisiones: D-006-07, D-006-08.
-  - Rutas: tests/e2e/projectDashboard.spec.ts, documentExperience.spec.ts (nuevos); diagrams.spec.ts, performance.spec.ts, accessibility.spec.ts, workflow.spec.ts; tests/unit/projectOverview.test.ts. No inspeccionar aplicación.
+  - Rutas: tests/e2e/projectDashboard.spec.ts, documentExperience.spec.ts (nuevos); diagrams.spec.ts, performance.spec.ts, accessibility.spec.ts, workflow.spec.ts, kit.spec.ts y library.spec.ts; tests/unit/projectOverview.test.ts y tests/fixtures/visualProject.ts. No inspeccionar aplicación.
   - Cierre: fixtures Markdown mixto/pendientes, navegación/descargas/continuidad, teclado y mediciones con dashboard/mapa activo; regresión H1 incorporada.
-- [ ] T-006-25 — Validar H2 y regresión completa H1/H2.
+- [x] T-006-25 — Validar H2 y regresión completa H1/H2.
   - Fase/dominio: VALIDATE / salidas e informes. Dependencias: T-006-24.
   - RF: RF-006-01 a RF-006-15. CA: CA-006-01 a CA-006-17. Decisiones: D-006-08.
-  - Lecturas: resultados, trazas y tamaños; escrituras: validation/estado/trazabilidad. No implementación ni archivos de pruebas.
+  - Lecturas: resultados, trazas y tamaños; escrituras: validation/estado/trazabilidad y reportes en docs/evidence/006-h2/. No implementación ni archivos de pruebas.
   - Cierre: comandos y recorridos funcionales sin fallos, <500000 bytes y p95 <16 ms, responsive/AA/descargas/offline sin regresión. Omitidos/limitaciones explícitos; fallos vuelven a IMPLEMENT registrado.
-- [ ] T-006-26 — Consolidar manual y evidencia final de H2.
+- [x] T-006-26 — Consolidar manual y evidencia final de H2.
   - Fase/dominio: DOCUMENT / especificaciones y documentación. Dependencias: T-006-25.
   - RF: RF-006-15. CA: CA-006-17. Decisiones: D-006-08.
   - Rutas: documentos 006, README.md, docs/PROJECT_STATUS.md, docs/TRACEABILITY.md, docs/DECISIONS.md, specs/README.md.
@@ -154,4 +154,4 @@ Entrada de cada tarea: AGENTS.md, estado del proyecto y apartado pertinente de s
 
 ## Estado y próximo paso
 
-T-006-01…17 completadas. H1 verificada; T-006-18 activa para commit/push exclusivo. T-006-19…27 autorizadas y pendientes. H2 solo inicia tras confirmar sincronización limpia de H1.
+T-006-01…18 completadas. H1 sincronizada como 8514ddc y árbol limpio confirmado. T-006-19…26 completadas; T-006-27 pendiente de commit/push exclusivo de H2. Autorización vigente, sin otra confirmación.
