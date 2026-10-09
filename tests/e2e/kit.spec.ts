@@ -14,7 +14,7 @@ test('navega y exporta los 34 documentos, TXT y carpeta activa adaptada', async 
     for (const option of options) {
         await selector.selectOption(option.id);
         await expect(page.locator('.document-path')).toContainText(option.path);
-        expect((await page.locator('pre').innerText()).length).toBeGreaterThan(150);
+        expect((await page.locator('.document-content').innerText()).length).toBeGreaterThan(150);
     }
     await selector.selectOption('MANUAL-PARA-USUARIO.txt');
     await expect(page.locator('.document-path')).toContainText('TXT');

@@ -32,7 +32,7 @@ test('paleta, foco, árbol y movimiento reducido', async ({ page }) => {
 });
 test('los arquetipos usan fuentes locales incluso sin conexión', async ({ page, context }) => {
     await page.goto('./');
-    await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+    await expect(page.locator('.notice')).toContainText('Preparación sin conexión completa');
     await page.reload();
     await context.setOffline(true);
     await page.getByRole('button', { name: 'Estética y tokens' }).click();

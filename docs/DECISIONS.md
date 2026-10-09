@@ -117,3 +117,12 @@ Los componentes explicitan responsabilidades, perfil y dependencias acíclicas; 
 Se incluyen paquetes por tarea dentro de los 34 archivos: tres entradas como máximo, objetivo, contratos, dominio, archivos permitidos, dependencias, criterios y aprobación explícita. Tareas con archivos de distintos dominios se separan y VALIDATE usa solo reportes. Los paquetes no contienen permisos ni resultados del estudio. UI usa módulos diferidos, selectores de propiedades y fichas con cambios aplicados al guardar; los campos locales pendientes no son parte del respaldo.
 
 La recuperación histórica rechazaba cualquier diagnóstico; con perfiles se corrige a rechazar solo bloqueantes para conservar borradores con advertencias honestas. Evidencia, corpus y límites en specs/005-generador-profesional/validation.md; revisión semántica y aceptación siguen siendo del cliente.
+
+
+## D-029 — H1 de 006: Mermaid local y revisión explícita
+
+H1/H2, Mermaid exacto 12.1.0 y commits/push separados fueron autorizados el 2026-10-08. H2 exige H1 sincronizado y árbol limpio. Parte 3 queda excluida y H5 de 005 pospuesto. [Decisiones D-006-01…08](../specs/006-diagramas-y-experiencia-visual/plan.md).
+
+Las proyecciones provienen de hechos tipados, con cardinalidades ER explícitas y pendientes honestos; se añaden a cuatro destinos existentes sin ampliar las 34 rutas. El motor no importa Mermaid. El servicio diferido filtra fuentes/SVG, serializa render, acota caché y descarta tokens antiguos. El runtime en iframe local separa DOM/layout, sin atribuirle un hilo de CPU propio; el SVG visible usa Shadow DOM para limitar estilos. Arquitectura dividida en partes legibles conserva nodos/aristas y sus referencias. Ninguna vista previa escribe hasta aplicar; la vista anterior se identifica durante carga y sus exportaciones se suspenden.
+
+La descarga usa SVG filtrado y canvas nativo para PNG, sin paquetes auxiliares. Precache incluye HTML técnico/chunks/fuentes, separado de ejecución. Los ensayos fallidos y tareas largas se conservan en evidencia; p95 <16 ms no garantiza cada evento. Manuales de lector de pantalla/ampliación/teléfono y aceptación humana permanecen pendientes. Sin despliegue ni backend.

@@ -15,8 +15,8 @@ test('configura Django, sus APIs y complementos y conserva conflictos visibles',
     await page.getByRole('button', { name: 'Django ORM — modelos y migraciones', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Descargar Kit SDD (.zip)', exact: true })).toBeEnabled();
     await page.getByRole('tab', { name: 'plan', exact: true }).click();
-    await expect(page.locator('pre')).toContainText('manage.py');
-    await expect(page.locator('pre')).toContainText('drf-spectacular');
+    await expect(page.locator('.document-content')).toContainText('manage.py');
+    await expect(page.locator('.document-content')).toContainText('drf-spectacular');
     await page.getByRole('button', { name: 'Django REST Framework (DRF)', exact: true }).click();
     await expect(page.getByRole('button', { name: 'drf-spectacular — OpenAPI para DRF', exact: true })).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByRole('alert').filter({ hasText: 'Requiere:' })).toBeVisible();

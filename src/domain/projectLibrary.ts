@@ -24,7 +24,7 @@ export function validLibraryConfiguration(value:unknown):value is Configuration{
  if(!isConfiguration(value)||!keys(value,['version','revision','sddLanguage','designVersion','designOverrides','project','profile','manualSections','name','slug','idea','positive','negative','selections','origins'])||!safeData(value))return false;
  if(Object.keys(value.selections).some(k=>!fields.includes(k as typeof fields[number])))return false;
  const p=value.project;
- if(p&&(!keys(p,['schemaVersion','projectId','revision','nextId','mode','implementationRequired','requirements','context'])||
+ if(p&&(!keys(p,['schemaVersion','projectId','revision','nextId','mode','implementationRequired','requirements','context','diagramFacts'])||
   Object.values(p.context).some(items=>items.some(item=>!keys(item,['id','text','status','origin','references'])))||
   p.requirements.some(r=>!keys(r,['id','title','kind','status','origin','actorId','context','behavior','priority','exceptions','criteria','ruleIds','componentIds','decisionIds','contractIds'])||r.criteria.some(c=>!keys(c,['id','text'])))))return false;
  return new TextEncoder().encode(JSON.stringify(value)).length<=libraryLimits.configurationBytes&&!validateConfiguration(value,new Set(technologyById.keys())).some(d=>d.blocking);

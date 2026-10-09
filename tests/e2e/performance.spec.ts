@@ -46,10 +46,11 @@ test('presupuestos de edición y generación en producción', async ({ page }, t
     expect(measurements.generationMs).toBeLessThanOrEqual(150);
     expect(measurements.longTasks).toEqual([]);
 });
-test('mide treinta cambios de conjunto y treinta ZIP en navegador', async ({ page }, testInfo) => {
+test('mide doscientos cambios de conjunto y treinta ZIP con caché preparada', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'Medición de referencia en Chromium.');
     test.setTimeout(60000);
     await page.goto('./');
+    await expect(page.locator('.notice')).toContainText('Preparación sin conexión completa');
     await page.evaluate(() => document.fonts.ready);
     await page.evaluate(() => { const metrics: {
         start: number;
@@ -57,9 +58,9 @@ test('mide treinta cambios de conjunto y treinta ZIP en navegador', async ({ pag
     } = { start: 0, times: [] }; (window as unknown as {
         presetMetrics: typeof metrics;
     }).presetMetrics = metrics; document.addEventListener('click', e => { if ((e.target as HTMLElement).textContent === 'Aplicar conjunto')
-        metrics.start = performance.now(); }, true); document.addEventListener('click', e => { if ((e.target as HTMLElement).textContent === 'Aplicar conjunto')
+        metrics.start = e.timeStamp; }, true); document.addEventListener('click', e => { if ((e.target as HTMLElement).textContent === 'Aplicar conjunto')
         metrics.times.push(performance.now() - metrics.start); }); });
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 200; i++) {
         await page.getByLabel('Conjunto predefinido').selectOption(i % 2 ? 'client-spa' : 'systems-cli');
         await page.getByRole('button', { name: 'Aplicar conjunto', exact: true }).click();
     }
@@ -72,10 +73,10 @@ test('mide treinta cambios de conjunto y treinta ZIP en navegador', async ({ pag
         presetMetrics: {
             times: number[];
         };
-    }).presetMetrics.times.sort((a, b) => a - b); const zip = performance.getEntriesByName('sdd:empaquetado-zip').slice(1).map(e => e.duration).sort((a, b) => a - b); return { presetSamples: preset.length, presetP95: preset[28], zipSamples: zip.length, zipP95: zip[28] }; });
+    }).presetMetrics.times.sort((a, b) => a - b); const zip = performance.getEntriesByName('sdd:empaquetado-zip').slice(1).map(e => e.duration).sort((a, b) => a - b); return { presetSamples: preset.length, presetP95: preset[189], zipSamples: zip.length, zipP95: zip[28] }; });
     console.info('Mediciones de conjunto y ZIP:', JSON.stringify(result));
     await testInfo.attach('conjuntos-zip', { body: JSON.stringify(result), contentType: 'application/json' });
-    expect(result.presetSamples).toBe(30);
+    expect(result.presetSamples).toBe(200);
     expect(result.presetP95).toBeLessThan(16);
     expect(result.zipSamples).toBe(30);
     expect(result.zipP95).toBeLessThan(100);

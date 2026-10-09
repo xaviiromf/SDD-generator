@@ -1,3 +1,4 @@
+import type { EntityRelation } from '../domain/diagrams';
 import { isProfileConfiguration, type ProfileConfiguration, type WorkMode } from '../domain/profiles';
 import { validateText } from '../domain/validation';
 import { createProjectDefinition, createRequirement, contextKinds, type ContextKind, type ProjectDefinition, type ProjectItem, type StructuredRequirement } from '../domain/projectDefinition';
@@ -12,6 +13,9 @@ import { optionCompatible } from '../domain/compatibility';
 interface EditorState {
     config: Configuration;
     projectError: string;
+    addDiagramRelation: () => void;
+    updateDiagramRelation: (id: string, patch: Partial<Omit<EntityRelation, 'id'>>) => void;
+    removeDiagramRelation: (id: string) => void;
     setProfileConfiguration: (profile:ProfileConfiguration) => boolean;
     setWorkMode: (mode:WorkMode) => void;
     setManualSections: (sections:ManualSection[]) => boolean;
@@ -38,7 +42,7 @@ interface EditorState {
     restore: (config: Configuration) => void;
 }
 function allocate(project: ProjectDefinition, prefix: string): string {
-    const ids = new Set([...contextKinds.flatMap(k => project.context[k].map(i=>i.id)), ...project.requirements.flatMap(r=>[r.id,...r.criteria.map(c=>c.id)])]);
+    const ids = new Set([...contextKinds.flatMap(k => project.context[k].map(i=>i.id)), ...project.requirements.flatMap(r=>[r.id,...r.criteria.map(c=>c.id)]), ...(project.diagramFacts?.entityRelations.map(r=>r.id) ?? [])]);
     let id: string;
     do { id = `${prefix}-${project.nextId++}`; } while (ids.has(id));
     return id;
@@ -62,6 +66,16 @@ export const useEditorStore = create<EditorState>((set, get) => {
     return ({
     config: emptyConfiguration(),
     projectError: '',
+    addDiagramRelation: () => {
+        if (!get().config.project?.context.entities.some(e => e.status !== 'descartado')) { set({ projectError: 'Declara una entidad antes de añadir relaciones.' }); return; }
+        mutateProject(project => {
+            const entities = project.context.entities.filter(e => e.status !== 'descartado');
+            project.diagramFacts ??= { schemaVersion: 1, entityRelations: [] };
+            project.diagramFacts.entityRelations.push({ id: allocate(project, 'REL'), fromEntityId: entities[0].id, toEntityId: (entities[1] ?? entities[0]).id, label: '', fromCardinality: '', toCardinality: '', identifying: null, status: 'pendiente' });
+        });
+    },
+    updateDiagramRelation: (id, patch) => mutateProject(project => { const relation = project.diagramFacts?.entityRelations.find(r => r.id === id); if (relation) Object.assign(relation, patch); }),
+    removeDiagramRelation: id => mutateProject(project => { if (project.diagramFacts) project.diagramFacts.entityRelations = project.diagramFacts.entityRelations.filter(r => r.id !== id); }),
     setManualSections: manualSections=>{if(!isManualSections(manualSections)){set({projectError:'Las aportaciones exceden los límites o no son válidas.'});return false;}set(({config})=>({config:{...config,manualSections,revision:config.revision+1},projectError:''}));return true;},
     setProfileConfiguration: profile=>{
         if(!isProfileConfiguration(profile)||validateText(JSON.stringify(profile)).some(d=>d.blocking)){set({projectError:'Los perfiles contienen datos inválidos, código o textos inseguros.'});return false;}

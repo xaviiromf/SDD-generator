@@ -103,3 +103,19 @@ Evidencia concreta: tests/unit/design.test.ts (contratos, acciones, kit/tokens y
 | RF-005-14 | T-005-30…34 | H5 pospuesto por el usuario, sin implementación ni verificación nueva |
 
 La evaluación técnica de tiempos/hallazgos fue autorizada ante falta de participantes. No verifica revisión semántica, esfuerzo humano ni aceptación; la migración H1 conserva el borrador actual y H3 añade continuidad multiproyecto/importación tras su autorización específica.
+
+
+## Ampliación 006 — H1
+
+| Requisito | Tareas | Evidencia observada |
+|---|---|---|
+| RF-006-01/02 | T-006-03…06 | diagramContracts/Architecture/Kit: DTO, determinismo, 34 rutas y arquitectura particionada |
+| RF-006-03/04 | T-006-03/05/12/14 | relaciones explícitas/aisladas/pendientes, secuencia por RF y RNF sin secuencia; contratos/store/flows |
+| RF-006-05 | T-006-06 | trazabilidad LR real/parcial y kit de 100 RF/100 relaciones <=1 MiB |
+| RF-006-06/07 | T-006-07/08/13 | import diferido, SVG, Diagrama/Código, zoom/pan/teclado, parser real en Chromium/Firefox |
+| RF-006-08 | T-006-09/13 | descargas SVG/PNG completas y filtro SVG público adversario |
+| RF-006-09 | T-006-04/10/14 | candidato no aplicado, cancelar, tokens obsoletos y latencia medida |
+| RF-006-15, H1 | T-006-11/15…18 | continuidad, offline, seguridad, presupuestos/regresión; [resultados y límites](../specs/006-diagramas-y-experiencia-visual/validation.md) |
+| RF-006-10…14 | T-006-19…27 | H2 autorizado, pendiente de iniciar tras push limpio de H1 |
+
+144 unitarias, 146 recorridos correctos y seis mediciones Firefox omitidas. No acredita ejecución/aceptación del proyecto objetivo ni auditoría manual completa. 002 continúa fuera del árbol seguido.

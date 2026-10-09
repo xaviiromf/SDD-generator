@@ -1,3 +1,4 @@
+import type { DiagramFacts } from './diagrams';
 /** Modelo canónico local: no contiene sesiones, credenciales ni resultados ejecutados. */
 export const contextKinds = ['components', 'actors', 'capabilities', 'processes', 'entities', 'rules', 'decisions', 'assumptions', 'questions', 'exclusions', 'contracts'] as const;
 export type ContextKind = typeof contextKinds[number];
@@ -13,6 +14,7 @@ export interface StructuredRequirement {
 export interface ProjectDefinition {
     schemaVersion: 1; projectId: string; revision: number; nextId: number;
     mode: 'nuevo' | 'ampliacion' | 'migracion' | 'documentacion'; implementationRequired: boolean;
+    diagramFacts?: DiagramFacts;
     requirements: StructuredRequirement[]; context: Record<ContextKind, ProjectItem[]>;
 }
 export const projectLimits = { bytes: 256 * 1024, items: 100, requirements: 100, criteria: 10, exceptions: 10, id: 64, title: 500, text: 2000, references: 100 } as const;
@@ -23,5 +25,5 @@ export function createRequirement(id: string): StructuredRequirement {
     return { id, title: '', kind: 'functional', status: 'pendiente', origin: 'user', actorId: '', context: '', behavior: '', priority: 'media', exceptions: [], criteria: [], ruleIds: [], componentIds: [], decisionIds: [], contractIds: [] };
 }
 export function hasProjectContent(project?: ProjectDefinition): boolean {
-    return !!project && (project.requirements.length > 0 || contextKinds.some(kind=>project.context[kind].length>0) || project.mode !== 'nuevo' || !project.implementationRequired);
+    return !!project && (project.requirements.length > 0 || !!project.diagramFacts?.entityRelations.length || contextKinds.some(kind=>project.context[kind].length>0) || project.mode !== 'nuevo' || !project.implementationRequired);
 }

@@ -8,7 +8,7 @@ function offlineManifest(): Plugin {
     let base = '/SDD-generator/';
     return { name: 'sdd-offline', configResolved(config) { base = config.base; }, generateBundle(_options, bundle) {
             const publicAssets = readdirSync('public/fonts').filter(file => file.endsWith('.woff2') || file === 'fonts.css').map(file => 'fonts/' + file);
-            const precache = [base, base + 'index.html', ...Object.keys(bundle).map(file => base + file), ...publicAssets.map(file => base + file)];
+            const precache = [base, base + 'index.html', base + 'diagram-renderer.html', ...Object.keys(bundle).map(file => base + file), ...publicAssets.map(file => base + file)];
             const digest = createHash('sha256').update(JSON.stringify(precache));
             for (const file of publicAssets)
                 digest.update(readFileSync('public/' + file));
@@ -19,4 +19,4 @@ function offlineManifest(): Plugin {
             this.emitFile({ type: 'asset', fileName: 'sw.js', source });
         } };
 }
-export default defineConfig({ plugins: [react(), tailwindcss(), offlineManifest()], base: '/SDD-generator/', test: { include: ['tests/unit/**/*.test.ts'] } });
+export default defineConfig({ plugins: [react(), tailwindcss(), offlineManifest()], base: '/SDD-generator/', build: { rolldownOptions: { input: { principal: 'index.html', diagramas: 'diagram-renderer.html' }, output: { codeSplitting: { groups: [{ name: 'project-model', test: /\/src\/(?:domain|catalog)\// }] } } } }, test: { include: ['tests/unit/**/*.test.ts'] } });

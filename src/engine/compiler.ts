@@ -2,6 +2,7 @@ import { isProfileConfiguration } from '../domain/profiles';
 import { calculateReadiness } from '../domain/readiness';
 import { projectValidationErrors } from '../domain/projectValidation';
 import { calculateCoverage } from './coverage';
+import { projectDiagrams, diagramsMarkdown } from './diagramProjection';
 import { hasProjectContent } from '../domain/projectDefinition';
 import { intentFingerprint, intentInferences, intentSuggestions, normalizeIntent, type IntentSnapshot } from '../domain/intent';
 import { knownIds } from '../catalog/technologies';
@@ -25,6 +26,11 @@ export function compile(c: Configuration, snapshot?: IntentSnapshot): Compilatio
     const ctx = createKitContext(c);
     const documents = kitDocuments(ctx);
     const coverage=hasProjectContent(c.project)?calculateCoverage(c.project!):undefined;
+    const diagrams = projectDiagrams(c, coverage, ctx.requirements, ctx.tasks);
+    for (const document of documents) {
+        const selected = diagrams.diagrams.filter(d => d.documentIds.includes(document.id));
+        if (selected.length) document.content += `\n## Diagramas declarados\n\nLos diagramas representan declaraciones y pendientes; no acreditan implementación ni pruebas.\n\n${diagramsMarkdown(selected)}\n`;
+    }
     const maturity=calculateMaturity(c);
     const initialReadiness=calculateReadiness(c,coverage,diagnostics,maturity.pillars);
     if(hasProjectContent(c.project)) for(const document of documents) if(['spec','plan','PROJECT','validation'].includes(document.id)||document.path==='docs/PROJECT_STATUS.md') {
@@ -35,5 +41,5 @@ export function compile(c: Configuration, snapshot?: IntentSnapshot): Compilatio
     if (brokenReferences(documents).length)
         diagnostics.push({ message: 'Hay referencias internas fuera del kit. Revisa los enlaces del texto introducido.', blocking: true });
     const readiness=calculateReadiness(c,coverage,diagnostics,maturity.pillars);
-    return { readiness, coverage, sddLanguage: c.sddLanguage ?? 'es', revision: c.revision, slug: ctx.config.slug, documents, diagnostics, suggestions: [...scopeSuggestions(c), ...(remote ? intentSuggestions(remote, c) : [])], inferences: remote ? intentInferences(remote, c) : inferTechnologies(c.idea), maturity, targetTree: ctx.profile.paths };
+    return { diagrams, readiness, coverage, sddLanguage: c.sddLanguage ?? 'es', revision: c.revision, slug: ctx.config.slug, documents, diagnostics, suggestions: [...scopeSuggestions(c), ...(remote ? intentSuggestions(remote, c) : [])], inferences: remote ? intentInferences(remote, c) : inferTechnologies(c.idea), maturity, targetTree: ctx.profile.paths };
 }

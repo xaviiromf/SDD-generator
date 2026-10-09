@@ -12,7 +12,7 @@ test('genera kit, respeta intención y descarga ZIP', async ({ page }) => {
     await page.getByRole('button', { name: 'Descargar Kit SDD (.zip)', exact: true }).click();
     expect((await download).suggestedFilename()).toBe('mi-proyecto-sdd.zip');
     await page.getByRole('tab', { name: 'constitution', exact: true }).click();
-    await expect(page.locator('pre')).toContainText('Cero emojis');
+    await expect(page.locator('.document-content')).toContainText('Cero emojis');
     await page.getByRole('button', { name: 'Comando de preparación rápida' }).click();
     await expect(page.getByLabel('Contenido para copiar')).toContainText('npm create vite');
     await page.getByRole('button', { name: 'Cerrar', exact: true }).click();
@@ -31,7 +31,7 @@ test('busca erratas por teclado y conserva decisiones al cancelar', async ({ pag
 test('bloquea secretos y mantiene HTML como texto', async ({ page }) => {
     await page.goto('./');
     await page.getByLabel('Tu idea, en tus palabras').fill('<script>window.fallo=true</script>');
-    await expect(page.locator('pre')).toContainText('&lt;script&gt;');
+    await expect(page.locator('.document-content')).toContainText('&lt;script&gt;');
     expect(await page.evaluate(() => Object.prototype.hasOwnProperty.call(window, 'fallo'))).toBe(false);
     await page.getByLabel('Tu idea, en tus palabras').fill('token=' + 'a'.repeat(25));
     await expect(page.getByRole('alert')).toContainText('posible credencial');

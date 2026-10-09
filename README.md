@@ -74,6 +74,16 @@ El formato JSON de perfiles admite hasta diez instantáneas, veinte componentes,
 
 Importar valida el archivo antes de pedir confirmación y muestra los perfiles/versiones y los recuentos actuales y propuestos. Cancelar conserva la configuración. Confirmar sustituye únicamente perfiles, componentes y tecnologías propias y verifica las referencias del modelo canónico; no reemplaza idea, requisitos, diseño ni aportaciones. Guarda una versión en la biblioteca antes de una sustitución que quieras poder revertir. Los respaldos de proyectos y sus versiones conservan la instantánea completa del perfil que produjo el kit.
 
+### Diagramas Mermaid, visor y mapa de arquitectura
+
+El kit conserva 34 documentos. `docs/BASE_ARCHITECTURE.md` incluye el mapa de componentes, tecnologías y dependencias; `spec.md` y `plan.md`, entidades y una secuencia por RF; `tasks.md`, trazabilidad requisito–decisión–tarea–validación. La generación local es determinista. Las relaciones ER se declaran en la entrevista con extremos, cardinalidades e identificación explícitos; los campos incompletos aparecen como pendientes. Las secuencias muestran un flujo de alto nivel y sus excepciones declaradas, sin inventar llamadas internas.
+
+Los bloques Mermaid visibles se renderizan localmente. Alterna «Diagrama» y «Código» para consultar la fuente exacta; usa acercar, alejar, ajustar, arrastrar o las flechas dentro del área del diagrama. «Descargar SVG» conserva todo el gráfico y «Descargar PNG» rasteriza el SVG completo con fondo claro; una imagen grande se reduce uniformemente hasta los límites de exportación. Las fuentes inválidas o no admitidas conservan su código y muestran un error recuperable. No se ejecutan HTML, directivas, enlaces o recursos externos de los diagramas.
+
+En «Perfiles y componentes», el mapa muestra «Vista previa» mientras cambias nombres, dependencias o tecnologías. Guardar aplica la ficha; «Descartar cambios sin aplicar» restaura el candidato. Durante una actualización se identifica la vista anterior y se deshabilitan sus descargas. La arquitectura puede dividirse en partes: todas conservan sus referencias y se consultan en el mapa o documento.
+
+Mermaid 12.1.0 se importa al solicitar el primer diagrama. La primera carga necesita red; después de «Preparación sin conexión completa», también la primera apertura de un diagrama funciona sin red. La preparación descarga los módulos sin ejecutarlos; perder la caché exige prepararla de nuevo. El principal cumple el límite de 500000 bytes; la evidencia publica además la suma estática inicial y los módulos diferidos. Presupuestos, pruebas y límites manuales: [validación de 006](specs/006-diagramas-y-experiencia-visual/validation.md).
+
 ### Contexto acotado para agentes
 
 El kit mantiene sus 34 documentos. En `tasks.md`, «Paquetes de contexto por tarea» entrega objetivo, dominio, dependencias, contratos, archivos permitidos, criterios y puerta de aprobación. La entrada consta de tres archivos como máximo: `AGENTS.md`, `docs/PROJECT_STATUS.md` y únicamente el apartado pertinente de la especificación activa. Después de identificar la tarea se consultan sus contratos y archivos autorizados; no es necesario cargar todo el kit ni las nueve guías.

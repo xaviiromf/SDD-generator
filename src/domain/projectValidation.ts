@@ -1,3 +1,4 @@
+import { diagramFactsErrors } from './diagrams';
 import { contextKinds, projectLimits, type ProjectDefinition } from './projectDefinition';
 const states = new Set(['propuesto', 'confirmado', 'pendiente', 'descartado']);
 const origins = new Set(['user', 'preset', 'local', 'mcp-accepted']);
@@ -32,6 +33,7 @@ export function projectValidationErrors(value: unknown): string[] {
         const groups = [['actors',requirement.actorId ? [requirement.actorId] : []],['rules',requirement.ruleIds],['components',requirement.componentIds],['decisions',requirement.decisionIds],['contracts',requirement.contractIds]] as const;
         for (const [kind, links] of groups) for (const ref of links) if (!project.context[kind].some(item=>item.id===ref && item.status!=='descartado')) errors.push(`${requirement.id}: referencia inválida a ${ref}.`);
     }
+    if (project.diagramFacts !== undefined) errors.push(...diagramFactsErrors(project.diagramFacts, new Set(project.context.entities.filter(e => e.status !== 'descartado').map(e => e.id)), keys));
     return errors;
 }
 export function isProjectDefinition(value: unknown): value is ProjectDefinition { return projectValidationErrors(value).length === 0; }
