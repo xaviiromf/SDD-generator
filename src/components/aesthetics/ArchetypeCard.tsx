@@ -1,0 +1,68 @@
+import { memo, type CSSProperties } from 'react';
+import { Check, Palette } from 'lucide-react';
+import type { Archetype } from '../../catalog/archetypes';
+import { buttonText, contrastLabel, contrastRatio } from '../../domain/contrast';
+export const ArchetypeCard = memo(function ArchetypeCard({
+  a,
+  selected,
+  onSelect,
+}: {
+  a: Archetype;
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  const ratio = contrastRatio(a.foreground, a.surface, a.background);
+  return (
+    <article
+      className={`archetype archetype-${a.id} ${selected ? 'selected' : ''}`}
+      style={
+        {
+          '--preview-bg': a.background,
+          '--preview-surface': a.surface,
+          '--preview-text': a.foreground,
+          '--preview-accent': a.accent,
+          '--preview-radius': `${a.radius}px`,
+          '--preview-border': a.border,
+        } as CSSProperties
+      }
+    >
+      <div className="archetype-select">
+        <span>
+          <Palette size={14} /> {a.name}
+        </span>
+        {selected && <Check size={16} />}
+      </div>
+      <div className="archetype-sample">
+        <span className="eyebrow">ESTUDIO VISUAL</span>
+        <h3 style={{ fontFamily: `'${a.heading}',serif` }}>Una idea con carácter.</h3>
+        <p style={{ fontFamily: `'${a.body}',sans-serif` }}>
+          El diseño también es una decisión. Define cómo se siente tu próximo proyecto.
+        </p>
+        <button
+          className="sample-button"
+          style={{ color: buttonText(a.accent) }}
+          aria-pressed={selected}
+          onClick={onSelect}
+        >
+          {selected ? 'Preset Activo' : 'Seleccionar este estilo'}
+        </button>
+        <div className="swatches">
+          {[a.background, a.surface, a.accent, a.foreground, a.border].map((color, index) => (
+            <span key={index} style={{ background: color }} title={color} />
+          ))}
+        </div>
+      </div>
+      <p className="archetype-meta">
+        {a.heading} / {a.body}
+        <br />
+        {a.radius} px · {a.texture}
+        <br />
+        Texto: {ratio.toFixed(2)}:1 · {contrastLabel(ratio)}
+        <br />
+        Secundario: {contrastLabel(contrastRatio(a.muted, a.surface, a.background))}
+        <br />
+        Botón: {contrastLabel(contrastRatio(buttonText(a.accent), a.accent))}
+      </p>
+    </article>
+  );
+});

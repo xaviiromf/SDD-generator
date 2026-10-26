@@ -1,0 +1,11 @@
+dist
+dist-root
+node_modules
+test-results
+playwright-report
+public
+specs
+docs
+*.md
+*.html
+package-lock.json

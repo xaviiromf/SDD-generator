@@ -1,0 +1,161 @@
+import { isProfileConfiguration, profileValidationErrors, profileWarnings } from './profiles';
+import { isProjectDefinition, projectValidationErrors } from './projectValidation';
+import { isManualSections } from './manualSections';
+import { isReviewFindings } from './reviewExchange';
+import { isDesignOverrides } from './design';
+import {
+  fields,
+  isLocale,
+  singleFields,
+  type Configuration,
+  type Diagnostic,
+  type Field,
+} from './models';
+import { createKitManifest, validSlug } from '../engine/kitManifest';
+import { technologyById } from '../catalog/technologies';
+// Propiedades pictográficas y modificadores; el patrón no contiene símbolos prohibidos.
+export const emojiPattern = /[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u20E3]/u;
+const providerSecret =
+  /sk-[a-zA-Z0-9]{20,}|gh[pousr]_[a-zA-Z0-9]{20,}|AKIA[A-Z0-9]{16}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/;
+const genericSecret = /(?:api[_-]?key|password|secret|token)\s*[:=]\s*["']?([a-zA-Z0-9_/-]{16,})/gi;
+/** «clave: valor» solo cuenta como credencial si el valor parece aleatorio: letras y dígitos juntos. */
+export function containsSecret(text: string): boolean {
+  if (providerSecret.test(text)) return true;
+  for (const [, value] of text.matchAll(genericSecret))
+    if (/[a-z]/i.test(value) && /\d/.test(value)) return true;
+  return false;
+}
+export function validateText(text: string): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  // Preferencia del proyecto «cero emojis»: avisa, no bloquea.
+  if (emojiPattern.test(text))
+    diagnostics.push({
+      kind: 'style',
+      message: 'El texto contiene emojis y la preferencia del proyecto es «cero emojis».',
+      blocking: false,
+    });
+  if (containsSecret(text))
+    diagnostics.push({
+      message: 'Se detectó una posible credencial. Retírala del borrador antes de continuar.',
+      blocking: true,
+    });
+  return diagnostics;
+}
+/** Tope total del borrador: sustituye a los límites por campo (tabla de riesgo). */
+export const configurationBytes = 1024 * 1024;
+export function validateConfiguration(
+  c: Configuration,
+  knownIds?: ReadonlySet<string>,
+): Diagnostic[] {
+  const projectErrors = c.project === undefined ? [] : projectValidationErrors(c.project);
+  const result: Diagnostic[] = projectErrors.map(message => ({ message, blocking: true }));
+  if (c.profile !== undefined) {
+    const errors = profileValidationErrors(c.profile);
+    result.push(...errors.map(message => ({ message, blocking: true })));
+    if (!errors.length) {
+      result.push(
+        ...validateText(JSON.stringify(c.profile)),
+        ...profileWarnings(c.profile, c.project).map(message => ({ message, blocking: false })),
+      );
+      if (!projectErrors.length)
+        for (const component of c.profile.components) {
+          const item = c.project?.context.components.find(i => i.id === component.id);
+          if (!item)
+            result.push({
+              message: `${component.name}: vínculo al contexto canónico pendiente.`,
+              blocking: false,
+            });
+          else if (
+            item.text !== component.responsibility ||
+            JSON.stringify([...item.references].sort()) !==
+              JSON.stringify([...component.dependsOn].sort())
+          )
+            result.push({
+              message: `${component.name}: la responsabilidad o dependencias contradicen el contexto canónico.`,
+              blocking: true,
+            });
+        }
+    }
+  }
+  if (c.manualSections !== undefined) {
+    if (!isManualSections(c.manualSections))
+      result.push({
+        message: 'Las aportaciones manuales no son válidas o exceden sus límites.',
+        blocking: true,
+      });
+    else result.push(...validateText(JSON.stringify(c.manualSections)));
+  }
+  if (c.project !== undefined && projectErrors.length === 0)
+    result.push(...validateText(JSON.stringify(c.project)));
+  result.push(...validateText([c.name, c.idea, c.positive, c.negative].join('\n')));
+  if (
+    (c.designVersion !== undefined && c.designVersion !== 1) ||
+    (c.designOverrides !== undefined && !isDesignOverrides(c.designOverrides))
+  )
+    result.push({ message: 'Los ajustes de diseño no son válidos.', blocking: true });
+  if (c.sddLanguage !== undefined && !isLocale(c.sddLanguage))
+    result.push({ message: 'Idioma del SDD no válido.', blocking: true });
+  if (c.version !== 1 || !Number.isSafeInteger(c.revision) || c.revision < 0)
+    result.push({ message: 'Versión o revisión de borrador no válida.', blocking: true });
+  if (!c.name.trim()) result.push({ message: 'El nombre no puede estar vacío.', blocking: true });
+  if (!/^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/.test(c.slug))
+    result.push({
+      message: 'El identificador debe usar de 1 a 64 letras minúsculas, números o guiones.',
+      blocking: true,
+    });
+  if (new TextEncoder().encode(JSON.stringify(c)).length > configurationBytes)
+    result.push({
+      message: 'La configuración supera 1 MiB. Acota la idea o el alcance para continuar.',
+      blocking: true,
+    });
+  for (const [field, ids] of Object.entries(c.selections)) {
+    if (
+      !fields.includes(field as Field) ||
+      (knownIds && ids.some(id => !knownIds.has(id) || technologyById.get(id)?.field !== field))
+    )
+      result.push({ message: 'La configuración contiene una opción desconocida.', blocking: true });
+    if (new Set(ids).size !== ids.length || (singleFields.has(field as Field) && ids.length > 1))
+      result.push({
+        message:
+          'La configuración contiene opciones duplicadas o varias decisiones en un campo único.',
+        blocking: true,
+      });
+  }
+  return result;
+}
+export function isConfiguration(value: unknown): value is Configuration {
+  if (!value || typeof value !== 'object') return false;
+  const c = value as Record<string, unknown>;
+  return (
+    (c.profile === undefined || isProfileConfiguration(c.profile)) &&
+    (c.manualSections === undefined || isManualSections(c.manualSections)) &&
+    (c.review === undefined || isReviewFindings(c.review)) &&
+    (c.project === undefined || isProjectDefinition(c.project)) &&
+    (c.designVersion === undefined || c.designVersion === 1) &&
+    (c.modelVersion === undefined || c.modelVersion === 2) &&
+    (c.designOverrides === undefined || isDesignOverrides(c.designOverrides)) &&
+    (c.sddLanguage === undefined || isLocale(c.sddLanguage)) &&
+    c.version === 1 &&
+    typeof c.revision === 'number' &&
+    ['name', 'slug', 'idea', 'positive', 'negative'].every(k => typeof c[k] === 'string') &&
+    !!c.selections &&
+    typeof c.selections === 'object' &&
+    !Array.isArray(c.selections) &&
+    Object.values(c.selections).every(
+      ids => Array.isArray(ids) && ids.every(id => typeof id === 'string'),
+    ) &&
+    !!c.origins &&
+    typeof c.origins === 'object' &&
+    !Array.isArray(c.origins) &&
+    Object.keys(c.origins).every(key => fields.includes(key as Field)) &&
+    Object.values(c.origins).every(origin =>
+      ['manual', 'preset', 'inference'].includes(String(origin)),
+    )
+  );
+}
+export function safeDocumentPath(path: string, slug = 'mi-proyecto'): boolean {
+  return validSlug(slug) && createKitManifest({ slug }).some(d => d.path === path);
+}
+export function escapeMarkdown(text: string): string {
+  return text.replace(/[<>]/g, char => (char === '<' ? '&lt;' : '&gt;'));
+}
